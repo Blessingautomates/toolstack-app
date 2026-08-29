@@ -234,7 +234,50 @@
       </div>
     </div>
   </div>
+<div class="mt-8 flex justify-end gap-3">
+      <button id="downloadPdfBtn" ...>📥 Download PDF Quotation</button>
+    </div>
+  </div>
+</div> 
+<div id="imgModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    <button id="closeImgModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+    
+    <h2 class="text-2xl font-bold mb-2">Image Converter & WebP Optimizer</h2>
+    <p class="text-xs text-gray-400 mb-6">Convert and compress images locally without uploading data to any server.</p>
 
+    <div id="dropZone" class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-xl p-8 text-center cursor-pointer bg-gray-950/50 transition-colors mb-6">
+      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp" class="hidden" />
+      <div class="text-4xl mb-2">📥</div>
+      <p class="text-sm font-medium text-gray-300">Click to upload or drag & drop an image</p>
+      <p class="text-xs text-gray-500 mt-1">Supports PNG, JPG, WEBP</p>
+    </div>
+
+    <div id="imageControls" class="hidden space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800 mb-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1">Target Format</label>
+          <select id="outputFormat" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="image/webp">WebP (Recommended)</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/png">PNG</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-400 mb-1">Quality: <span id="qualityVal">80</span>%</label>
+          <input type="range" id="qualityRange" min="10" max="100" value="80" class="w-full accent-brand-500 cursor-pointer mt-2" />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button id="convertBtn" disabled class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
+        Convert & Download
+      </button>
+    </div>
+  </div>
+</div>
+  
   <script>
     // Date Setup
     document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
@@ -326,6 +369,63 @@
       };
       html2pdf().set(opt).from(element).save();
     });
-  </script>
+  
+  // Image Converter Modal Toggle
+  const imgModal = document.getElementById('imgModal');
+  document.getElementById('openImgModal').addEventListener('click', () => imgModal.classList.remove('hidden'));
+  document.getElementById('closeImgModal').addEventListener('click', () => imgModal.classList.add('hidden'));
+
+  // Image Upload & Conversion Logic
+  const dropZone = document.getElementById('dropZone');
+  const imageInput = document.getElementById('imageInput');
+  const imageControls = document.getElementById('imageControls');
+  const convertBtn = document.getElementById('convertBtn');
+  const qualityRange = document.getElementById('qualityRange');
+  const qualityVal = document.getElementById('qualityVal');
+  let loadedImage = null;
+  let originalFileName = 'converted-image';
+
+  dropZone.addEventListener('click', () => imageInput.click());
+  qualityRange.addEventListener('input', (e) => qualityVal.textContent = e.target.value);
+
+  imageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'converted-image';
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        loadedImage = new Image();
+        loadedImage.onload = () => {
+          imageControls.classList.remove('hidden');
+          convertBtn.disabled = false;
+          dropZone.querySelector('p').textContent = `Loaded: ${file.name}`;
+        };
+        loadedImage.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  convertBtn.addEventListener('click', () => {
+    if (!loadedImage) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = loadedImage.width;
+    canvas.height = loadedImage.height;
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(loadedImage, 0, 0);
+
+    const format = document.getElementById('outputFormat').value;
+    const quality = parseFloat(qualityRange.value) / 100;
+    const ext = format.split('/')[1];
+
+    const dataUrl = canvas.toDataURL(format, quality);
+    const link = document.createElement('a');
+    link.download = `${originalFileName}.${ext}`;
+    link.href = dataUrl;
+    link.click();
+  });
+</script>
 </body>
 </html>
