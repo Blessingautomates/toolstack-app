@@ -13,14 +13,13 @@
         extend: {
           colors: {
             brand: {
-              // Sharp Amber Flame Palette
               50: '#FFFBEB',
               100: '#FEF3C7',
               200: '#FDE68A',
               300: '#FCD34D',
               400: '#FBBF24',
-              500: '#F59E0B', // Primary Sharp Amber
-              600: '#D97706', // High-Contrast Action Hover
+              500: '#F59E0B',
+              600: '#D97706',
               700: '#B45309',
               800: '#92400E',
               900: '#78350F',
@@ -31,137 +30,159 @@
     }
   </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-200">
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
 
-  <!-- Header Navigation -->
-  <header class="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      
       <div class="flex items-center gap-3">
-  <!-- Redesigned Stacked Layers Logo -->
-  <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Top Layer (Glowing Amber Accent) -->
-    <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
-    <!-- Middle Layer (Semi-transparent) -->
-    <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Bottom Base Layer -->
-    <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <span class="font-bold text-xl hidden sm:inline text-gray-950 dark:text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
-</div>
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </div>
 
       <div class="flex-1 max-w-md relative">
         <input 
           id="searchInput"
           type="text" 
           placeholder="Search tools... (Press '/' to focus)" 
-          class="w-full pl-4 pr-10 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
         />
-        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-200 dark:bg-gray-700 px-1.5 py-0.5 rounded">/</kbd>
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded">/</kbd>
       </div>
 
-      <button id="themeToggle" class="p-2 rounded-lg border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 text-base">
+      <button id="themeToggle" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base">
         🌙
       </button>
     </div>
   </header>
 
-  <!-- Main Shell Content -->
-  <main class="max-w-7xl mx-auto px-4 py-8">
-    <!-- Category Filter Tabs -->
-    <div class="flex flex-wrap gap-2 mb-8 border-b border-gray-200 dark:border-gray-800 pb-4" id="categoryFilters">
-      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm font-semibold bg-brand-500 text-gray-950 shadow-sm" data-cat="all">All Tools</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-500/20 hover:text-brand-500" data-cat="client">Client Utilities</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-500/20 hover:text-brand-500" data-cat="crm">Sales & CRM</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-500/20 hover:text-brand-500" data-cat="ai-support">AI Support</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-500/20 hover:text-brand-500" data-cat="creator">Creator & Video</button>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-800 scrollbar-none" id="categoryFilters">
+      <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-gray-950 shadow-lg shadow-brand-500/10 whitespace-nowrap" data-cat="all">All Tools</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="client">Client Utilities</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="crm">Sales & CRM</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="ai-support">AI Support</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="creator">Creator & Video</button>
     </div>
 
-    <!-- Tools Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
       
-      <!-- Category A: Active Tool -->
-      <div id="openQuoteModal" class="tool-card border border-brand-500/30 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-brand-500/10 hover:border-brand-500 transition cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf client utilities">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-3xl">📄</span>
-          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Active</span>
+      <div id="openQuoteModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf client utilities">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📄
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Quotation Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Calculate line items, taxes, and instantly export client PDF quotes locally.</p>
         </div>
-        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">Quotation Generator</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Calculate line items, taxes, and instantly export client PDF quotes locally.</p>
-        <span class="text-xs text-brand-500 font-bold flex items-center gap-1 hover:underline">Open Tool →</span>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
       </div>
 
-      <!-- Category B: Sales & CRM -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-700 transition cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-3xl">🎯</span>
-          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-500/15 text-brand-600 dark:text-brand-400 border border-brand-500/20">Beta</span>
+      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🎯
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">Beta</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">AI Lead Qualification</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Evaluate prospect details against your ICP and generate priority scores.</p>
         </div>
-        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">AI Lead Qualification</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Evaluate prospect details against your ICP and generate priority scores.</p>
-        <span class="text-xs text-brand-500 font-bold">n8n AI Webhook →</span>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">n8n AI Webhook</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+            Try Beta →
+          </span>
+        </div>
       </div>
 
-      <!-- Category C: AI Support -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-700 transition cursor-pointer" data-cat="ai-support" data-name="whatsapp instagram support bot rag">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-3xl">💬</span>
-          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-gray-500/15 text-gray-600 dark:text-gray-400 border border-gray-500/20">Coming Soon</span>
+      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-cat="ai-support" data-name="whatsapp instagram support bot rag">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 text-2xl group-hover:scale-110 transition-transform">
+              💬
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-gray-800 text-gray-400 border border-gray-700">Coming Soon</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 transition-colors">WhatsApp & IG Support Bot</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Multi-tenant RAG support agent with automated human handoff in Slack.</p>
         </div>
-        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">WhatsApp & IG Support Bot</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Multi-tenant RAG support agent with automated human handoff in Slack.</p>
-        <span class="text-xs text-brand-500 font-bold">Pinecone + n8n →</span>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Pinecone + n8n</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500">
+            Details →
+          </span>
+        </div>
       </div>
 
-      <!-- Category D: Creator & Video -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-400 dark:hover:border-gray-700 transition cursor-pointer" data-cat="creator" data-name="ai video ad prompt generator kling pexels ffmpeg">
-        <div class="flex justify-between items-start mb-4">
-          <span class="text-3xl">🎬</span>
-          <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-gray-500/15 text-gray-600 dark:text-gray-400 border border-gray-500/20">Coming Soon</span>
+      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-cat="creator" data-name="ai video ad prompt generator kling pexels ffmpeg">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 text-2xl group-hover:scale-110 transition-transform">
+              🎬
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-gray-800 text-gray-400 border border-gray-700">Coming Soon</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 transition-colors">AI Video Ad Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Generate scene-by-scene visual prompts for real estate, e-commerce, and tech.</p>
         </div>
-        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">AI Video Ad Generator</h3>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Generate scene-by-scene visual prompts for real estate, e-commerce, and tech.</p>
-        <span class="text-xs text-brand-500 font-bold">n8n Engine →</span>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">n8n Engine</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500">
+            Details →
+          </span>
+        </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Quotation Generator Modal -->
   <div id="quoteModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8">
-      <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-bold text-xl">&times;</button>
+    <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+      <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
       
-      <h2 class="text-2xl font-bold mb-5 text-gray-950 dark:text-gray-50">Client Quotation Generator</h2>
+      <h2 class="text-2xl font-bold mb-5">Client Quotation Generator</h2>
 
-      <!-- PDF Printable Region -->
-      <div id="quoteContainer" class="p-6 bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-50">
+      <div id="quoteContainer" class="p-6 bg-gray-950 rounded-xl border border-gray-800 text-gray-100">
         <div class="flex justify-between items-center mb-6">
           <div>
             <h1 class="text-2xl font-black text-brand-500">QUOTATION</h1>
             <p class="text-xs text-gray-500">ToolStack AI Platform Services</p>
           </div>
           <div class="text-right">
-            <input type="text" id="quoteNumber" value="QT-2026-001" class="text-sm font-bold bg-transparent text-right border-b border-gray-300 dark:border-gray-700 focus:outline-none text-brand-500" />
+            <input type="text" id="quoteNumber" value="QT-2026-001" class="text-sm font-bold bg-transparent text-right border-b border-gray-800 focus:outline-none text-brand-500" />
             <p class="text-xs text-gray-400" id="quoteDate"></p>
           </div>
         </div>
 
-        <!-- Client Info -->
         <div class="grid grid-cols-2 gap-4 mb-6">
           <div>
             <label class="block text-xs text-gray-400 mb-1">Prepared For:</label>
-            <input type="text" id="clientName" placeholder="Client or Company Name" class="w-full text-sm font-medium bg-transparent border-b border-gray-300 dark:border-gray-700 focus:outline-none p-1" />
+            <input type="text" id="clientName" placeholder="Client or Company Name" class="w-full text-sm font-medium bg-transparent border-b border-gray-800 focus:outline-none p-1" />
           </div>
           <div>
             <label class="block text-xs text-gray-400 mb-1">Prepared By:</label>
-            <input type="text" id="providerName" placeholder="Your Name / Business" class="w-full text-sm font-medium bg-transparent border-b border-gray-300 dark:border-gray-700 focus:outline-none p-1" />
+            <input type="text" id="providerName" placeholder="Your Name / Business" class="w-full text-sm font-medium bg-transparent border-b border-gray-800 focus:outline-none p-1" />
           </div>
         </div>
 
-        <!-- Line Items Table -->
         <table class="w-full text-left mb-6 text-sm">
           <thead>
-            <tr class="border-b border-gray-200 dark:border-gray-800 text-xs text-gray-400">
+            <tr class="border-b border-gray-800 text-xs text-gray-400">
               <th class="py-2.5">Description</th>
               <th class="py-2.5 w-20 text-center">Qty</th>
               <th class="py-2.5 w-24 text-right">Price ($)</th>
@@ -169,7 +190,7 @@
             </tr>
           </thead>
           <tbody id="lineItemsBody">
-            <tr class="line-item border-b border-gray-100 dark:border-gray-800">
+            <tr class="line-item border-b border-gray-800/50">
               <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" value="AI Agentic Automation Setup" /></td>
               <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
               <td class="py-2.5"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="250" min="0" /></td>
@@ -180,19 +201,17 @@
 
         <button id="addItemBtn" class="text-xs font-bold text-brand-500 hover:underline mb-6">+ Add Item</button>
 
-        <!-- Totals -->
-        <div class="border-t border-gray-200 dark:border-gray-800 pt-5 flex justify-end">
+        <div class="border-t border-gray-800 pt-5 flex justify-end">
           <div class="w-48 space-y-2.5 text-sm">
             <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span id="subTotal">$250.00</span></div>
-            <div class="flex justify-between items-center"><span class="text-gray-400">Tax (%):</span><input type="number" id="taxRate" value="5" class="w-12 text-right bg-transparent border-b border-gray-300 dark:border-gray-700 focus:outline-none" /></div>
-            <div class="flex justify-between font-bold text-base border-t border-gray-200 dark:border-gray-700 pt-2.5"><span>Total:</span><span id="grandTotal" class="text-brand-500 font-extrabold">$262.50</span></div>
+            <div class="flex justify-between items-center"><span class="text-gray-400">Tax (%):</span><input type="number" id="taxRate" value="5" class="w-12 text-right bg-transparent border-b border-gray-800 focus:outline-none" /></div>
+            <div class="flex justify-between font-bold text-base border-t border-gray-800 pt-2.5"><span>Total:</span><span id="grandTotal" class="text-brand-500 font-extrabold">$262.50</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Action Footer -->
       <div class="mt-8 flex justify-end gap-3">
-        <button id="downloadPdfBtn" class="px-6 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm flex items-center gap-2 transition">
+        <button id="downloadPdfBtn" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm flex items-center gap-2 transition shadow-lg shadow-brand-500/20">
           📥 Download PDF Quotation
         </button>
       </div>
@@ -200,14 +219,8 @@
   </div>
 
   <script>
-    // System & Theme Setup
+    // Date Setup
     document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
-    
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌙' : '☀️';
-    });
 
     // Keyboard Focus
     const searchInput = document.getElementById('searchInput');
@@ -224,23 +237,26 @@
 
     function filterTools() {
       const query = searchInput.value.toLowerCase();
-      const activeCat = document.querySelector('.filter-btn.active').dataset.cat;
+      const activeBtn = document.querySelector('.filter-btn.active');
+      const activeCat = activeBtn ? activeBtn.dataset.cat : 'all';
+
       cards.forEach(card => {
         const matchesCat = activeCat === 'all' || card.dataset.cat === activeCat;
         const matchesQuery = card.dataset.name.toLowerCase().includes(query);
-        card.style.display = matchesCat && matchesQuery ? 'block' : 'none';
+        card.style.display = matchesCat && matchesQuery ? 'flex' : 'none';
       });
     }
 
     searchInput.addEventListener('input', filterTools);
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => {
-          b.classList.remove('bg-brand-500', 'text-gray-950', 'active', 'font-semibold');
-          b.classList.add('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300', 'font-medium');
+          b.classList.remove('bg-brand-500', 'text-gray-950', 'active', 'shadow-lg', 'shadow-brand-500/10');
+          b.classList.add('bg-gray-900', 'text-gray-400');
         });
-        btn.classList.add('bg-brand-500', 'text-gray-950', 'active', 'font-semibold');
-        btn.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300', 'font-medium');
+        btn.classList.add('bg-brand-500', 'text-gray-950', 'active', 'shadow-lg', 'shadow-brand-500/10');
+        btn.classList.remove('bg-gray-900', 'text-gray-400');
         filterTools();
       });
     });
@@ -270,7 +286,7 @@
 
     document.getElementById('addItemBtn').addEventListener('click', () => {
       const tr = document.createElement('tr');
-      tr.className = 'line-item border-b border-gray-100 dark:border-gray-800';
+      tr.className = 'line-item border-b border-gray-800/50';
       tr.innerHTML = `
         <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" placeholder="Service item..." /></td>
         <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
