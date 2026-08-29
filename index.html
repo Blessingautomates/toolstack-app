@@ -168,12 +168,14 @@
     </div>
   </main>
 
+<!-- Quotation Generator Modal -->
   <div id="quoteModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
       <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
       
       <h2 class="text-2xl font-bold mb-5">Client Quotation Generator</h2>
 
+      <!-- PDF Printable Region -->
       <div id="quoteContainer" class="p-6 bg-gray-950 rounded-xl border border-gray-800 text-gray-100">
         <div class="flex justify-between items-center mb-6">
           <div>
@@ -186,6 +188,7 @@
           </div>
         </div>
 
+        <!-- Client Info -->
         <div class="grid grid-cols-2 gap-4 mb-6">
           <div>
             <label class="block text-xs text-gray-400 mb-1">Prepared For:</label>
@@ -197,6 +200,7 @@
           </div>
         </div>
 
+        <!-- Line Items Table -->
         <table class="w-full text-left mb-6 text-sm">
           <thead>
             <tr class="border-b border-gray-800 text-xs text-gray-400">
@@ -218,6 +222,7 @@
 
         <button id="addItemBtn" class="text-xs font-bold text-brand-500 hover:underline mb-6">+ Add Item</button>
 
+        <!-- Totals -->
         <div class="border-t border-gray-800 pt-5 flex justify-end">
           <div class="w-48 space-y-2.5 text-sm">
             <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span id="subTotal">$250.00</span></div>
@@ -227,6 +232,7 @@
         </div>
       </div>
 
+      <!-- Action Footer -->
       <div class="mt-8 flex justify-end gap-3">
         <button id="downloadPdfBtn" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm flex items-center gap-2 transition shadow-lg shadow-brand-500/20">
           📥 Download PDF Quotation
@@ -234,11 +240,6 @@
       </div>
     </div>
   </div>
-<div class="mt-8 flex justify-end gap-3">
-      <button id="downloadPdfBtn" ...>📥 Download PDF Quotation</button>
-    </div>
-  </div>
-</div> 
 <div id="imgModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
   <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
     <button id="closeImgModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
