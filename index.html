@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev & AI SaaS Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-200">
+
+  <header class="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center font-bold text-white">X</div>
+        <span class="font-bold text-lg hidden sm:inline">DevToolbox</span>
+      </div>
+
+      <div class="flex-1 max-w-md relative">
+        <input 
+          id="searchInput"
+          type="text" 
+          placeholder="Search tools... (Press '/' to focus)" 
+          class="w-full pl-4 pr-10 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-200 dark:bg-gray-700 px-1.5 py-0.5 rounded">/</kbd>
+      </div>
+
+      <button id="themeToggle" class="p-2 rounded-lg border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex flex-wrap gap-2 mb-8 border-b border-gray-200 dark:border-gray-800 pb-4" id="categoryFilters">
+      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm font-medium bg-brand-600 text-white" data-cat="all">All Tools</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="client">Client Utilities</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="crm">Sales & CRM</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="ai-support">AI Support</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="creator">Creator & Video</button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+      
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf">
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-2xl">📄</span>
+          <span class="text-xs font-semibold px-2 py-1 rounded bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">Active</span>
+        </div>
+        <h3 class="font-bold text-base mb-1">Quotation Generator</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Calculate line items, taxes, and instantly export client PDF quotes locally.</p>
+        <span class="text-xs text-brand-500 font-semibold">Browser-based →</span>
+      </div>
+
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-2xl">🎯</span>
+          <span class="text-xs font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">Beta</span>
+        </div>
+        <h3 class="font-bold text-base mb-1">AI Lead Qualification</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Evaluate prospect details against your ICP and generate priority scores.</p>
+        <span class="text-xs text-brand-500 font-semibold">n8n AI Webhook →</span>
+      </div>
+
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="ai-support" data-name="whatsapp instagram support bot rag">
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-2xl">💬</span>
+          <span class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Coming Soon</span>
+        </div>
+        <h3 class="font-bold text-base mb-1">WhatsApp & IG Support Bot</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Multi-tenant RAG support agent with automated human handoff in Slack.</p>
+        <span class="text-xs text-brand-500 font-semibold">Pinecone + n8n →</span>
+      </div>
+
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="creator" data-name="ai video ad prompt generator script">
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-2xl">🎬</span>
+          <span class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Coming Soon</span>
+        </div>
+        <h3 class="font-bold text-base mb-1">AI Video Ad Prompt Generator</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Generate scene-by-scene visual prompts for real estate, e-commerce, and tech.</p>
+        <span class="text-xs text-brand-500 font-semibold">n8n Engine →</span>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌙' : '☀️';
+    });
+
+    // Keyboard Shortcut '/'
+    const searchInput = document.getElementById('searchInput');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+
+    // Filtering & Live Search Logic
+    const cards = document.querySelectorAll('.tool-card');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    function filterTools() {
+      const query = searchInput.value.toLowerCase();
+      const activeCat = document.querySelector('.filter-btn.active').dataset.cat;
+
+      cards.forEach(card => {
+        const matchesCat = activeCat === 'all' || card.dataset.cat === activeCat;
+        const matchesQuery = card.dataset.name.toLowerCase().includes(query);
+        card.style.display = matchesCat && matchesQuery ? 'block' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterTools);
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'active');
+          b.classList.add('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'active');
+        btn.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+        filterTools();
+      });
+    });
+  </script>
+</body>
+</html>
