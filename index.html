@@ -297,7 +297,41 @@
     </div>
   </div>
 </div>
-  
+<div id="jsonModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    <button id="closeJsonModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+    
+    <h2 class="text-2xl font-bold mb-1">JSON Formatter & Validator</h2>
+    <p class="text-xs text-gray-400 mb-4">Format messy API payloads or minify JSON for production.</p>
+
+    <!-- Error/Success Banner -->
+    <div id="jsonStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <!-- Code Editor Container -->
+    <div class="grid grid-cols-1 gap-4 mb-4">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1 font-mono">Input / Output JSON:</label>
+        <textarea id="jsonInput" rows="10" placeholder='Paste your raw JSON here... e.g. {"name":"Blessing","role":"automation"}' class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
+      <div class="flex gap-2">
+        <button id="formatJsonBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          ✨ Prettify (2 Spaces)
+        </button>
+        <button id="minifyJsonBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          ⚡ Minify
+        </button>
+      </div>
+      <button id="copyJsonBtn" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition flex items-center gap-1.5">
+        📋 Copy Result
+      </button>
+    </div>
+  </div>
+</div>
+
   <script>
     // Date Setup
     document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
@@ -445,6 +479,60 @@
     link.download = `${originalFileName}.${ext}`;
     link.href = dataUrl;
     link.click();
+  });
+    // JSON Formatter Modal Toggle
+  const jsonModal = document.getElementById('jsonModal');
+  document.getElementById('openJsonModal').addEventListener('click', () => jsonModal.classList.remove('hidden'));
+  document.getElementById('closeJsonModal').addEventListener('click', () => jsonModal.classList.add('hidden'));
+
+  // JSON Processing Logic
+  const jsonInput = document.getElementById('jsonInput');
+  const jsonStatus = document.getElementById('jsonStatus');
+  const formatJsonBtn = document.getElementById('formatJsonBtn');
+  const minifyJsonBtn = document.getElementById('minifyJsonBtn');
+  const copyJsonBtn = document.getElementById('copyJsonBtn');
+
+  function showStatus(message, isError) {
+    jsonStatus.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20', 'bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
+    if (isError) {
+      jsonStatus.classList.add('bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
+      jsonStatus.textContent = `❌ ${message}`;
+    } else {
+      jsonStatus.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20');
+      jsonStatus.textContent = `✅ ${message}`;
+    }
+  }
+
+  formatJsonBtn.addEventListener('click', () => {
+    const raw = jsonInput.value.trim();
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw);
+      jsonInput.value = JSON.stringify(parsed, null, 2);
+      showStatus('Valid JSON! Formatted successfully.', false);
+    } catch (err) {
+      showStatus(`Invalid JSON: ${err.message}`, true);
+    }
+  });
+
+  minifyJsonBtn.addEventListener('click', () => {
+    const raw = jsonInput.value.trim();
+    if (!raw) return;
+    try {
+      const parsed = JSON.parse(raw);
+      jsonInput.value = JSON.stringify(parsed);
+      showStatus('Valid JSON! Minified successfully.', false);
+    } catch (err) {
+      showStatus(`Invalid JSON: ${err.message}`, true);
+    }
+  });
+
+  copyJsonBtn.addEventListener('click', () => {
+    if (!jsonInput.value) return;
+    navigator.clipboard.writeText(jsonInput.value);
+    const originalText = copyJsonBtn.textContent;
+    copyJsonBtn.textContent = '✅ Copied!';
+    setTimeout(() => copyJsonBtn.textContent = originalText, 2000);
   });
 </script>
 </body>
