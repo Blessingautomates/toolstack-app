@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ToolStack AI - Developer & SaaS Utilities</title>
+  <title>ToolStack AI - Premium Developer & SaaS Utilities</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
@@ -12,21 +12,38 @@
       theme: {
         extend: {
           colors: {
-            brand: { 500: '#6366f1', 600: '#4f46e5' }
+            brand: {
+              // Electric Violet & Indigo Palette
+              50: '#F5F3FF',
+              100: '#EDE9FE',
+              200: '#DDD6FE',
+              300: '#C4B5FD',
+              400: '#A78BFA',
+              500: '#8B5CF6', // Primary Accent
+              600: '#7C3AED', // Hover Accent
+              700: '#6D28D9',
+              800: '#5B21B6',
+              900: '#4C1D95',
+            }
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-200">
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-200">
 
   <!-- Header Navigation -->
-  <header class="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center font-bold text-white">TS</div>
-        <span class="font-bold text-lg hidden sm:inline">ToolStack AI</span>
+      <div class="flex items-center gap-2">
+        <!-- Modernized, Stylized Logo integrating Violet -->
+        <svg class="w-9 h-9" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 28.5L20 33.5L28 28.5V19.5L20 14.5L12 19.5V28.5Z" fill="#A78BFA"/> <!-- Violet Secondary -->
+          <path d="M20 6.5L34 14.5V28.5L20 36.5L6 28.5V14.5L20 6.5ZM20 28.5L28 23.5V16.5L20 11.5L12 16.5V23.5L20 28.5Z" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/> <!-- Violet Primary -->
+          <path d="M16 23.5L20 21.5L24 23.5V16.5L20 18.5L16 16.5V23.5Z" fill="white"/> <!-- Contrast White -->
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-950 dark:text-gray-50">ToolStack AI</span>
       </div>
 
       <div class="flex-1 max-w-md relative">
@@ -49,75 +66,75 @@
   <main class="max-w-7xl mx-auto px-4 py-8">
     <!-- Category Filter Tabs -->
     <div class="flex flex-wrap gap-2 mb-8 border-b border-gray-200 dark:border-gray-800 pb-4" id="categoryFilters">
-      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm font-medium bg-brand-600 text-white" data-cat="all">All Tools</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="client">Client Utilities</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="crm">Sales & CRM</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="ai-support">AI Support</button>
-      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700" data-cat="creator">Creator & Video</button>
+      <button class="filter-btn active px-4 py-1.5 rounded-full text-sm font-medium bg-brand-500 text-white" data-cat="all">All Tools</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-900/30 dark:hover:text-brand-100" data-cat="client">Client Utilities</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-900/30 dark:hover:text-brand-100" data-cat="crm">Sales & CRM</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-900/30 dark:hover:text-brand-100" data-cat="ai-support">AI Support</button>
+      <button class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-900/30 dark:hover:text-brand-100" data-cat="creator">Creator & Video</button>
     </div>
 
     <!-- Tools Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
       
-      <!-- Category A: Active Tool -->
-      <div id="openQuoteModal" class="tool-card border border-brand-500/30 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf client utilities">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-2xl">📄</span>
-          <span class="text-xs font-semibold px-2 py-1 rounded bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">Active</span>
+      <!-- Category A: Active Tool (Quotation Generator) -->
+      <div id="openQuoteModal" class="tool-card border border-brand-500/20 dark:border-brand-500/10 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-brand-500/30 dark:hover:border-brand-500/20 transition cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf client utilities">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-3xl">📄</span>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Active</span>
         </div>
-        <h3 class="font-bold text-base mb-1">Quotation Generator</h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Calculate line items, taxes, and instantly export client PDF quotes locally.</p>
-        <span class="text-xs text-brand-500 font-semibold">Open Tool →</span>
+        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">Quotation Generator</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Calculate line items, taxes, and instantly export client PDF quotes locally.</p>
+        <span class="text-xs text-brand-500 font-semibold flex items-center gap-1.5">Open Tool <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.83331 14.1667L14.1666 5.83337M14.1666 5.83337H5.83331M14.1666 5.83337V14.1667" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
 
-      <!-- Category B: Sales & CRM -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-2xl">🎯</span>
-          <span class="text-xs font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300">Beta</span>
+      <!-- Category B: Sales & CRM (AI Lead Qualification) -->
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700 transition cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-3xl">🎯</span>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Beta</span>
         </div>
-        <h3 class="font-bold text-base mb-1">AI Lead Qualification</h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Evaluate prospect details against your ICP and generate priority scores.</p>
+        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">AI Lead Qualification</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Evaluate prospect details against your ICP and generate priority scores.</p>
         <span class="text-xs text-brand-500 font-semibold">n8n AI Webhook →</span>
       </div>
 
-      <!-- Category C: AI Support -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="ai-support" data-name="whatsapp instagram support bot rag">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-2xl">💬</span>
-          <span class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Coming Soon</span>
+      <!-- Category C: AI Support (WhatsApp Bot) -->
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700 transition cursor-pointer" data-cat="ai-support" data-name="whatsapp instagram support bot rag">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-3xl">💬</span>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300">Coming Soon</span>
         </div>
-        <h3 class="font-bold text-base mb-1">WhatsApp & IG Support Bot</h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Multi-tenant RAG support agent with automated human handoff in Slack.</p>
+        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">WhatsApp & IG Support Bot</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Multi-tenant RAG support agent with automated human handoff in Slack.</p>
         <span class="text-xs text-brand-500 font-semibold">Pinecone + n8n →</span>
       </div>
 
-      <!-- Category D: Creator & Video (Restored) -->
-      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-xl p-5 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition cursor-pointer" data-cat="creator" data-name="ai video ad prompt generator kling pexels ffmpeg">
-        <div class="flex justify-between items-start mb-3">
-          <span class="text-2xl">🎬</span>
-          <span class="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">Coming Soon</span>
+      <!-- Category D: Creator & Video (AI Video Ad Generator - Restored) -->
+      <div class="tool-card border border-gray-200 dark:border-gray-800 rounded-2xl p-6 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700 transition cursor-pointer" data-cat="creator" data-name="ai video ad prompt generator kling pexels ffmpeg">
+        <div class="flex justify-between items-start mb-4">
+          <span class="text-3xl">🎬</span>
+          <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-brand-100 text-brand-800 dark:bg-brand-950 dark:text-brand-300">Coming Soon</span>
         </div>
-        <h3 class="font-bold text-base mb-1">AI Video Ad Prompt Generator</h3>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Generate scene-by-scene visual prompts for real estate, e-commerce, and tech.</p>
+        <h3 class="font-bold text-lg mb-1.5 text-gray-950 dark:text-gray-50">AI Video Ad Generator</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-5">Generate scene-by-scene visual prompts for real estate, e-commerce, and tech.</p>
         <span class="text-xs text-brand-500 font-semibold">n8n Engine →</span>
       </div>
 
     </div>
   </main>
 
-  <!-- Quotation Generator Modal -->
-  <div id="quoteModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8">
+  <!-- Quotation Generator Modal (Violet Theme) -->
+  <div id="quoteModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8">
       <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 font-bold text-xl">&times;</button>
       
-      <h2 class="text-xl font-bold mb-4">Client Quotation Generator</h2>
+      <h2 class="text-2xl font-bold mb-5 text-gray-950 dark:text-gray-50">Client Quotation Generator</h2>
 
       <!-- PDF Printable Region -->
-      <div id="quoteContainer" class="p-6 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100">
+      <div id="quoteContainer" class="p-6 bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-50">
         <div class="flex justify-between items-center mb-6">
           <div>
-            <h1 class="text-2xl font-bold text-brand-600">QUOTATION</h1>
+            <h1 class="text-2xl font-bold text-brand-500">QUOTATION</h1>
             <p class="text-xs text-gray-500">ToolStack AI Platform Services</p>
           </div>
           <div class="text-right">
@@ -142,38 +159,38 @@
         <table class="w-full text-left mb-6 text-sm">
           <thead>
             <tr class="border-b border-gray-200 dark:border-gray-800 text-xs text-gray-400">
-              <th class="py-2">Description</th>
-              <th class="py-2 w-20 text-center">Qty</th>
-              <th class="py-2 w-24 text-right">Price ($)</th>
-              <th class="py-2 w-24 text-right">Total ($)</th>
+              <th class="py-2.5">Description</th>
+              <th class="py-2.5 w-20 text-center">Qty</th>
+              <th class="py-2.5 w-24 text-right">Price ($)</th>
+              <th class="py-2.5 w-24 text-right">Total ($)</th>
             </tr>
           </thead>
           <tbody id="lineItemsBody">
             <tr class="line-item border-b border-gray-100 dark:border-gray-800">
-              <td class="py-2"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" value="AI Agentic Automation Setup" /></td>
-              <td class="py-2"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
-              <td class="py-2"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="250" min="0" /></td>
-              <td class="py-2 text-right font-medium item-total">250.00</td>
+              <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" value="AI Agentic Automation Setup" /></td>
+              <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
+              <td class="py-2.5"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="250" min="0" /></td>
+              <td class="py-2.5 text-right font-medium item-total">250.00</td>
             </tr>
           </tbody>
         </table>
 
-        <button id="addItemBtn" class="text-xs font-semibold text-brand-500 hover:underline mb-6">+ Add Item</button>
+        <button id="addItemBtn" class="text-xs font-semibold text-brand-500 hover:text-brand-600 mb-6">+ Add Item</button>
 
         <!-- Totals -->
-        <div class="border-t border-gray-200 dark:border-gray-800 pt-4 flex justify-end">
-          <div class="w-48 space-y-2 text-sm">
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-5 flex justify-end">
+          <div class="w-48 space-y-2.5 text-sm">
             <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span id="subTotal">$250.00</span></div>
             <div class="flex justify-between items-center"><span class="text-gray-400">Tax (%):</span><input type="number" id="taxRate" value="5" class="w-12 text-right bg-transparent border-b border-gray-300 dark:border-gray-700 focus:outline-none" /></div>
-            <div class="flex justify-between font-bold text-base border-t border-gray-200 dark:border-gray-700 pt-2"><span>Total:</span><span id="grandTotal" class="text-brand-500">$262.50</span></div>
+            <div class="flex justify-between font-bold text-base border-t border-gray-200 dark:border-gray-700 pt-2.5"><span>Total:</span><span id="grandTotal" class="text-brand-500">$262.50</span></div>
           </div>
         </div>
       </div>
 
       <!-- Action Footer -->
-      <div class="mt-6 flex justify-end gap-3">
-        <button id="downloadPdfBtn" class="px-5 py-2 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm flex items-center gap-2">
-          📥 Download PDF
+      <div class="mt-8 flex justify-end gap-3">
+        <button id="downloadPdfBtn" class="px-6 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm flex items-center gap-2">
+          📥 Download PDF Quotation
         </button>
       </div>
     </div>
@@ -216,10 +233,10 @@
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => {
-          b.classList.remove('bg-brand-600', 'text-white', 'active');
+          b.classList.remove('bg-brand-500', 'text-white', 'active');
           b.classList.add('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
         });
-        btn.classList.add('bg-brand-600', 'text-white', 'active');
+        btn.classList.add('bg-brand-500', 'text-white', 'active');
         btn.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
         filterTools();
       });
@@ -252,10 +269,10 @@
       const tr = document.createElement('tr');
       tr.className = 'line-item border-b border-gray-100 dark:border-gray-800';
       tr.innerHTML = `
-        <td class="py-2"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" placeholder="Service item..." /></td>
-        <td class="py-2"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
-        <td class="py-2"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="0" min="0" /></td>
-        <td class="py-2 text-right font-medium item-total">0.00</td>
+        <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" placeholder="Service item..." /></td>
+        <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
+        <td class="py-2.5"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="0" min="0" /></td>
+        <td class="py-2.5 text-right font-medium item-total">0.00</td>
       `;
       document.getElementById('lineItemsBody').appendChild(tr);
       calculateTotals();
@@ -268,7 +285,7 @@
         margin:       0.5,
         filename:     `${document.getElementById('quoteNumber').value}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
+        html2canvas:  { scale: 2, background: document.documentElement.classList.contains('dark') ? '#090D16' : '#ffffff' },
         jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
       };
       html2pdf().set(opt).from(element).save();
