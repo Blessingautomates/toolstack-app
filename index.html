@@ -815,79 +815,76 @@
     }
   }
 
-  // Name Syncing
-  const waContactName = document.getElementById('waContactName');
-  const waPreviewName = document.getElementById('waPreviewName');
-  const themBtnLabel = document.getElementById('themBtnLabel');
-
-  waContactName.addEventListener('input', (e) => {
-    const val = e.target.value || 'Contact';
-    waPreviewName.textContent = val;
-    themBtnLabel.textContent = val;
-    avatarBg.textContent = val.charAt(0).toUpperCase();
-  });
-
   // Profile Avatar Image Upload Handler
 const avatarUpload = document.getElementById('avatarUpload');
 const avatarBg = document.getElementById('avatarBg');
 const avatarInitial = document.getElementById('avatarInitial');
 
-avatarUpload.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(evt) {
-      avatarBg.style.backgroundImage = `url('${evt.target.result}')`;
-      avatarInitial.classList.add('hidden'); // Hide name letter when image is loaded
-    };
-    reader.readAsDataURL(file);
-  }
-});
+if (avatarUpload) {
+  avatarUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        avatarBg.style.backgroundImage = `url('${evt.target.result}')`;
+        if (avatarInitial) avatarInitial.classList.add('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
 
 // Verified Badge Toggle Handler
 const verifiedToggle = document.getElementById('verifiedToggle');
 const verifiedBadge = document.getElementById('verifiedBadge');
 
-verifiedToggle.addEventListener('change', (e) => {
-  if (e.target.checked) {
-    verifiedBadge.classList.remove('hidden');
-  } else {
-    verifiedBadge.classList.add('hidden');
-  }
-});
+if (verifiedToggle) {
+  verifiedToggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      verifiedBadge.classList.remove('hidden');
+    } else {
+      verifiedBadge.classList.add('hidden');
+    }
+  });
+}
 
-// Sync Initial if no Custom Avatar image is loaded
+// Name Syncing & Initial Sync
 const waContactName = document.getElementById('waContactName');
 const waPreviewName = document.getElementById('waPreviewName');
 const themBtnLabel = document.getElementById('themBtnLabel');
 
-waContactName.addEventListener('input', (e) => {
-  const val = e.target.value || 'Contact';
-  waPreviewName.textContent = val;
-  themBtnLabel.textContent = val;
-  if (!avatarUpload.files.length) {
-    avatarInitial.textContent = val.charAt(0).toUpperCase();
-  }
-});
-
-// Enhanced HD Canvas Export (3x Scale & Crisp Rendering)
-document.getElementById('downloadWaBtn').addEventListener('click', () => {
-  const chatScreen = document.getElementById('waChatScreen');
-  
-  // High-DPI options for crystal clear text and visuals
-  html2canvas(chatScreen, {
-    scale: 3, // Upscales render resolution 3x
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: null,
-    logging: false
-  }).then((canvas) => {
-    const link = document.createElement('a');
-    link.download = `${currentPlatform}-hd-chat-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png', 1.0);
-    link.click();
+if (waContactName) {
+  waContactName.addEventListener('input', (e) => {
+    const val = e.target.value || 'Contact';
+    if (waPreviewName) waPreviewName.textContent = val;
+    if (themBtnLabel) themBtnLabel.textContent = val;
+    if (avatarUpload && !avatarUpload.files.length && avatarInitial) {
+      avatarInitial.textContent = val.charAt(0).toUpperCase();
+    }
   });
-});
+}
+
+// HD Canvas Export (Fixed Backticks for File Download Name)
+const downloadWaBtn = document.getElementById('downloadWaBtn');
+if (downloadWaBtn) {
+  downloadWaBtn.addEventListener('click', () => {
+    const chatScreen = document.getElementById('waChatScreen');
+    
+    html2canvas(chatScreen, {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      logging: false
+    }).then((canvas) => {
+      const link = document.createElement('a');
+      const platformName = typeof currentPlatform !== 'undefined' ? currentPlatform : 'chat';
+      link.download = `${platformName}-hd-chat-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png', 1.0);
+      link.click();
+    });
+  });
+}
 </script>
 </body>
 </html>
