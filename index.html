@@ -887,20 +887,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 5. ADD MESSAGES TO CHAT BODY ---
   const addThemBtn = document.getElementById('addThemBtn');
   const addMeBtn = document.getElementById('addMeBtn');
-  const waMsgInput = document.getElementById('waMsgInput');
-  const waTime = document.getElementById('waTime');
-  const waChatBody = document.getElementById('waChatBody');
 
   function appendMessage(isMe) {
+    const waMsgInput = document.getElementById('waMsgInput');
+    const waTime = document.getElementById('waTime');
+    const waChatBody = document.getElementById('waChatBody');
+
+    if (!waMsgInput || !waChatBody) return;
+
     const msgText = waMsgInput.value.trim();
     if (!msgText) return;
 
-    const timeVal = waTime.value || '10:42 AM';
+    const timeVal = waTime ? waTime.value || '10:42 AM' : '10:42 AM';
     const msgRow = document.createElement('div');
     msgRow.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
 
     if (currentPlatform === 'wa') {
-      // WhatsApp Colors: Dark Green for "Me", Dark Gray for "Them"
+      // WhatsApp styling: Dark Green for "Me", Dark Gray for "Them"
       const bubbleBg = isMe ? 'bg-[#005c4b] text-gray-100' : 'bg-[#202c33] text-gray-100';
       msgRow.innerHTML = `
         <div class="${bubbleBg} rounded-lg px-2.5 py-1.5 max-w-[80%] shadow">
@@ -909,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     } else {
-      // Instagram Colors: Gradient/Blue for "Me", Dark Gray for "Them"
+      // Instagram styling: Gradient for "Me", Dark Gray for "Them"
       const bubbleBg = isMe ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white font-normal' : 'bg-[#262626] text-gray-100';
       msgRow.innerHTML = `
         <div class="${bubbleBg} rounded-2xl px-3 py-1.5 max-w-[80%]">
@@ -921,6 +924,20 @@ document.addEventListener('DOMContentLoaded', () => {
     waChatBody.appendChild(msgRow);
     waMsgInput.value = '';
     waChatBody.scrollTop = waChatBody.scrollHeight;
+  }
+
+  if (addThemBtn) {
+    addThemBtn.onclick = (e) => {
+      e.preventDefault();
+      appendMessage(false);
+    };
+  }
+
+  if (addMeBtn) {
+    addMeBtn.onclick = (e) => {
+      e.preventDefault();
+      appendMessage(true);
+    };
   }
 
   // --- 6. EXPORT HD PNG IMAGE ---
