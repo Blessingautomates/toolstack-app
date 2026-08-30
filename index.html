@@ -398,7 +398,7 @@
     </div>
   </div>
 </div>
-  <!-- WhatsApp Mockup Modal -->
+<!-- WhatsApp Mockup Modal -->
 <div id="waModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
   <div class="bg-gray-900 border border-gray-800 w-full max-w-4xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
     <button id="closeWaModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
@@ -407,57 +407,54 @@
     <p class="text-xs text-gray-400 mb-6">Build realistic WhatsApp conversations and export high-res PNG images.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Controls Column -->
+      <!-- Left Column: Controls -->
       <div class="space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800">
         <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider">Chat Details</h4>
+        
         <div>
           <label class="block text-xs text-gray-400 mb-1">Contact Name</label>
-          <input type="text" id="waContactName" value="Alex Smith" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+          <input type="text" id="waContactName" value="James" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
         </div>
 
         <div class="pt-2 border-t border-gray-800">
           <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider mb-2">Add Message</h4>
+          
           <textarea id="waMsgInput" rows="3" placeholder="Type message here..." class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 mb-2"></textarea>
           
-          <div class="grid grid-cols-2 gap-2 mb-3">
-            <div>
-              <label class="block text-[10px] text-gray-400 mb-1">Sender</label>
-              <select id="waSender" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none">
-                <option value="received">Them (Left)</option>
-                <option value="sent">Me (Right)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-[10px] text-gray-400 mb-1">Time</label>
-              <input type="text" id="waTime" value="10:42 AM" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none" />
-            </div>
+          <div class="mb-3">
+            <label class="block text-[10px] text-gray-400 mb-1">Time Stamp</label>
+            <input type="text" id="waTime" value="10:42 AM" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none" />
           </div>
 
-          <button id="addWaMsgBtn" class="w-full py-2 bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs rounded-lg transition">
-            + Add Message to Chat
-          </button>
+          <!-- Dual Action Buttons -->
+          <div class="grid grid-cols-2 gap-2">
+            <button id="addThemBtn" type="button" class="py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs rounded-lg transition border border-gray-700 flex items-center justify-center gap-1">
+              👈 Add as <span id="themBtnLabel">James</span>
+            </button>
+            <button id="addMeBtn" type="button" class="py-2.5 bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center justify-center gap-1">
+              👉 Add as Me
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Live Mockup Screen Column -->
+      <!-- Right Column: Live Mockup Screen -->
       <div class="flex flex-col items-center">
-        <!-- Printable Screen Container -->
         <div id="waChatScreen" class="w-full max-w-[320px] bg-[#0b141a] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans">
-          <!-- Header -->
+          <!-- Chat Header -->
           <div class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800">
             <span class="text-xs text-gray-400">←</span>
             <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs">A</div>
             <div class="flex-1">
-              <p id="waPreviewName" class="text-xs font-semibold leading-none">Alex Smith</p>
+              <p id="waPreviewName" class="text-xs font-semibold leading-none">James</p>
               <p class="text-[10px] text-emerald-400 mt-0.5">online</p>
             </div>
           </div>
 
-          <!-- Chat Messages Body -->
+          <!-- Chat Body -->
           <div id="waChatBody" class="p-3 space-y-2 min-h-[300px] max-h-[380px] overflow-y-auto bg-[radial-gradient(#1f2c34_1px,transparent_1px)] [background-size:12px_12px]">
-            <!-- Dynamic Messages Append Here -->
             <div class="flex flex-col items-start">
-              <div class="bg-[#202c33] text-gray-100 px-3 py-1.5 rounded-lg text-xs max-w-[80%] rounded-tl-none shadow">
+              <div class="bg-[#202c33] text-gray-100 px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
                 Hey! Did you check out ToolStack AI?
                 <span class="block text-[9px] text-gray-400 text-right mt-0.5">10:40 AM</span>
               </div>
@@ -465,7 +462,7 @@
           </div>
         </div>
 
-        <button id="downloadWaBtn" class="mt-4 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-xl transition flex items-center gap-2">
+        <button id="downloadWaBtn" type="button" class="mt-4 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-xl transition flex items-center gap-2">
           📸 Export Chat Image (PNG)
         </button>
       </div>
@@ -727,55 +724,62 @@
     copyBase64Btn.textContent = '✅ Copied!';
     setTimeout(() => copyBase64Btn.textContent = originalText, 2000);
   });
-    // WhatsApp Modal Toggles
-  const waModal = document.getElementById('waModal');
-  document.getElementById('openWaModal').addEventListener('click', () => waModal.classList.remove('hidden'));
-  document.getElementById('closeWaModal').addEventListener('click', () => waModal.classList.add('hidden'));
+// WhatsApp Modal Handlers
+const waModal = document.getElementById('waModal');
+document.getElementById('openWaModal').addEventListener('click', () => waModal.classList.remove('hidden'));
+document.getElementById('closeWaModal').addEventListener('click', () => waModal.classList.add('hidden'));
 
-  // Dynamic Name Sync
-  const waContactName = document.getElementById('waContactName');
-  const waPreviewName = document.getElementById('waPreviewName');
-  waContactName.addEventListener('input', (e) => waPreviewName.textContent = e.target.value || 'Contact');
+// Dynamic Name Syncing
+const waContactName = document.getElementById('waContactName');
+const waPreviewName = document.getElementById('waPreviewName');
+const themBtnLabel = document.getElementById('themBtnLabel');
 
-  // Add Message Logic
-  const waMsgInput = document.getElementById('waMsgInput');
-  const waSender = document.getElementById('waSender');
-  const waTime = document.getElementById('waTime');
-  const waChatBody = document.getElementById('waChatBody');
-  const addWaMsgBtn = document.getElementById('addWaMsgBtn');
+waContactName.addEventListener('input', (e) => {
+  const val = e.target.value || 'Contact';
+  waPreviewName.textContent = val;
+  themBtnLabel.textContent = val;
+});
 
-  addWaMsgBtn.addEventListener('click', () => {
-    const text = waMsgInput.value.trim();
-    if (!text) return;
+// Message Builder Function
+const waMsgInput = document.getElementById('waMsgInput');
+const waTime = document.getElementById('waTime');
+const waChatBody = document.getElementById('waChatBody');
 
-    const isSent = waSender.value === 'sent';
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `flex flex-col ${isSent ? 'items-end' : 'items-start'}`;
+function appendWaMessage(isSent) {
+  const text = waMsgInput.value.trim();
+  if (!text) return;
 
-    const bgClass = isSent ? 'bg-[#005c4b] text-gray-100 rounded-tr-none' : 'bg-[#202c33] text-gray-100 rounded-tl-none';
+  const msgDiv = document.createElement('div');
+  msgDiv.className = `flex flex-col ${isSent ? 'items-end' : 'items-start'}`;
 
-    msgDiv.innerHTML = `
-      <div class="${bgClass} px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
-        ${text}
-        <span class="block text-[9px] text-gray-300 text-right mt-0.5">${waTime.value || '10:42 AM'}</span>
-      </div>
-    `;
+  const bgClass = isSent ? 'bg-[#005c4b] text-gray-100 rounded-tr-none' : 'bg-[#202c33] text-gray-100 rounded-tl-none';
 
-    waChatBody.appendChild(msgDiv);
-    waMsgInput.value = '';
-    waChatBody.scrollTop = waChatBody.scrollHeight;
+  msgDiv.innerHTML = `
+    <div class="${bgClass} px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
+      ${text}
+      <span class="block text-[9px] text-gray-300 text-right mt-0.5">${waTime.value || '10:42 AM'}</span>
+    </div>
+  `;
+
+  waChatBody.appendChild(msgDiv);
+  waMsgInput.value = '';
+  waChatBody.scrollTop = waChatBody.scrollHeight;
+}
+
+// Separate Button Listeners
+document.getElementById('addThemBtn').addEventListener('click', () => appendWaMessage(false));
+document.getElementById('addMeBtn').addEventListener('click', () => appendWaMessage(true));
+
+// PNG Export Listener
+document.getElementById('downloadWaBtn').addEventListener('click', () => {
+  const chatScreen = document.getElementById('waChatScreen');
+  html2canvas(chatScreen, { backgroundColor: null, scale: 2 }).then((canvas) => {
+    const link = document.createElement('a');
+    link.download = `whatsapp-chat-${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   });
-
-  // Export Screenshot
-  document.getElementById('downloadWaBtn').addEventListener('click', () => {
-    const chatScreen = document.getElementById('waChatScreen');
-    html2canvas(chatScreen, { backgroundColor: null, scale: 2 }).then((canvas) => {
-      const link = document.createElement('a');
-      link.download = `whatsapp-chat-${Date.now()}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
-  });
+});
 </script>
 </body>
 </html>
