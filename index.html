@@ -174,6 +174,22 @@
     <button id="openWaModal" type="button" class="text-xs text-brand-400 hover:text-brand-300 font-bold transition">Open Tool &rarr;</button>
   </div>
 </div>
+      <!-- Tool Card: YouTube & Vimeo Thumbnail Downloader -->
+<div class="bg-gray-950 border border-gray-800 rounded-2xl p-5 hover:border-gray-700 transition flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Active</span>
+    </div>
+    <h3 class="text-base font-bold text-gray-100 mb-1">YouTube & Vimeo Thumbnail Downloader</h3>
+    <p class="text-xs text-gray-400 mb-4">Extract HD thumbnails instantly from video URLs.</p>
+  </div>
+  <div class="flex items-center justify-between pt-3 border-t border-gray-900">
+    <span class="text-[10px] text-gray-500">Media Utilities</span>
+    <button id="openThumbModal" type="button" class="text-xs text-brand-400 hover:text-brand-300 font-bold transition flex items-center gap-1">
+      Open Tool &rarr;
+    </button>
+  </div>
+</div>
       <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-cat="crm" data-name="ai lead qualification scoring crm">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
@@ -514,6 +530,82 @@
       </div>
 
     </div>
+  </div>
+</div>
+  <!-- YouTube & Vimeo Thumbnail Downloader Modal -->
+<div id="thumbModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    
+    <!-- Close Button -->
+    <button id="closeThumbModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+    
+    <!-- Header -->
+    <h2 class="text-2xl font-bold mb-1">Thumbnail Downloader</h2>
+    <p class="text-xs text-gray-400 mb-6">Extract high-resolution thumbnail images instantly from YouTube and Vimeo links.</p>
+
+    <!-- Input Section -->
+    <div class="space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800 mb-6">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1">Video Link or ID</label>
+        <div class="flex gap-2">
+          <input type="text" id="thumbUrlInput" placeholder="https://www.youtube.com/watch?v=..." class="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+          <button id="fetchThumbBtn" type="button" class="px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center gap-1.5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            Fetch
+          </button>
+        </div>
+      </div>
+      <p id="thumbError" class="text-xs text-rose-400 hidden"></p>
+    </div>
+
+    <!-- Preview & Download Results Section -->
+    <div id="thumbResults" class="space-y-4 hidden">
+      <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
+        <!-- Dynamic Logo Container -->
+        <div class="flex items-center gap-2">
+          <span id="platformIcon"></span>
+          <span class="text-xs font-bold text-gray-200 uppercase tracking-wider" id="thumbPlatformLabel">YouTube Video</span>
+        </div>
+        <span class="text-[10px] text-gray-400 font-mono" id="thumbIdLabel">ID: -</span>
+      </div>
+
+      <!-- Max Quality Card -->
+      <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-xs font-bold text-gray-200">HD Maximum Quality (1080p / 720p)</span>
+          <a id="dlMaxBtn" href="#" target="_blank" download class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download HD
+          </a>
+        </div>
+        <div class="w-full bg-gray-900 rounded-lg overflow-hidden border border-gray-800 aspect-video flex items-center justify-center">
+          <img id="imgMaxQuality" src="" alt="HD Thumbnail" class="w-full h-full object-cover hidden" />
+          <span id="imgMaxFallback" class="text-xs text-gray-500 p-4 text-center">Loading HD Preview...</span>
+        </div>
+      </div>
+
+      <!-- Standard Quality Cards Grid -->
+      <div class="grid grid-cols-2 gap-4">
+        <!-- High Quality (480p) -->
+        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] font-semibold text-gray-300">High Quality (HQ)</span>
+            <a id="dlHqBtn" href="#" target="_blank" download class="px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-[10px] rounded transition">Download</a>
+          </div>
+          <img id="imgHqQuality" src="" alt="HQ Thumbnail" class="w-full aspect-video object-cover rounded-lg border border-gray-800" />
+        </div>
+
+        <!-- Medium Quality (360p) -->
+        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-[11px] font-semibold text-gray-300">Medium Quality (MQ)</span>
+            <a id="dlMqBtn" href="#" target="_blank" download class="px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-[10px] rounded transition">Download</a>
+          </div>
+          <img id="imgMqQuality" src="" alt="MQ Thumbnail" class="w-full aspect-video object-cover rounded-lg border border-gray-800" />
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
   <script>
@@ -964,6 +1056,168 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+    // --- THUMBNAIL DOWNLOADER LOGIC ---
+  const thumbModal = document.getElementById('thumbModal');
+  const openThumbModal = document.getElementById('openThumbModal');
+  const closeThumbModal = document.getElementById('closeThumbModal');
+
+  // Modal Triggers
+  if (openThumbModal && thumbModal) {
+    openThumbModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      thumbModal.classList.remove('hidden');
+    });
+  }
+
+  if (closeThumbModal && thumbModal) {
+    closeThumbModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      thumbModal.classList.add('hidden');
+    });
+  }
+
+  if (thumbModal) {
+    thumbModal.addEventListener('click', (e) => {
+      if (e.target === thumbModal) {
+        thumbModal.classList.add('hidden');
+      }
+    });
+  }
+
+  // URL Extraction Helpers
+  function parseYouTubeId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  function parseVimeoId(url) {
+    const regExp = /(?:www\.|player\.)?vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  }
+
+  // Fetch Logic
+  const fetchThumbBtn = document.getElementById('fetchThumbBtn');
+  const thumbUrlInput = document.getElementById('thumbUrlInput');
+  const thumbError = document.getElementById('thumbError');
+  const thumbResults = document.getElementById('thumbResults');
+
+  if (fetchThumbBtn) {
+    fetchThumbBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const inputVal = thumbUrlInput ? thumbUrlInput.value.trim() : '';
+      
+      if (thumbError) thumbError.classList.add('hidden');
+      if (thumbResults) thumbResults.classList.add('hidden');
+
+      if (!inputVal) {
+        if (thumbError) {
+          thumbError.textContent = 'Please enter a valid YouTube or Vimeo URL/ID.';
+          thumbError.classList.remove('hidden');
+        }
+        return;
+      }
+
+      const ytId = parseYouTubeId(inputVal) || (inputVal.length === 11 ? inputVal : null);
+      const vimeoId = parseVimeoId(inputVal);
+
+      const platformLabel = document.getElementById('thumbPlatformLabel');
+      const idLabel = document.getElementById('thumbIdLabel');
+      const platformIcon = document.getElementById('platformIcon');
+      const imgMax = document.getElementById('imgMaxQuality');
+      const fallback = document.getElementById('imgMaxFallback');
+      const imgHq = document.getElementById('imgHqQuality');
+      const imgMq = document.getElementById('imgMqQuality');
+      const dlMax = document.getElementById('dlMaxBtn');
+      const dlHq = document.getElementById('dlHqBtn');
+      const dlMq = document.getElementById('dlMqBtn');
+
+      if (ytId) {
+        if (platformLabel) platformLabel.textContent = 'YouTube Video';
+        if (idLabel) idLabel.textContent = `ID: ${ytId}`;
+        
+        // Inject Red YouTube SVG Logo
+        if (platformIcon) {
+          platformIcon.innerHTML = `
+            <svg class="w-5 h-5 text-red-600 fill-current" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          `;
+        }
+
+        const maxRes = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
+        const hqRes = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+        const mqRes = `https://img.youtube.com/vi/${ytId}/mqdefault.jpg`;
+
+        if (imgMax) {
+          imgMax.src = maxRes;
+          imgMax.onload = () => {
+            imgMax.classList.remove('hidden');
+            if (fallback) fallback.classList.add('hidden');
+          };
+          imgMax.onerror = () => {
+            imgMax.src = hqRes; // Fallback to HQ if maxresdefault unavailable
+          };
+        }
+
+        if (imgHq) imgHq.src = hqRes;
+        if (imgMq) imgMq.src = mqRes;
+
+        if (dlMax) dlMax.href = maxRes;
+        if (dlHq) dlHq.href = hqRes;
+        if (dlMq) dlMq.href = mqRes;
+
+        if (thumbResults) thumbResults.classList.remove('hidden');
+
+      } else if (vimeoId) {
+        if (platformLabel) platformLabel.textContent = 'Vimeo Video';
+        if (idLabel) idLabel.textContent = `ID: ${vimeoId}`;
+
+        // Inject Blue Vimeo SVG Logo
+        if (platformIcon) {
+          platformIcon.innerHTML = `
+            <svg class="w-5 h-5 text-sky-400 fill-current" viewBox="0 0 24 24">
+              <path d="M22.396 7.164c-.093 2.026-1.507 4.8-4.245 8.32-2.817 3.633-5.205 5.449-7.165 5.449-1.22 0-2.253-1.127-3.102-3.383-.58-2.122-1.159-4.243-1.737-6.365-.63-2.254-1.306-3.381-2.026-3.381-.157 0-.702.33-1.637.988l-.988-1.268c1.034-.91 2.052-1.821 3.055-2.733 1.393-1.22 2.433-1.865 3.123-1.936 1.637-.157 2.646.953 3.029 3.332.41 2.56.7 4.152.871 4.776.516 2.121 1.071 3.182 1.666 3.182.47 0 1.181-.74 2.133-2.222.951-1.48 1.46-2.583 1.527-3.31.125-1.187-.34-1.782-1.4-1.782-.5 0-1.022.115-1.564.343 1.026-3.352 2.977-4.978 5.856-4.88 2.122.062 3.118 1.442 2.988 4.14z"/>
+            </svg>
+          `;
+        }
+
+        try {
+          const response = await fetch(`https://vimeo.com/api/v2/video/${vimeoId}.json`);
+          const data = await response.json();
+          if (data && data[0]) {
+            const thumbLarge = data[0].thumbnail_large.replace('_640', '_1280');
+            
+            if (imgMax) {
+              imgMax.src = thumbLarge;
+              imgMax.classList.remove('hidden');
+              if (fallback) fallback.classList.add('hidden');
+            }
+
+            if (imgHq) imgHq.src = data[0].thumbnail_large;
+            if (imgMq) imgMq.src = data[0].thumbnail_medium;
+
+            if (dlMax) dlMax.href = thumbLarge;
+            if (dlHq) dlHq.href = data[0].thumbnail_large;
+            if (dlMq) dlMq.href = data[0].thumbnail_medium;
+
+            if (thumbResults) thumbResults.classList.remove('hidden');
+          }
+        } catch (err) {
+          if (thumbError) {
+            thumbError.textContent = 'Could not fetch Vimeo thumbnail. Please check the URL/ID.';
+            thumbError.classList.remove('hidden');
+          }
+        }
+      } else {
+        if (thumbError) {
+          thumbError.textContent = 'Unrecognized YouTube or Vimeo URL format.';
+          thumbError.classList.remove('hidden');
+        }
+      }
+    });
+          }
 </script>
 </body>
 </html>
