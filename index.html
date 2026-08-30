@@ -70,7 +70,11 @@
       <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="ai-support">AI Support</button>
       <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800 transition-all whitespace-nowrap" data-cat="creator">Creator & Video</button>
     </div>
-
+    <!-- PASTE MULTI-TAB SELECTOR HERE -->
+    <div class="flex gap-2 mb-6 bg-gray-950 p-1.5 rounded-xl border border-gray-800">
+      <button id="tabWa" type="button" class="flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition">WhatsApp</button>
+      <button id="tabIg" type="button" class="flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition">Instagram DM</button>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
       
       <div id="openQuoteModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-cat="client" data-name="quotation invoice generator pdf client utilities">
@@ -398,13 +402,19 @@
     </div>
   </div>
 </div>
-<!-- WhatsApp Mockup Modal -->
+<!-- Social Mockup Modal -->
 <div id="waModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
   <div class="bg-gray-900 border border-gray-800 w-full max-w-4xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
     <button id="closeWaModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
     
-    <h2 class="text-2xl font-bold mb-1">WhatsApp Chat Generator</h2>
-    <p class="text-xs text-gray-400 mb-6">Build realistic WhatsApp conversations and export high-res PNG images.</p>
+    <h2 class="text-2xl font-bold mb-1">Social Chat Generator</h2>
+    <p class="text-xs text-gray-400 mb-4">Build realistic social media conversations and export high-res PNG images.</p>
+
+    <!-- Platform Switcher Tabs -->
+    <div class="flex gap-2 mb-6 bg-gray-950 p-1.5 rounded-xl border border-gray-800">
+      <button id="tabWa" type="button" class="flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition">WhatsApp</button>
+      <button id="tabIg" type="button" class="flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition">Instagram DM</button>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Left Column: Controls -->
@@ -440,25 +450,21 @@
 
       <!-- Right Column: Live Mockup Screen -->
       <div class="flex flex-col items-center">
-        <div id="waChatScreen" class="w-full max-w-[320px] bg-[#0b141a] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans">
-          <!-- Chat Header -->
-          <div class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800">
+        <div id="waChatScreen" class="w-full max-w-[320px] bg-[#0b141a] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans transition-all duration-300">
+          
+          <!-- Dynamic Chat Header -->
+          <div id="chatHeader" class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800">
             <span class="text-xs text-gray-400">←</span>
-            <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs">A</div>
+            <div id="avatarBg" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs">J</div>
             <div class="flex-1">
               <p id="waPreviewName" class="text-xs font-semibold leading-none">James</p>
-              <p class="text-[10px] text-emerald-400 mt-0.5">online</p>
+              <p id="subStatus" class="text-[10px] text-emerald-400 mt-0.5">online</p>
             </div>
           </div>
 
-          <!-- Chat Body -->
-          <div id="waChatBody" class="p-3 space-y-2 min-h-[300px] max-h-[380px] overflow-y-auto bg-[radial-gradient(#1f2c34_1px,transparent_1px)] [background-size:12px_12px]">
-            <div class="flex flex-col items-start">
-              <div class="bg-[#202c33] text-gray-100 px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
-                Hey! Did you check out ToolStack AI?
-                <span class="block text-[9px] text-gray-400 text-right mt-0.5">10:40 AM</span>
-              </div>
-            </div>
+          <!-- Dynamic Chat Body -->
+          <div id="waChatBody" class="p-3 space-y-3 min-h-[300px] max-h-[380px] overflow-y-auto bg-[radial-gradient(#1f2c34_1px,transparent_1px)] [background-size:12px_12px]">
+            <!-- Messages render dynamically -->
           </div>
         </div>
 
@@ -469,7 +475,7 @@
     </div>
   </div>
 </div>
-<!-- END OF WHATSAPP MODAL -->
+<!-- END OF SOCIAL MOCKUP MODAL -->
   <script>
     // Date Setup
     document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
@@ -724,62 +730,120 @@
     copyBase64Btn.textContent = '✅ Copied!';
     setTimeout(() => copyBase64Btn.textContent = originalText, 2000);
   });
-// WhatsApp Modal Handlers
-const waModal = document.getElementById('waModal');
-document.getElementById('openWaModal').addEventListener('click', () => waModal.classList.remove('hidden'));
-document.getElementById('closeWaModal').addEventListener('click', () => waModal.classList.add('hidden'));
+// State Management
+  let currentPlatform = 'wa'; // 'wa' or 'ig'
 
-// Dynamic Name Syncing
-const waContactName = document.getElementById('waContactName');
-const waPreviewName = document.getElementById('waPreviewName');
-const themBtnLabel = document.getElementById('themBtnLabel');
-
-waContactName.addEventListener('input', (e) => {
-  const val = e.target.value || 'Contact';
-  waPreviewName.textContent = val;
-  themBtnLabel.textContent = val;
-});
-
-// Message Builder Function
-const waMsgInput = document.getElementById('waMsgInput');
-const waTime = document.getElementById('waTime');
-const waChatBody = document.getElementById('waChatBody');
-
-function appendWaMessage(isSent) {
-  const text = waMsgInput.value.trim();
-  if (!text) return;
-
-  const msgDiv = document.createElement('div');
-  msgDiv.className = `flex flex-col ${isSent ? 'items-end' : 'items-start'}`;
-
-  const bgClass = isSent ? 'bg-[#005c4b] text-gray-100 rounded-tr-none' : 'bg-[#202c33] text-gray-100 rounded-tl-none';
-
-  msgDiv.innerHTML = `
-    <div class="${bgClass} px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
-      ${text}
-      <span class="block text-[9px] text-gray-300 text-right mt-0.5">${waTime.value || '10:42 AM'}</span>
-    </div>
-  `;
-
-  waChatBody.appendChild(msgDiv);
-  waMsgInput.value = '';
-  waChatBody.scrollTop = waChatBody.scrollHeight;
-}
-
-// Separate Button Listeners
-document.getElementById('addThemBtn').addEventListener('click', () => appendWaMessage(false));
-document.getElementById('addMeBtn').addEventListener('click', () => appendWaMessage(true));
-
-// PNG Export Listener
-document.getElementById('downloadWaBtn').addEventListener('click', () => {
+  const tabWa = document.getElementById('tabWa');
+  const tabIg = document.getElementById('tabIg');
   const chatScreen = document.getElementById('waChatScreen');
-  html2canvas(chatScreen, { backgroundColor: null, scale: 2 }).then((canvas) => {
-    const link = document.createElement('a');
-    link.download = `whatsapp-chat-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+  const chatHeader = document.getElementById('chatHeader');
+  const avatarBg = document.getElementById('avatarBg');
+  const subStatus = document.getElementById('subStatus');
+  const waChatBody = document.getElementById('waChatBody');
+
+  // Platform Tab Switcher
+  tabWa.addEventListener('click', () => switchPlatform('wa'));
+  tabIg.addEventListener('click', () => switchPlatform('ig'));
+
+  function switchPlatform(platform) {
+    currentPlatform = platform;
+    waChatBody.innerHTML = ''; // Clear chat canvas
+
+    if (platform === 'wa') {
+      // WhatsApp Theme Setup
+      tabWa.className = "flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition";
+      tabIg.className = "flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition";
+      
+      chatScreen.className = "w-full max-w-[320px] bg-[#0b141a] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans";
+      chatHeader.className = "bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800";
+      avatarBg.className = "w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white";
+      subStatus.textContent = "online";
+      subStatus.className = "text-[10px] text-emerald-400 mt-0.5";
+      waChatBody.className = "p-3 space-y-2 min-h-[300px] max-h-[380px] overflow-y-auto bg-[radial-gradient(#1f2c34_1px,transparent_1px)] [background-size:12px_12px]";
+      
+    } else if (platform === 'ig') {
+      // Instagram Theme Setup
+      tabIg.className = "flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition";
+      tabWa.className = "flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition";
+      
+      chatScreen.className = "w-full max-w-[320px] bg-black rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans";
+      chatHeader.className = "bg-black px-3 py-3 flex items-center gap-3 text-white border-b border-gray-900";
+      avatarBg.className = "w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-[2px] flex items-center justify-center text-xs text-white font-bold";
+      subStatus.textContent = "Active now";
+      subStatus.className = "text-[10px] text-gray-400 mt-0.5";
+      waChatBody.className = "p-3 space-y-3 min-h-[300px] max-h-[380px] overflow-y-auto bg-black";
+    }
+  }
+
+  // Name Syncing
+  const waContactName = document.getElementById('waContactName');
+  const waPreviewName = document.getElementById('waPreviewName');
+  const themBtnLabel = document.getElementById('themBtnLabel');
+
+  waContactName.addEventListener('input', (e) => {
+    const val = e.target.value || 'Contact';
+    waPreviewName.textContent = val;
+    themBtnLabel.textContent = val;
+    avatarBg.textContent = val.charAt(0).toUpperCase();
   });
-});
+
+  // Message Renderer
+  const waMsgInput = document.getElementById('waMsgInput');
+  const waTime = document.getElementById('waTime');
+
+  function appendWaMessage(isSent) {
+    const text = waMsgInput.value.trim();
+    if (!text) return;
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `flex flex-col ${isSent ? 'items-end' : 'items-start'}`;
+
+    if (currentPlatform === 'wa') {
+      // WhatsApp Styling
+      const bgClass = isSent ? 'bg-[#005c4b] text-gray-100 rounded-tr-none' : 'bg-[#202c33] text-gray-100 rounded-tl-none';
+      msgDiv.innerHTML = `
+        <div class="${bgClass} px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
+          ${text}
+          <span class="block text-[9px] text-gray-300 text-right mt-0.5">${waTime.value || '10:42 AM'}</span>
+        </div>
+      `;
+    } else {
+      // Instagram Styling (Rounded Pill Bubbles & Gradient for Sent Messages)
+      const bgClass = isSent 
+        ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl rounded-br-xs' 
+        : 'bg-gray-800 text-gray-100 rounded-2xl rounded-bl-xs';
+      
+      msgDiv.innerHTML = `
+        <div class="${bgClass} px-3.5 py-2 text-xs max-w-[80%] shadow-md">
+          ${text}
+        </div>
+      `;
+    }
+
+    waChatBody.appendChild(msgDiv);
+    waMsgInput.value = '';
+    waChatBody.scrollTop = waChatBody.scrollHeight;
+  }
+
+  // Button Action Handlers
+  document.getElementById('addThemBtn').addEventListener('click', () => appendWaMessage(false));
+  document.getElementById('addMeBtn').addEventListener('click', () => appendWaMessage(true));
+
+  // Modal Open/Close
+  const waModal = document.getElementById('waModal');
+  document.getElementById('openWaModal').addEventListener('click', () => waModal.classList.remove('hidden'));
+  document.getElementById('closeWaModal').addEventListener('click', () => waModal.classList.add('hidden'));
+
+  // Export Screenshot
+  document.getElementById('downloadWaBtn').addEventListener('click', () => {
+    const chatScreen = document.getElementById('waChatScreen');
+    html2canvas(chatScreen, { backgroundColor: null, scale: 2 }).then((canvas) => {
+      const link = document.createElement('a');
+      link.download = `${currentPlatform}-chat-${Date.now()}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  });
 </script>
 </body>
 </html>
