@@ -1097,6 +1097,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return match ? match[1] : null;
   }
 
+  // Helper to force cross-origin image download directly to device
+  async function forceDownload(imageUrl, fileName) {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      window.open(imageUrl, '_blank');
+    }
+  }
+
   // Fetch Logic
   const fetchThumbBtn = document.getElementById('fetchThumbBtn');
   const thumbUrlInput = document.getElementById('thumbUrlInput');
@@ -1137,7 +1155,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (platformLabel) platformLabel.textContent = 'YouTube Video';
         if (idLabel) idLabel.textContent = `ID: ${ytId}`;
         
-        // Inject Red YouTube SVG Logo
         if (platformIcon) {
           platformIcon.innerHTML = `
             <svg class="w-5 h-5 text-red-600 fill-current" viewBox="0 0 24 24">
@@ -1157,16 +1174,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fallback) fallback.classList.add('hidden');
           };
           imgMax.onerror = () => {
-            imgMax.src = hqRes; // Fallback to HQ if maxresdefault unavailable
+            imgMax.src = hqRes;
           };
         }
 
         if (imgHq) imgHq.src = hqRes;
         if (imgMq) imgMq.src = mqRes;
 
-        if (dlMax) dlMax.href = maxRes;
-        if (dlHq) dlHq.href = hqRes;
-        if (dlMq) dlMq.href = mqRes;
+        if (dlMax) dlMax.onclick = (e) => { e.preventDefault(); forceDownload(imgMax.src, `youtube-thumb-max-${ytId}.jpg`); };
+        if (dlHq) dlHq.onclick = (e) => { e.preventDefault(); forceDownload(hqRes, `youtube-thumb-hq-${ytId}.jpg`); };
+        if (dlMq) dlMq.onclick = (e) => { e.preventDefault(); forceDownload(mqRes, `youtube-thumb-mq-${ytId}.jpg`); };
 
         if (thumbResults) thumbResults.classList.remove('hidden');
 
@@ -1174,7 +1191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (platformLabel) platformLabel.textContent = 'Vimeo Video';
         if (idLabel) idLabel.textContent = `ID: ${vimeoId}`;
 
-        // Inject Blue Vimeo SVG Logo
         if (platformIcon) {
           platformIcon.innerHTML = `
             <svg class="w-5 h-5 text-sky-400 fill-current" viewBox="0 0 24 24">
@@ -1198,9 +1214,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (imgHq) imgHq.src = data[0].thumbnail_large;
             if (imgMq) imgMq.src = data[0].thumbnail_medium;
 
-            if (dlMax) dlMax.href = thumbLarge;
-            if (dlHq) dlHq.href = data[0].thumbnail_large;
-            if (dlMq) dlMq.href = data[0].thumbnail_medium;
+            if (dlMax) dlMax.onclick = (e) => { e.preventDefault(); forceDownload(thumbLarge, `vimeo-thumb-max-${vimeoId}.jpg`); };
+            if (dlHq) dlHq.onclick = (e) => { e.preventDefault(); forceDownload(data[0].thumbnail_large, `vimeo-thumb-hq-${vimeoId}.jpg`); };
+            if (dlMq) dlMq.onclick = (e) => { e.preventDefault(); forceDownload(data[0].thumbnail_medium, `vimeo-thumb-mq-${vimeoId}.jpg`); };
 
             if (thumbResults) thumbResults.classList.remove('hidden');
           }
@@ -1217,7 +1233,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
-          }
+  }
+      
 </script>
 </body>
 </html>
