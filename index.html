@@ -770,7 +770,184 @@
     copyBase64Btn.textContent = '✅ Copied!';
     setTimeout(() => copyBase64Btn.textContent = originalText, 2000);
   });
+document.addEventListener('DOMContentLoaded', () => {
+  // --- 1. MODAL OPEN / CLOSE CONTROLS ---
+  const waModal = document.getElementById('waModal');
+  const openWaModal = document.getElementById('openWaModal');
+  const closeWaModal = document.getElementById('closeWaModal');
 
+  if (openWaModal && waModal) {
+    openWaModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      waModal.classList.remove('hidden');
+    });
+  }
+
+  if (closeWaModal && waModal) {
+    closeWaModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      waModal.classList.add('hidden');
+    });
+  }
+
+  if (waModal) {
+    waModal.addEventListener('click', (e) => {
+      if (e.target === waModal) {
+        waModal.classList.add('hidden');
+      }
+    });
+  }
+
+  // --- 2. PLATFORM TAB SWITCHING (WhatsApp vs Instagram) ---
+  let currentPlatform = 'wa';
+  const tabWa = document.getElementById('tabWa');
+  const tabIg = document.getElementById('tabIg');
+  const chatScreen = document.getElementById('waChatScreen');
+  const chatHeader = document.getElementById('chatHeader');
+  const subStatus = document.getElementById('subStatus');
+  const avatarBg = document.getElementById('avatarBg');
+
+  function setPlatform(platform) {
+    currentPlatform = platform;
+    if (platform === 'wa') {
+      tabWa.className = 'flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition';
+      tabIg.className = 'flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition';
+      
+      chatScreen.className = 'bg-[#0b141a] rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]';
+      chatHeader.className = 'bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800';
+      if (!avatarBg.style.backgroundImage) avatarBg.className = 'w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center';
+      if (subStatus) {
+        subStatus.textContent = 'online';
+        subStatus.className = 'text-[10px] text-emerald-400 mt-0.5';
+      }
+    } else {
+      tabIg.className = 'flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition';
+      tabWa.className = 'flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition';
+      
+      chatScreen.className = 'bg-black rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]';
+      chatHeader.className = 'bg-gray-900 px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800';
+      if (!avatarBg.style.backgroundImage) avatarBg.className = 'w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center p-[2px]';
+      if (subStatus) {
+        subStatus.textContent = 'Active now';
+        subStatus.className = 'text-[10px] text-gray-400 mt-0.5';
+      }
+    }
+  }
+
+  if (tabWa) tabWa.addEventListener('click', () => setPlatform('wa'));
+  if (tabIg) tabIg.addEventListener('click', () => setPlatform('ig'));
+
+  // --- 3. CUSTOM AVATAR & VERIFIED BADGE HANDLERS ---
+  const avatarUpload = document.getElementById('avatarUpload');
+  const avatarInitial = document.getElementById('avatarInitial');
+
+  if (avatarUpload) {
+    avatarUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          avatarBg.style.backgroundImage = `url('${evt.target.result}')`;
+          if (avatarInitial) avatarInitial.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  const verifiedToggle = document.getElementById('verifiedToggle');
+  const verifiedBadge = document.getElementById('verifiedBadge');
+
+  if (verifiedToggle) {
+    verifiedToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        verifiedBadge.classList.remove('hidden');
+      } else {
+        verifiedBadge.classList.add('hidden');
+      }
+    });
+  }
+
+  // --- 4. NAME & INITIAL SYNC ---
+  const waContactName = document.getElementById('waContactName');
+  const waPreviewName = document.getElementById('waPreviewName');
+  const themBtnLabel = document.getElementById('themBtnLabel');
+
+  if (waContactName) {
+    waContactName.addEventListener('input', (e) => {
+      const val = e.target.value || 'Contact';
+      if (waPreviewName) waPreviewName.textContent = val;
+      if (themBtnLabel) themBtnLabel.textContent = val;
+      if (avatarUpload && !avatarUpload.files.length && avatarInitial) {
+        avatarInitial.textContent = val.charAt(0).toUpperCase();
+      }
+    });
+  }
+
+  // --- 5. ADD MESSAGES TO CHAT BODY ---
+  const addThemBtn = document.getElementById('addThemBtn');
+  const addMeBtn = document.getElementById('addMeBtn');
+  const waMsgInput = document.getElementById('waMsgInput');
+  const waTime = document.getElementById('waTime');
+  const waChatBody = document.getElementById('waChatBody');
+
+  function appendMessage(isMe) {
+    const msgText = waMsgInput.value.trim();
+    if (!msgText) return;
+
+    const timeVal = waTime.value || '10:42 AM';
+    const msgRow = document.createElement('div');
+    msgRow.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
+
+    if (currentPlatform === 'wa') {
+      const bubbleBg = isMe ? 'bg-[#005c4b] text-gray-100' : 'bg-[#202c33] text-gray-100';
+      msgRow.innerHTML = `
+        <div class="${bubbleBg} rounded-lg px-2.5 py-1.5 max-w-[80%] shadow">
+          <p class="leading-relaxed">${msgText}</p>
+          <span class="text-[9px] text-gray-400 block text-right mt-0.5">${timeVal}</span>
+        </div>
+      `;
+    } else {
+      const bubbleBg = isMe ? 'bg-brand-500 text-gray-950 font-medium' : 'bg-gray-800 text-gray-100';
+      msgRow.innerHTML = `
+        <div class="${bubbleBg} rounded-2xl px-3 py-1.5 max-w-[80%]">
+          <p class="leading-relaxed">${msgText}</p>
+        </div>
+      `;
+    }
+
+    waChatBody.appendChild(msgRow);
+    waMsgInput.value = '';
+    waChatBody.scrollTop = waChatBody.scrollHeight;
+  }
+
+  if (addThemBtn) addThemBtn.addEventListener('click', () => appendMessage(false));
+  if (addMeBtn) addMeBtn.addEventListener('click', () => appendMessage(true));
+
+  // --- 6. EXPORT HD PNG IMAGE ---
+  const downloadWaBtn = document.getElementById('downloadWaBtn');
+  if (downloadWaBtn) {
+    downloadWaBtn.addEventListener('click', () => {
+      if (typeof html2canvas === 'undefined') {
+        alert('html2canvas library is not loaded!');
+        return;
+      }
+      
+      html2canvas(chatScreen, {
+        scale: 3,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null,
+        logging: false
+      }).then((canvas) => {
+        const link = document.createElement('a');
+        link.download = `${currentPlatform}-hd-chat-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+      });
+    });
+  }
+});
 </script>
 </body>
 </html>
