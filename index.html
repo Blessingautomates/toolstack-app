@@ -407,28 +407,49 @@
     </div>
   </div>
 </div>
-<!-- Social Mockup Modal -->
-<div id="waModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+<!-- Social Chat Generator Modal -->
+<div id="waModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
   <div class="bg-gray-900 border border-gray-800 w-full max-w-4xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeWaModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
     
+    <!-- Close Button -->
+    <button id="closeWaModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+    
+    <!-- Modal Header -->
     <h2 class="text-2xl font-bold mb-1">Social Chat Generator</h2>
     <p class="text-xs text-gray-400 mb-4">Build realistic social media conversations and export high-res PNG images.</p>
 
-    <!-- Platform Switcher Tabs -->
+    <!-- Multi-Tab Selector -->
     <div class="flex gap-2 mb-6 bg-gray-950 p-1.5 rounded-xl border border-gray-800">
       <button id="tabWa" type="button" class="flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition">WhatsApp</button>
       <button id="tabIg" type="button" class="flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition">Instagram DM</button>
     </div>
 
+    <!-- Main Grid: Controls & Preview -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Left Column: Controls -->
+      
+      <!-- COLUMN 1: Controls (STEP 1) -->
       <div class="space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800">
         <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider">Chat Details</h4>
         
         <div>
           <label class="block text-xs text-gray-400 mb-1">Contact Name</label>
           <input type="text" id="waContactName" value="James" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <!-- Profile Picture Upload & Verified Badge Toggle -->
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <div>
+            <label class="block text-[10px] text-gray-400 mb-1">Profile Picture</label>
+            <input type="file" id="avatarUpload" accept="image/*" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-1 text-[10px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer" />
+          </div>
+
+          <div class="flex flex-col justify-center">
+            <label class="inline-flex items-center gap-2 cursor-pointer mt-3">
+              <input type="checkbox" id="verifiedToggle" class="sr-only peer">
+              <div class="w-8 h-4 bg-gray-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-500 relative"></div>
+              <span class="text-xs text-gray-300 font-medium">Verified Badge</span>
+            </label>
+          </div>
         </div>
 
         <div class="pt-2 border-t border-gray-800">
@@ -441,7 +462,6 @@
             <input type="text" id="waTime" value="10:42 AM" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none" />
           </div>
 
-          <!-- Dual Action Buttons -->
           <div class="grid grid-cols-2 gap-2">
             <button id="addThemBtn" type="button" class="py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs rounded-lg transition border border-gray-700 flex items-center justify-center gap-1">
               👈 Add as <span id="themBtnLabel">James</span>
@@ -453,34 +473,49 @@
         </div>
       </div>
 
-      <!-- Right Column: Live Mockup Screen -->
-      <div class="flex flex-col items-center">
-        <div id="waChatScreen" class="w-full max-w-[320px] bg-[#0b141a] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl font-sans transition-all duration-300">
+      <!-- COLUMN 2: Mockup Preview Screen (STEP 2) -->
+      <div class="flex flex-col justify-between space-y-4">
+        <div id="waChatScreen" class="bg-[#0b141a] rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]">
           
           <!-- Dynamic Chat Header -->
           <div id="chatHeader" class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800">
             <span class="text-xs text-gray-400">←</span>
-            <div id="avatarBg" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs">J</div>
-            <div class="flex-1">
-              <p id="waPreviewName" class="text-xs font-semibold leading-none">James</p>
+            
+            <!-- Profile Picture / Initial Container -->
+            <div id="avatarContainer" class="relative w-8 h-8 flex-shrink-0">
+              <div id="avatarBg" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center">
+                <span id="avatarInitial">J</span>
+              </div>
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1">
+                <p id="waPreviewName" class="text-xs font-semibold leading-none truncate">James</p>
+                
+                <!-- Verified Badge SVG -->
+                <svg id="verifiedBadge" class="w-3.5 h-3.5 text-blue-500 fill-current hidden flex-shrink-0" viewBox="0 0 24 24">
+                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.25 1.273 2.62 2.148 4.2 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-1.25 2.148-2.62 2.148-4.2zm-12.8 4.8l-4.1-4.1 1.4-1.4 2.7 2.7 6.7-6.7 1.4 1.4-8.1 8.1z"/>
+                </svg>
+              </div>
               <p id="subStatus" class="text-[10px] text-emerald-400 mt-0.5">online</p>
             </div>
           </div>
 
-          <!-- Dynamic Chat Body -->
-          <div id="waChatBody" class="p-3 space-y-3 min-h-[300px] max-h-[380px] overflow-y-auto bg-[radial-gradient(#1f2c34_1px,transparent_1px)] [background-size:12px_12px]">
-            <!-- Messages render dynamically -->
+          <!-- Message History Display Area -->
+          <div id="waChatBody" class="p-3 overflow-y-auto flex-1 space-y-2 text-xs">
+            <!-- Dynamic message bubbles append here -->
           </div>
         </div>
 
-        <button id="downloadWaBtn" type="button" class="mt-4 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-xl transition flex items-center gap-2">
-          📸 Export Chat Image (PNG)
+        <!-- Download HD Image Button -->
+        <button id="downloadWaBtn" type="button" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
+          🖼️ Export Chat Image (PNG)
         </button>
       </div>
+
     </div>
   </div>
 </div>
-<!-- END OF SOCIAL MOCKUP MODAL -->
   <script>
     // Date Setup
     document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
@@ -792,63 +827,67 @@
     avatarBg.textContent = val.charAt(0).toUpperCase();
   });
 
-  // Message Renderer
-  const waMsgInput = document.getElementById('waMsgInput');
-  const waTime = document.getElementById('waTime');
+  // Profile Avatar Image Upload Handler
+const avatarUpload = document.getElementById('avatarUpload');
+const avatarBg = document.getElementById('avatarBg');
+const avatarInitial = document.getElementById('avatarInitial');
 
-  function appendWaMessage(isSent) {
-    const text = waMsgInput.value.trim();
-    if (!text) return;
-
-    const msgDiv = document.createElement('div');
-    msgDiv.className = `flex flex-col ${isSent ? 'items-end' : 'items-start'}`;
-
-    if (currentPlatform === 'wa') {
-      // WhatsApp Styling
-      const bgClass = isSent ? 'bg-[#005c4b] text-gray-100 rounded-tr-none' : 'bg-[#202c33] text-gray-100 rounded-tl-none';
-      msgDiv.innerHTML = `
-        <div class="${bgClass} px-3 py-1.5 rounded-lg text-xs max-w-[80%] shadow">
-          ${text}
-          <span class="block text-[9px] text-gray-300 text-right mt-0.5">${waTime.value || '10:42 AM'}</span>
-        </div>
-      `;
-    } else {
-      // Instagram Styling (Rounded Pill Bubbles & Gradient for Sent Messages)
-      const bgClass = isSent 
-        ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-2xl rounded-br-xs' 
-        : 'bg-gray-800 text-gray-100 rounded-2xl rounded-bl-xs';
-      
-      msgDiv.innerHTML = `
-        <div class="${bgClass} px-3.5 py-2 text-xs max-w-[80%] shadow-md">
-          ${text}
-        </div>
-      `;
-    }
-
-    waChatBody.appendChild(msgDiv);
-    waMsgInput.value = '';
-    waChatBody.scrollTop = waChatBody.scrollHeight;
+avatarUpload.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      avatarBg.style.backgroundImage = `url('${evt.target.result}')`;
+      avatarInitial.classList.add('hidden'); // Hide name letter when image is loaded
+    };
+    reader.readAsDataURL(file);
   }
+});
 
-  // Button Action Handlers
-  document.getElementById('addThemBtn').addEventListener('click', () => appendWaMessage(false));
-  document.getElementById('addMeBtn').addEventListener('click', () => appendWaMessage(true));
+// Verified Badge Toggle Handler
+const verifiedToggle = document.getElementById('verifiedToggle');
+const verifiedBadge = document.getElementById('verifiedBadge');
 
-  // Modal Open/Close
-  const waModal = document.getElementById('waModal');
-  document.getElementById('openWaModal').addEventListener('click', () => waModal.classList.remove('hidden'));
-  document.getElementById('closeWaModal').addEventListener('click', () => waModal.classList.add('hidden'));
+verifiedToggle.addEventListener('change', (e) => {
+  if (e.target.checked) {
+    verifiedBadge.classList.remove('hidden');
+  } else {
+    verifiedBadge.classList.add('hidden');
+  }
+});
 
-  // Export Screenshot
-  document.getElementById('downloadWaBtn').addEventListener('click', () => {
-    const chatScreen = document.getElementById('waChatScreen');
-    html2canvas(chatScreen, { backgroundColor: null, scale: 2 }).then((canvas) => {
-      const link = document.createElement('a');
-      link.download = `${currentPlatform}-chat-${Date.now()}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
+// Sync Initial if no Custom Avatar image is loaded
+const waContactName = document.getElementById('waContactName');
+const waPreviewName = document.getElementById('waPreviewName');
+const themBtnLabel = document.getElementById('themBtnLabel');
+
+waContactName.addEventListener('input', (e) => {
+  const val = e.target.value || 'Contact';
+  waPreviewName.textContent = val;
+  themBtnLabel.textContent = val;
+  if (!avatarUpload.files.length) {
+    avatarInitial.textContent = val.charAt(0).toUpperCase();
+  }
+});
+
+// Enhanced HD Canvas Export (3x Scale & Crisp Rendering)
+document.getElementById('downloadWaBtn').addEventListener('click', () => {
+  const chatScreen = document.getElementById('waChatScreen');
+  
+  // High-DPI options for crystal clear text and visuals
+  html2canvas(chatScreen, {
+    scale: 3, // Upscales render resolution 3x
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: null,
+    logging: false
+  }).then((canvas) => {
+    const link = document.createElement('a');
+    link.download = `${currentPlatform}-hd-chat-${Date.now()}.png`;
+    link.href = canvas.toDataURL('image/png', 1.0);
+    link.click();
   });
+});
 </script>
 </body>
 </html>
