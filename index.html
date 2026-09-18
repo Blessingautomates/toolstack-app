@@ -149,7 +149,7 @@
   </div>
       </div>
       <!-- Social Chat Generator Card -->
-    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between">
+    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between" data-category="creator" data-name="social chat generator whatsapp instagram fake dm screenshot mockup">
       <div>
         <div class="flex items-center justify-between mb-4">
           <!-- SVG Icons for WhatsApp and Instagram -->
@@ -171,7 +171,7 @@
     </div>
 
     <!-- Tool Card: YouTube & Vimeo Thumbnail Downloader -->
-    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between">
+    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between" data-category="creator" data-name="youtube vimeo thumbnail downloader video media hd image">
       <div>
         <div class="flex items-center justify-between mb-4">
           <div class="w-10 h-10 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center">
@@ -189,7 +189,7 @@
         <button id="openThumbModal" type="button" class="text-xs text-brand-400 hover:text-brand-300 font-bold transition flex items-center gap-1">Open Tool &rarr;</button>
       </div>
     </div>
-      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="crm" data-name="ai lead qualification scoring crm">
+      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="sales" data-name="ai lead qualification scoring crm sales prospect icp">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -208,7 +208,7 @@
         </div>
       </div>
 
-      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-category="ai-support" data-name="whatsapp instagram support bot rag">
+      <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="whatsapp instagram support bot rag ai agent handoff">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 text-2xl group-hover:scale-110 transition-transform">
@@ -627,11 +627,11 @@
     function filterTools() {
       const query = searchInput.value.toLowerCase();
       const activeBtn = document.querySelector('.filter-btn.active');
-      const activeCat = activeBtn ? activeBtn.dataset.cat : 'all';
+      const activeCat = activeBtn ? activeBtn.dataset.category : 'all';
 
       cards.forEach(card => {
-        const matchesCat = activeCat === 'all' || card.dataset.cat === activeCat;
-        const matchesQuery = card.dataset.name.toLowerCase().includes(query);
+        const matchesCat = activeCat === 'all' || card.dataset.category === activeCat;
+        const matchesQuery = (card.dataset.name || '').toLowerCase().includes(query);
         card.style.display = matchesCat && matchesQuery ? 'flex' : 'none';
       });
     }
