@@ -76,7 +76,27 @@
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="creator">Creator & Video</button>    </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
-      
+
+      <!-- Tool Card: AI Service Status Board -->
+      <div id="openStatusModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="ai service status board uptime operational degraded outage tracker chatgpt claude midjourney elevenlabs suno cursor monitoring ai support">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📡
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">AI Service Status Board</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Live operational uptime and status tracker for ChatGPT, Claude, Midjourney, ElevenLabs, Suno, and Cursor.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Live Monitor</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </div>
+
       <div id="openQuoteModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="quotation invoice generator pdf client utilities">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
@@ -607,6 +627,36 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+  <!-- AI Service Status Board Modal -->
+<div id="statusModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    <button id="closeStatusModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold mb-1">AI Service Status Board</h2>
+    <p class="text-xs text-gray-400 mb-5">Live operational uptime and status tracker for ChatGPT, Claude, Midjourney, ElevenLabs, Suno, and Cursor.</p>
+
+    <!-- Overall Summary & Refresh Control -->
+    <div class="flex flex-wrap items-center justify-between gap-3 bg-gray-950 border border-gray-800 rounded-xl p-4 mb-5">
+      <div class="flex items-center gap-3">
+        <span id="statusOverallDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div>
+          <p id="statusOverallText" class="text-sm font-bold text-gray-100">All Systems Operational</p>
+          <p id="statusLastChecked" class="text-[11px] text-gray-500">Last checked: —</p>
+        </div>
+      </div>
+      <button id="refreshStatusBtn" type="button" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed text-gray-950 font-bold text-xs transition flex items-center gap-1.5">
+        <svg id="refreshStatusIcon" class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-8 8s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+        Refresh Status
+      </button>
+    </div>
+
+    <!-- Platform Status Rows -->
+    <div id="statusList" class="space-y-3"></div>
+
+    <p class="text-[10px] text-gray-600 mt-5 leading-relaxed">Indicators are simulated for demonstration purposes and do not reflect official real-time provider incident data.</p>
   </div>
 </div>
   <script>
@@ -1235,7 +1285,141 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-      
+
+  // --- AI SERVICE STATUS BOARD LOGIC ---
+  (function () {
+    const statusModal = document.getElementById('statusModal');
+    const openStatusModal = document.getElementById('openStatusModal');
+    const closeStatusModal = document.getElementById('closeStatusModal');
+    const refreshStatusBtn = document.getElementById('refreshStatusBtn');
+    const refreshStatusIcon = document.getElementById('refreshStatusIcon');
+    const statusList = document.getElementById('statusList');
+    const statusOverallDot = document.getElementById('statusOverallDot');
+    const statusOverallText = document.getElementById('statusOverallText');
+    const statusLastChecked = document.getElementById('statusLastChecked');
+
+    if (!statusModal || !openStatusModal || !statusList) return;
+
+    const STATUS_TYPES = {
+      operational: { label: 'Operational', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', dot: 'bg-emerald-500', weight: 0.78 },
+      degraded:    { label: 'Degraded',    badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20',       dot: 'bg-amber-500',   weight: 0.17 },
+      outage:      { label: 'Outage',      badge: 'bg-rose-500/10 text-rose-400 border-rose-500/20',          dot: 'bg-rose-500',    weight: 0.05 }
+    };
+
+    const services = [
+      { name: 'ChatGPT',     provider: 'OpenAI',        icon: '💬', status: 'operational', uptime: '99.98%', latency: 412 },
+      { name: 'Claude',      provider: 'Anthropic',     icon: '🧠', status: 'operational', uptime: '99.95%', latency: 386 },
+      { name: 'Midjourney',  provider: 'Midjourney',    icon: '🎨', status: 'operational', uptime: '99.71%', latency: 1240 },
+      { name: 'ElevenLabs',  provider: 'ElevenLabs',    icon: '🔊', status: 'operational', uptime: '99.89%', latency: 640 },
+      { name: 'Suno',        provider: 'Suno AI',       icon: '🎵', status: 'degraded',    uptime: '98.42%', latency: 2180 },
+      { name: 'Cursor',      provider: 'Anysphere',     icon: '🖱️', status: 'operational', uptime: '99.93%', latency: 298 }
+    ];
+
+    function randomStatus() {
+      const roll = Math.random();
+      let acc = 0;
+      for (const key in STATUS_TYPES) {
+        acc += STATUS_TYPES[key].weight;
+        if (roll <= acc) return key;
+      }
+      return 'operational';
+    }
+
+    function renderRows() {
+      statusList.innerHTML = services.map(svc => {
+        const type = STATUS_TYPES[svc.status];
+        return `
+          <div class="flex items-center justify-between gap-4 bg-gray-950 border border-gray-800 rounded-xl p-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-lg flex-shrink-0">${svc.icon}</div>
+              <div class="min-w-0">
+                <p class="text-sm font-bold text-gray-100 truncate">${svc.name}</p>
+                <p class="text-[11px] text-gray-500">${svc.provider} · Uptime 30d: ${svc.uptime} · ${svc.latency} ms</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border flex-shrink-0 ${type.badge}">
+              <span class="w-1.5 h-1.5 rounded-full ${type.dot}"></span>
+              ${type.label}
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderOverall() {
+      const hasOutage = services.some(s => s.status === 'outage');
+      const hasDegraded = services.some(s => s.status === 'degraded');
+
+      let text = 'All Systems Operational';
+      let dot = 'bg-emerald-500';
+      let textColor = 'text-emerald-400';
+
+      if (hasOutage) {
+        text = 'Service Disruption Detected';
+        dot = 'bg-rose-500';
+        textColor = 'text-rose-400';
+      } else if (hasDegraded) {
+        text = 'Minor Degradation Noticed';
+        dot = 'bg-amber-500';
+        textColor = 'text-amber-400';
+      }
+
+      statusOverallDot.className = `w-2.5 h-2.5 rounded-full animate-pulse ${dot}`;
+      statusOverallText.textContent = text;
+      statusOverallText.className = `text-sm font-bold ${textColor}`;
+      statusLastChecked.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
+    }
+
+    function refreshStatus() {
+      refreshStatusBtn.disabled = true;
+      refreshStatusIcon.classList.add('animate-spin');
+      statusOverallText.textContent = 'Checking services...';
+      statusOverallText.className = 'text-sm font-bold text-gray-300';
+      statusOverallDot.className = 'w-2.5 h-2.5 rounded-full animate-pulse bg-gray-500';
+      statusList.classList.add('opacity-50');
+
+      setTimeout(() => {
+        services.forEach(svc => {
+          svc.status = randomStatus();
+          svc.latency = Math.floor(180 + Math.random() * 2200);
+          if (svc.status === 'operational') {
+            svc.uptime = (99.5 + Math.random() * 0.49).toFixed(2) + '%';
+          } else if (svc.status === 'degraded') {
+            svc.uptime = (97.5 + Math.random() * 1.9).toFixed(2) + '%';
+          } else {
+            svc.uptime = (92 + Math.random() * 4).toFixed(2) + '%';
+          }
+        });
+
+        statusList.classList.remove('opacity-50');
+        refreshStatusBtn.disabled = false;
+        refreshStatusIcon.classList.remove('animate-spin');
+        renderRows();
+        renderOverall();
+      }, 900);
+    }
+
+    openStatusModal.addEventListener('click', (e) => {
+      e.preventDefault();
+      statusModal.classList.remove('hidden');
+      renderRows();
+      renderOverall();
+    });
+
+    if (closeStatusModal) {
+      closeStatusModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        statusModal.classList.add('hidden');
+      });
+    }
+
+    statusModal.addEventListener('click', (e) => {
+      if (e.target === statusModal) statusModal.classList.add('hidden');
+    });
+
+    if (refreshStatusBtn) refreshStatusBtn.addEventListener('click', refreshStatus);
+  })();
+
 </script>
 
   <!-- Adsterra Native Ad Banner -->
