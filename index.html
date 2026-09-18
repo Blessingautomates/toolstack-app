@@ -250,6 +250,26 @@
         </div>
       </div>
 
+      <!-- Tool Card: Script Hook & Retention Checker -->
+      <div id="openHookModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="script hook retention checker viral reels tiktok shorts youtube opening line first 3 seconds scroll stopper curiosity gap creator video">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🪝
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Script Hook &amp; Retention Checker</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Score the first 3 seconds of your video script against viral retention patterns for Reels, TikTok, and Shorts.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </div>
+
       <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="whatsapp instagram support bot rag ai agent handoff">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
@@ -765,6 +785,88 @@
       </div>
 
       <p class="text-[10px] text-gray-600 leading-relaxed">Scoring heuristics are indicative only — real inbox placement also depends on sending domain reputation, authentication (SPF/DKIM/DMARC), list quality, and engagement.</p>
+    </div>
+  </div>
+</div>
+  <!-- Script Hook & Retention Checker Modal -->
+<div id="hookModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    <button id="closeHookModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold mb-1">Script Hook &amp; Retention Checker</h2>
+    <p class="text-xs text-gray-400 mb-5">Score the first 3 seconds of your video script against viral retention patterns for Reels, TikTok, and Shorts.</p>
+
+    <div id="hookStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="mb-4">
+      <label class="block text-xs text-gray-400 mb-1 font-mono">Opening Line / Hook:</label>
+      <textarea id="hookInput" rows="4" placeholder="e.g. Stop posting Reels until you watch this — your first 3 seconds are why nobody stays." class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+      <div class="flex flex-wrap items-center justify-between gap-2 mt-2">
+        <span class="text-[10px] text-gray-500">Paste the spoken line (or on-screen text) from your first 3 seconds of video.</span>
+        <span id="hookWordCounter" class="text-[10px] font-mono text-gray-500">0 words · 0.0s</span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
+      <div class="flex gap-2">
+        <button id="analyzeHookBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          🎯 Analyze Hook
+        </button>
+        <button id="clearHookBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Tip: press Ctrl + Enter to analyze. Text never leaves your browser.</span>
+    </div>
+
+    <!-- Results -->
+    <div id="hookResults" class="hidden mt-5 space-y-5">
+
+      <!-- Hook Strength Rating -->
+      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4">
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Hook Strength Rating</p>
+            <p id="hookScoreValue" class="text-3xl font-black text-amber-400">0<span class="text-base font-bold text-gray-500">/100</span></p>
+          </div>
+          <span id="hookGradeBadge" class="px-3 py-1 rounded-full text-[11px] font-semibold border bg-amber-500/10 text-amber-400 border-amber-500/20">Moderate</span>
+        </div>
+        <div class="h-2 w-full rounded-full bg-gray-800 overflow-hidden">
+          <div id="hookScoreBar" class="h-full w-0 rounded-full bg-amber-500 transition-all duration-500"></div>
+        </div>
+        <p id="hookGradeNote" class="text-[11px] text-gray-400 mt-3 leading-relaxed"></p>
+        <div class="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-800 text-center">
+          <div>
+            <p id="hookFrameworkCount" class="text-lg font-bold text-gray-100">0/5</p>
+            <p class="text-[10px] uppercase tracking-wider text-gray-500">Frameworks Hit</p>
+          </div>
+          <div>
+            <p id="hookWordCount" class="text-lg font-bold text-gray-100">0</p>
+            <p class="text-[10px] uppercase tracking-wider text-gray-500">Words</p>
+          </div>
+          <div>
+            <p id="hookReadTime" class="text-lg font-bold text-gray-100">0.0s</p>
+            <p class="text-[10px] uppercase tracking-wider text-gray-500">Est. Delivery</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Framework Breakdown -->
+      <div>
+        <p class="text-xs font-bold text-gray-300 mb-2">Detected Engagement Triggers</p>
+        <ul id="hookBreakdown" class="space-y-2"></ul>
+      </div>
+
+      <!-- Rewrite Suggestions -->
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <p class="text-xs font-bold text-gray-300">Stronger Rewrites</p>
+          <span class="text-[10px] text-gray-500">Generated from your topic — edit before you shoot.</span>
+        </div>
+        <div id="hookRewrites" class="space-y-2"></div>
+      </div>
+
+      <p class="text-[10px] text-gray-600 leading-relaxed">Framework scoring is a heuristic, not a guarantee. Retention also depends on your first visual frame, on-screen text, audio, pacing, and how well the payoff matches the promise.</p>
     </div>
   </div>
 </div>
@@ -1879,6 +1981,459 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  })();
+
+  // Script Hook & Retention Checker
+  (function () {
+    const hookModal = document.getElementById('hookModal');
+    const openHookBtn = document.getElementById('openHookModal');
+    if (!hookModal || !openHookBtn) return;
+
+    const hookInput = document.getElementById('hookInput');
+    const resultsBox = document.getElementById('hookResults');
+    const statusBanner = document.getElementById('hookStatus');
+    const scoreValueEl = document.getElementById('hookScoreValue');
+    const scoreBar = document.getElementById('hookScoreBar');
+    const gradeBadge = document.getElementById('hookGradeBadge');
+    const gradeNote = document.getElementById('hookGradeNote');
+    const frameworkCountEl = document.getElementById('hookFrameworkCount');
+    const wordCountEl = document.getElementById('hookWordCount');
+    const readTimeEl = document.getElementById('hookReadTime');
+    const counterEl = document.getElementById('hookWordCounter');
+    const breakdownEl = document.getElementById('hookBreakdown');
+    const rewritesEl = document.getElementById('hookRewrites');
+
+    // Retention frameworks. `weight` is what one distinct match earns, `extra` is
+    // added per additional distinct match (capped at weight * 1.25).
+    const FRAMEWORKS = [
+      {
+        key: 'curiosity',
+        label: 'Curiosity Gap',
+        icon: '🕳️',
+        weight: 24,
+        extra: 5,
+        miss: 'No open loop. The viewer has no unanswered question forcing them to keep watching.',
+        patterns: [
+          /\b(nobody|no one|hardly anyone)\b/i,
+          /\b(secret|secrets)\b/i,
+          /\b(hidden|hiding|hide)\b/i,
+          /\b(here'?s (why|what|how)|here is (why|what|how))\b/i,
+          /\b(the reason (why|is))\b/i,
+          /\b(you (won'?t|will not) believe)\b/i,
+          /\b(most people (don'?t|do not|never))\b/i,
+          /\b(until i (found|tried|learned|realised|realized))\b/i,
+          /\b(didn'?t expect|wasn'?t expecting|did not expect)\b/i,
+          /\b(this is (what|how|why))\b/i,
+          /\b(what (happened|nobody|no one))\b/i,
+          /\b(watch (this|until|till)|keep watching)\b/i,
+          /\b(guess what|i bet you|you'?ll never guess)\b/i,
+          /\b(what if i told you|they don'?t want you to know)\b/i
+        ]
+      },
+      {
+        key: 'boldclaim',
+        label: 'Bold Claim',
+        icon: '⚡',
+        weight: 20,
+        extra: 4,
+        miss: 'No bold, specific claim. Nothing here promises a payoff worth staying for.',
+        patterns: [
+          /\b(best|worst|fastest|slowest|biggest|smallest|easiest|hardest|only way)\b/i,
+          /\b(never|always|every single|everyone|nobody else)\b/i,
+          /\b(guaranteed|instantly|overnight|in seconds|in minutes)\b/i,
+          /\b(in \d+ (seconds|minutes|hours|days|weeks))\b/i,
+          /\b(100%|zero effort|no effort|10x|2x|3x|doubled|tripled)\b/i,
+          /\b(million|billion|thousand)\b/i,
+          /\b(changed my life|game ?changer|life ?changing|never the same)\b/i
+        ]
+      },
+      {
+        key: 'negative',
+        label: 'Negative Trigger',
+        icon: '🚫',
+        weight: 24,
+        extra: 5,
+        miss: 'No loss, mistake, or warning framing — the strongest scroll-stopper in short form.',
+        patterns: [
+          /\b(stop|quit|never)\b/i,
+          /\b(don'?t|do not)\b/i,
+          /\b(mistake|mistakes|messing up|screwing up)\b/i,
+          /\b(wrong|backwards)\b/i,
+          /\b(warning|danger|dangerous|risk|risky)\b/i,
+          /\b(fail|failing|failed|failure)\b/i,
+          /\b(ruin(ing|ed)?|kill(ing|ed)?|destroy(ing|ed)?)\b/i,
+          /\b(lose|losing|lost|leak(ing|s|ed)?)\b/i,
+          /\b(hate|scam|trap|trapped|nightmare|terrible|awful)\b/i,
+          /\b(waste|wasting|wasted)\b/i,
+          /\b(cost(ing|s)? you|killing your)\b/i
+        ]
+      },
+      {
+        key: 'problem',
+        label: 'Direct Problem',
+        icon: '🎯',
+        weight: 22,
+        extra: 4,
+        miss: 'No audience callout or named pain point — the viewer cannot tell this is about them.',
+        patterns: [
+          /\b(if you'?re (a|an|the)?\s*\w+|if you are)\b/i,
+          /\b(struggl(e|es|ing|ed)|stuck|frustrat(ed|ing|ion)|overwhelm(ed|ing))\b/i,
+          /\b(tired of|sick of|fed up with)\b/i,
+          /\b(can'?t (seem to|get|figure)|don'?t know (how|where) to)\b/i,
+          /\b(you keep|keeps happening|every time you)\b/i,
+          /\b(no (time|idea|clients|sales|views|traction))\b/i
+        ],
+        // A pain word only counts as a "direct problem" hook when it is aimed at the viewer.
+        test: function (text) {
+          const hits = [];
+          const pain = /\b(struggl\w*|stuck|frustrat\w*|overwhelm\w*|problem|pain|hard|difficult|annoying|hate|wish|tired of|sick of|fed up|can'?t|don'?t know)\b/gi;
+          const secondPerson = /\b(you|your|you'?re|yourself)\b/i;
+          let m;
+          while ((m = pain.exec(text)) !== null) {
+            if (secondPerson.test(text)) hits.push(m[0]);
+          }
+          if (hits.length === 0 && /\b(if you'?re|if you are|tired of|sick of|fed up with|no (time|idea|clients|sales|views|traction))\b/i.test(text)) {
+            const callout = text.match(/\b(if you'?re|if you are|tired of|sick of|fed up with|no (time|idea|clients|sales|views|traction))\b/i);
+            hits.push(callout[0]);
+          }
+          return hits;
+        }
+      },
+      {
+        key: 'visual',
+        label: 'Visual Cue',
+        icon: '👀',
+        weight: 16,
+        extra: 4,
+        miss: 'No instruction telling the eye where to look in frame — motion is what holds the first second.',
+        patterns: [
+          /\b(look at (this|that|these|him|her|it))\b/i,
+          /\b(watch (this|what happens|closely))\b/i,
+          /\b(right here|right there|over here)\b/i,
+          /\b(this (thing|one|part|guy|tool|frame|clip))\b/i,
+          /\b(see (this|how|what))\b/i,
+          /\b(check (this|it) out)\b/i,
+          /\b(on the (left|right|top|bottom)|behind me|in front of me)\b/i,
+          /\b(as you can see|notice (this|how)|zoom in|look closely|point(ing)? at)\b/i,
+          /\[[^\]]{2,60}\]/,
+          /\([^)]*\b(shows?|cut to|close ?up|b-?roll|text on screen)\b[^)]*\)/i
+        ]
+      }
+    ];
+
+    // Openers that spend the hook on setup instead of tension.
+    const WEAK_OPENERS = [
+      { re: /^(hey|hi|hello|yo|sup|okay|ok|so|alright|um+|uh+)[\s,!.\-—]+(guys|everyone|everybody|friends|y'?all)?/i, label: 'a filler opener' },
+      { re: /^(what'?s up|whats up|what is up)[\s,!.\-—]*(guys|everyone|y'?all)?/i, label: 'greeting' },
+      { re: /\bwelcome back( to (my|the) channel)?\b/i, label: '"welcome back"' },
+      { re: /\bin (this|today'?s) video\b/i, label: '"in this video"' },
+      { re: /\bbefore we (start|begin|get into)\b/i, label: 'a pre-roll' },
+      { re: /\b(don'?t forget to|make sure to) (like|subscribe|hit|follow|comment)\b/i, label: 'a subscribe ask' },
+      { re: /\b(my name is|let me introduce myself)\b/i, label: 'an introduction' },
+      { re: /\b(so today|today i'?m going to|in this video i)\b/i, label: '"today I\'m going to"' }
+    ];
+
+    const GRADES = [
+      { min: 88, label: 'Viral', text: 'text-emerald-400', bar: 'bg-emerald-500', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', note: 'This hook front-loads tension and a payoff promise — the pattern top short-form retention uses.' },
+      { min: 60, label: 'Strong', text: 'text-sky-400', bar: 'bg-sky-500', badge: 'bg-sky-500/10 text-sky-400 border-sky-500/20', note: 'Solid scroll-stopper: there is a reason to keep watching before the first cut.' },
+      { min: 30, label: 'Moderate', text: 'text-amber-400', bar: 'bg-amber-500', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', note: 'It sets up a topic but leans on the viewer already caring. One sharper framework would lift it.' },
+      { min: 0, label: 'Weak', text: 'text-red-400', bar: 'bg-red-500', badge: 'bg-red-500/10 text-red-400 border-red-500/20', note: 'This is a warm-up, not a hook — the first 3 seconds go by without tension, a claim, or a visual pull.' }
+    ];
+
+    // Appositive phrasing keeps these readable whether the topic came out as a
+    // noun phrase ("social media marketing") or a verb phrase ("make a cake").
+    const REWRITE_TEMPLATES = {
+      curiosity: (t) => 'Here\'s the part nobody explains: ' + t + '.',
+      negative: (t) => 'Nobody warns you about this: ' + t + ' — and it\'s quietly costing you reach.',
+      boldclaim: (t) => 'This is the fastest way to fix it: ' + t + '.',
+      problem: (t) => 'If this is your situation, stop scrolling: ' + t + '.',
+      visual: (t) => 'Look at this — ' + t + ', and watch what happens.'
+    };
+
+    const POLISH_SUGGESTIONS = [
+      'Move your strongest noun or number to the front. "3 seconds", "2 mistakes", "$400" all stop a scroll faster than an adjective.',
+      'Cut every word before your sharpest claim so the promise lands inside the first second — you can explain after the cut.',
+      'Say the hook out loud once. If you run out of breath before the point, it is two hooks fighting each other.'
+    ];
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    }
+
+    function showStatus(message, type) {
+      statusBanner.textContent = message;
+      statusBanner.className = 'mb-4 p-3 rounded-xl text-xs font-medium border ' + (type === 'error'
+        ? 'bg-red-500/10 border-red-500/30 text-red-300'
+        : 'bg-amber-500/10 border-amber-500/30 text-amber-300');
+      statusBanner.classList.remove('hidden');
+    }
+
+    function hideStatus() {
+      statusBanner.classList.add('hidden');
+    }
+
+    function matchPatterns(text, patterns) {
+      const hits = [];
+      patterns.forEach((re) => {
+        const m = text.match(re);
+        if (m && m[0].trim()) hits.push(m[0].trim());
+      });
+      return hits;
+    }
+
+    // Words that carry no topic on their own, trimmed from either end of a phrase.
+    const EDGE_WORDS = /^(a|an|the|i|i'?m|we|we'?re|you|you'?re|it|it'?s|this|that|these|those|my|your|our|to|of|in|on|at|for|and|but|if|so|then|is|are|was|were|be|do|does|did|just|really|very)$/i;
+
+    // Setup phrasing stripped from the front of the topic, repeatedly. Order matters:
+    // multi-word stage directions are consumed before the bare filler words inside them.
+    const LEAD_STRIPS = [
+      /^(look at (this|that|these)|watch (this|that)|check (this|that) out|see (this|that))\b[\s,!.\-—]*/i,
+      /^(in (this|today'?s) video( i)?)[\s,!.\-—]+/i,
+      /^(i'?m|i am|we'?re|we are|you'?re|you are|am|are|is)?\s*(going to|gonna|want to|about to)\s+/i,
+      /^(talk about|talking about)\s+/i,
+      /^(welcome back( to (my|the) channel)?)[\s,!.\-—]+/i,
+      /^(stop|quit|never|don'?t|do not|avoid)\b[\s,!.\-—]*/i,
+      /^(ok(ay)?|so|um+|uh+|hey|hi|hello|yo|guys|everyone|everybody|listen|look|alright|right|now|today)[\s,!.\-—]+/i,
+      /^(if you'?re|if you are|when you'?re|when you are)\s+/i,
+      /^(this is|that'?s|here'?s|here is|there'?s|there is)\s+/i,
+      /^(the|a|an)\s+/i
+    ];
+
+    // Phrases that point at the frame rather than name the subject.
+    const CUE_ONLY = /^(right|left|up|down|over|here|there|this|that|these|those|it|now)$/i;
+
+    function wordList(text) {
+      return text.split(/\s+/).filter(Boolean);
+    }
+
+    // Every place the fragment could be cut back to a single clause, shortest first.
+    function clausePrefixes(fragment) {
+      const re = /\s+(?:—|–|--|,|;)\s*|\s+\b(?:until|but|because|when|which)\b\s+/gi;
+      const prefixes = [];
+      let m;
+      while ((m = re.exec(fragment)) !== null) {
+        if (m.index > 0) prefixes.push(fragment.slice(0, m.index).trim());
+        if (re.lastIndex === m.index) re.lastIndex++;
+      }
+      prefixes.push(fragment);
+      return prefixes;
+    }
+
+    function cleanPhrase(phrase) {
+      let t = phrase;
+      let prev;
+      do {
+        prev = t;
+        LEAD_STRIPS.forEach((re) => { t = t.replace(re, ''); });
+      } while (t !== prev && t.length > 0);
+
+      const words = wordList(t.replace(/[.!?,;:]+$/g, '').trim());
+      while (words.length > 1 && EDGE_WORDS.test(words[words.length - 1])) words.pop();
+      while (words.length > 1 && EDGE_WORDS.test(words[0])) words.shift();
+      return words.slice(0, 10).join(' ');
+    }
+
+    // Pull the subject out of the hook so rewrites read like the user's own idea.
+    function extractTopic(raw) {
+      const text = String(raw).replace(/\s+/g, ' ').replace(/\[[^\]]*\]/g, ' ').replace(/\([^)]*\)/g, ' ').trim();
+      const fragments = text.split(/[.!?;:]+/).map((f) => f.trim()).filter((f) => f.length > 0);
+      if (fragments.length === 0) return 'this';
+
+      // Longest fragment first — greetings and setup tend to be the short ones.
+      const ordered = fragments.slice().sort((a, b) => wordList(b).length - wordList(a).length);
+      for (let i = 0; i < ordered.length; i++) {
+        const prefixes = clausePrefixes(ordered[i]);
+        for (let j = 0; j < prefixes.length; j++) {
+          const cleaned = cleanPhrase(prefixes[j]);
+          const words = wordList(cleaned);
+          // Skip empties, single words, phrases that still span two clauses,
+          // and ones that only point at the frame ("right here").
+          if (words.length >= 2 && !words.every((w) => CUE_ONLY.test(w)) && !/[;—]|,\s/.test(cleaned)) return cleaned;
+        }
+      }
+      return 'this';
+    }
+
+    function updateCounter() {
+      const words = wordList(hookInput.value.trim());
+      counterEl.textContent = words.length + ' word' + (words.length === 1 ? '' : 's') + ' · ' + (words.length / 3).toFixed(1) + 's';
+    }
+
+    function analyze() {
+      const raw = hookInput.value.trim();
+      if (!raw) {
+        showStatus('Paste your opening line first so there is something to score.', 'error');
+        resultsBox.classList.add('hidden');
+        return;
+      }
+
+      const text = raw.replace(/\s+/g, ' ');
+      const words = wordList(text);
+      const wordCount = words.length;
+
+      const results = FRAMEWORKS.map((fw) => {
+        const hits = fw.test ? fw.test(text) : matchPatterns(text, fw.patterns);
+        const points = hits.length === 0 ? 0 : Math.min(Math.round(fw.weight * 1.25), fw.weight + (hits.length - 1) * fw.extra);
+        return { key: fw.key, label: fw.label, icon: fw.icon, miss: fw.miss, hits: hits, points: points, weight: fw.weight };
+      });
+
+      let score = results.reduce((sum, r) => sum + r.points, 0);
+
+      // Specificity and direct address sharpen any framework.
+      const bonuses = [];
+      if (/\b\d+\b/.test(text)) { score += 6; bonuses.push('specific number'); }
+      if (/\b(you|your|you'?re|yourself)\b/i.test(text)) { score += 4; bonuses.push('direct address'); }
+      if (/\b(but|except|until|yet|instead)\b/i.test(text)) { score += 4; bonuses.push('a turn'); }
+
+      // Setup openers cost the first second.
+      const weakHits = [];
+      let setupWords = 0;
+      WEAK_OPENERS.forEach((entry) => {
+        const m = entry.re.exec(text);
+        if (m && weakHits.indexOf(entry.label) === -1) {
+          weakHits.push(entry.label);
+          setupWords += wordList(m[0]).length;
+        }
+      });
+      const weakPenalty = Math.min(24, weakHits.length * 12);
+      score -= weakPenalty;
+
+      if (wordCount < 5) score -= 8;
+      else if (wordCount > 20) score -= 8;
+
+      score = Math.max(0, Math.min(100, score));
+
+      const grade = GRADES.find((g) => score >= g.min);
+      const hitsCount = results.filter((r) => r.hits.length > 0).length;
+      const misses = results.filter((r) => r.hits.length === 0).sort((a, b) => b.weight - a.weight);
+
+      scoreValueEl.className = 'text-3xl font-black ' + grade.text;
+      scoreValueEl.innerHTML = score + '<span class="text-base font-bold text-gray-500">/100</span>';
+      gradeBadge.textContent = grade.label;
+      gradeBadge.className = 'px-3 py-1 rounded-full text-[11px] font-semibold border ' + grade.badge;
+      scoreBar.className = 'h-full rounded-full transition-all duration-500 ' + grade.bar;
+      scoreBar.style.width = score + '%';
+
+      const seconds = wordCount / 3;
+      frameworkCountEl.textContent = hitsCount + '/' + FRAMEWORKS.length;
+      wordCountEl.textContent = wordCount;
+      readTimeEl.textContent = seconds.toFixed(1) + 's';
+      readTimeEl.className = 'text-lg font-bold ' + (seconds <= 3.2 ? 'text-emerald-400' : seconds <= 5 ? 'text-amber-400' : 'text-red-400');
+
+      const notes = [grade.note];
+      if (wordCount > 20) notes.push('At ' + wordCount + ' words this runs past 3 seconds — trim to 8–14.');
+      else if (wordCount < 5) notes.push('Only ' + wordCount + ' words is thin for a spoken hook — the first frame has to carry it.');
+      if (misses.length === 1) notes.push('Only ' + misses[0].label + ' is missing.');
+      else if (misses.length > 1) notes.push('Biggest gaps: ' + misses.slice(0, 2).map((m) => m.label).join(' and ') + '.');
+      else notes.push('All five frameworks fire — the remaining work is delivery.');
+      if (bonuses.length) notes.push('Working in your favour: ' + bonuses.join(', ') + '.');
+      gradeNote.textContent = notes.join(' ');
+
+      if (weakHits.length) {
+        showStatus('Setup detected at the top (' + weakHits.join(', ') + ') — roughly ' + Math.min(3, setupWords / 3).toFixed(1) + 's of your first 3 go by before the point lands. Cut it and open on the tension.', 'warn');
+      } else {
+        hideStatus();
+      }
+
+      breakdownEl.innerHTML = results.map((r) => {
+        const hit = r.hits.length > 0;
+        const detail = hit ? 'Matched: "' + r.hits.slice(0, 3).join('", "') + '"' : r.miss;
+        return '<li class="bg-gray-950 border border-gray-800 rounded-xl p-3">'
+          + '<div class="flex items-start justify-between gap-3">'
+          + '<div class="flex items-start gap-2 min-w-0">'
+          + '<span class="text-base leading-none">' + r.icon + '</span>'
+          + '<div class="min-w-0">'
+          + '<p class="text-xs font-bold text-gray-200">' + escapeHtml(r.label) + '</p>'
+          + '<p class="text-[11px] mt-0.5 leading-relaxed ' + (hit ? 'text-emerald-400/90' : 'text-gray-500') + '">' + escapeHtml(detail) + '</p>'
+          + '</div></div>'
+          + '<span class="flex-shrink-0 px-2 py-0.5 rounded-full text-[10px] font-semibold border ' + (hit ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-gray-800 text-gray-500 border-gray-700') + '">'
+          + (hit ? '+' + r.points : 'Missing') + '</span>'
+          + '</div></li>';
+      }).join('');
+
+      // Rewrites target the frameworks that are missing, strongest gap first.
+      const topic = extractTopic(raw);
+      const rewrites = misses.slice(0, 3).map((m) => ({ framework: m.label, text: REWRITE_TEMPLATES[m.key](topic) }));
+      POLISH_SUGGESTIONS.forEach((tip) => {
+        if (rewrites.length < 2) rewrites.push({ framework: 'Tighten It', text: tip });
+      });
+
+      rewritesEl.innerHTML = rewrites.map((item) => ''
+        + '<div class="bg-gray-950 border border-gray-800 rounded-xl p-3 flex items-start justify-between gap-3">'
+        + '<div class="min-w-0">'
+        + '<p class="text-[10px] uppercase tracking-wider text-brand-400 font-bold mb-1">' + escapeHtml(item.framework) + '</p>'
+        + '<p class="text-xs text-gray-200 leading-relaxed">' + escapeHtml(item.text) + '</p>'
+        + '</div>'
+        + '<button type="button" class="hook-copy flex-shrink-0 px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-[10px] font-semibold text-gray-300 transition" data-rewrite="' + escapeHtml(item.text) + '">Copy</button>'
+        + '</div>').join('');
+
+      resultsBox.classList.remove('hidden');
+    }
+
+    function fallbackCopy(text, done) {
+      const holder = document.createElement('textarea');
+      holder.value = text;
+      holder.setAttribute('readonly', '');
+      holder.style.position = 'fixed';
+      holder.style.opacity = '0';
+      document.body.appendChild(holder);
+      holder.select();
+      try { document.execCommand('copy'); done(); } catch (err) { /* clipboard unavailable */ }
+      document.body.removeChild(holder);
+    }
+
+    rewritesEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.hook-copy');
+      if (!btn) return;
+      const text = btn.getAttribute('data-rewrite') || '';
+      const done = () => {
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    });
+
+    openHookBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      hookModal.classList.remove('hidden');
+      hookInput.focus();
+    });
+
+    document.getElementById('closeHookModal').addEventListener('click', (e) => {
+      e.preventDefault();
+      hookModal.classList.add('hidden');
+    });
+
+    hookModal.addEventListener('click', (e) => {
+      if (e.target === hookModal) hookModal.classList.add('hidden');
+    });
+
+    document.getElementById('analyzeHookBtn').addEventListener('click', analyze);
+
+    document.getElementById('clearHookBtn').addEventListener('click', () => {
+      hookInput.value = '';
+      hideStatus();
+      updateCounter();
+      resultsBox.classList.add('hidden');
+    });
+
+    // Re-score live once a first analysis has been run.
+    hookInput.addEventListener('input', () => {
+      updateCounter();
+      if (!resultsBox.classList.contains('hidden')) analyze();
+    });
+    hookInput.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        analyze();
+      }
+    });
+
+    updateCounter();
   })();
 
 </script>
