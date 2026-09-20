@@ -97,6 +97,26 @@
         </div>
       </div>
 
+      <!-- Tool Card: Free AI Tools Directory -->
+      <div id="openAiDirModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="free ai tools directory searchable category filter text writing image coding video audio chatgpt claude midjourney cursor elevenlabs v0 runway suno ai support">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🧰
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Free AI Tools Directory</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Searchable, category-filtered directory of top free AI tools for text, image, coding, and video.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">AI Directory</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </div>
+
       <div id="openQuoteModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="quotation invoice generator pdf client utilities">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
@@ -697,6 +717,49 @@
     <div id="statusList" class="space-y-3"></div>
 
     <p class="text-[10px] text-gray-600 mt-5 leading-relaxed">Indicators are simulated for demonstration purposes and do not reflect official real-time provider incident data.</p>
+  </div>
+</div>
+
+  <!-- Free AI Tools Directory Modal -->
+<div id="aiDirModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
+    <button id="closeAiDirModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold mb-1">Free AI Tools Directory</h2>
+    <p class="text-xs text-gray-400 mb-5">Searchable, category-filtered directory of top free AI tools for text, image, coding, and video.</p>
+
+    <!-- Search -->
+    <div class="relative mb-4">
+      <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm">🔍</span>
+      <input id="aiDirSearch" type="text" placeholder="Search by name or keyword — try voice, captions, music, code..." class="w-full bg-gray-950 border border-gray-800 rounded-xl py-3 pl-10 pr-3 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+    </div>
+
+    <!-- Category Filter Chips -->
+    <div id="aiDirChips" class="flex flex-wrap gap-2 mb-5">
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="all">All</button>
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Writing">Writing</button>
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Coding">Coding</button>
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Image">Image</button>
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Video">Video</button>
+      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Audio">Audio</button>
+    </div>
+
+    <!-- Tool Grid -->
+    <div id="aiDirGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+    <!-- Empty State -->
+    <div id="aiDirEmpty" class="hidden text-center py-10">
+      <p class="text-3xl mb-2">🔎</p>
+      <p class="text-sm font-bold text-gray-300">No tools match your search</p>
+      <p class="text-xs text-gray-500 mt-1">Try a different keyword or switch back to the All category.</p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-2 mt-5 pt-4 border-t border-gray-800">
+      <p id="aiDirCount" class="text-[11px] text-gray-500">—</p>
+      <button id="clearAiDirBtn" type="button" class="text-[11px] font-semibold text-brand-400 hover:text-brand-300 transition">Reset filters</button>
+    </div>
+
+    <p class="text-[10px] text-gray-600 mt-4 leading-relaxed">Free tiers, credit allowances, and limits change often — always confirm current pricing with each provider before relying on a tool.</p>
   </div>
 </div>
 
@@ -2434,6 +2497,216 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateCounter();
+  })();
+
+  // --- FREE AI TOOLS DIRECTORY LOGIC ---
+  (function () {
+    const dirModal = document.getElementById('aiDirModal');
+    const openDirBtn = document.getElementById('openAiDirModal');
+    if (!dirModal || !openDirBtn) return;
+
+    const closeDirBtn = document.getElementById('closeAiDirModal');
+    const searchEl = document.getElementById('aiDirSearch');
+    const gridEl = document.getElementById('aiDirGrid');
+    const emptyEl = document.getElementById('aiDirEmpty');
+    const countEl = document.getElementById('aiDirCount');
+    const clearBtn = document.getElementById('clearAiDirBtn');
+    const chipEls = dirModal.querySelectorAll('.dir-chip');
+
+    const CATEGORY_STYLES = {
+      Writing: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
+      Coding:  'bg-violet-500/10 text-violet-400 border-violet-500/20',
+      Image:   'bg-pink-500/10 text-pink-400 border-pink-500/20',
+      Video:   'bg-amber-500/10 text-amber-400 border-amber-500/20',
+      Audio:   'bg-teal-500/10 text-teal-400 border-teal-500/20'
+    };
+
+    const TOOLS = [
+      // Writing
+      { name: 'ChatGPT', category: 'Writing', icon: '💬', url: 'https://chatgpt.com',
+        desc: 'General-purpose assistant for drafting, rewriting, brainstorming, and everyday questions. Free tier includes current models with usage caps.',
+        keywords: 'openai gpt chatbot text assistant brainstorm summary' },
+      { name: 'Claude', category: 'Writing', icon: '🧠', url: 'https://claude.ai',
+        desc: 'Anthropic assistant that handles long documents, careful editing, and structured writing. Free tier available.',
+        keywords: 'anthropic long context editing documents analysis' },
+      { name: 'Gemini', category: 'Writing', icon: '✨', url: 'https://gemini.google.com',
+        desc: 'Google assistant with Docs, Gmail, and search integration plus a generous free tier.',
+        keywords: 'google text assistant workspace email' },
+      { name: 'Perplexity', category: 'Writing', icon: '🔎', url: 'https://www.perplexity.ai',
+        desc: 'Answer engine that cites its sources, useful for research and fact-checked first drafts.',
+        keywords: 'search research citations sources fact check' },
+      { name: 'Grammarly', category: 'Writing', icon: '✍️', url: 'https://www.grammarly.com',
+        desc: 'Real-time grammar, clarity, and tone suggestions across the browser. The free plan covers the essentials.',
+        keywords: 'grammar proofreading spelling tone editing' },
+      { name: 'QuillBot', category: 'Writing', icon: '🪶', url: 'https://quillbot.com',
+        desc: 'Paraphrasing, summarizing, and citation helper with a usable free plan.',
+        keywords: 'paraphrase rewrite summarize citation plagiarism' },
+
+      // Coding
+      { name: 'Cursor', category: 'Coding', icon: '🖱️', url: 'https://cursor.com',
+        desc: 'AI-first code editor with codebase chat, multi-file edits, and fast autocomplete. Free tier with limited requests.',
+        keywords: 'ide editor autocomplete codebase agent programming' },
+      { name: 'GitHub Copilot', category: 'Coding', icon: '🐙', url: 'https://github.com/features/copilot',
+        desc: 'In-editor completions and chat across major IDEs, with a free tier for individual developers.',
+        keywords: 'github autocomplete ide programming assistant' },
+      { name: 'Windsurf', category: 'Coding', icon: '🏄', url: 'https://windsurf.com',
+        desc: 'Agentic code editor that plans and applies multi-step changes. Free plan for individuals.',
+        keywords: 'codeium editor agent refactor programming' },
+      { name: 'v0', category: 'Coding', icon: '▲', url: 'https://v0.dev',
+        desc: 'Generates React and Tailwind UI from a text prompt. Free monthly credits included.',
+        keywords: 'vercel react tailwind ui frontend generator' },
+      { name: 'Bolt.new', category: 'Coding', icon: '⚡', url: 'https://bolt.new',
+        desc: 'Prompt-to-app builder that scaffolds and runs a full stack project in the browser. Free daily tokens.',
+        keywords: 'fullstack app generator scaffold browser no code' },
+      { name: 'Replit', category: 'Coding', icon: '🛠️', url: 'https://replit.com',
+        desc: 'Cloud IDE with an AI agent for building and hosting small projects. Free plan available.',
+        keywords: 'cloud ide hosting deploy beginner programming' },
+
+      // Image
+      { name: 'Midjourney', category: 'Image', icon: '🎨', url: 'https://www.midjourney.com',
+        desc: 'Highly stylised, high-fidelity image generation via web app or Discord. Paid plans only, with occasional free trials.',
+        keywords: 'art illustration stylised generation discord' },
+      { name: 'Leonardo AI', category: 'Image', icon: '🖼️', url: 'https://leonardo.ai',
+        desc: 'Daily free credits for image generation, upscaling, and canvas editing.',
+        keywords: 'art generation upscale canvas credits' },
+      { name: 'Ideogram', category: 'Image', icon: '🔤', url: 'https://ideogram.ai',
+        desc: 'Best-in-class text rendering inside generated images, with free daily generations.',
+        keywords: 'text in image typography logo poster generation' },
+      { name: 'Microsoft Designer', category: 'Image', icon: '🪟', url: 'https://designer.microsoft.com',
+        desc: 'DALL-E powered image creation plus design templates. Free with a Microsoft account.',
+        keywords: 'dalle bing creator design templates social graphics' },
+      { name: 'Playground', category: 'Image', icon: '🎠', url: 'https://playground.com',
+        desc: 'Free-tier image generator with canvas editing, filters, and templates.',
+        keywords: 'generation canvas editing filters templates' },
+      { name: 'remove.bg', category: 'Image', icon: '✂️', url: 'https://www.remove.bg',
+        desc: 'One-click automatic background removal. Free for standard-resolution downloads.',
+        keywords: 'background removal cutout transparent product photo' },
+
+      // Video
+      { name: 'Runway', category: 'Video', icon: '🎬', url: 'https://runwayml.com',
+        desc: 'Text and image to video generation with editing tools. Free credits refreshed monthly.',
+        keywords: 'generation text to video editing vfx diffusion' },
+      { name: 'Pika', category: 'Video', icon: '🐰', url: 'https://pika.art',
+        desc: 'Prompt-to-video generation with playful effects and lip sync. Free starter credits.',
+        keywords: 'generation effects lip sync short clips' },
+      { name: 'Luma Dream Machine', category: 'Video', icon: '🌙', url: 'https://lumalabs.ai/dream-machine',
+        desc: 'Smooth text and image to video generation with free monthly generations.',
+        keywords: 'generation image to video camera motion' },
+      { name: 'Kling AI', category: 'Video', icon: '🎥', url: 'https://klingai.com',
+        desc: 'Image-to-video and text-to-video with daily free credits and strong motion quality.',
+        keywords: 'generation image to video motion clips' },
+      { name: 'CapCut', category: 'Video', icon: '📱', url: 'https://www.capcut.com',
+        desc: 'Free editor with auto-captions, background removal, and short-form templates.',
+        keywords: 'editor captions subtitles templates tiktok reels shorts' },
+      { name: 'HeyGen', category: 'Video', icon: '🧑💼', url: 'https://www.heygen.com',
+        desc: 'AI avatars, voiceover, and video translation. Free plan with limited minutes.',
+        keywords: 'avatar spokesperson translation voiceover talking head' },
+
+      // Audio
+      { name: 'ElevenLabs', category: 'Audio', icon: '🔊', url: 'https://elevenlabs.io',
+        desc: 'Realistic text-to-speech and voice cloning. Free monthly character quota.',
+        keywords: 'text to speech tts voiceover dubbing voice clone' },
+      { name: 'Suno', category: 'Audio', icon: '🎵', url: 'https://suno.com',
+        desc: 'Generates full songs with vocals from a text prompt. Free daily credits.',
+        keywords: 'music generation song vocals lyrics' },
+      { name: 'Udio', category: 'Audio', icon: '🎼', url: 'https://www.udio.com',
+        desc: 'Music generation with finer control over structure and style. Free monthly credits.',
+        keywords: 'music generation song instrumental remix' },
+      { name: 'Adobe Podcast', category: 'Audio', icon: '🎧', url: 'https://podcast.adobe.com',
+        desc: 'Free browser-based AI audio cleanup that makes voice recordings sound studio-quality.',
+        keywords: 'audio enhance cleanup noise removal voice recording' }
+    ];
+
+    let activeCategory = 'all';
+
+    function toolCard(tool) {
+      const badge = CATEGORY_STYLES[tool.category] || 'bg-gray-800 text-gray-300 border-gray-700';
+      return `
+        <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col justify-between hover:border-brand-500/40 transition-colors">
+          <div>
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span class="text-xl flex-shrink-0">${tool.icon}</span>
+                <p class="text-sm font-bold text-gray-100 truncate">${tool.name}</p>
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border flex-shrink-0 ${badge}">${tool.category}</span>
+            </div>
+            <p class="text-xs text-gray-400 leading-relaxed">${tool.desc}</p>
+          </div>
+          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 rounded-lg bg-gray-900 hover:bg-brand-500 text-gray-300 hover:text-gray-950 border border-gray-800 hover:border-brand-500 text-[11px] font-bold transition">
+            Visit Site ↗
+          </a>
+        </div>
+      `;
+    }
+
+    function renderChips() {
+      chipEls.forEach(chip => {
+        const on = chip.dataset.category === activeCategory;
+        chip.className = 'dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition ' +
+          (on ? 'bg-brand-500 text-gray-950 shadow-lg' : 'bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800');
+      });
+    }
+
+    function render() {
+      const query = (searchEl.value || '').trim().toLowerCase();
+      const matches = TOOLS.filter(tool => {
+        const matchesCategory = activeCategory === 'all' || tool.category === activeCategory;
+        const haystack = (tool.name + ' ' + tool.category + ' ' + tool.desc + ' ' + tool.keywords).toLowerCase();
+        return matchesCategory && (!query || haystack.includes(query));
+      });
+
+      gridEl.innerHTML = matches.map(toolCard).join('');
+      emptyEl.classList.toggle('hidden', matches.length > 0);
+      countEl.textContent = matches.length === TOOLS.length
+        ? 'Showing all ' + TOOLS.length + ' tools'
+        : 'Showing ' + matches.length + ' of ' + TOOLS.length + ' tools';
+    }
+
+    searchEl.addEventListener('input', render);
+
+    // The page-level "/" shortcut focuses the main tool search; keep keystrokes local here.
+    searchEl.addEventListener('keydown', (e) => {
+      e.stopPropagation();
+      if (e.key === 'Escape') dirModal.classList.add('hidden');
+    });
+
+    chipEls.forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeCategory = chip.dataset.category;
+        renderChips();
+        render();
+      });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchEl.value = '';
+        activeCategory = 'all';
+        renderChips();
+        render();
+        searchEl.focus();
+      });
+    }
+
+    openDirBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      dirModal.classList.remove('hidden');
+      renderChips();
+      render();
+      searchEl.focus();
+    });
+
+    if (closeDirBtn) {
+      closeDirBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dirModal.classList.add('hidden');
+      });
+    }
+
+    dirModal.addEventListener('click', (e) => {
+      if (e.target === dirModal) dirModal.classList.add('hidden');
+    });
   })();
 
 </script>
