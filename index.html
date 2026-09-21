@@ -14,6 +14,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
   <title>ToolStack AI - Developer & SaaS Utilities</title>
+  <meta name="description" content="Free browser-based tools for developers, founders, and creators — JSON formatter, spam-word checker, script hook checker, image converter and more. No signup, no upload." />
+  <link rel="canonical" href="https://toolstackai.xyz/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="ToolStack AI - Developer &amp; SaaS Utilities" />
+  <meta property="og:description" content="Free browser-based tools for developers, founders, and creators. No signup, no upload." />
+  <meta property="og:url" content="https://toolstackai.xyz/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -41,39 +49,55 @@
     }
   </script>
 
+  <link rel="stylesheet" href="assets/toolstack.css" />
+  <script src="assets/toolstack.js"></script>
+  <script src="assets/tools/json-formatter.js"></script>
+  <script src="assets/tools/spam-word-checker.js"></script>
+  <script src="assets/tools/script-hook-checker.js"></script>
+
   <!-- Monetag: In-Page Push -->
   <script>(function(s){s.dataset.zone='11831878',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
 
+  <!-- ts:header:start -->
   <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-      
-      <div class="flex items-center gap-3">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
         <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
           <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
-      </div>
+      </a>
 
       <div class="flex-1 max-w-md relative">
-        <input 
+        <input
           id="searchInput"
-          type="text" 
-          placeholder="Search tools... (Press '/' to focus)" 
+          type="text"
+          placeholder="Search tools..."
           class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
         />
-        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded">/</kbd>
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
       </div>
 
-      <button id="themeToggle" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base">
-        🌙
-      </button>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <button id="themeToggle" type="button" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base" aria-label="Toggle theme">
+          🌙
+        </button>
+      </div>
     </div>
   </header>
+<!-- ts:header:end -->
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
@@ -340,6 +364,43 @@
     </div>
   </main>
 
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+
 <!-- Quotation Generator Modal -->
   <div id="quoteModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
@@ -410,6 +471,8 @@
           📥 Download PDF Quotation
         </button>
       </div>
+
+      <div data-ts-result-actions="quote-generator" class="mt-6 space-y-4"></div>
     </div>
   </div>
 <div id="imgModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
@@ -448,6 +511,8 @@
         Convert & Download
       </button>
     </div>
+
+    <div data-ts-result-actions="image-converter" class="mt-6 space-y-4"></div>
   </div>
 </div>
 <div id="jsonModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
@@ -482,6 +547,8 @@
         📋 Copy Result
       </button>
     </div>
+
+    <div data-ts-result-actions="json-formatter" data-ts-deferred class="mt-6 space-y-4"></div>
   </div>
 </div>
 <div id="base64Modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
@@ -511,6 +578,8 @@
         📋 Copy Result
       </button>
     </div>
+
+    <div data-ts-result-actions="base64-encoder" data-ts-deferred class="mt-6 space-y-4"></div>
   </div>
 </div>
 <!-- Social Chat Generator Modal -->
@@ -619,6 +688,7 @@
         </button>
       </div>
 
+      <div data-ts-result-actions="social-chat-generator" class="mt-6 space-y-4"></div>
     </div>
   </div>
 </div>
@@ -694,6 +764,8 @@
           <img id="imgMqQuality" src="" alt="MQ Thumbnail" class="w-full aspect-video object-cover rounded-lg border border-gray-800" />
         </div>
       </div>
+
+      <div data-ts-result-actions="thumbnail-downloader" class="space-y-4"></div>
     </div>
 
   </div>
@@ -726,6 +798,8 @@
     <div id="statusList" class="space-y-3"></div>
 
     <p class="text-[10px] text-gray-600 mt-5 leading-relaxed">Indicators are simulated for demonstration purposes and do not reflect official real-time provider incident data.</p>
+
+    <div data-ts-result-actions="ai-status-board" class="mt-6 space-y-4"></div>
   </div>
 </div>
 
@@ -769,6 +843,8 @@
     </div>
 
     <p class="text-[10px] text-gray-600 mt-4 leading-relaxed">Free tiers, credit allowances, and limits change often — always confirm current pricing with each provider before relying on a tool.</p>
+
+    <div data-ts-result-actions="ai-tools-directory" class="mt-6 space-y-4"></div>
   </div>
 </div>
 
@@ -857,6 +933,8 @@
       </div>
 
       <p class="text-[10px] text-gray-600 leading-relaxed">Scoring heuristics are indicative only — real inbox placement also depends on sending domain reputation, authentication (SPF/DKIM/DMARC), list quality, and engagement.</p>
+
+      <div data-ts-result-actions="spam-word-checker" class="space-y-4"></div>
     </div>
   </div>
 </div>
@@ -939,6 +1017,8 @@
       </div>
 
       <p class="text-[10px] text-gray-600 leading-relaxed">Framework scoring is a heuristic, not a guarantee. Retention also depends on your first visual frame, on-screen text, audio, pacing, and how well the payoff matches the promise.</p>
+
+      <div data-ts-result-actions="script-hook-checker" class="space-y-4"></div>
     </div>
   </div>
 </div>
@@ -972,6 +1052,15 @@
     }
 
     searchInput.addEventListener('input', filterTools);
+
+    // Prefill from ?q= — the shared header search on /tools/* pages deep-links
+    // here, since the homepage is the only page with a grid to filter.
+    (function () {
+      const q = new URLSearchParams(window.location.search).get('q');
+      if (!q) return;
+      searchInput.value = q;
+      filterTools();
+    })();
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1095,55 +1184,9 @@
   document.getElementById('openJsonModal').addEventListener('click', () => jsonModal.classList.remove('hidden'));
   document.getElementById('closeJsonModal').addEventListener('click', () => jsonModal.classList.add('hidden'));
 
-  // JSON Processing Logic
-  const jsonInput = document.getElementById('jsonInput');
-  const jsonStatus = document.getElementById('jsonStatus');
-  const formatJsonBtn = document.getElementById('formatJsonBtn');
-  const minifyJsonBtn = document.getElementById('minifyJsonBtn');
-  const copyJsonBtn = document.getElementById('copyJsonBtn');
-
-  function showStatus(message, isError) {
-    jsonStatus.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20', 'bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
-    if (isError) {
-      jsonStatus.classList.add('bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
-      jsonStatus.textContent = `❌ ${message}`;
-    } else {
-      jsonStatus.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20');
-      jsonStatus.textContent = `✅ ${message}`;
-    }
-  }
-
-  formatJsonBtn.addEventListener('click', () => {
-    const raw = jsonInput.value.trim();
-    if (!raw) return;
-    try {
-      const parsed = JSON.parse(raw);
-      jsonInput.value = JSON.stringify(parsed, null, 2);
-      showStatus('Valid JSON! Formatted successfully.', false);
-    } catch (err) {
-      showStatus(`Invalid JSON: ${err.message}`, true);
-    }
-  });
-
-  minifyJsonBtn.addEventListener('click', () => {
-    const raw = jsonInput.value.trim();
-    if (!raw) return;
-    try {
-      const parsed = JSON.parse(raw);
-      jsonInput.value = JSON.stringify(parsed);
-      showStatus('Valid JSON! Minified successfully.', false);
-    } catch (err) {
-      showStatus(`Invalid JSON: ${err.message}`, true);
-    }
-  });
-
-  copyJsonBtn.addEventListener('click', () => {
-    if (!jsonInput.value) return;
-    navigator.clipboard.writeText(jsonInput.value);
-    const originalText = copyJsonBtn.textContent;
-    copyJsonBtn.textContent = '✅ Copied!';
-    setTimeout(() => copyJsonBtn.textContent = originalText, 2000);
-  });
+  // JSON Formatter & Validator — shared engine.
+  // The same module also powers /tools/json-formatter.html.
+  ToolStackTools.createJsonFormatter(jsonModal);
     // Base64 Modal Toggle
   const base64Modal = document.getElementById('base64Modal');
   document.getElementById('openBase64Modal').addEventListener('click', () => base64Modal.classList.remove('hidden'));
@@ -1703,320 +1746,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (refreshStatusBtn) refreshStatusBtn.addEventListener('click', refreshStatus);
   })();
 
-  // Cold Email Spam-Word Checker
+  // Cold Email Spam-Word Checker — modal wiring only.
+  // The scoring engine lives in assets/tools/spam-word-checker.js and is
+  // shared with /tools/spam-word-checker.html.
   (function () {
     const spamModal = document.getElementById('spamModal');
     const openSpamBtn = document.getElementById('openSpamModal');
     if (!spamModal || !openSpamBtn) return;
-
-    const subjectInput = document.getElementById('spamSubject');
-    const bodyInput = document.getElementById('spamBody');
-    const resultsBox = document.getElementById('spamResults');
-    const statusBanner = document.getElementById('spamStatus');
-    const scoreValue = document.getElementById('spamScoreValue');
-    const scoreBar = document.getElementById('spamScoreBar');
-    const gradeBadge = document.getElementById('spamGradeBadge');
-    const gradeNote = document.getElementById('spamGradeNote');
-    const termsCountEl = document.getElementById('spamTermsCount');
-    const wordCountEl = document.getElementById('spamWordCount');
-    const densityEl = document.getElementById('spamDensity');
-    const highlightEl = document.getElementById('spamHighlight');
-    const tipsEl = document.getElementById('spamTips');
-
-    // Trigger word tiers: [term, category]. Weight is set by the tier.
-    const SEVERE_TERMS = [
-      ['100% free', 'promise'], ['100% guaranteed', 'promise'], ['no risk', 'promise'], ['risk-free', 'promise'], ['risk free', 'promise'],
-      ['guarantee', 'promise'], ['guaranteed', 'promise'], ['satisfaction guaranteed', 'promise'], ['no strings attached', 'promise'],
-      ['once in a lifetime', 'promise'], ['why pay more', 'promise'], ['nothing to lose', 'promise'],
-      ['act now', 'urgency'], ['limited time', 'urgency'], ['offer expires', 'urgency'], ['expires today', 'urgency'],
-      ['while supplies last', 'urgency'], ['this will not last', 'urgency'], ['time limited', 'urgency'],
-      ['apply now', 'cta'], ['buy now', 'cta'], ['click here', 'cta'], ['order now', 'cta'], ['call now', 'cta'],
-      ['take action now', 'cta'], ['what are you waiting for', 'cta'],
-      ['cash', 'money'], ['make money', 'money'], ['money back', 'money'], ['money-back', 'money'], ['fast cash', 'money'],
-      ['extra cash', 'money'], ['earn extra cash', 'money'], ['easy money', 'money'], ['serious cash', 'money'],
-      ['pure profit', 'money'], ['wire transfer', 'money'], ['million dollars', 'money'], ['double your', 'money'],
-      ['extra income', 'money'], ['passive income', 'money'], ['financial freedom', 'money'], ['work from home', 'money'],
-      ['be your own boss', 'money'], ['get paid', 'money'], ['instant approval', 'money'],
-      ['no credit check', 'debt'], ['pre-approved', 'debt'], ['unsecured debt', 'debt'], ['eliminate debt', 'debt'],
-      ['get out of debt', 'debt'], ['consolidate your debt', 'debt'], ['credit card', 'debt'], ['low interest rate', 'debt'],
-      ['you have been selected', 'deception'], ['you are a winner', 'deception'], ['congratulations', 'deception'],
-      ['winner', 'deception'], ['dear friend', 'deception'], ['this is not spam', 'deception'], ['not a scam', 'deception'],
-      ['we hate spam', 'deception'], ['do not delete', 'deception'],
-      ['viagra', 'health'], ['cialis', 'health'], ['no prescription', 'health'], ['weight loss', 'health'],
-      ['miracle', 'health'], ['pharmacy', 'health'], ['pills', 'health'], ['supplement', 'health'],
-      ['anti-aging', 'health'], ['all natural', 'health'],
-      ['casino', 'deception'], ['lottery', 'deception'], ['lowest price', 'promise']
-    ];
-
-    const MODERATE_TERMS = [
-      ['urgent', 'urgency'], ['limited offer', 'urgency'], ['special promotion', 'urgency'], ['exclusive deal', 'urgency'],
-      ['expires soon', 'urgency'], ['today only', 'urgency'], ['last chance', 'urgency'], ['final notice', 'urgency'],
-      ['do not miss', 'urgency'], ['hurry', 'urgency'],
-      ['opt in', 'cta'], ['subscribe now', 'cta'], ['sign up free', 'cta'], ['download now', 'cta'],
-      ['get started today', 'cta'], ['reserve your spot', 'cta'],
-      ['great offer', 'promise'], ['amazing deal', 'promise'], ['incredible deal', 'promise'], ['special deal', 'promise'],
-      ['best price', 'promise'], ['compare rates', 'promise'], ['save big', 'promise'], ['big savings', 'promise'],
-      ['drastically reduced', 'promise'], ['free gift', 'promise'], ['free sample', 'promise'], ['free access', 'promise'],
-      ['free consultation', 'promise'], ['free trial', 'promise'], ['trial offer', 'promise'], ['no obligation', 'promise'],
-      ['no catch', 'promise'], ['no fees', 'promise'], ['no hidden costs', 'promise'], ['no hidden fees', 'promise'],
-      ['hidden charges', 'promise'], ['promise you', 'promise'],
-      ['discount', 'money'], ['cheap', 'money'], ['low interest', 'money'], ['potential earnings', 'money'],
-      ['your income', 'money'], ['double your income', 'money'], ['join millions', 'money'], ['millions of', 'money'],
-      ['stock pick', 'money'], ['day trading', 'money'], ['bitcoin investment', 'money'], ['crypto investment', 'money'],
-      ['home based business', 'money'], ['no experience required', 'money'],
-      ['information you requested', 'deception'], ['remove this', 'deception'], ['dear customer', 'deception'],
-      ['valued customer', 'deception'], ['as seen on', 'deception'], ['bulk email', 'deception'], ['mass email', 'deception'],
-      ['subject to credit approval', 'debt'], ['lower your', 'money'], ['unbelievable', 'deception']
-    ];
-
-    const MILD_TERMS = [
-      ['free', 'promise'], ['offer', 'promise'], ['deal', 'promise'], ['sale', 'promise'], ['promotion', 'promise'],
-      ['opportunity', 'promise'], ['profit', 'money'], ['income', 'money'], ['savings', 'money'], ['subscribe', 'cta'],
-      ['newsletter', 'cta'], ['limited', 'urgency'], ['instant', 'urgency'], ['trial', 'promise'], ['exclusive', 'promise'],
-      ['bonus', 'promise'], ['premium', 'promise']
-    ];
-
-    const SPAM_TERMS = []
-      .concat(SEVERE_TERMS.map(([term, cat]) => ({ term: term, weight: 12, cat: cat })))
-      .concat(MODERATE_TERMS.map(([term, cat]) => ({ term: term, weight: 8, cat: cat })))
-      .concat(MILD_TERMS.map(([term, cat]) => ({ term: term, weight: 3, cat: cat })));
-
-    // Longest terms first, so "100% free" wins over the bare word "free".
-    const SORTED_TERMS = SPAM_TERMS.slice().sort((a, b) => b.term.length - a.term.length);
-
-    // Everyday phrases that contain a mild trigger but are not spammy.
-    const MILD_EXCEPTIONS = ['feel free', 'free of charge', 'toll-free', 'toll free', 'freelance', 'free time', 'debt-free', 'paperless'];
-
-    const CATEGORY_TIPS = {
-      promise: 'Replace guarantees and "risk-free" claims with a specific, provable outcome — vague promises are the single biggest trigger.',
-      urgency: 'Drop artificial deadlines. Genuine dated urgency informs; "act now" and "limited time" read as pressure tactics.',
-      money: 'Money-claim language ("cash", "earn", "income") is weighted heavily by filters. Describe the value, not the payout.',
-      cta: 'Use one natural call to action. Stacked "click here" / "buy now" phrasing is a hallmark of bulk mail.',
-      debt: 'Credit, loan, and debt phrasing trips financial filters — lead with the customer outcome, not the product category.',
-      health: 'Health, supplement, and pharmacy claims are aggressively filtered. Cite a source or drop the claim entirely.'
-    };
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-    }
-
-    function escapeRegExp(str) {
-      return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    function buildRegex(term) {
-      const left = /^[a-z0-9]/i.test(term) ? '\\b' : '';
-      const right = /[a-z0-9]$/i.test(term) ? '\\b' : '';
-      return new RegExp(left + escapeRegExp(term) + right, 'gi');
-    }
-
-    function isExcepted(text, start, end, term) {
-      const ctxStart = Math.max(0, start - 10);
-      const ctx = text.slice(ctxStart, Math.min(text.length, end + 10)).toLowerCase();
-      const rel = start - ctxStart;
-      return MILD_EXCEPTIONS.some((phrase) => {
-        let idx = ctx.indexOf(phrase);
-        while (idx !== -1) {
-          if (idx <= rel && rel + term.length <= idx + phrase.length) return true;
-          idx = ctx.indexOf(phrase, idx + 1);
-        }
-        return false;
-      });
-    }
-
-    // Non-overlapping matches, most specific phrase wins.
-    function findMatches(text) {
-      const taken = [];
-      const found = [];
-      SORTED_TERMS.forEach((entry) => {
-        const re = buildRegex(entry.term);
-        let m;
-        while ((m = re.exec(text)) !== null) {
-          if (m[0].length === 0) { re.lastIndex++; continue; }
-          const start = m.index;
-          const end = start + m[0].length;
-          const overlaps = taken.some((range) => start < range[1] && end > range[0]);
-          if (overlaps) continue;
-          if (entry.weight === 3 && isExcepted(text, start, end, m[0].toLowerCase())) continue;
-          taken.push([start, end]);
-          found.push({ term: entry.term, display: m[0], weight: entry.weight, cat: entry.cat, start: start, end: end });
-        }
-      });
-      return found.sort((a, b) => a.start - b.start);
-    }
-
-    function highlight(text, matches) {
-      let html = '';
-      let cursor = 0;
-      matches.forEach((m) => {
-        html += escapeHtml(text.slice(cursor, m.start));
-        const cls = m.weight >= 12
-          ? 'bg-red-500/25 text-red-300 border-b border-red-500/60'
-          : m.weight >= 8
-            ? 'bg-amber-500/25 text-amber-300 border-b border-amber-500/60'
-            : 'bg-yellow-500/20 text-yellow-200 border-b border-yellow-500/50';
-        html += '<mark class="' + cls + ' rounded px-0.5 font-semibold" title="' + escapeHtml(m.term) + '">' + escapeHtml(m.display) + '</mark>';
-        cursor = m.end;
-      });
-      html += escapeHtml(text.slice(cursor));
-      return html;
-    }
-
-    function gradeFor(score) {
-      if (score >= 90) return { label: 'Excellent', text: 'text-emerald-400', bar: 'bg-emerald-500', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', note: 'Inbox-ready. Keep the copy specific, personal, and free of hype.' };
-      if (score >= 75) return { label: 'Good', text: 'text-lime-400', bar: 'bg-lime-500', badge: 'bg-lime-500/10 text-lime-400 border-lime-500/20', note: 'Minor tweaks will push this from Promotions into the primary inbox.' };
-      if (score >= 55) return { label: 'Risky', text: 'text-amber-400', bar: 'bg-amber-500', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', note: 'Likely to land in Promotions, or in spam on a cold domain.' };
-      return { label: 'High Risk', text: 'text-red-400', bar: 'bg-red-500', badge: 'bg-red-500/10 text-red-400 border-red-500/20', note: 'Filters will very likely block or junk this email. Rewrite before sending.' };
-    }
-
-    function showStatus(message, type) {
-      statusBanner.textContent = message;
-      statusBanner.className = 'mb-4 p-3 rounded-xl text-xs font-medium border ' + (type === 'error'
-        ? 'bg-red-500/10 border-red-500/30 text-red-300'
-        : 'bg-amber-500/10 border-amber-500/30 text-amber-300');
-      statusBanner.classList.remove('hidden');
-    }
-
-    function hideStatus() {
-      statusBanner.classList.add('hidden');
-    }
-
-    function analyze() {
-      const subject = subjectInput.value.trim();
-      const body = bodyInput.value.trim();
-
-      if (!subject && !body) {
-        showStatus('Paste a subject line or email body to analyze.', 'error');
-        resultsBox.classList.add('hidden');
-        return;
-      }
-      hideStatus();
-
-      const subjectMatches = findMatches(subject);
-      const bodyMatches = findMatches(body);
-      const matches = subjectMatches.concat(bodyMatches);
-
-      const wordSource = (subject + ' ' + body).match(/[A-Za-z0-9'’-]+/g) || [];
-      const words = wordSource.length;
-      const termPenalty = Math.min(75, matches.reduce((sum, m) => sum + m.weight, 0));
-
-      const catTips = [];
-      const structTips = [];
-      const seenTips = new Set();
-      let structurePenalty = 0;
-
-      function addTip(list, text) {
-        if (seenTips.has(text)) return;
-        seenTips.add(text);
-        list.push(text);
-      }
-
-      function addIssue(penalty, tip) {
-        structurePenalty += penalty;
-        addTip(structTips, tip);
-      }
-
-      matches.forEach((m) => {
-        const tip = CATEGORY_TIPS[m.cat];
-        if (tip) addTip(catTips, tip);
-      });
-
-      // Shouting: ALL-CAPS words (common acronyms excluded).
-      const capsWords = (subject + ' ' + body).match(/\b[A-Z]{3,}\b/g) || [];
-      const realCaps = capsWords.filter((w) => !/^(CEO|CTO|CFO|COO|API|CRM|SEO|URL|PDF|FAQ|USA|UK|EU|AI|SaaS|B2B|B2C|ROI|KPI|ASAP|Q[1-4]|P\.S|PS|OK)$/.test(w));
-      if (realCaps.length >= 5) {
-        addIssue(10, realCaps.length + ' words are in ALL CAPS (' + realCaps.slice(0, 4).join(', ') + '…). Sentence case reads as a personal note instead of a blast.');
-      } else if (realCaps.length >= 2) {
-        addIssue(6, 'ALL-CAPS words detected (' + realCaps.join(', ') + '). Filters treat sustained capitalisation as shouting.');
-      } else if (realCaps.length === 1) {
-        addIssue(3, '"' + realCaps[0] + '" is in all caps — sentence case scores better with spam filters.');
-      }
-
-      // Punctuation & symbols.
-      const bangs = (subject + ' ' + body).match(/!/g) || [];
-      if (bangs.length >= 4) {
-        addIssue(10, bangs.length + ' exclamation marks is a classic spam signature. Keep at most one, or none.');
-      } else if (bangs.length >= 2) {
-        addIssue(6, 'Multiple exclamation marks (' + bangs.length + ') lower deliverability. One calm sentence works better.');
-      }
-
-      const moneySymbols = (subject + ' ' + body).match(/[$€£]/g) || [];
-      if (moneySymbols.length >= 3) {
-        addIssue(8, 'Currency symbols appear ' + moneySymbols.length + ' times. Mention price once, or link to a pricing page.');
-      } else if (moneySymbols.length >= 1) {
-        addIssue(4, 'Currency symbols can trip financial filters. Keep at most one price reference in the copy.');
-      }
-
-      const links = (subject + ' ' + body).match(/https?:\/\/\S+|www\.\S+/gi) || [];
-      if (links.length >= 3) {
-        addIssue(10, links.length + ' links is too many for a cold email. Use one primary link plus your signature.');
-      } else if (links.length === 2) {
-        addIssue(6, 'Two links detected. Cold emails perform best with a single clear destination.');
-      }
-
-      if (/\b\d{1,3}\s?%\s*(off|discount|savings|free)/i.test(subject + ' ' + body)) {
-        addIssue(6, 'Percent-off phrasing ("X% off") pushes mail toward the Promotions tab. Lead with the outcome, not the discount.');
-      }
-
-      // Structure.
-      if (!subject) {
-        addTip(structTips, 'Add a subject line — 4 to 7 specific words outperform generic ones and lift open rates.');
-      } else if (subject.length > 65) {
-        addIssue(5, 'Subject line is ' + subject.length + ' characters. Keep it under 60 so it is not truncated on mobile.');
-      }
-
-      if (body && words < 30) {
-        addIssue(6, 'Only ' + words + ' words of copy. Thin, link-heavy emails get filtered — explain why you are reaching out.');
-      }
-
-      if (words >= 60 && !/unsubscribe|opt[\s-]?out|email preferences|manage preferences/i.test(body)) {
-        addIssue(5, 'No opt-out line found. Longer outreach should include a simple "reply STOP or unsubscribe" line for CAN-SPAM/GDPR compliance.');
-      }
-
-      if (words > 0 && matches.length > 0) {
-        const density = matches.length / words;
-        if (density > 0.06) {
-          addIssue(6, 'Trigger words make up ' + (density * 100).toFixed(1) + '% of your copy. That density alone can flag a filter — cut the hype words rather than rewording them.');
-        }
-      }
-
-      const score = Math.max(0, Math.min(100, Math.round(100 - termPenalty - structurePenalty)));
-      const grade = gradeFor(score);
-
-      // Score panel
-      scoreValue.textContent = score + '%';
-      scoreValue.className = 'text-3xl font-black ' + grade.text;
-      scoreBar.style.width = score + '%';
-      scoreBar.className = 'h-full rounded-full transition-all duration-500 ' + grade.bar;
-      gradeBadge.textContent = grade.label;
-      gradeBadge.className = 'px-3 py-1 rounded-full text-[11px] font-semibold border ' + grade.badge;
-      gradeNote.textContent = grade.note;
-      termsCountEl.textContent = matches.length;
-      wordCountEl.textContent = words;
-      densityEl.textContent = words > 0 ? ((matches.length / words) * 100).toFixed(1) + '%' : '0%';
-
-      // Highlighted preview
-      let html = '';
-      if (subject) {
-        html += '<p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Subject</p>'
-          + '<p class="mb-3 font-semibold text-gray-200">' + highlight(subject, subjectMatches) + '</p>';
-      }
-      if (body) {
-        html += '<p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Body</p>'
-          + highlight(body, bodyMatches);
-      }
-      highlightEl.innerHTML = html;
-
-      // Tips
-      const tips = catTips.concat(structTips);
-      if (matches.length === 0 && tips.length === 0) {
-        tips.push('No spam trigger words detected. Keep the copy this specific and you will stay in the inbox.');
-      }
-      tipsEl.innerHTML = tips.map((tip) => '<li class="flex gap-2 text-xs text-gray-300 leading-relaxed">'
-        + '<span class="text-brand-400 flex-shrink-0">→</span><span>' + escapeHtml(tip) + '</span></li>').join('');
-
-      resultsBox.classList.remove('hidden');
-    }
 
     openSpamBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -2032,447 +1768,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === spamModal) spamModal.classList.add('hidden');
     });
 
-    document.getElementById('analyzeSpamBtn').addEventListener('click', analyze);
-
-    document.getElementById('clearSpamBtn').addEventListener('click', () => {
-      subjectInput.value = '';
-      bodyInput.value = '';
-      hideStatus();
-      resultsBox.classList.add('hidden');
-    });
-
-    // Re-score live once a first analysis has been run.
-    [subjectInput, bodyInput].forEach((el) => {
-      el.addEventListener('input', () => {
-        if (!resultsBox.classList.contains('hidden')) analyze();
-      });
-      el.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-          e.preventDefault();
-          analyze();
-        }
-      });
-    });
+    ToolStackTools.createSpamChecker(spamModal);
   })();
 
-  // Script Hook & Retention Checker
+  // Script Hook & Retention Checker — modal wiring only.
+  // The scoring engine lives in assets/tools/script-hook-checker.js and is
+  // shared with /tools/script-hook-checker.html.
   (function () {
     const hookModal = document.getElementById('hookModal');
     const openHookBtn = document.getElementById('openHookModal');
     if (!hookModal || !openHookBtn) return;
 
-    const hookInput = document.getElementById('hookInput');
-    const resultsBox = document.getElementById('hookResults');
-    const statusBanner = document.getElementById('hookStatus');
-    const scoreValueEl = document.getElementById('hookScoreValue');
-    const scoreBar = document.getElementById('hookScoreBar');
-    const gradeBadge = document.getElementById('hookGradeBadge');
-    const gradeNote = document.getElementById('hookGradeNote');
-    const frameworkCountEl = document.getElementById('hookFrameworkCount');
-    const wordCountEl = document.getElementById('hookWordCount');
-    const readTimeEl = document.getElementById('hookReadTime');
-    const counterEl = document.getElementById('hookWordCounter');
-    const breakdownEl = document.getElementById('hookBreakdown');
-    const rewritesEl = document.getElementById('hookRewrites');
-
-    // Retention frameworks. `weight` is what one distinct match earns, `extra` is
-    // added per additional distinct match (capped at weight * 1.25).
-    const FRAMEWORKS = [
-      {
-        key: 'curiosity',
-        label: 'Curiosity Gap',
-        icon: '🕳️',
-        weight: 24,
-        extra: 5,
-        miss: 'No open loop. The viewer has no unanswered question forcing them to keep watching.',
-        patterns: [
-          /\b(nobody|no one|hardly anyone)\b/i,
-          /\b(secret|secrets)\b/i,
-          /\b(hidden|hiding|hide)\b/i,
-          /\b(here'?s (why|what|how)|here is (why|what|how))\b/i,
-          /\b(the reason (why|is))\b/i,
-          /\b(you (won'?t|will not) believe)\b/i,
-          /\b(most people (don'?t|do not|never))\b/i,
-          /\b(until i (found|tried|learned|realised|realized))\b/i,
-          /\b(didn'?t expect|wasn'?t expecting|did not expect)\b/i,
-          /\b(this is (what|how|why))\b/i,
-          /\b(what (happened|nobody|no one))\b/i,
-          /\b(watch (this|until|till)|keep watching)\b/i,
-          /\b(guess what|i bet you|you'?ll never guess)\b/i,
-          /\b(what if i told you|they don'?t want you to know)\b/i
-        ]
-      },
-      {
-        key: 'boldclaim',
-        label: 'Bold Claim',
-        icon: '⚡',
-        weight: 20,
-        extra: 4,
-        miss: 'No bold, specific claim. Nothing here promises a payoff worth staying for.',
-        patterns: [
-          /\b(best|worst|fastest|slowest|biggest|smallest|easiest|hardest|only way)\b/i,
-          /\b(never|always|every single|everyone|nobody else)\b/i,
-          /\b(guaranteed|instantly|overnight|in seconds|in minutes)\b/i,
-          /\b(in \d+ (seconds|minutes|hours|days|weeks))\b/i,
-          /\b(100%|zero effort|no effort|10x|2x|3x|doubled|tripled)\b/i,
-          /\b(million|billion|thousand)\b/i,
-          /\b(changed my life|game ?changer|life ?changing|never the same)\b/i
-        ]
-      },
-      {
-        key: 'negative',
-        label: 'Negative Trigger',
-        icon: '🚫',
-        weight: 24,
-        extra: 5,
-        miss: 'No loss, mistake, or warning framing — the strongest scroll-stopper in short form.',
-        patterns: [
-          /\b(stop|quit|never)\b/i,
-          /\b(don'?t|do not)\b/i,
-          /\b(mistake|mistakes|messing up|screwing up)\b/i,
-          /\b(wrong|backwards)\b/i,
-          /\b(warning|danger|dangerous|risk|risky)\b/i,
-          /\b(fail|failing|failed|failure)\b/i,
-          /\b(ruin(ing|ed)?|kill(ing|ed)?|destroy(ing|ed)?)\b/i,
-          /\b(lose|losing|lost|leak(ing|s|ed)?)\b/i,
-          /\b(hate|scam|trap|trapped|nightmare|terrible|awful)\b/i,
-          /\b(waste|wasting|wasted)\b/i,
-          /\b(cost(ing|s)? you|killing your)\b/i
-        ]
-      },
-      {
-        key: 'problem',
-        label: 'Direct Problem',
-        icon: '🎯',
-        weight: 22,
-        extra: 4,
-        miss: 'No audience callout or named pain point — the viewer cannot tell this is about them.',
-        patterns: [
-          /\b(if you'?re (a|an|the)?\s*\w+|if you are)\b/i,
-          /\b(struggl(e|es|ing|ed)|stuck|frustrat(ed|ing|ion)|overwhelm(ed|ing))\b/i,
-          /\b(tired of|sick of|fed up with)\b/i,
-          /\b(can'?t (seem to|get|figure)|don'?t know (how|where) to)\b/i,
-          /\b(you keep|keeps happening|every time you)\b/i,
-          /\b(no (time|idea|clients|sales|views|traction))\b/i
-        ],
-        // A pain word only counts as a "direct problem" hook when it is aimed at the viewer.
-        test: function (text) {
-          const hits = [];
-          const pain = /\b(struggl\w*|stuck|frustrat\w*|overwhelm\w*|problem|pain|hard|difficult|annoying|hate|wish|tired of|sick of|fed up|can'?t|don'?t know)\b/gi;
-          const secondPerson = /\b(you|your|you'?re|yourself)\b/i;
-          let m;
-          while ((m = pain.exec(text)) !== null) {
-            if (secondPerson.test(text)) hits.push(m[0]);
-          }
-          if (hits.length === 0 && /\b(if you'?re|if you are|tired of|sick of|fed up with|no (time|idea|clients|sales|views|traction))\b/i.test(text)) {
-            const callout = text.match(/\b(if you'?re|if you are|tired of|sick of|fed up with|no (time|idea|clients|sales|views|traction))\b/i);
-            hits.push(callout[0]);
-          }
-          return hits;
-        }
-      },
-      {
-        key: 'visual',
-        label: 'Visual Cue',
-        icon: '👀',
-        weight: 16,
-        extra: 4,
-        miss: 'No instruction telling the eye where to look in frame — motion is what holds the first second.',
-        patterns: [
-          /\b(look at (this|that|these|him|her|it))\b/i,
-          /\b(watch (this|what happens|closely))\b/i,
-          /\b(right here|right there|over here)\b/i,
-          /\b(this (thing|one|part|guy|tool|frame|clip))\b/i,
-          /\b(see (this|how|what))\b/i,
-          /\b(check (this|it) out)\b/i,
-          /\b(on the (left|right|top|bottom)|behind me|in front of me)\b/i,
-          /\b(as you can see|notice (this|how)|zoom in|look closely|point(ing)? at)\b/i,
-          /\[[^\]]{2,60}\]/,
-          /\([^)]*\b(shows?|cut to|close ?up|b-?roll|text on screen)\b[^)]*\)/i
-        ]
-      }
-    ];
-
-    // Openers that spend the hook on setup instead of tension.
-    const WEAK_OPENERS = [
-      { re: /^(hey|hi|hello|yo|sup|okay|ok|so|alright|um+|uh+)[\s,!.\-—]+(guys|everyone|everybody|friends|y'?all)?/i, label: 'a filler opener' },
-      { re: /^(what'?s up|whats up|what is up)[\s,!.\-—]*(guys|everyone|y'?all)?/i, label: 'greeting' },
-      { re: /\bwelcome back( to (my|the) channel)?\b/i, label: '"welcome back"' },
-      { re: /\bin (this|today'?s) video\b/i, label: '"in this video"' },
-      { re: /\bbefore we (start|begin|get into)\b/i, label: 'a pre-roll' },
-      { re: /\b(don'?t forget to|make sure to) (like|subscribe|hit|follow|comment)\b/i, label: 'a subscribe ask' },
-      { re: /\b(my name is|let me introduce myself)\b/i, label: 'an introduction' },
-      { re: /\b(so today|today i'?m going to|in this video i)\b/i, label: '"today I\'m going to"' }
-    ];
-
-    const GRADES = [
-      { min: 88, label: 'Viral', text: 'text-emerald-400', bar: 'bg-emerald-500', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', note: 'This hook front-loads tension and a payoff promise — the pattern top short-form retention uses.' },
-      { min: 60, label: 'Strong', text: 'text-sky-400', bar: 'bg-sky-500', badge: 'bg-sky-500/10 text-sky-400 border-sky-500/20', note: 'Solid scroll-stopper: there is a reason to keep watching before the first cut.' },
-      { min: 30, label: 'Moderate', text: 'text-amber-400', bar: 'bg-amber-500', badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20', note: 'It sets up a topic but leans on the viewer already caring. One sharper framework would lift it.' },
-      { min: 0, label: 'Weak', text: 'text-red-400', bar: 'bg-red-500', badge: 'bg-red-500/10 text-red-400 border-red-500/20', note: 'This is a warm-up, not a hook — the first 3 seconds go by without tension, a claim, or a visual pull.' }
-    ];
-
-    // Appositive phrasing keeps these readable whether the topic came out as a
-    // noun phrase ("social media marketing") or a verb phrase ("make a cake").
-    const REWRITE_TEMPLATES = {
-      curiosity: (t) => 'Here\'s the part nobody explains: ' + t + '.',
-      negative: (t) => 'Nobody warns you about this: ' + t + ' — and it\'s quietly costing you reach.',
-      boldclaim: (t) => 'This is the fastest way to fix it: ' + t + '.',
-      problem: (t) => 'If this is your situation, stop scrolling: ' + t + '.',
-      visual: (t) => 'Look at this — ' + t + ', and watch what happens.'
-    };
-
-    const POLISH_SUGGESTIONS = [
-      'Move your strongest noun or number to the front. "3 seconds", "2 mistakes", "$400" all stop a scroll faster than an adjective.',
-      'Cut every word before your sharpest claim so the promise lands inside the first second — you can explain after the cut.',
-      'Say the hook out loud once. If you run out of breath before the point, it is two hooks fighting each other.'
-    ];
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-    }
-
-    function showStatus(message, type) {
-      statusBanner.textContent = message;
-      statusBanner.className = 'mb-4 p-3 rounded-xl text-xs font-medium border ' + (type === 'error'
-        ? 'bg-red-500/10 border-red-500/30 text-red-300'
-        : 'bg-amber-500/10 border-amber-500/30 text-amber-300');
-      statusBanner.classList.remove('hidden');
-    }
-
-    function hideStatus() {
-      statusBanner.classList.add('hidden');
-    }
-
-    function matchPatterns(text, patterns) {
-      const hits = [];
-      patterns.forEach((re) => {
-        const m = text.match(re);
-        if (m && m[0].trim()) hits.push(m[0].trim());
-      });
-      return hits;
-    }
-
-    // Words that carry no topic on their own, trimmed from either end of a phrase.
-    const EDGE_WORDS = /^(a|an|the|i|i'?m|we|we'?re|you|you'?re|it|it'?s|this|that|these|those|my|your|our|to|of|in|on|at|for|and|but|if|so|then|is|are|was|were|be|do|does|did|just|really|very)$/i;
-
-    // Setup phrasing stripped from the front of the topic, repeatedly. Order matters:
-    // multi-word stage directions are consumed before the bare filler words inside them.
-    const LEAD_STRIPS = [
-      /^(look at (this|that|these)|watch (this|that)|check (this|that) out|see (this|that))\b[\s,!.\-—]*/i,
-      /^(in (this|today'?s) video( i)?)[\s,!.\-—]+/i,
-      /^(i'?m|i am|we'?re|we are|you'?re|you are|am|are|is)?\s*(going to|gonna|want to|about to)\s+/i,
-      /^(talk about|talking about)\s+/i,
-      /^(welcome back( to (my|the) channel)?)[\s,!.\-—]+/i,
-      /^(stop|quit|never|don'?t|do not|avoid)\b[\s,!.\-—]*/i,
-      /^(ok(ay)?|so|um+|uh+|hey|hi|hello|yo|guys|everyone|everybody|listen|look|alright|right|now|today)[\s,!.\-—]+/i,
-      /^(if you'?re|if you are|when you'?re|when you are)\s+/i,
-      /^(this is|that'?s|here'?s|here is|there'?s|there is)\s+/i,
-      /^(the|a|an)\s+/i
-    ];
-
-    // Phrases that point at the frame rather than name the subject.
-    const CUE_ONLY = /^(right|left|up|down|over|here|there|this|that|these|those|it|now)$/i;
-
-    function wordList(text) {
-      return text.split(/\s+/).filter(Boolean);
-    }
-
-    // Every place the fragment could be cut back to a single clause, shortest first.
-    function clausePrefixes(fragment) {
-      const re = /\s+(?:—|–|--|,|;)\s*|\s+\b(?:until|but|because|when|which)\b\s+/gi;
-      const prefixes = [];
-      let m;
-      while ((m = re.exec(fragment)) !== null) {
-        if (m.index > 0) prefixes.push(fragment.slice(0, m.index).trim());
-        if (re.lastIndex === m.index) re.lastIndex++;
-      }
-      prefixes.push(fragment);
-      return prefixes;
-    }
-
-    function cleanPhrase(phrase) {
-      let t = phrase;
-      let prev;
-      do {
-        prev = t;
-        LEAD_STRIPS.forEach((re) => { t = t.replace(re, ''); });
-      } while (t !== prev && t.length > 0);
-
-      const words = wordList(t.replace(/[.!?,;:]+$/g, '').trim());
-      while (words.length > 1 && EDGE_WORDS.test(words[words.length - 1])) words.pop();
-      while (words.length > 1 && EDGE_WORDS.test(words[0])) words.shift();
-      return words.slice(0, 10).join(' ');
-    }
-
-    // Pull the subject out of the hook so rewrites read like the user's own idea.
-    function extractTopic(raw) {
-      const text = String(raw).replace(/\s+/g, ' ').replace(/\[[^\]]*\]/g, ' ').replace(/\([^)]*\)/g, ' ').trim();
-      const fragments = text.split(/[.!?;:]+/).map((f) => f.trim()).filter((f) => f.length > 0);
-      if (fragments.length === 0) return 'this';
-
-      // Longest fragment first — greetings and setup tend to be the short ones.
-      const ordered = fragments.slice().sort((a, b) => wordList(b).length - wordList(a).length);
-      for (let i = 0; i < ordered.length; i++) {
-        const prefixes = clausePrefixes(ordered[i]);
-        for (let j = 0; j < prefixes.length; j++) {
-          const cleaned = cleanPhrase(prefixes[j]);
-          const words = wordList(cleaned);
-          // Skip empties, single words, phrases that still span two clauses,
-          // and ones that only point at the frame ("right here").
-          if (words.length >= 2 && !words.every((w) => CUE_ONLY.test(w)) && !/[;—]|,\s/.test(cleaned)) return cleaned;
-        }
-      }
-      return 'this';
-    }
-
-    function updateCounter() {
-      const words = wordList(hookInput.value.trim());
-      counterEl.textContent = words.length + ' word' + (words.length === 1 ? '' : 's') + ' · ' + (words.length / 3).toFixed(1) + 's';
-    }
-
-    function analyze() {
-      const raw = hookInput.value.trim();
-      if (!raw) {
-        showStatus('Paste your opening line first so there is something to score.', 'error');
-        resultsBox.classList.add('hidden');
-        return;
-      }
-
-      const text = raw.replace(/\s+/g, ' ');
-      const words = wordList(text);
-      const wordCount = words.length;
-
-      const results = FRAMEWORKS.map((fw) => {
-        const hits = fw.test ? fw.test(text) : matchPatterns(text, fw.patterns);
-        const points = hits.length === 0 ? 0 : Math.min(Math.round(fw.weight * 1.25), fw.weight + (hits.length - 1) * fw.extra);
-        return { key: fw.key, label: fw.label, icon: fw.icon, miss: fw.miss, hits: hits, points: points, weight: fw.weight };
-      });
-
-      let score = results.reduce((sum, r) => sum + r.points, 0);
-
-      // Specificity and direct address sharpen any framework.
-      const bonuses = [];
-      if (/\b\d+\b/.test(text)) { score += 6; bonuses.push('specific number'); }
-      if (/\b(you|your|you'?re|yourself)\b/i.test(text)) { score += 4; bonuses.push('direct address'); }
-      if (/\b(but|except|until|yet|instead)\b/i.test(text)) { score += 4; bonuses.push('a turn'); }
-
-      // Setup openers cost the first second.
-      const weakHits = [];
-      let setupWords = 0;
-      WEAK_OPENERS.forEach((entry) => {
-        const m = entry.re.exec(text);
-        if (m && weakHits.indexOf(entry.label) === -1) {
-          weakHits.push(entry.label);
-          setupWords += wordList(m[0]).length;
-        }
-      });
-      const weakPenalty = Math.min(24, weakHits.length * 12);
-      score -= weakPenalty;
-
-      if (wordCount < 5) score -= 8;
-      else if (wordCount > 20) score -= 8;
-
-      score = Math.max(0, Math.min(100, score));
-
-      const grade = GRADES.find((g) => score >= g.min);
-      const hitsCount = results.filter((r) => r.hits.length > 0).length;
-      const misses = results.filter((r) => r.hits.length === 0).sort((a, b) => b.weight - a.weight);
-
-      scoreValueEl.className = 'text-3xl font-black ' + grade.text;
-      scoreValueEl.innerHTML = score + '<span class="text-base font-bold text-gray-500">/100</span>';
-      gradeBadge.textContent = grade.label;
-      gradeBadge.className = 'px-3 py-1 rounded-full text-[11px] font-semibold border ' + grade.badge;
-      scoreBar.className = 'h-full rounded-full transition-all duration-500 ' + grade.bar;
-      scoreBar.style.width = score + '%';
-
-      const seconds = wordCount / 3;
-      frameworkCountEl.textContent = hitsCount + '/' + FRAMEWORKS.length;
-      wordCountEl.textContent = wordCount;
-      readTimeEl.textContent = seconds.toFixed(1) + 's';
-      readTimeEl.className = 'text-lg font-bold ' + (seconds <= 3.2 ? 'text-emerald-400' : seconds <= 5 ? 'text-amber-400' : 'text-red-400');
-
-      const notes = [grade.note];
-      if (wordCount > 20) notes.push('At ' + wordCount + ' words this runs past 3 seconds — trim to 8–14.');
-      else if (wordCount < 5) notes.push('Only ' + wordCount + ' words is thin for a spoken hook — the first frame has to carry it.');
-      if (misses.length === 1) notes.push('Only ' + misses[0].label + ' is missing.');
-      else if (misses.length > 1) notes.push('Biggest gaps: ' + misses.slice(0, 2).map((m) => m.label).join(' and ') + '.');
-      else notes.push('All five frameworks fire — the remaining work is delivery.');
-      if (bonuses.length) notes.push('Working in your favour: ' + bonuses.join(', ') + '.');
-      gradeNote.textContent = notes.join(' ');
-
-      if (weakHits.length) {
-        showStatus('Setup detected at the top (' + weakHits.join(', ') + ') — roughly ' + Math.min(3, setupWords / 3).toFixed(1) + 's of your first 3 go by before the point lands. Cut it and open on the tension.', 'warn');
-      } else {
-        hideStatus();
-      }
-
-      breakdownEl.innerHTML = results.map((r) => {
-        const hit = r.hits.length > 0;
-        const detail = hit ? 'Matched: "' + r.hits.slice(0, 3).join('", "') + '"' : r.miss;
-        return '<li class="bg-gray-950 border border-gray-800 rounded-xl p-3">'
-          + '<div class="flex items-start justify-between gap-3">'
-          + '<div class="flex items-start gap-2 min-w-0">'
-          + '<span class="text-base leading-none">' + r.icon + '</span>'
-          + '<div class="min-w-0">'
-          + '<p class="text-xs font-bold text-gray-200">' + escapeHtml(r.label) + '</p>'
-          + '<p class="text-[11px] mt-0.5 leading-relaxed ' + (hit ? 'text-emerald-400/90' : 'text-gray-500') + '">' + escapeHtml(detail) + '</p>'
-          + '</div></div>'
-          + '<span class="flex-shrink-0 px-2 py-0.5 rounded-full text-[10px] font-semibold border ' + (hit ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-gray-800 text-gray-500 border-gray-700') + '">'
-          + (hit ? '+' + r.points : 'Missing') + '</span>'
-          + '</div></li>';
-      }).join('');
-
-      // Rewrites target the frameworks that are missing, strongest gap first.
-      const topic = extractTopic(raw);
-      const rewrites = misses.slice(0, 3).map((m) => ({ framework: m.label, text: REWRITE_TEMPLATES[m.key](topic) }));
-      POLISH_SUGGESTIONS.forEach((tip) => {
-        if (rewrites.length < 2) rewrites.push({ framework: 'Tighten It', text: tip });
-      });
-
-      rewritesEl.innerHTML = rewrites.map((item) => ''
-        + '<div class="bg-gray-950 border border-gray-800 rounded-xl p-3 flex items-start justify-between gap-3">'
-        + '<div class="min-w-0">'
-        + '<p class="text-[10px] uppercase tracking-wider text-brand-400 font-bold mb-1">' + escapeHtml(item.framework) + '</p>'
-        + '<p class="text-xs text-gray-200 leading-relaxed">' + escapeHtml(item.text) + '</p>'
-        + '</div>'
-        + '<button type="button" class="hook-copy flex-shrink-0 px-2.5 py-1 rounded-lg bg-gray-800 hover:bg-gray-700 text-[10px] font-semibold text-gray-300 transition" data-rewrite="' + escapeHtml(item.text) + '">Copy</button>'
-        + '</div>').join('');
-
-      resultsBox.classList.remove('hidden');
-    }
-
-    function fallbackCopy(text, done) {
-      const holder = document.createElement('textarea');
-      holder.value = text;
-      holder.setAttribute('readonly', '');
-      holder.style.position = 'fixed';
-      holder.style.opacity = '0';
-      document.body.appendChild(holder);
-      holder.select();
-      try { document.execCommand('copy'); done(); } catch (err) { /* clipboard unavailable */ }
-      document.body.removeChild(holder);
-    }
-
-    rewritesEl.addEventListener('click', (e) => {
-      const btn = e.target.closest('.hook-copy');
-      if (!btn) return;
-      const text = btn.getAttribute('data-rewrite') || '';
-      const done = () => {
-        btn.textContent = 'Copied';
-        setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
-      } else {
-        fallbackCopy(text, done);
-      }
-    });
+    const engine = ToolStackTools.createHookChecker(hookModal);
 
     openHookBtn.addEventListener('click', (e) => {
       e.preventDefault();
       hookModal.classList.remove('hidden');
-      hookInput.focus();
+      engine.focus();
     });
 
     document.getElementById('closeHookModal').addEventListener('click', (e) => {
@@ -2483,29 +1795,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hookModal.addEventListener('click', (e) => {
       if (e.target === hookModal) hookModal.classList.add('hidden');
     });
-
-    document.getElementById('analyzeHookBtn').addEventListener('click', analyze);
-
-    document.getElementById('clearHookBtn').addEventListener('click', () => {
-      hookInput.value = '';
-      hideStatus();
-      updateCounter();
-      resultsBox.classList.add('hidden');
-    });
-
-    // Re-score live once a first analysis has been run.
-    hookInput.addEventListener('input', () => {
-      updateCounter();
-      if (!resultsBox.classList.contains('hidden')) analyze();
-    });
-    hookInput.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        e.preventDefault();
-        analyze();
-      }
-    });
-
-    updateCounter();
   })();
 
   // --- FREE AI TOOLS DIRECTORY LOGIC ---
