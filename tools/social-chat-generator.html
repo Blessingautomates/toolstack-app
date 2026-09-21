@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Fake Chat Generator — WhatsApp &amp; Instagram Mockups | ToolStack AI</title>
+  <meta name="description" content="Create realistic WhatsApp or Instagram chat mockups and export them as HD PNG images. Custom avatar, contact name, verified badge and message times. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/social-chat-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Fake Chat Generator — WhatsApp &amp; Instagram Mockups" />
+  <meta property="og:description" content="Build a WhatsApp or Instagram chat mockup and export it as an HD PNG. Free and in-browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/social-chat-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Fake Chat Generator — WhatsApp &amp; Instagram Mockups" />
+  <meta name="twitter:description" content="Mock up a WhatsApp or Instagram conversation and export it as a PNG." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Social Chat Generator",
+    "url": "https://toolstackai.xyz/tools/social-chat-generator.html",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Create WhatsApp or Instagram chat mockups with a custom avatar, contact name and messages, and export them as PNG images.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use these chat mockups commercially?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You own the images you generate, but the WhatsApp and Instagram names, logos and interface designs belong to Meta. Mockups are fine for illustrating a concept, a presentation or a UI case study. Do not use them to fabricate evidence, impersonate a real person, or imply that a real company or individual said something they did not — that can be fraud, defamation or a terms-of-service violation." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get a clean, high-resolution export?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The export renders the phone preview at three times its on-screen size, so the PNG is sharp enough for slides and print. Crop to the phone frame afterwards if you want the mockup to sit on a plain background." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my uploaded avatar missing from the exported image?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Custom avatars are loaded from your disk as data URLs, which canvas can always read. The failure case is a small number of browsers refusing to paint a background image at the moment of capture; if the avatar comes out blank, re-upload it and export again." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <div id="google_translate_element" class="text-xs"></div>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Social Chat Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Social Chat Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Mock up a WhatsApp or Instagram conversation — contact name, avatar, verified badge and messages — and export it
+    as a high-resolution PNG for slides, mockups and case studies.
+  </p>
+
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+
+    <!-- Platform switch -->
+    <div class="flex gap-2 p-1 bg-gray-950 rounded-xl border border-gray-800 mb-5">
+      <button id="tabWa" type="button" class="flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition">WhatsApp</button>
+      <button id="tabIg" type="button" class="flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition">Instagram</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- Controls -->
+      <div class="space-y-4">
+
+        <div>
+          <label for="waContactName" class="block text-xs font-medium text-gray-400 mb-1">Contact Name</label>
+          <input type="text" id="waContactName" value="Sarah Jenkins" maxlength="24"
+            class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <label for="avatarUpload" class="block text-xs font-medium text-gray-400 mb-1">Profile Photo</label>
+          <input type="file" id="avatarUpload" accept="image/*"
+            class="w-full text-xs text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-800 file:text-gray-200 file:text-xs file:font-semibold hover:file:bg-gray-700 cursor-pointer" />
+          <p class="text-[10px] text-gray-500 mt-1">Optional. Replaces the initial in the avatar, on the left.</p>
+        </div>
+
+        <label class="flex items-center gap-2 text-xs text-gray-400 cursor-pointer">
+          <input type="checkbox" id="verifiedToggle" class="accent-brand-500 w-4 h-4" />
+          Show verified badge
+        </label>
+
+        <div>
+          <label for="waMsgInput" class="block text-xs font-medium text-gray-400 mb-1">Message</label>
+          <textarea id="waMsgInput" rows="2" placeholder="Type a message..."
+            class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500 resize-none"></textarea>
+        </div>
+
+        <div>
+          <label for="waTime" class="block text-xs font-medium text-gray-400 mb-1">Timestamp</label>
+          <input type="text" id="waTime" value="10:42 AM"
+            class="w-full bg-gray-950 border border-gray-800 rounded-lg p-2.5 text-sm text-gray-200 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <button id="addThemBtn" type="button" class="py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+            ← Their Message
+          </button>
+          <button id="addMeBtn" type="button" class="py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+            My Message →
+          </button>
+        </div>
+
+        <p class="text-[10px] text-gray-500">Ctrl + Enter adds your message. Message text is escaped before it reaches the preview.</p>
+
+        <button id="downloadWaBtn" type="button" class="w-full py-3 rounded-xl bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-100 font-bold text-sm transition">
+          📥 Download HD Chat Image
+        </button>
+      </div>
+
+      <!-- Preview. The avatar here carries the ids the engine styles, so what
+           you see in the frame is exactly what gets exported. -->
+      <div>
+        <div id="waChatScreen" class="bg-[#0b141a] rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]">
+
+          <div id="chatHeader" class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-[#e9edef] border-b border-gray-800">
+            <span class="text-lg leading-none" aria-hidden="true">←</span>
+            <div id="avatarBg" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center flex-shrink-0">
+              <span id="avatarInitial">S</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1">
+                <p id="waPreviewName" class="font-medium text-sm truncate">Sarah Jenkins</p>
+                <span id="verifiedBadge" class="hidden text-sky-400 text-xs" aria-label="Verified">✔</span>
+              </div>
+              <p id="subStatus" class="text-[10px] text-emerald-400 mt-0.5">online</p>
+            </div>
+          </div>
+
+          <div id="waChatBody" class="flex-1 p-3 space-y-2 overflow-y-auto text-xs"></div>
+
+          <div class="p-2.5 bg-[#202c33] border-t border-gray-800 flex items-center gap-2">
+            <div class="flex-1 bg-[#2a3942] rounded-full px-3 py-1.5 text-[10px] text-[#8696a0]">Message</div>
+            <span class="text-[#8696a0] text-sm" aria-hidden="true">🎤</span>
+          </div>
+        </div>
+
+        <p class="mt-3 text-[10px] text-gray-500">
+          The frame above is a mockup drawn in the page — it is not a real WhatsApp or Instagram capture, and the
+          exported image is a picture of this mockup.
+        </p>
+      </div>
+    </div>
+
+    <div data-ts-result-actions="social-chat-generator" data-ts-deferred class="mt-6 space-y-4"></div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          It draws a phone-shaped chat preview — WhatsApp or Instagram — from fields you control: the contact name, the
+          profile photo, whether the verified tick shows, the message text and the timestamp. Then it rasterises that
+          preview at three times its on-screen size and hands you a PNG. Designers use this for app mockups, social
+          media carousels, UI case studies and conference slides, where a realistic-looking conversation communicates a
+          product idea far faster than a description of one.
+        </p>
+        <p>
+          Be clear about what this is: a mockup generator, not a screenshot tool. The frame is redrawn in your browser,
+          so the exported image will not match a genuine capture pixel for pixel, and the messages are whatever you
+          type. That also means it is trivially abusable, and the line is worth stating plainly — fabricating a
+          conversation and presenting it as real is fraud, and attributing invented words to a real person is
+          defamation. Use it to illustrate, not to deceive.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Pick the platform with the <strong class="text-gray-200">WhatsApp</strong> / <strong class="text-gray-200">Instagram</strong> tabs. The whole preview restyles, including the bubble shapes.</li>
+        <li>Type the contact name. The preview header, the initial in the avatar, and the "their message" button label all follow it.</li>
+        <li>Optionally upload a profile photo to replace the initial, and tick <strong class="text-gray-200">Show verified badge</strong> for the blue tick.</li>
+        <li>Write a message and a timestamp, then use <strong class="text-gray-200">Their Message</strong> or <strong class="text-gray-200">My Message</strong> to place it on the left or right. Repeat to build the conversation.</li>
+        <li>Click <strong class="text-gray-200">Download HD Chat Image</strong>. The filename records the platform and timestamp so successive exports do not overwrite each other.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Product and UX mockups</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Show how a conversation flow or notification would look inside a chat app.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Social media carousels</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Illustrate a customer-support story or a "what clients say" slide with a visual.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Presentations and pitches</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Communicate a messaging feature to stakeholders without building a prototype first.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Teaching and training material</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Demonstrate a phishing pattern or a scam script safely, using invented content.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I use these chat mockups commercially?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            You own the images you generate, but the WhatsApp and Instagram names, logos and interface designs belong to
+            Meta. Mockups are fine for illustrating a concept, a presentation or a UI case study. Do not use them to
+            fabricate evidence, impersonate a real person, or imply that a real company or individual said something
+            they did not — that can be fraud, defamation or a terms-of-service violation.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How do I get a clean, high-resolution export?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            The export renders the phone preview at three times its on-screen size, so the PNG is sharp enough for
+            slides and print. Crop to the phone frame afterwards if you want the mockup to sit on a plain background.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why is my uploaded avatar missing from the exported image?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Custom avatars are loaded from your disk as data URLs, which canvas can always read. The failure case is a
+            small number of browsers refusing to paint a background image at the moment of capture; if the avatar comes
+            out blank, re-upload it and export again.
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/image-converter.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">Image Converter &amp; WebP Optimizer</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Compress the exported PNG down for the web without visible quality loss.</p>
+        </a>
+        <a href="/tools/thumbnail-downloader.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">Thumbnail Downloader</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Grab HD thumbnails from any YouTube or Vimeo video.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/social-chat-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createSocialChatGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

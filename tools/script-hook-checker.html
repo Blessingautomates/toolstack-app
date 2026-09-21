@@ -14,6 +14,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
 
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <title>Script Hook &amp; Retention Checker — Free Reels &amp; TikTok Hook Scorer | ToolStack AI</title>
   <meta name="description" content="Score the first 3 seconds of your Reels, TikTok or Shorts script against five proven hook frameworks. Free, instant, no signup — paste your opening line and get a rating plus stronger rewrites." />
   <link rel="canonical" href="https://toolstackai.xyz/tools/script-hook-checker.html" />
@@ -137,12 +149,33 @@
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
 
-        <button id="themeToggle" type="button" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base" aria-label="Toggle theme">
-          🌙
+        <div id="google_translate_element" class="text-xs"></div>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- ts:header:end -->
 
 <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

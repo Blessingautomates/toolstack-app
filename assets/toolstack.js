@@ -28,14 +28,14 @@
    * The key is the contract between the markup and this file.
    */
   var TOOLS = {
-    'quote-generator':       { name: 'Client Quotation Generator',        path: '/' },
-    'image-converter':       { name: 'Image Converter & WebP Optimizer',  path: '/' },
+    'quote-generator':       { name: 'Client Quotation Generator',        path: '/tools/quote-generator.html' },
+    'image-converter':       { name: 'Image Converter & WebP Optimizer',  path: '/tools/image-converter.html' },
     'json-formatter':        { name: 'JSON Formatter & Validator',        path: '/tools/json-formatter.html' },
-    'base64-encoder':        { name: 'Base64 Encoder / Decoder',          path: '/' },
-    'social-chat-generator': { name: 'Social Chat Generator',             path: '/' },
-    'thumbnail-downloader':  { name: 'Thumbnail Downloader',              path: '/' },
-    'ai-status-board':       { name: 'AI Service Status Board',           path: '/' },
-    'ai-tools-directory':    { name: 'Free AI Tools Directory',           path: '/' },
+    'base64-encoder':        { name: 'Base64 Encoder / Decoder',          path: '/tools/base64-encoder.html' },
+    'social-chat-generator': { name: 'Social Chat Generator',             path: '/tools/social-chat-generator.html' },
+    'thumbnail-downloader':  { name: 'Thumbnail Downloader',              path: '/tools/thumbnail-downloader.html' },
+    'ai-status-board':       { name: 'AI Service Status Board',           path: '/tools/ai-status-board.html' },
+    'ai-tools-directory':    { name: 'Free AI Tools Directory',           path: '/tools/ai-tools-directory.html' },
     'spam-word-checker':     { name: 'Cold Email Spam-Word Checker',      path: '/tools/spam-word-checker.html' },
     'script-hook-checker':   { name: 'Script Hook & Retention Checker',   path: '/tools/script-hook-checker.html' }
   };
@@ -81,9 +81,18 @@
       x: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) +
          '&url=' + encodeURIComponent(url),
       linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' +
+                encodeURIComponent(url),
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' +
                 encodeURIComponent(url)
     };
   }
+
+  /**
+   * YouTube and Instagram have no web share intent that accepts a URL, so those
+   * two are buttons rather than links: they copy the tool link (and YouTube also
+   * opens the site, where the link can be pasted into a post or community tab).
+   */
+  var YOUTUBE_URL = 'https://www.youtube.com/';
 
   /**
    * The post-result support card + share strip. Rendered from one place so
@@ -92,6 +101,18 @@
   function resultActionsHTML(key) {
     var links = shareLinks(key);
     var external = 'target="_blank" rel="noopener noreferrer"';
+
+    function link(href, network, glyph, label) {
+      return '<a href="' + href + '" ' + external + ' data-ts-share="' + network +
+             '" class="' + SHARE_BTN_CLASS + '">' +
+             '<span aria-hidden="true">' + glyph + '</span> ' + label + '</a>';
+    }
+
+    function button(network, glyph, label) {
+      return '<button type="button" data-ts-share="' + network +
+             '" class="' + SHARE_BTN_CLASS + '">' +
+             '<span aria-hidden="true">' + glyph + '</span> ' + label + '</button>';
+    }
 
     return '' +
       '<div class="rounded-2xl border border-brand-500/25 bg-gradient-to-br from-brand-500/10 via-transparent to-transparent p-5">' +
@@ -107,14 +128,13 @@
       '<div class="rounded-2xl border border-gray-800 bg-gray-950/60 p-4">' +
         '<p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-3">Share this tool</p>' +
         '<div class="flex flex-wrap gap-2">' +
-          '<a href="' + links.whatsapp + '" ' + external + ' data-ts-share="whatsapp" class="' + SHARE_BTN_CLASS + '">' +
-            '<span aria-hidden="true">💬</span> WhatsApp</a>' +
-          '<a href="' + links.x + '" ' + external + ' data-ts-share="x" class="' + SHARE_BTN_CLASS + '">' +
-            '<span aria-hidden="true">𝕏</span> X / Twitter</a>' +
-          '<a href="' + links.linkedin + '" ' + external + ' data-ts-share="linkedin" class="' + SHARE_BTN_CLASS + '">' +
-            '<span aria-hidden="true">in</span> LinkedIn</a>' +
-          '<button type="button" data-ts-share="copy" class="' + SHARE_BTN_CLASS + '">' +
-            '<span aria-hidden="true">🔗</span> Copy Tool Link</button>' +
+          link(links.whatsapp, 'whatsapp', '💬', 'WhatsApp') +
+          link(links.x, 'x', '𝕏', 'X / Twitter') +
+          link(links.linkedin, 'linkedin', 'in', 'LinkedIn') +
+          link(links.facebook, 'facebook', 'f', 'Facebook') +
+          button('youtube', '▶', 'YouTube') +
+          button('instagram', '📸', 'Instagram') +
+          button('copy', '🔗', 'Copy Link') +
         '</div>' +
       '</div>';
   }
@@ -193,34 +213,50 @@
 
   /* ------------------------------------------------------------- mounting */
 
+  // Feedback shown after a copy-type share. Keyed by the data-ts-share value.
+  var COPY_TOAST = {
+    copy: 'Tool link copied!',
+    youtube: 'Link copied — paste it into your video description or post.',
+    instagram: "Link copied — Instagram won't link out, so paste it in your bio or story."
+  };
+
   function wire(el, key) {
     el.addEventListener('click', function (e) {
       var target = e.target;
       if (!target || !target.closest) return;
 
-      var copyBtn = target.closest('[data-ts-share="copy"]');
-      if (copyBtn) {
+      var shareEl = target.closest('[data-ts-share]');
+      if (!shareEl) {
+        if (target.closest('[data-ts-support]')) {
+          track('support_click', {
+            tool: key,
+            location: el.getAttribute('data-ts-location') || 'result'
+          });
+        }
+        return;
+      }
+
+      var method = shareEl.getAttribute('data-ts-share');
+
+      // Networks with no web share intent that accepts a URL: the link goes to
+      // the clipboard instead and the user pastes it.
+      if (COPY_TOAST[method]) {
         e.preventDefault();
         var url = toolUrl(key);
+
+        // Opened synchronously so it stays inside the user gesture — a
+        // window.open() from the async copy callback would be popup-blocked.
+        if (method === 'youtube') window.open(YOUTUBE_URL, '_blank', 'noopener');
+
         copyText(url, function (ok) {
-          toast(ok ? 'Tool link copied!' : 'Copy failed: ' + url);
-          track('share', { method: 'copy', tool: key });
+          toast(ok ? COPY_TOAST[method] : 'Copy failed: ' + url);
+          track('share', { method: method, tool: key });
         });
         return;
       }
 
-      var shareEl = target.closest('[data-ts-share]');
-      if (shareEl) {
-        track('share', { method: shareEl.getAttribute('data-ts-share'), tool: key });
-        return;
-      }
-
-      if (target.closest('[data-ts-support]')) {
-        track('support_click', {
-          tool: key,
-          location: el.getAttribute('data-ts-location') || 'result'
-        });
-      }
+      // WhatsApp / X / LinkedIn / Facebook are real anchors; just instrument.
+      track('share', { method: method, tool: key });
     });
   }
 
@@ -254,6 +290,53 @@
     el.removeAttribute('data-ts-deferred');
   }
 
+  /* ----------------------------------------------------------------- theme */
+
+  var THEME_KEY = 'theme';
+
+  /**
+   * The stored theme has already been applied to <html> by the inline snippet in
+   * each page's <head> — that runs before first paint, which is the only way to
+   * avoid a flash of the wrong theme. This module owns everything after that:
+   * the click handler, persistence, and the accessibility state.
+   *
+   * The glyph swap is pure CSS (.ts-theme-dark / .ts-theme-light), so it tracks
+   * <html class="dark"> with no chance of showing the wrong icon on load.
+   */
+  function isDark() {
+    return document.documentElement.classList.contains('dark');
+  }
+
+  function syncThemeToggle() {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    var dark = isDark();
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  function setTheme(theme) {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    try {
+      window.localStorage.setItem(THEME_KEY, theme);
+    } catch (err) {
+      // Private browsing / blocked storage: the theme still applies for this
+      // page view, it just will not persist.
+    }
+    syncThemeToggle();
+  }
+
+  function initTheme() {
+    syncThemeToggle();
+
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      setTheme(isDark() ? 'light' : 'dark');
+    });
+  }
+
   /* -------------------------------------------------- universal header search */
 
   /**
@@ -285,6 +368,7 @@
   }
 
   function init() {
+    initTheme();
     mount(document);
     initSearch();
   }
@@ -308,6 +392,8 @@
     reveal: reveal,
     toast: toast,
     copyText: copyText,
-    track: track
+    track: track,
+    setTheme: setTheme,
+    isDark: isDark
   };
 })(window, document);

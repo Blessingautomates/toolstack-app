@@ -27,9 +27,30 @@
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
 
-        <button id="themeToggle" type="button" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base" aria-label="Toggle theme">
-          🌙
+        <div id="google_translate_element" class="text-xs"></div>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

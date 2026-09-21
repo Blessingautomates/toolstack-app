@@ -13,6 +13,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>ToolStack AI - Developer & SaaS Utilities</title>
   <meta name="description" content="Free browser-based tools for developers, founders, and creators — JSON formatter, spam-word checker, script hook checker, image converter and more. No signup, no upload." />
   <link rel="canonical" href="https://toolstackai.xyz/" />
@@ -23,8 +35,6 @@
   <meta property="og:url" content="https://toolstackai.xyz/" />
   <meta name="twitter:card" content="summary_large_image" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -51,9 +61,6 @@
 
   <link rel="stylesheet" href="assets/toolstack.css" />
   <script src="assets/toolstack.js"></script>
-  <script src="assets/tools/json-formatter.js"></script>
-  <script src="assets/tools/spam-word-checker.js"></script>
-  <script src="assets/tools/script-hook-checker.js"></script>
 
   <!-- Monetag: In-Page Push -->
   <script>(function(s){s.dataset.zone='11831878',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
@@ -91,13 +98,34 @@
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
 
-        <button id="themeToggle" type="button" class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base" aria-label="Toggle theme">
-          🌙
+        <div id="google_translate_element" class="text-xs"></div>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
         </button>
       </div>
     </div>
   </header>
-<!-- ts:header:end -->
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <!-- ts:header:end -->
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
@@ -107,11 +135,13 @@
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="sales">Sales & CRM</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="ai">AI Support</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="creator">Creator & Video</button>    </div>
-    
+
+    <!-- Every card below is a plain link to its standalone page in /tools/, so
+         the grid is a crawlable index rather than a set of modal triggers. -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
 
       <!-- Tool Card: AI Service Status Board -->
-      <div id="openStatusModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="ai service status board uptime operational degraded outage tracker chatgpt claude midjourney elevenlabs suno cursor monitoring ai support">
+      <a href="/tools/ai-status-board.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="ai service status board uptime operational degraded outage tracker chatgpt claude midjourney elevenlabs suno cursor monitoring ai support">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -124,14 +154,14 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
           <span class="text-xs font-medium text-gray-500">Live Monitor</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
             Open Tool →
           </span>
         </div>
-      </div>
+      </a>
 
       <!-- Tool Card: Free AI Tools Directory -->
-      <div id="openAiDirModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="free ai tools directory searchable category filter text writing image coding video audio chatgpt claude midjourney cursor elevenlabs v0 runway suno ai support">
+      <a href="/tools/ai-tools-directory.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="free ai tools directory searchable category filter text writing image coding video audio chatgpt claude midjourney cursor elevenlabs v0 runway suno ai support">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -144,13 +174,14 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
           <span class="text-xs font-medium text-gray-500">AI Directory</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
             Open Tool →
           </span>
         </div>
-      </div>
+      </a>
 
-      <div id="openQuoteModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="quotation invoice generator pdf client utilities">
+      <!-- Tool Card: Quotation Generator -->
+      <a href="/tools/quote-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="quotation invoice generator pdf client utilities">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -163,107 +194,115 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
           <span class="text-xs font-medium text-gray-500">Browser-based</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
             Open Tool →
           </span>
         </div>
-      </div>
-       <div id="openImgModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="image converter webp png jpeg compression optimizer client utilities">
-  <div>
-    <div class="flex items-start justify-between gap-4 mb-4">
-      <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
-        🖼️
-      </div>
-      <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
-    </div>
-    <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Image Converter & WebP Optimizer</h3>
-    <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Convert PNG/JPG to WebP, resize, and compress images directly in your browser.</p>
-  </div>
-  <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
-    <span class="text-xs font-medium text-gray-500">HTML5 Canvas API</span>
-    <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
-      Open Tool →
-    </span>
-  </div>
-</div>
-      <!-- Tool Card 2: JSON Formatter & Validator -->
-<div id="openJsonModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="json formatter validator minifier beautifier api client utilities">
-  <div>
-    <div class="flex items-start justify-between gap-4 mb-4">
-      <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
-        { }
-      </div>
-      <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
-    </div>
-    <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">JSON Formatter & Validator</h3>
-    <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Validate, prettify, or minify raw JSON strings instantly with error catching.</p>
-  </div>
-  <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
-    <span class="text-xs font-medium text-gray-500">Browser-based</span>
-    <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
-      Open Tool →
-    </span>
-  </div>
-</div>
-      <div id="openBase64Modal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="base64 encoder decoder string auth api client utilities">
-  <div>
-    <div class="flex items-start justify-between gap-4 mb-4">
-      <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
-        🔤
-      </div>
-      <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
-    </div>
-    <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Base64 Encoder & Decoder</h3>
-    <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Instantly convert plain text or API credentials to and from Base64 encoding.</p>
-  </div>
-  <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
-    <span class="text-xs font-medium text-gray-500">Browser-based</span>
-    <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
-      Open Tool →
-    </span>
-  </div>
-      </div>
-      <!-- Social Chat Generator Card -->
-    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between" data-category="creator" data-name="social chat generator whatsapp instagram fake dm screenshot mockup">
-      <div>
-        <div class="flex items-center justify-between mb-4">
-          <!-- SVG Icons for WhatsApp and Instagram -->
-          <div class="w-10 h-10 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center gap-1.5 p-1">
-            <svg class="w-4 h-4 text-emerald-500 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99 0-3.951-.5-5.688-1.448l-6.305 1.654z"/></svg>
-            <svg class="w-4 h-4 text-pink-500 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+      </a>
+
+      <!-- Tool Card: Image Converter -->
+      <a href="/tools/image-converter.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="image converter webp png jpeg compression optimizer client utilities">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🖼️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
           </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Image Converter & WebP Optimizer</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Convert PNG/JPG to WebP, resize, and compress images directly in your browser.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">HTML5 Canvas API</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: JSON Formatter & Validator -->
+      <a href="/tools/json-formatter.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="json formatter validator minifier beautifier api client utilities">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              { }
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">JSON Formatter & Validator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Validate, prettify, or minify raw JSON strings instantly with error catching.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Base64 Encoder & Decoder -->
+      <a href="/tools/base64-encoder.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="base64 encoder decoder string auth api client utilities">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔤
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Base64 Encoder & Decoder</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Instantly convert plain text or API credentials to and from Base64 encoding.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Social Chat Generator -->
+      <a href="/tools/social-chat-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="social chat generator whatsapp instagram fake dm screenshot mockup">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <!-- SVG Icons for WhatsApp and Instagram -->
+            <div class="w-10 h-10 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center gap-1.5 p-1">
+              <svg class="w-4 h-4 text-emerald-500 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99 0-3.951-.5-5.688-1.448l-6.305 1.654z"/></svg>
+              <svg class="w-4 h-4 text-pink-500 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+
+          <h3 class="text-base font-bold text-gray-100 mb-1">Social Chat Generator</h3>
+          <p class="text-xs text-gray-400 mb-4">Create realistic fake WhatsApp & Instagram DM chat screenshots for social posts and ads.</p>
         </div>
 
-        <h3 class="text-base font-bold text-gray-100 mb-1">Social Chat Generator</h3>
-        <p class="text-xs text-gray-400 mb-4">Create realistic fake WhatsApp & Instagram DM chat screenshots for social posts and ads.</p>
-      </div>
-
-      <div class="flex items-center justify-between border-t border-gray-800 pt-3 mt-2">
-        <span class="text-[10px] text-gray-500">Entertainment / Fun</span>
-        <button id="openWaModal" type="button" class="text-xs text-brand-400 hover:text-brand-300 font-bold transition flex items-center gap-1">Open Tool &rarr;</button>
-      </div>
-    </div>
-
-    <!-- Tool Card: YouTube & Vimeo Thumbnail Downloader -->
-    <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between" data-category="creator" data-name="youtube vimeo thumbnail downloader video media hd image">
-      <div>
-        <div class="flex items-center justify-between mb-4">
-          <div class="w-10 h-10 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center">
-            <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+        <div class="flex items-center justify-between border-t border-gray-800 pt-3 mt-2">
+          <span class="text-[10px] text-gray-500">Entertainment / Fun</span>
+          <span class="text-xs text-brand-400 group-hover:text-brand-300 font-bold transition flex items-center gap-1">Open Tool &rarr;</span>
         </div>
-        <h3 class="text-base font-bold text-gray-100 mb-1">YouTube & Vimeo Thumbnail Downloader</h3>
-        <p class="text-xs text-gray-400 mb-4">Extract HD thumbnails instantly from video URLs.</p>
-      </div>
-      <div class="flex items-center justify-between border-t border-gray-800 pt-3 mt-2">
-        <span class="text-[10px] text-gray-500">Media Utilities</span>
-        <button id="openThumbModal" type="button" class="text-xs text-brand-400 hover:text-brand-300 font-bold transition flex items-center gap-1">Open Tool &rarr;</button>
-      </div>
-    </div>
+      </a>
+
+      <!-- Tool Card: YouTube & Vimeo Thumbnail Downloader -->
+      <a href="/tools/thumbnail-downloader.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="youtube vimeo thumbnail downloader video media hd image">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center">
+              <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-base font-bold text-gray-100 mb-1">YouTube & Vimeo Thumbnail Downloader</h3>
+          <p class="text-xs text-gray-400 mb-4">Extract HD thumbnails instantly from video URLs.</p>
+        </div>
+        <div class="flex items-center justify-between border-t border-gray-800 pt-3 mt-2">
+          <span class="text-[10px] text-gray-500">Media Utilities</span>
+          <span class="text-xs text-brand-400 group-hover:text-brand-300 font-bold transition flex items-center gap-1">Open Tool &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Tool Card: AI Lead Qualification (not yet a standalone tool) -->
       <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="sales" data-name="ai lead qualification scoring crm sales prospect icp">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
@@ -284,7 +323,7 @@
       </div>
 
       <!-- Tool Card: Cold Email Spam-Word Checker -->
-      <div id="openSpamModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="sales" data-name="cold email spam word checker deliverability score subject line outreach newsletter spam filter sales crm">
+      <a href="/tools/spam-word-checker.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="sales" data-name="cold email spam word checker deliverability score subject line outreach newsletter spam filter sales crm">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -297,14 +336,14 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
           <span class="text-xs font-medium text-gray-500">Browser-based</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
             Open Tool →
           </span>
         </div>
-      </div>
+      </a>
 
       <!-- Tool Card: Script Hook & Retention Checker -->
-      <div id="openHookModal" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="script hook retention checker viral reels tiktok shorts youtube opening line first 3 seconds scroll stopper curiosity gap creator video">
+      <a href="/tools/script-hook-checker.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="script hook retention checker viral reels tiktok shorts youtube opening line first 3 seconds scroll stopper curiosity gap creator video">
         <div>
           <div class="flex items-start justify-between gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
@@ -317,11 +356,11 @@
         </div>
         <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
           <span class="text-xs font-medium text-gray-500">Browser-based</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 hover:text-brand-300 transition-colors">
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
             Open Tool →
           </span>
         </div>
-      </div>
+      </a>
 
       <div class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-gray-700/80 rounded-2xl p-6 transition-all duration-300 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="whatsapp instagram support bot rag ai agent handoff">
         <div>
@@ -400,632 +439,7 @@
   </footer>
 <!-- ts:footer:end -->
 
-
-<!-- Quotation Generator Modal -->
-  <div id="quoteModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-      <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-      
-      <h2 class="text-2xl font-bold mb-5">Client Quotation Generator</h2>
-
-      <!-- PDF Printable Region -->
-      <div id="quoteContainer" class="p-6 bg-gray-950 rounded-xl border border-gray-800 text-gray-100">
-        <div class="flex justify-between items-center mb-6">
-          <div>
-            <h1 class="text-2xl font-black text-brand-500">QUOTATION</h1>
-            <p class="text-xs text-gray-500">ToolStack AI Platform Services</p>
-          </div>
-          <div class="text-right">
-            <input type="text" id="quoteNumber" value="QT-2026-001" class="text-sm font-bold bg-transparent text-right border-b border-gray-800 focus:outline-none text-brand-500" />
-            <p class="text-xs text-gray-400" id="quoteDate"></p>
-          </div>
-        </div>
-
-        <!-- Client Info -->
-        <div class="grid grid-cols-2 gap-4 mb-6">
-          <div>
-            <label class="block text-xs text-gray-400 mb-1">Prepared For:</label>
-            <input type="text" id="clientName" placeholder="Client or Company Name" class="w-full text-sm font-medium bg-transparent border-b border-gray-800 focus:outline-none p-1" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-400 mb-1">Prepared By:</label>
-            <input type="text" id="providerName" placeholder="Your Name / Business" class="w-full text-sm font-medium bg-transparent border-b border-gray-800 focus:outline-none p-1" />
-          </div>
-        </div>
-
-        <!-- Line Items Table -->
-        <table class="w-full text-left mb-6 text-sm">
-          <thead>
-            <tr class="border-b border-gray-800 text-xs text-gray-400">
-              <th class="py-2.5">Description</th>
-              <th class="py-2.5 w-20 text-center">Qty</th>
-              <th class="py-2.5 w-24 text-right">Price ($)</th>
-              <th class="py-2.5 w-24 text-right">Total ($)</th>
-            </tr>
-          </thead>
-          <tbody id="lineItemsBody">
-            <tr class="line-item border-b border-gray-800/50">
-              <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" value="AI Agentic Automation Setup" /></td>
-              <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
-              <td class="py-2.5"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="250" min="0" /></td>
-              <td class="py-2.5 text-right font-medium item-total">250.00</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <button id="addItemBtn" class="text-xs font-bold text-brand-500 hover:underline mb-6">+ Add Item</button>
-
-        <!-- Totals -->
-        <div class="border-t border-gray-800 pt-5 flex justify-end">
-          <div class="w-48 space-y-2.5 text-sm">
-            <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span id="subTotal">$250.00</span></div>
-            <div class="flex justify-between items-center"><span class="text-gray-400">Tax (%):</span><input type="number" id="taxRate" value="5" class="w-12 text-right bg-transparent border-b border-gray-800 focus:outline-none" /></div>
-            <div class="flex justify-between font-bold text-base border-t border-gray-800 pt-2.5"><span>Total:</span><span id="grandTotal" class="text-brand-500 font-extrabold">$262.50</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="mt-8 flex justify-end gap-3">
-        <button id="downloadPdfBtn" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm flex items-center gap-2 transition shadow-lg shadow-brand-500/20">
-          📥 Download PDF Quotation
-        </button>
-      </div>
-
-      <div data-ts-result-actions="quote-generator" class="mt-6 space-y-4"></div>
-    </div>
-  </div>
-<div id="imgModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeImgModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-    
-    <h2 class="text-2xl font-bold mb-2">Image Converter & WebP Optimizer</h2>
-    <p class="text-xs text-gray-400 mb-6">Convert and compress images locally without uploading data to any server.</p>
-
-    <div id="dropZone" class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-xl p-8 text-center cursor-pointer bg-gray-950/50 transition-colors mb-6">
-      <input type="file" id="imageInput" accept="image/png, image/jpeg, image/webp" class="hidden" />
-      <div class="text-4xl mb-2">📥</div>
-      <p class="text-sm font-medium text-gray-300">Click to upload or drag & drop an image</p>
-      <p class="text-xs text-gray-500 mt-1">Supports PNG, JPG, WEBP</p>
-    </div>
-
-    <div id="imageControls" class="hidden space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800 mb-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1">Target Format</label>
-          <select id="outputFormat" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
-            <option value="image/webp">WebP (Recommended)</option>
-            <option value="image/jpeg">JPEG</option>
-            <option value="image/png">PNG</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-medium text-gray-400 mb-1">Quality: <span id="qualityVal">80</span>%</label>
-          <input type="range" id="qualityRange" min="10" max="100" value="80" class="w-full accent-brand-500 cursor-pointer mt-2" />
-        </div>
-      </div>
-    </div>
-
-    <div class="flex justify-end">
-      <button id="convertBtn" disabled class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
-        Convert & Download
-      </button>
-    </div>
-
-    <div data-ts-result-actions="image-converter" class="mt-6 space-y-4"></div>
-  </div>
-</div>
-<div id="jsonModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeJsonModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-    
-    <h2 class="text-2xl font-bold mb-1">JSON Formatter & Validator</h2>
-    <p class="text-xs text-gray-400 mb-4">Format messy API payloads or minify JSON for production.</p>
-
-    <!-- Error/Success Banner -->
-    <div id="jsonStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
-
-    <!-- Code Editor Container -->
-    <div class="grid grid-cols-1 gap-4 mb-4">
-      <div>
-        <label class="block text-xs text-gray-400 mb-1 font-mono">Input / Output JSON:</label>
-        <textarea id="jsonInput" rows="10" placeholder='Paste your raw JSON here... e.g. {"name":"Blessing","role":"automation"}' class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-      </div>
-    </div>
-
-    <!-- Action Bar -->
-    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="formatJsonBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          ✨ Prettify (2 Spaces)
-        </button>
-        <button id="minifyJsonBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
-          ⚡ Minify
-        </button>
-      </div>
-      <button id="copyJsonBtn" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition flex items-center gap-1.5">
-        📋 Copy Result
-      </button>
-    </div>
-
-    <div data-ts-result-actions="json-formatter" data-ts-deferred class="mt-6 space-y-4"></div>
-  </div>
-</div>
-<div id="base64Modal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeBase64Modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-    
-    <h2 class="text-2xl font-bold mb-1">Base64 Encoder / Decoder</h2>
-    <p class="text-xs text-gray-400 mb-5">Convert strings for API Basic Auth, URL parameters, and webhooks.</p>
-
-    <div id="base64Status" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
-
-    <div class="mb-4">
-      <label class="block text-xs text-gray-400 mb-1 font-mono">Input Text:</label>
-      <textarea id="base64Input" rows="6" placeholder="Type or paste plain text or Base64 string here..." class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="encodeBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          🔒 Encode Base64
-        </button>
-        <button id="decodeBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
-          🔓 Decode Base64
-        </button>
-      </div>
-      <button id="copyBase64Btn" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition flex items-center gap-1.5">
-        📋 Copy Result
-      </button>
-    </div>
-
-    <div data-ts-result-actions="base64-encoder" data-ts-deferred class="mt-6 space-y-4"></div>
-  </div>
-</div>
-<!-- Social Chat Generator Modal -->
-<div id="waModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-4xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    
-    <!-- Close Button -->
-    <button id="closeWaModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-    
-    <!-- Modal Header -->
-    <h2 class="text-2xl font-bold mb-1">Social Chat Generator</h2>
-    <p class="text-xs text-gray-400 mb-4">Build realistic social media conversations and export high-res PNG images.</p>
-
-    <!-- Multi-Tab Selector -->
-    <div class="flex gap-2 mb-6 bg-gray-950 p-1.5 rounded-xl border border-gray-800">
-      <button id="tabWa" type="button" class="flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition">WhatsApp</button>
-      <button id="tabIg" type="button" class="flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition">Instagram DM</button>
-    </div>
-
-    <!-- Main Grid: Controls & Preview -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      
-      <!-- COLUMN 1: Controls (STEP 1) -->
-      <div class="space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800">
-        <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider">Chat Details</h4>
-        
-        <div>
-          <label class="block text-xs text-gray-400 mb-1">Contact Name</label>
-          <input type="text" id="waContactName" value="James" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
-        </div>
-
-        <!-- Profile Picture Upload & Verified Badge Toggle -->
-        <div class="grid grid-cols-2 gap-3 pt-2">
-          <div>
-            <label class="block text-[10px] text-gray-400 mb-1">Profile Picture</label>
-            <input type="file" id="avatarUpload" accept="image/*" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-1 text-[10px] text-gray-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer" />
-          </div>
-
-          <div class="flex flex-col justify-center">
-            <label class="inline-flex items-center gap-2 cursor-pointer mt-3">
-              <input type="checkbox" id="verifiedToggle" class="sr-only peer">
-              <div class="w-8 h-4 bg-gray-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-500 relative"></div>
-              <span class="text-xs text-gray-300 font-medium">Verified Badge</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="pt-2 border-t border-gray-800">
-          <h4 class="text-xs font-bold text-brand-400 uppercase tracking-wider mb-2">Add Message</h4>
-          
-          <textarea id="waMsgInput" rows="3" placeholder="Type message here..." class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500 mb-2"></textarea>
-          
-          <div class="mb-3">
-            <label class="block text-[10px] text-gray-400 mb-1">Time Stamp</label>
-            <input type="text" id="waTime" value="10:42 AM" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-2 text-xs text-gray-200 focus:outline-none" />
-          </div>
-
-          <div class="grid grid-cols-2 gap-2">
-            <button id="addThemBtn" type="button" class="py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-xs rounded-lg transition border border-gray-700 flex items-center justify-center gap-1">
-              👈 Add as <span id="themBtnLabel">James</span>
-            </button>
-            <button id="addMeBtn" type="button" class="py-2.5 bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center justify-center gap-1">
-              👉 Add as Me
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- COLUMN 2: Mockup Preview Screen (STEP 2) -->
-      <div class="flex flex-col justify-between space-y-4">
-        <div id="waChatScreen" class="bg-[#0b141a] rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]">
-          
-          <!-- Dynamic Chat Header -->
-          <div id="chatHeader" class="bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800">
-            <span class="text-xs text-gray-400">←</span>
-            
-            <!-- Profile Picture / Initial Container -->
-            <div id="avatarContainer" class="relative w-8 h-8 flex-shrink-0">
-              <div id="avatarBg" class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center">
-                <span id="avatarInitial">J</span>
-              </div>
-            </div>
-
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1">
-                <p id="waPreviewName" class="text-xs font-semibold leading-none truncate">James</p>
-                
-                <!-- Verified Badge SVG -->
-                <svg id="verifiedBadge" class="w-3.5 h-3.5 text-blue-500 fill-current hidden flex-shrink-0" viewBox="0 0 24 24">
-                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238 1.25 1.273 2.62 2.148 4.2 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-1.25 2.148-2.62 2.148-4.2zm-12.8 4.8l-4.1-4.1 1.4-1.4 2.7 2.7 6.7-6.7 1.4 1.4-8.1 8.1z"/>
-                </svg>
-              </div>
-              <p id="subStatus" class="text-[10px] text-emerald-400 mt-0.5">online</p>
-            </div>
-          </div>
-
-          <!-- Message History Display Area -->
-          <div id="waChatBody" class="p-3 overflow-y-auto flex-1 space-y-2 text-xs">
-            <!-- Dynamic message bubbles append here -->
-          </div>
-        </div>
-
-        <!-- Download HD Image Button -->
-        <button id="downloadWaBtn" type="button" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
-          🖼️ Export Chat Image (PNG)
-        </button>
-      </div>
-
-      <div data-ts-result-actions="social-chat-generator" class="mt-6 space-y-4"></div>
-    </div>
-  </div>
-</div>
-  <!-- YouTube & Vimeo Thumbnail Downloader Modal -->
-<div id="thumbModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    
-    <!-- Close Button -->
-    <button id="closeThumbModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-    
-    <!-- Header -->
-    <h2 class="text-2xl font-bold mb-1">Thumbnail Downloader</h2>
-    <p class="text-xs text-gray-400 mb-6">Extract high-resolution thumbnail images instantly from YouTube and Vimeo links.</p>
-
-    <!-- Input Section -->
-    <div class="space-y-4 bg-gray-950 p-4 rounded-xl border border-gray-800 mb-6">
-      <div>
-        <label class="block text-xs text-gray-400 mb-1">Video Link or ID</label>
-        <div class="flex gap-2">
-          <input type="text" id="thumbUrlInput" placeholder="https://www.youtube.com/watch?v=..." class="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
-          <button id="fetchThumbBtn" type="button" class="px-4 py-2.5 bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center gap-1.5">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-            Fetch
-          </button>
-        </div>
-      </div>
-      <p id="thumbError" class="text-xs text-rose-400 hidden"></p>
-    </div>
-
-    <!-- Preview & Download Results Section -->
-    <div id="thumbResults" class="space-y-4 hidden">
-      <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 flex justify-between items-center">
-        <!-- Dynamic Logo Container -->
-        <div class="flex items-center gap-2">
-          <span id="platformIcon"></span>
-          <span class="text-xs font-bold text-gray-200 uppercase tracking-wider" id="thumbPlatformLabel">YouTube Video</span>
-        </div>
-        <span class="text-[10px] text-gray-400 font-mono" id="thumbIdLabel">ID: -</span>
-      </div>
-
-      <!-- Max Quality Card -->
-      <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-3">
-        <div class="flex justify-between items-center">
-          <span class="text-xs font-bold text-gray-200">HD Maximum Quality (1080p / 720p)</span>
-          <a id="dlMaxBtn" href="#" target="_blank" download class="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-gray-950 font-bold text-xs rounded-lg transition flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download HD
-          </a>
-        </div>
-        <div class="w-full bg-gray-900 rounded-lg overflow-hidden border border-gray-800 aspect-video flex items-center justify-center">
-          <img id="imgMaxQuality" src="" alt="HD Thumbnail" class="w-full h-full object-cover hidden" />
-          <span id="imgMaxFallback" class="text-xs text-gray-500 p-4 text-center">Loading HD Preview...</span>
-        </div>
-      </div>
-
-      <!-- Standard Quality Cards Grid -->
-      <div class="grid grid-cols-2 gap-4">
-        <!-- High Quality (480p) -->
-        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="text-[11px] font-semibold text-gray-300">High Quality (HQ)</span>
-            <a id="dlHqBtn" href="#" target="_blank" download class="px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-[10px] rounded transition">Download</a>
-          </div>
-          <img id="imgHqQuality" src="" alt="HQ Thumbnail" class="w-full aspect-video object-cover rounded-lg border border-gray-800" />
-        </div>
-
-        <!-- Medium Quality (360p) -->
-        <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="text-[11px] font-semibold text-gray-300">Medium Quality (MQ)</span>
-            <a id="dlMqBtn" href="#" target="_blank" download class="px-2 py-1 bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-[10px] rounded transition">Download</a>
-          </div>
-          <img id="imgMqQuality" src="" alt="MQ Thumbnail" class="w-full aspect-video object-cover rounded-lg border border-gray-800" />
-        </div>
-      </div>
-
-      <div data-ts-result-actions="thumbnail-downloader" class="space-y-4"></div>
-    </div>
-
-  </div>
-</div>
-
-  <!-- AI Service Status Board Modal -->
-<div id="statusModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeStatusModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-
-    <h2 class="text-2xl font-bold mb-1">AI Service Status Board</h2>
-    <p class="text-xs text-gray-400 mb-5">Live operational uptime and status tracker for ChatGPT, Claude, Midjourney, ElevenLabs, Suno, and Cursor.</p>
-
-    <!-- Overall Summary & Refresh Control -->
-    <div class="flex flex-wrap items-center justify-between gap-3 bg-gray-950 border border-gray-800 rounded-xl p-4 mb-5">
-      <div class="flex items-center gap-3">
-        <span id="statusOverallDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-        <div>
-          <p id="statusOverallText" class="text-sm font-bold text-gray-100">All Systems Operational</p>
-          <p id="statusLastChecked" class="text-[11px] text-gray-500">Last checked: —</p>
-        </div>
-      </div>
-      <button id="refreshStatusBtn" type="button" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed text-gray-950 font-bold text-xs transition flex items-center gap-1.5">
-        <svg id="refreshStatusIcon" class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-8 8s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-        Refresh Status
-      </button>
-    </div>
-
-    <!-- Platform Status Rows -->
-    <div id="statusList" class="space-y-3"></div>
-
-    <p class="text-[10px] text-gray-600 mt-5 leading-relaxed">Indicators are simulated for demonstration purposes and do not reflect official real-time provider incident data.</p>
-
-    <div data-ts-result-actions="ai-status-board" class="mt-6 space-y-4"></div>
-  </div>
-</div>
-
-  <!-- Free AI Tools Directory Modal -->
-<div id="aiDirModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeAiDirModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-
-    <h2 class="text-2xl font-bold mb-1">Free AI Tools Directory</h2>
-    <p class="text-xs text-gray-400 mb-5">Searchable, category-filtered directory of top free AI tools for text, image, coding, and video.</p>
-
-    <!-- Search -->
-    <div class="relative mb-4">
-      <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm">🔍</span>
-      <input id="aiDirSearch" type="text" placeholder="Search by name or keyword — try voice, captions, music, code..." class="w-full bg-gray-950 border border-gray-800 rounded-xl py-3 pl-10 pr-3 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
-    </div>
-
-    <!-- Category Filter Chips -->
-    <div id="aiDirChips" class="flex flex-wrap gap-2 mb-5">
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="all">All</button>
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Writing">Writing</button>
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Coding">Coding</button>
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Image">Image</button>
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Video">Video</button>
-      <button type="button" class="dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition" data-category="Audio">Audio</button>
-    </div>
-
-    <!-- Tool Grid -->
-    <div id="aiDirGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
-
-    <!-- Empty State -->
-    <div id="aiDirEmpty" class="hidden text-center py-10">
-      <p class="text-3xl mb-2">🔎</p>
-      <p class="text-sm font-bold text-gray-300">No tools match your search</p>
-      <p class="text-xs text-gray-500 mt-1">Try a different keyword or switch back to the All category.</p>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-between gap-2 mt-5 pt-4 border-t border-gray-800">
-      <p id="aiDirCount" class="text-[11px] text-gray-500">—</p>
-      <button id="clearAiDirBtn" type="button" class="text-[11px] font-semibold text-brand-400 hover:text-brand-300 transition">Reset filters</button>
-    </div>
-
-    <p class="text-[10px] text-gray-600 mt-4 leading-relaxed">Free tiers, credit allowances, and limits change often — always confirm current pricing with each provider before relying on a tool.</p>
-
-    <div data-ts-result-actions="ai-tools-directory" class="mt-6 space-y-4"></div>
-  </div>
-</div>
-
-  <!-- Cold Email Spam-Word Checker Modal -->
-<div id="spamModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeSpamModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-
-    <h2 class="text-2xl font-bold mb-1">Cold Email Spam-Word Checker</h2>
-    <p class="text-xs text-gray-400 mb-5">Instant spam trigger word detection and deliverability scoring for outbound outreach and newsletters.</p>
-
-    <div id="spamStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
-
-    <div class="grid grid-cols-1 gap-4 mb-4">
-      <div>
-        <label class="block text-xs text-gray-400 mb-1 font-mono">Subject Line:</label>
-        <input id="spamSubject" type="text" placeholder="e.g. Quick question about your Q3 onboarding flow" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500" />
-      </div>
-      <div>
-        <label class="block text-xs text-gray-400 mb-1 font-mono">Email Body:</label>
-        <textarea id="spamBody" rows="8" placeholder="Paste your outreach or newsletter copy here..." class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="analyzeSpamBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          🔍 Analyze Email
-        </button>
-        <button id="clearSpamBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
-          Clear
-        </button>
-      </div>
-      <span class="text-[10px] text-gray-500">Tip: press Ctrl + Enter to analyze. Text never leaves your browser.</span>
-    </div>
-
-    <!-- Results -->
-    <div id="spamResults" class="hidden mt-5 space-y-5">
-
-      <!-- Deliverability Score -->
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4">
-        <div class="flex items-start justify-between gap-4 mb-3">
-          <div>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Deliverability Score</p>
-            <p id="spamScoreValue" class="text-3xl font-black text-emerald-400">100%</p>
-          </div>
-          <span id="spamGradeBadge" class="px-3 py-1 rounded-full text-[11px] font-semibold border bg-emerald-500/10 text-emerald-400 border-emerald-500/20">Excellent</span>
-        </div>
-        <div class="h-2 w-full rounded-full bg-gray-800 overflow-hidden">
-          <div id="spamScoreBar" class="h-full w-0 rounded-full bg-emerald-500 transition-all duration-500"></div>
-        </div>
-        <p id="spamGradeNote" class="text-[11px] text-gray-400 mt-3 leading-relaxed"></p>
-        <div class="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-800 text-center">
-          <div>
-            <p id="spamTermsCount" class="text-lg font-bold text-gray-100">0</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Triggers</p>
-          </div>
-          <div>
-            <p id="spamWordCount" class="text-lg font-bold text-gray-100">0</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Words</p>
-          </div>
-          <div>
-            <p id="spamDensity" class="text-lg font-bold text-gray-100">0%</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Trigger Density</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Highlighted Copy -->
-      <div>
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <p class="text-xs font-bold text-gray-300">Highlighted Email</p>
-          <div class="flex items-center gap-3 text-[10px] text-gray-500">
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-red-500/50"></span>High risk</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-500/50"></span>Moderate</span>
-            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-yellow-500/40"></span>Mild</span>
-          </div>
-        </div>
-        <div id="spamHighlight" class="bg-gray-950 border border-gray-800 rounded-xl p-4 text-xs leading-relaxed text-gray-300 max-h-72 overflow-y-auto whitespace-pre-wrap"></div>
-      </div>
-
-      <!-- Actionable Tips -->
-      <div>
-        <p class="text-xs font-bold text-gray-300 mb-2">Actionable Fixes</p>
-        <ul id="spamTips" class="space-y-2"></ul>
-      </div>
-
-      <p class="text-[10px] text-gray-600 leading-relaxed">Scoring heuristics are indicative only — real inbox placement also depends on sending domain reputation, authentication (SPF/DKIM/DMARC), list quality, and engagement.</p>
-
-      <div data-ts-result-actions="spam-word-checker" class="space-y-4"></div>
-    </div>
-  </div>
-</div>
-  <!-- Script Hook & Retention Checker Modal -->
-<div id="hookModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-  <div class="bg-gray-900 border border-gray-800 w-full max-w-3xl rounded-2xl p-6 shadow-2xl relative my-8 text-gray-100">
-    <button id="closeHookModal" type="button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-200 font-bold text-xl">&times;</button>
-
-    <h2 class="text-2xl font-bold mb-1">Script Hook &amp; Retention Checker</h2>
-    <p class="text-xs text-gray-400 mb-5">Score the first 3 seconds of your video script against viral retention patterns for Reels, TikTok, and Shorts.</p>
-
-    <div id="hookStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
-
-    <div class="mb-4">
-      <label class="block text-xs text-gray-400 mb-1 font-mono">Opening Line / Hook:</label>
-      <textarea id="hookInput" rows="4" placeholder="e.g. Stop posting Reels until you watch this — your first 3 seconds are why nobody stays." class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-      <div class="flex flex-wrap items-center justify-between gap-2 mt-2">
-        <span class="text-[10px] text-gray-500">Paste the spoken line (or on-screen text) from your first 3 seconds of video.</span>
-        <span id="hookWordCounter" class="text-[10px] font-mono text-gray-500">0 words · 0.0s</span>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="analyzeHookBtn" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          🎯 Analyze Hook
-        </button>
-        <button id="clearHookBtn" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
-          Clear
-        </button>
-      </div>
-      <span class="text-[10px] text-gray-500">Tip: press Ctrl + Enter to analyze. Text never leaves your browser.</span>
-    </div>
-
-    <!-- Results -->
-    <div id="hookResults" class="hidden mt-5 space-y-5">
-
-      <!-- Hook Strength Rating -->
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4">
-        <div class="flex items-start justify-between gap-4 mb-3">
-          <div>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-1">Hook Strength Rating</p>
-            <p id="hookScoreValue" class="text-3xl font-black text-amber-400">0<span class="text-base font-bold text-gray-500">/100</span></p>
-          </div>
-          <span id="hookGradeBadge" class="px-3 py-1 rounded-full text-[11px] font-semibold border bg-amber-500/10 text-amber-400 border-amber-500/20">Moderate</span>
-        </div>
-        <div class="h-2 w-full rounded-full bg-gray-800 overflow-hidden">
-          <div id="hookScoreBar" class="h-full w-0 rounded-full bg-amber-500 transition-all duration-500"></div>
-        </div>
-        <p id="hookGradeNote" class="text-[11px] text-gray-400 mt-3 leading-relaxed"></p>
-        <div class="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-800 text-center">
-          <div>
-            <p id="hookFrameworkCount" class="text-lg font-bold text-gray-100">0/5</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Frameworks Hit</p>
-          </div>
-          <div>
-            <p id="hookWordCount" class="text-lg font-bold text-gray-100">0</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Words</p>
-          </div>
-          <div>
-            <p id="hookReadTime" class="text-lg font-bold text-gray-100">0.0s</p>
-            <p class="text-[10px] uppercase tracking-wider text-gray-500">Est. Delivery</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Framework Breakdown -->
-      <div>
-        <p class="text-xs font-bold text-gray-300 mb-2">Detected Engagement Triggers</p>
-        <ul id="hookBreakdown" class="space-y-2"></ul>
-      </div>
-
-      <!-- Rewrite Suggestions -->
-      <div>
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <p class="text-xs font-bold text-gray-300">Stronger Rewrites</p>
-          <span class="text-[10px] text-gray-500">Generated from your topic — edit before you shoot.</span>
-        </div>
-        <div id="hookRewrites" class="space-y-2"></div>
-      </div>
-
-      <p class="text-[10px] text-gray-600 leading-relaxed">Framework scoring is a heuristic, not a guarantee. Retention also depends on your first visual frame, on-screen text, audio, pacing, and how well the payoff matches the promise.</p>
-
-      <div data-ts-result-actions="script-hook-checker" class="space-y-4"></div>
-    </div>
-  </div>
-</div>
   <script>
-    // Date Setup
-    document.getElementById('quoteDate').textContent = new Date().toLocaleDateString();
-
     // Keyboard Focus
     const searchInput = document.getElementById('searchInput');
     document.addEventListener('keydown', (e) => {
@@ -1073,941 +487,7 @@
         filterTools();
       });
     });
-
-    // Quotation Modal & Calculator Logic
-    const quoteModal = document.getElementById('quoteModal');
-    document.getElementById('openQuoteModal').addEventListener('click', () => quoteModal.classList.remove('hidden'));
-    document.getElementById('closeQuoteModal').addEventListener('click', () => quoteModal.classList.add('hidden'));
-
-    function calculateTotals() {
-      let sub = 0;
-      document.querySelectorAll('#lineItemsBody tr').forEach(row => {
-        const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
-        const price = parseFloat(row.querySelector('.item-price').value) || 0;
-        const total = qty * price;
-        row.querySelector('.item-total').textContent = total.toFixed(2);
-        sub += total;
-      });
-      const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
-      const grand = sub + (sub * (taxRate / 100));
-      document.getElementById('subTotal').textContent = `$${sub.toFixed(2)}`;
-      document.getElementById('grandTotal').textContent = `$${grand.toFixed(2)}`;
-    }
-
-    document.getElementById('lineItemsBody').addEventListener('input', calculateTotals);
-    document.getElementById('taxRate').addEventListener('input', calculateTotals);
-
-    document.getElementById('addItemBtn').addEventListener('click', () => {
-      const tr = document.createElement('tr');
-      tr.className = 'line-item border-b border-gray-800/50';
-      tr.innerHTML = `
-        <td class="py-2.5"><input type="text" class="item-desc w-full bg-transparent focus:outline-none" placeholder="Service item..." /></td>
-        <td class="py-2.5"><input type="number" class="item-qty w-full bg-transparent text-center focus:outline-none" value="1" min="1" /></td>
-        <td class="py-2.5"><input type="number" class="item-price w-full bg-transparent text-right focus:outline-none" value="0" min="0" /></td>
-        <td class="py-2.5 text-right font-medium item-total">0.00</td>
-      `;
-      document.getElementById('lineItemsBody').appendChild(tr);
-      calculateTotals();
-    });
-
-    // PDF Download Execution
-    document.getElementById('downloadPdfBtn').addEventListener('click', () => {
-      const element = document.getElementById('quoteContainer');
-      const opt = {
-        margin:       0.5,
-        filename:     `${document.getElementById('quoteNumber').value}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(element).save();
-    });
-  
-  // Image Converter Modal Toggle
-  const imgModal = document.getElementById('imgModal');
-  document.getElementById('openImgModal').addEventListener('click', () => imgModal.classList.remove('hidden'));
-  document.getElementById('closeImgModal').addEventListener('click', () => imgModal.classList.add('hidden'));
-
-  // Image Upload & Conversion Logic
-  const dropZone = document.getElementById('dropZone');
-  const imageInput = document.getElementById('imageInput');
-  const imageControls = document.getElementById('imageControls');
-  const convertBtn = document.getElementById('convertBtn');
-  const qualityRange = document.getElementById('qualityRange');
-  const qualityVal = document.getElementById('qualityVal');
-  let loadedImage = null;
-  let originalFileName = 'converted-image';
-
-  dropZone.addEventListener('click', () => imageInput.click());
-  qualityRange.addEventListener('input', (e) => qualityVal.textContent = e.target.value);
-
-  imageInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || 'converted-image';
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        loadedImage = new Image();
-        loadedImage.onload = () => {
-          imageControls.classList.remove('hidden');
-          convertBtn.disabled = false;
-          dropZone.querySelector('p').textContent = `Loaded: ${file.name}`;
-        };
-        loadedImage.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  convertBtn.addEventListener('click', () => {
-    if (!loadedImage) return;
-
-    const canvas = document.createElement('canvas');
-    canvas.width = loadedImage.width;
-    canvas.height = loadedImage.height;
-
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(loadedImage, 0, 0);
-
-    const format = document.getElementById('outputFormat').value;
-    const quality = parseFloat(qualityRange.value) / 100;
-    const ext = format.split('/')[1];
-
-    const dataUrl = canvas.toDataURL(format, quality);
-    const link = document.createElement('a');
-    link.download = `${originalFileName}.${ext}`;
-    link.href = dataUrl;
-    link.click();
-  });
-    // JSON Formatter Modal Toggle
-  const jsonModal = document.getElementById('jsonModal');
-  document.getElementById('openJsonModal').addEventListener('click', () => jsonModal.classList.remove('hidden'));
-  document.getElementById('closeJsonModal').addEventListener('click', () => jsonModal.classList.add('hidden'));
-
-  // JSON Formatter & Validator — shared engine.
-  // The same module also powers /tools/json-formatter.html.
-  ToolStackTools.createJsonFormatter(jsonModal);
-    // Base64 Modal Toggle
-  const base64Modal = document.getElementById('base64Modal');
-  document.getElementById('openBase64Modal').addEventListener('click', () => base64Modal.classList.remove('hidden'));
-  document.getElementById('closeBase64Modal').addEventListener('click', () => base64Modal.classList.add('hidden'));
-
-  // Base64 Logic
-  const base64Input = document.getElementById('base64Input');
-  const base64Status = document.getElementById('base64Status');
-  const encodeBtn = document.getElementById('encodeBtn');
-  const decodeBtn = document.getElementById('decodeBtn');
-  const copyBase64Btn = document.getElementById('copyBase64Btn');
-
-  function showBase64Status(message, isError) {
-    base64Status.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20', 'bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
-    if (isError) {
-      base64Status.classList.add('bg-rose-500/10', 'text-rose-400', 'border-rose-500/20');
-      base64Status.textContent = `❌ ${message}`;
-    } else {
-      base64Status.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/20');
-      base64Status.textContent = `✅ ${message}`;
-    }
-  }
-
-  encodeBtn.addEventListener('click', () => {
-    const raw = base64Input.value;
-    if (!raw) return;
-    try {
-      base64Input.value = btoa(unescape(encodeURIComponent(raw)));
-      showBase64Status('Successfully encoded to Base64!', false);
-    } catch (err) {
-      showBase64Status(`Encoding failed: ${err.message}`, true);
-    }
-  });
-
-  decodeBtn.addEventListener('click', () => {
-    const raw = base64Input.value.trim();
-    if (!raw) return;
-    try {
-      base64Input.value = decodeURIComponent(escape(atob(raw)));
-      showBase64Status('Successfully decoded from Base64!', false);
-    } catch (err) {
-      showBase64Status('Invalid Base64 string! Could not decode.', true);
-    }
-  });
-
-  copyBase64Btn.addEventListener('click', () => {
-    if (!base64Input.value) return;
-    navigator.clipboard.writeText(base64Input.value);
-    const originalText = copyBase64Btn.textContent;
-    copyBase64Btn.textContent = '✅ Copied!';
-    setTimeout(() => copyBase64Btn.textContent = originalText, 2000);
-  });
-document.addEventListener('DOMContentLoaded', () => {
-  // --- 1. MODAL OPEN / CLOSE CONTROLS ---
-  const waModal = document.getElementById('waModal');
-  const openWaModal = document.getElementById('openWaModal');
-  const closeWaModal = document.getElementById('closeWaModal');
-
-  if (openWaModal && waModal) {
-    openWaModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      waModal.classList.remove('hidden');
-    });
-  }
-
-  if (closeWaModal && waModal) {
-    closeWaModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      waModal.classList.add('hidden');
-    });
-  }
-
-  if (waModal) {
-    waModal.addEventListener('click', (e) => {
-      if (e.target === waModal) {
-        waModal.classList.add('hidden');
-      }
-    });
-  }
-
-  // --- 2. PLATFORM TAB SWITCHING (WhatsApp vs Instagram) ---
-  let currentPlatform = 'wa';
-  const tabWa = document.getElementById('tabWa');
-  const tabIg = document.getElementById('tabIg');
-  const chatScreen = document.getElementById('waChatScreen');
-  const chatHeader = document.getElementById('chatHeader');
-  const subStatus = document.getElementById('subStatus');
-  const avatarBg = document.getElementById('avatarBg');
-
-  function setPlatform(platform) {
-    currentPlatform = platform;
-    if (platform === 'wa') {
-      tabWa.className = 'flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition';
-      tabIg.className = 'flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition';
-      
-      chatScreen.className = 'bg-[#0b141a] rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]';
-      chatHeader.className = 'bg-[#202c33] px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800';
-      if (!avatarBg.style.backgroundImage) avatarBg.className = 'w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center';
-      if (subStatus) {
-        subStatus.textContent = 'online';
-        subStatus.className = 'text-[10px] text-emerald-400 mt-0.5';
-      }
-    } else {
-      tabIg.className = 'flex-1 py-2 bg-brand-500 text-gray-950 font-bold text-xs rounded-lg transition';
-      tabWa.className = 'flex-1 py-2 text-gray-400 hover:text-gray-200 font-bold text-xs rounded-lg transition';
-      
-      chatScreen.className = 'bg-black rounded-xl overflow-hidden border border-gray-800 shadow-inner flex flex-col h-[380px]';
-      chatHeader.className = 'bg-gray-900 px-3 py-2.5 flex items-center gap-3 text-white border-b border-gray-800';
-      if (!avatarBg.style.backgroundImage) avatarBg.className = 'w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white overflow-hidden bg-cover bg-center p-[2px]';
-      if (subStatus) {
-        subStatus.textContent = 'Active now';
-        subStatus.className = 'text-[10px] text-gray-400 mt-0.5';
-      }
-    }
-  }
-
-  if (tabWa) tabWa.addEventListener('click', () => setPlatform('wa'));
-  if (tabIg) tabIg.addEventListener('click', () => setPlatform('ig'));
-
-  // --- 3. CUSTOM AVATAR & VERIFIED BADGE HANDLERS ---
-  const avatarUpload = document.getElementById('avatarUpload');
-  const avatarInitial = document.getElementById('avatarInitial');
-
-  if (avatarUpload) {
-    avatarUpload.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          avatarBg.style.backgroundImage = `url('${evt.target.result}')`;
-          if (avatarInitial) avatarInitial.classList.add('hidden');
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
-
-  const verifiedToggle = document.getElementById('verifiedToggle');
-  const verifiedBadge = document.getElementById('verifiedBadge');
-
-  if (verifiedToggle) {
-    verifiedToggle.addEventListener('change', (e) => {
-      if (e.target.checked) {
-        verifiedBadge.classList.remove('hidden');
-      } else {
-        verifiedBadge.classList.add('hidden');
-      }
-    });
-  }
-
-  // --- 4. NAME & INITIAL SYNC ---
-  const waContactName = document.getElementById('waContactName');
-  const waPreviewName = document.getElementById('waPreviewName');
-  const themBtnLabel = document.getElementById('themBtnLabel');
-
-  if (waContactName) {
-    waContactName.addEventListener('input', (e) => {
-      const val = e.target.value || 'Contact';
-      if (waPreviewName) waPreviewName.textContent = val;
-      if (themBtnLabel) themBtnLabel.textContent = val;
-      if (avatarUpload && !avatarUpload.files.length && avatarInitial) {
-        avatarInitial.textContent = val.charAt(0).toUpperCase();
-      }
-    });
-  }
-
-  // --- 5. ADD MESSAGES TO CHAT BODY ---
-  const addThemBtn = document.getElementById('addThemBtn');
-  const addMeBtn = document.getElementById('addMeBtn');
-
-  function appendMessage(isMe) {
-    const waMsgInput = document.getElementById('waMsgInput');
-    const waTime = document.getElementById('waTime');
-    const waChatBody = document.getElementById('waChatBody');
-
-    if (!waMsgInput || !waChatBody) return;
-
-    const msgText = waMsgInput.value.trim();
-    if (!msgText) return;
-
-    const timeVal = waTime ? waTime.value || '10:42 AM' : '10:42 AM';
-    const msgRow = document.createElement('div');
-    msgRow.className = `flex ${isMe ? 'justify-end' : 'justify-start'}`;
-
-    if (currentPlatform === 'wa') {
-      // WhatsApp styling: Dark Green for "Me", Dark Gray for "Them"
-      const bubbleBg = isMe ? 'bg-[#005c4b] text-gray-100' : 'bg-[#202c33] text-gray-100';
-      msgRow.innerHTML = `
-        <div class="${bubbleBg} rounded-lg px-2.5 py-1.5 max-w-[80%] shadow">
-          <p class="leading-relaxed">${msgText}</p>
-          <span class="text-[9px] text-gray-400 block text-right mt-0.5">${timeVal}</span>
-        </div>
-      `;
-    } else {
-      // Instagram styling: Gradient for "Me", Dark Gray for "Them"
-      const bubbleBg = isMe ? 'bg-gradient-to-r from-purple-600 to-blue-500 text-white font-normal' : 'bg-[#262626] text-gray-100';
-      msgRow.innerHTML = `
-        <div class="${bubbleBg} rounded-2xl px-3 py-1.5 max-w-[80%]">
-          <p class="leading-relaxed">${msgText}</p>
-        </div>
-      `;
-    }
-
-    waChatBody.appendChild(msgRow);
-    waMsgInput.value = '';
-    waChatBody.scrollTop = waChatBody.scrollHeight;
-  }
-
-  if (addThemBtn) {
-    addThemBtn.onclick = (e) => {
-      e.preventDefault();
-      appendMessage(false);
-    };
-  }
-
-  if (addMeBtn) {
-    addMeBtn.onclick = (e) => {
-      e.preventDefault();
-      appendMessage(true);
-    };
-  }
-
-  // --- 6. EXPORT HD PNG IMAGE ---
-  const downloadWaBtn = document.getElementById('downloadWaBtn');
-  if (downloadWaBtn) {
-    downloadWaBtn.addEventListener('click', () => {
-      if (typeof html2canvas === 'undefined') {
-        alert('html2canvas library is not loaded!');
-        return;
-      }
-      
-      html2canvas(chatScreen, {
-        scale: 3,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: null,
-        logging: false
-      }).then((canvas) => {
-        const link = document.createElement('a');
-        link.download = `${currentPlatform}-hd-chat-${Date.now()}.png`;
-        link.href = canvas.toDataURL('image/png', 1.0);
-        link.click();
-      });
-    });
-  }
-});
-    // --- THUMBNAIL DOWNLOADER LOGIC ---
-  const thumbModal = document.getElementById('thumbModal');
-  const openThumbModal = document.getElementById('openThumbModal');
-  const closeThumbModal = document.getElementById('closeThumbModal');
-
-  // Modal Triggers
-  if (openThumbModal && thumbModal) {
-    openThumbModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      thumbModal.classList.remove('hidden');
-    });
-  }
-
-  if (closeThumbModal && thumbModal) {
-    closeThumbModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      thumbModal.classList.add('hidden');
-    });
-  }
-
-  if (thumbModal) {
-    thumbModal.addEventListener('click', (e) => {
-      if (e.target === thumbModal) {
-        thumbModal.classList.add('hidden');
-      }
-    });
-  }
-
-  // URL Extraction Helpers
-  function parseYouTubeId(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  }
-
-  function parseVimeoId(url) {
-    const regExp = /(?:www\.|player\.)?vimeo\.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/;
-    const match = url.match(regExp);
-    return match ? match[1] : null;
-  }
-
-  // Helper to force cross-origin image download directly to device
-  async function forceDownload(imageUrl, fileName) {
-    try {
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = blobUrl;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(blobUrl);
-    } catch (err) {
-      window.open(imageUrl, '_blank');
-    }
-  }
-
-  // Fetch Logic
-  const fetchThumbBtn = document.getElementById('fetchThumbBtn');
-  const thumbUrlInput = document.getElementById('thumbUrlInput');
-  const thumbError = document.getElementById('thumbError');
-  const thumbResults = document.getElementById('thumbResults');
-
-  if (fetchThumbBtn) {
-    fetchThumbBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const inputVal = thumbUrlInput ? thumbUrlInput.value.trim() : '';
-      
-      if (thumbError) thumbError.classList.add('hidden');
-      if (thumbResults) thumbResults.classList.add('hidden');
-
-      if (!inputVal) {
-        if (thumbError) {
-          thumbError.textContent = 'Please enter a valid YouTube or Vimeo URL/ID.';
-          thumbError.classList.remove('hidden');
-        }
-        return;
-      }
-
-      const ytId = parseYouTubeId(inputVal) || (inputVal.length === 11 ? inputVal : null);
-      const vimeoId = parseVimeoId(inputVal);
-
-      const platformLabel = document.getElementById('thumbPlatformLabel');
-      const idLabel = document.getElementById('thumbIdLabel');
-      const platformIcon = document.getElementById('platformIcon');
-      const imgMax = document.getElementById('imgMaxQuality');
-      const fallback = document.getElementById('imgMaxFallback');
-      const imgHq = document.getElementById('imgHqQuality');
-      const imgMq = document.getElementById('imgMqQuality');
-      const dlMax = document.getElementById('dlMaxBtn');
-      const dlHq = document.getElementById('dlHqBtn');
-      const dlMq = document.getElementById('dlMqBtn');
-
-      if (ytId) {
-        if (platformLabel) platformLabel.textContent = 'YouTube Video';
-        if (idLabel) idLabel.textContent = `ID: ${ytId}`;
-        
-        if (platformIcon) {
-          platformIcon.innerHTML = `
-            <svg class="w-5 h-5 text-red-600 fill-current" viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-          `;
-        }
-
-        const maxRes = `https://img.youtube.com/vi/${ytId}/maxresdefault.jpg`;
-        const hqRes = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
-        const mqRes = `https://img.youtube.com/vi/${ytId}/mqdefault.jpg`;
-
-        if (imgMax) {
-          imgMax.src = maxRes;
-          imgMax.onload = () => {
-            imgMax.classList.remove('hidden');
-            if (fallback) fallback.classList.add('hidden');
-          };
-          imgMax.onerror = () => {
-            imgMax.src = hqRes;
-          };
-        }
-
-        if (imgHq) imgHq.src = hqRes;
-        if (imgMq) imgMq.src = mqRes;
-
-        if (dlMax) dlMax.onclick = (e) => { e.preventDefault(); forceDownload(imgMax.src, `youtube-thumb-max-${ytId}.jpg`); };
-        if (dlHq) dlHq.onclick = (e) => { e.preventDefault(); forceDownload(hqRes, `youtube-thumb-hq-${ytId}.jpg`); };
-        if (dlMq) dlMq.onclick = (e) => { e.preventDefault(); forceDownload(mqRes, `youtube-thumb-mq-${ytId}.jpg`); };
-
-        if (thumbResults) thumbResults.classList.remove('hidden');
-
-      } else if (vimeoId) {
-        if (platformLabel) platformLabel.textContent = 'Vimeo Video';
-        if (idLabel) idLabel.textContent = `ID: ${vimeoId}`;
-
-        if (platformIcon) {
-          platformIcon.innerHTML = `
-            <svg class="w-5 h-5 text-sky-400 fill-current" viewBox="0 0 24 24">
-              <path d="M22.396 7.164c-.093 2.026-1.507 4.8-4.245 8.32-2.817 3.633-5.205 5.449-7.165 5.449-1.22 0-2.253-1.127-3.102-3.383-.58-2.122-1.159-4.243-1.737-6.365-.63-2.254-1.306-3.381-2.026-3.381-.157 0-.702.33-1.637.988l-.988-1.268c1.034-.91 2.052-1.821 3.055-2.733 1.393-1.22 2.433-1.865 3.123-1.936 1.637-.157 2.646.953 3.029 3.332.41 2.56.7 4.152.871 4.776.516 2.121 1.071 3.182 1.666 3.182.47 0 1.181-.74 2.133-2.222.951-1.48 1.46-2.583 1.527-3.31.125-1.187-.34-1.782-1.4-1.782-.5 0-1.022.115-1.564.343 1.026-3.352 2.977-4.978 5.856-4.88 2.122.062 3.118 1.442 2.988 4.14z"/>
-            </svg>
-          `;
-        }
-
-        try {
-          const response = await fetch(`https://vimeo.com/api/v2/video/${vimeoId}.json`);
-          const data = await response.json();
-          if (data && data[0]) {
-            const thumbLarge = data[0].thumbnail_large.replace('_640', '_1280');
-            
-            if (imgMax) {
-              imgMax.src = thumbLarge;
-              imgMax.classList.remove('hidden');
-              if (fallback) fallback.classList.add('hidden');
-            }
-
-            if (imgHq) imgHq.src = data[0].thumbnail_large;
-            if (imgMq) imgMq.src = data[0].thumbnail_medium;
-
-            if (dlMax) dlMax.onclick = (e) => { e.preventDefault(); forceDownload(thumbLarge, `vimeo-thumb-max-${vimeoId}.jpg`); };
-            if (dlHq) dlHq.onclick = (e) => { e.preventDefault(); forceDownload(data[0].thumbnail_large, `vimeo-thumb-hq-${vimeoId}.jpg`); };
-            if (dlMq) dlMq.onclick = (e) => { e.preventDefault(); forceDownload(data[0].thumbnail_medium, `vimeo-thumb-mq-${vimeoId}.jpg`); };
-
-            if (thumbResults) thumbResults.classList.remove('hidden');
-          }
-        } catch (err) {
-          if (thumbError) {
-            thumbError.textContent = 'Could not fetch Vimeo thumbnail. Please check the URL/ID.';
-            thumbError.classList.remove('hidden');
-          }
-        }
-      } else {
-        if (thumbError) {
-          thumbError.textContent = 'Unrecognized YouTube or Vimeo URL format.';
-          thumbError.classList.remove('hidden');
-        }
-      }
-    });
-  }
-
-  // --- AI SERVICE STATUS BOARD LOGIC ---
-  (function () {
-    const statusModal = document.getElementById('statusModal');
-    const openStatusModal = document.getElementById('openStatusModal');
-    const closeStatusModal = document.getElementById('closeStatusModal');
-    const refreshStatusBtn = document.getElementById('refreshStatusBtn');
-    const refreshStatusIcon = document.getElementById('refreshStatusIcon');
-    const statusList = document.getElementById('statusList');
-    const statusOverallDot = document.getElementById('statusOverallDot');
-    const statusOverallText = document.getElementById('statusOverallText');
-    const statusLastChecked = document.getElementById('statusLastChecked');
-
-    if (!statusModal || !openStatusModal || !statusList) return;
-
-    const STATUS_TYPES = {
-      operational: { label: 'Operational', badge: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20', dot: 'bg-emerald-500', weight: 0.78 },
-      degraded:    { label: 'Degraded',    badge: 'bg-amber-500/10 text-amber-400 border-amber-500/20',       dot: 'bg-amber-500',   weight: 0.17 },
-      outage:      { label: 'Outage',      badge: 'bg-rose-500/10 text-rose-400 border-rose-500/20',          dot: 'bg-rose-500',    weight: 0.05 }
-    };
-
-    const services = [
-      { name: 'ChatGPT',     provider: 'OpenAI',        icon: '💬', status: 'operational', uptime: '99.98%', latency: 412 },
-      { name: 'Claude',      provider: 'Anthropic',     icon: '🧠', status: 'operational', uptime: '99.95%', latency: 386 },
-      { name: 'Midjourney',  provider: 'Midjourney',    icon: '🎨', status: 'operational', uptime: '99.71%', latency: 1240 },
-      { name: 'ElevenLabs',  provider: 'ElevenLabs',    icon: '🔊', status: 'operational', uptime: '99.89%', latency: 640 },
-      { name: 'Suno',        provider: 'Suno AI',       icon: '🎵', status: 'degraded',    uptime: '98.42%', latency: 2180 },
-      { name: 'Cursor',      provider: 'Anysphere',     icon: '🖱️', status: 'operational', uptime: '99.93%', latency: 298 }
-    ];
-
-    function randomStatus() {
-      const roll = Math.random();
-      let acc = 0;
-      for (const key in STATUS_TYPES) {
-        acc += STATUS_TYPES[key].weight;
-        if (roll <= acc) return key;
-      }
-      return 'operational';
-    }
-
-    function renderRows() {
-      statusList.innerHTML = services.map(svc => {
-        const type = STATUS_TYPES[svc.status];
-        return `
-          <div class="flex items-center justify-between gap-4 bg-gray-950 border border-gray-800 rounded-xl p-4">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-10 h-10 rounded-xl bg-gray-900 border border-gray-800 flex items-center justify-center text-lg flex-shrink-0">${svc.icon}</div>
-              <div class="min-w-0">
-                <p class="text-sm font-bold text-gray-100 truncate">${svc.name}</p>
-                <p class="text-[11px] text-gray-500">${svc.provider} · Uptime 30d: ${svc.uptime} · ${svc.latency} ms</p>
-              </div>
-            </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border flex-shrink-0 ${type.badge}">
-              <span class="w-1.5 h-1.5 rounded-full ${type.dot}"></span>
-              ${type.label}
-            </span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderOverall() {
-      const hasOutage = services.some(s => s.status === 'outage');
-      const hasDegraded = services.some(s => s.status === 'degraded');
-
-      let text = 'All Systems Operational';
-      let dot = 'bg-emerald-500';
-      let textColor = 'text-emerald-400';
-
-      if (hasOutage) {
-        text = 'Service Disruption Detected';
-        dot = 'bg-rose-500';
-        textColor = 'text-rose-400';
-      } else if (hasDegraded) {
-        text = 'Minor Degradation Noticed';
-        dot = 'bg-amber-500';
-        textColor = 'text-amber-400';
-      }
-
-      statusOverallDot.className = `w-2.5 h-2.5 rounded-full animate-pulse ${dot}`;
-      statusOverallText.textContent = text;
-      statusOverallText.className = `text-sm font-bold ${textColor}`;
-      statusLastChecked.textContent = `Last checked: ${new Date().toLocaleTimeString()}`;
-    }
-
-    function refreshStatus() {
-      refreshStatusBtn.disabled = true;
-      refreshStatusIcon.classList.add('animate-spin');
-      statusOverallText.textContent = 'Checking services...';
-      statusOverallText.className = 'text-sm font-bold text-gray-300';
-      statusOverallDot.className = 'w-2.5 h-2.5 rounded-full animate-pulse bg-gray-500';
-      statusList.classList.add('opacity-50');
-
-      setTimeout(() => {
-        services.forEach(svc => {
-          svc.status = randomStatus();
-          svc.latency = Math.floor(180 + Math.random() * 2200);
-          if (svc.status === 'operational') {
-            svc.uptime = (99.5 + Math.random() * 0.49).toFixed(2) + '%';
-          } else if (svc.status === 'degraded') {
-            svc.uptime = (97.5 + Math.random() * 1.9).toFixed(2) + '%';
-          } else {
-            svc.uptime = (92 + Math.random() * 4).toFixed(2) + '%';
-          }
-        });
-
-        statusList.classList.remove('opacity-50');
-        refreshStatusBtn.disabled = false;
-        refreshStatusIcon.classList.remove('animate-spin');
-        renderRows();
-        renderOverall();
-      }, 900);
-    }
-
-    openStatusModal.addEventListener('click', (e) => {
-      e.preventDefault();
-      statusModal.classList.remove('hidden');
-      renderRows();
-      renderOverall();
-    });
-
-    if (closeStatusModal) {
-      closeStatusModal.addEventListener('click', (e) => {
-        e.preventDefault();
-        statusModal.classList.add('hidden');
-      });
-    }
-
-    statusModal.addEventListener('click', (e) => {
-      if (e.target === statusModal) statusModal.classList.add('hidden');
-    });
-
-    if (refreshStatusBtn) refreshStatusBtn.addEventListener('click', refreshStatus);
-  })();
-
-  // Cold Email Spam-Word Checker — modal wiring only.
-  // The scoring engine lives in assets/tools/spam-word-checker.js and is
-  // shared with /tools/spam-word-checker.html.
-  (function () {
-    const spamModal = document.getElementById('spamModal');
-    const openSpamBtn = document.getElementById('openSpamModal');
-    if (!spamModal || !openSpamBtn) return;
-
-    openSpamBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      spamModal.classList.remove('hidden');
-    });
-
-    document.getElementById('closeSpamModal').addEventListener('click', (e) => {
-      e.preventDefault();
-      spamModal.classList.add('hidden');
-    });
-
-    spamModal.addEventListener('click', (e) => {
-      if (e.target === spamModal) spamModal.classList.add('hidden');
-    });
-
-    ToolStackTools.createSpamChecker(spamModal);
-  })();
-
-  // Script Hook & Retention Checker — modal wiring only.
-  // The scoring engine lives in assets/tools/script-hook-checker.js and is
-  // shared with /tools/script-hook-checker.html.
-  (function () {
-    const hookModal = document.getElementById('hookModal');
-    const openHookBtn = document.getElementById('openHookModal');
-    if (!hookModal || !openHookBtn) return;
-
-    const engine = ToolStackTools.createHookChecker(hookModal);
-
-    openHookBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      hookModal.classList.remove('hidden');
-      engine.focus();
-    });
-
-    document.getElementById('closeHookModal').addEventListener('click', (e) => {
-      e.preventDefault();
-      hookModal.classList.add('hidden');
-    });
-
-    hookModal.addEventListener('click', (e) => {
-      if (e.target === hookModal) hookModal.classList.add('hidden');
-    });
-  })();
-
-  // --- FREE AI TOOLS DIRECTORY LOGIC ---
-  (function () {
-    const dirModal = document.getElementById('aiDirModal');
-    const openDirBtn = document.getElementById('openAiDirModal');
-    if (!dirModal || !openDirBtn) return;
-
-    const closeDirBtn = document.getElementById('closeAiDirModal');
-    const searchEl = document.getElementById('aiDirSearch');
-    const gridEl = document.getElementById('aiDirGrid');
-    const emptyEl = document.getElementById('aiDirEmpty');
-    const countEl = document.getElementById('aiDirCount');
-    const clearBtn = document.getElementById('clearAiDirBtn');
-    const chipEls = dirModal.querySelectorAll('.dir-chip');
-
-    const CATEGORY_STYLES = {
-      Writing: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
-      Coding:  'bg-violet-500/10 text-violet-400 border-violet-500/20',
-      Image:   'bg-pink-500/10 text-pink-400 border-pink-500/20',
-      Video:   'bg-amber-500/10 text-amber-400 border-amber-500/20',
-      Audio:   'bg-teal-500/10 text-teal-400 border-teal-500/20'
-    };
-
-    const TOOLS = [
-      // Writing
-      { name: 'ChatGPT', category: 'Writing', icon: '💬', url: 'https://chatgpt.com',
-        desc: 'General-purpose assistant for drafting, rewriting, brainstorming, and everyday questions. Free tier includes current models with usage caps.',
-        keywords: 'openai gpt chatbot text assistant brainstorm summary' },
-      { name: 'Claude', category: 'Writing', icon: '🧠', url: 'https://claude.ai',
-        desc: 'Anthropic assistant that handles long documents, careful editing, and structured writing. Free tier available.',
-        keywords: 'anthropic long context editing documents analysis' },
-      { name: 'Gemini', category: 'Writing', icon: '✨', url: 'https://gemini.google.com',
-        desc: 'Google assistant with Docs, Gmail, and search integration plus a generous free tier.',
-        keywords: 'google text assistant workspace email' },
-      { name: 'Perplexity', category: 'Writing', icon: '🔎', url: 'https://www.perplexity.ai',
-        desc: 'Answer engine that cites its sources, useful for research and fact-checked first drafts.',
-        keywords: 'search research citations sources fact check' },
-      { name: 'Grammarly', category: 'Writing', icon: '✍️', url: 'https://www.grammarly.com',
-        desc: 'Real-time grammar, clarity, and tone suggestions across the browser. The free plan covers the essentials.',
-        keywords: 'grammar proofreading spelling tone editing' },
-      { name: 'QuillBot', category: 'Writing', icon: '🪶', url: 'https://quillbot.com',
-        desc: 'Paraphrasing, summarizing, and citation helper with a usable free plan.',
-        keywords: 'paraphrase rewrite summarize citation plagiarism' },
-
-      // Coding
-      { name: 'Cursor', category: 'Coding', icon: '🖱️', url: 'https://cursor.com',
-        desc: 'AI-first code editor with codebase chat, multi-file edits, and fast autocomplete. Free tier with limited requests.',
-        keywords: 'ide editor autocomplete codebase agent programming' },
-      { name: 'GitHub Copilot', category: 'Coding', icon: '🐙', url: 'https://github.com/features/copilot',
-        desc: 'In-editor completions and chat across major IDEs, with a free tier for individual developers.',
-        keywords: 'github autocomplete ide programming assistant' },
-      { name: 'Windsurf', category: 'Coding', icon: '🏄', url: 'https://windsurf.com',
-        desc: 'Agentic code editor that plans and applies multi-step changes. Free plan for individuals.',
-        keywords: 'codeium editor agent refactor programming' },
-      { name: 'v0', category: 'Coding', icon: '▲', url: 'https://v0.dev',
-        desc: 'Generates React and Tailwind UI from a text prompt. Free monthly credits included.',
-        keywords: 'vercel react tailwind ui frontend generator' },
-      { name: 'Bolt.new', category: 'Coding', icon: '⚡', url: 'https://bolt.new',
-        desc: 'Prompt-to-app builder that scaffolds and runs a full stack project in the browser. Free daily tokens.',
-        keywords: 'fullstack app generator scaffold browser no code' },
-      { name: 'Replit', category: 'Coding', icon: '🛠️', url: 'https://replit.com',
-        desc: 'Cloud IDE with an AI agent for building and hosting small projects. Free plan available.',
-        keywords: 'cloud ide hosting deploy beginner programming' },
-
-      // Image
-      { name: 'Midjourney', category: 'Image', icon: '🎨', url: 'https://www.midjourney.com',
-        desc: 'Highly stylised, high-fidelity image generation via web app or Discord. Paid plans only, with occasional free trials.',
-        keywords: 'art illustration stylised generation discord' },
-      { name: 'Leonardo AI', category: 'Image', icon: '🖼️', url: 'https://leonardo.ai',
-        desc: 'Daily free credits for image generation, upscaling, and canvas editing.',
-        keywords: 'art generation upscale canvas credits' },
-      { name: 'Ideogram', category: 'Image', icon: '🔤', url: 'https://ideogram.ai',
-        desc: 'Best-in-class text rendering inside generated images, with free daily generations.',
-        keywords: 'text in image typography logo poster generation' },
-      { name: 'Microsoft Designer', category: 'Image', icon: '🪟', url: 'https://designer.microsoft.com',
-        desc: 'DALL-E powered image creation plus design templates. Free with a Microsoft account.',
-        keywords: 'dalle bing creator design templates social graphics' },
-      { name: 'Playground', category: 'Image', icon: '🎠', url: 'https://playground.com',
-        desc: 'Free-tier image generator with canvas editing, filters, and templates.',
-        keywords: 'generation canvas editing filters templates' },
-      { name: 'remove.bg', category: 'Image', icon: '✂️', url: 'https://www.remove.bg',
-        desc: 'One-click automatic background removal. Free for standard-resolution downloads.',
-        keywords: 'background removal cutout transparent product photo' },
-
-      // Video
-      { name: 'Runway', category: 'Video', icon: '🎬', url: 'https://runwayml.com',
-        desc: 'Text and image to video generation with editing tools. Free credits refreshed monthly.',
-        keywords: 'generation text to video editing vfx diffusion' },
-      { name: 'Pika', category: 'Video', icon: '🐰', url: 'https://pika.art',
-        desc: 'Prompt-to-video generation with playful effects and lip sync. Free starter credits.',
-        keywords: 'generation effects lip sync short clips' },
-      { name: 'Luma Dream Machine', category: 'Video', icon: '🌙', url: 'https://lumalabs.ai/dream-machine',
-        desc: 'Smooth text and image to video generation with free monthly generations.',
-        keywords: 'generation image to video camera motion' },
-      { name: 'Kling AI', category: 'Video', icon: '🎥', url: 'https://klingai.com',
-        desc: 'Image-to-video and text-to-video with daily free credits and strong motion quality.',
-        keywords: 'generation image to video motion clips' },
-      { name: 'CapCut', category: 'Video', icon: '📱', url: 'https://www.capcut.com',
-        desc: 'Free editor with auto-captions, background removal, and short-form templates.',
-        keywords: 'editor captions subtitles templates tiktok reels shorts' },
-      { name: 'HeyGen', category: 'Video', icon: '🧑💼', url: 'https://www.heygen.com',
-        desc: 'AI avatars, voiceover, and video translation. Free plan with limited minutes.',
-        keywords: 'avatar spokesperson translation voiceover talking head' },
-
-      // Audio
-      { name: 'ElevenLabs', category: 'Audio', icon: '🔊', url: 'https://elevenlabs.io',
-        desc: 'Realistic text-to-speech and voice cloning. Free monthly character quota.',
-        keywords: 'text to speech tts voiceover dubbing voice clone' },
-      { name: 'Suno', category: 'Audio', icon: '🎵', url: 'https://suno.com',
-        desc: 'Generates full songs with vocals from a text prompt. Free daily credits.',
-        keywords: 'music generation song vocals lyrics' },
-      { name: 'Udio', category: 'Audio', icon: '🎼', url: 'https://www.udio.com',
-        desc: 'Music generation with finer control over structure and style. Free monthly credits.',
-        keywords: 'music generation song instrumental remix' },
-      { name: 'Adobe Podcast', category: 'Audio', icon: '🎧', url: 'https://podcast.adobe.com',
-        desc: 'Free browser-based AI audio cleanup that makes voice recordings sound studio-quality.',
-        keywords: 'audio enhance cleanup noise removal voice recording' }
-    ];
-
-    let activeCategory = 'all';
-
-    function toolCard(tool) {
-      const badge = CATEGORY_STYLES[tool.category] || 'bg-gray-800 text-gray-300 border-gray-700';
-      return `
-        <div class="bg-gray-950 border border-gray-800 rounded-xl p-4 flex flex-col justify-between hover:border-brand-500/40 transition-colors">
-          <div>
-            <div class="flex items-start justify-between gap-3 mb-3">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <span class="text-xl flex-shrink-0">${tool.icon}</span>
-                <p class="text-sm font-bold text-gray-100 truncate">${tool.name}</p>
-              </div>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border flex-shrink-0 ${badge}">${tool.category}</span>
-            </div>
-            <p class="text-xs text-gray-400 leading-relaxed">${tool.desc}</p>
-          </div>
-          <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-1.5 w-full px-3 py-2 rounded-lg bg-gray-900 hover:bg-brand-500 text-gray-300 hover:text-gray-950 border border-gray-800 hover:border-brand-500 text-[11px] font-bold transition">
-            Visit Site ↗
-          </a>
-        </div>
-      `;
-    }
-
-    function renderChips() {
-      chipEls.forEach(chip => {
-        const on = chip.dataset.category === activeCategory;
-        chip.className = 'dir-chip px-3 py-1.5 rounded-xl text-[11px] font-semibold transition ' +
-          (on ? 'bg-brand-500 text-gray-950 shadow-lg' : 'bg-gray-900 text-gray-400 hover:text-gray-200 border border-gray-800');
-      });
-    }
-
-    function render() {
-      const query = (searchEl.value || '').trim().toLowerCase();
-      const matches = TOOLS.filter(tool => {
-        const matchesCategory = activeCategory === 'all' || tool.category === activeCategory;
-        const haystack = (tool.name + ' ' + tool.category + ' ' + tool.desc + ' ' + tool.keywords).toLowerCase();
-        return matchesCategory && (!query || haystack.includes(query));
-      });
-
-      gridEl.innerHTML = matches.map(toolCard).join('');
-      emptyEl.classList.toggle('hidden', matches.length > 0);
-      countEl.textContent = matches.length === TOOLS.length
-        ? 'Showing all ' + TOOLS.length + ' tools'
-        : 'Showing ' + matches.length + ' of ' + TOOLS.length + ' tools';
-    }
-
-    searchEl.addEventListener('input', render);
-
-    // The page-level "/" shortcut focuses the main tool search; keep keystrokes local here.
-    searchEl.addEventListener('keydown', (e) => {
-      e.stopPropagation();
-      if (e.key === 'Escape') dirModal.classList.add('hidden');
-    });
-
-    chipEls.forEach(chip => {
-      chip.addEventListener('click', () => {
-        activeCategory = chip.dataset.category;
-        renderChips();
-        render();
-      });
-    });
-
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        searchEl.value = '';
-        activeCategory = 'all';
-        renderChips();
-        render();
-        searchEl.focus();
-      });
-    }
-
-    openDirBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dirModal.classList.remove('hidden');
-      renderChips();
-      render();
-      searchEl.focus();
-    });
-
-    if (closeDirBtn) {
-      closeDirBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        dirModal.classList.add('hidden');
-      });
-    }
-
-    dirModal.addEventListener('click', (e) => {
-      if (e.target === dirModal) dirModal.classList.add('hidden');
-    });
-  })();
-
-</script>
+  </script>
 
   <!-- Adsterra Native Ad Banner -->
   <script async="async" data-cfasync="false" src="https://pl31389964.profitableratecpmnetwork.com/a75640cb3122b093cb9dfadf47671621/invoke.js"></script>

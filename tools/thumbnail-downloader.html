@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>YouTube Thumbnail Downloader — HD &amp; 4K Grabber | ToolStack AI</title>
+  <meta name="description" content="Download the thumbnail of any YouTube or Vimeo video in maximum, HD or medium quality. Paste a link, preview all sizes, and save the one you need. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/thumbnail-downloader.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="YouTube Thumbnail Downloader — HD &amp; 4K Grabber" />
+  <meta property="og:description" content="Paste a YouTube or Vimeo link and download its thumbnail in every available resolution. Free." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/thumbnail-downloader.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="YouTube Thumbnail Downloader — HD &amp; 4K Grabber" />
+  <meta name="twitter:description" content="Grab any YouTube or Vimeo thumbnail in max, HD or medium quality." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Video Thumbnail Downloader",
+    "url": "https://toolstackai.xyz/tools/thumbnail-downloader.html",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Download the thumbnail image of any YouTube or Vimeo video in maximum, HD or medium resolution.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is it legal to download someone else's thumbnail?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The image is copyrighted by the video's creator, and downloading it does not transfer any rights to you. Personal reference, mood boards and research are normally fine. Republishing it on your own video, site or thumbnail is not, unless you have the creator's permission or a licence. If in doubt, ask — most creators say yes." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the maximum-resolution thumbnail fall back to a smaller one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "YouTube only generates the 1280x720 maxresdefault image for videos uploaded in 720p or higher. For older or low-resolution uploads that file simply does not exist, so the tool detects the failure and shows the 480x360 high-quality image instead of a broken frame." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the download button opens the image in a new tab instead?",
+        "acceptedAnswer": { "@type": "Answer", "text": "YouTube serves thumbnails without a CORS header, so the page cannot always read the bytes to save them directly. When that happens the tool opens the full-size image in a new tab, where you can right-click and choose Save image as. The result is identical." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <div id="google_translate_element" class="text-xs"></div>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Thumbnail Downloader</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Video Thumbnail Downloader</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Paste a YouTube or Vimeo link and get its thumbnail in every resolution the platform offers — maximum, HD and
+    medium — ready to preview and save.
+  </p>
+
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <div class="flex-1">
+        <label for="thumbUrlInput" class="sr-only">Video URL</label>
+        <input type="text" id="thumbUrlInput" placeholder="https://www.youtube.com/watch?v=... or a Vimeo link"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500" />
+      </div>
+      <button id="fetchThumbBtn" type="button" class="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition whitespace-nowrap">
+        Get Thumbnails
+      </button>
+    </div>
+
+    <p id="thumbError" class="hidden mt-3 text-xs font-medium text-rose-400" role="alert"></p>
+
+    <div id="thumbResults" class="hidden mt-6 space-y-5">
+
+      <div class="flex items-center gap-3 pb-4 border-b border-gray-800">
+        <span id="platformIcon" aria-hidden="true"></span>
+        <div>
+          <p id="thumbPlatformLabel" class="text-sm font-bold text-gray-100">YouTube Video</p>
+          <p id="thumbIdLabel" class="text-[10px] text-gray-500 font-mono">ID:</p>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-xs font-bold text-gray-300 mb-2">Maximum Resolution</p>
+        <div class="relative rounded-xl overflow-hidden border border-gray-800 bg-gray-950 aspect-video flex items-center justify-center">
+          <img id="imgMaxQuality" alt="Video thumbnail at maximum resolution" class="hidden w-full h-full object-cover" />
+          <p id="imgMaxFallback" class="text-xs text-gray-500">Loading preview…</p>
+        </div>
+        <button id="dlMaxBtn" type="button" class="mt-2 w-full py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          Download Maximum Quality
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <p class="text-xs font-bold text-gray-300 mb-2">High Quality <span class="text-gray-500 font-normal">(480×360)</span></p>
+          <img id="imgHqQuality" alt="Video thumbnail at high quality" class="w-full rounded-xl border border-gray-800 bg-gray-950 aspect-video object-cover" />
+          <button id="dlHqBtn" type="button" class="mt-2 w-full py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">Download HD</button>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-gray-300 mb-2">Medium Quality <span class="text-gray-500 font-normal">(320×180)</span></p>
+          <img id="imgMqQuality" alt="Video thumbnail at medium quality" class="w-full rounded-xl border border-gray-800 bg-gray-950 aspect-video object-cover" />
+          <button id="dlMqBtn" type="button" class="mt-2 w-full py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">Download Medium</button>
+        </div>
+      </div>
+
+      <!-- Inside #thumbResults on purpose: the support/share block appears with
+           the results instead of needing its own reveal call. -->
+      <div data-ts-result-actions="thumbnail-downloader" class="pt-2 space-y-4"></div>
+    </div>
+
+    <p class="mt-5 text-[10px] text-gray-500">
+      Thumbnails of videos that are private, deleted or age-restricted will not load. The image stays the property of
+      its creator.
+    </p>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Every video on YouTube and Vimeo has a set of thumbnail images at fixed addresses. This tool works out those
+          addresses from the link you paste and lays the available sizes side by side, so you can see the maximum,
+          high and medium versions, compare them, and save the one you want. Nothing is scraped and nothing is stored —
+          the images are served directly by the platform, and your browser does the fetching.
+        </p>
+        <p>
+          Knowing the limits saves confusion. YouTube only generates its 1280×720 maximum-resolution image for videos
+          uploaded at 720p or above, so on an older or low-resolution upload that size does not exist and the tool
+          quietly falls back to 480×360. Downloading is also subject to the platform's CORS policy, so on some setups
+          the save button opens the image in a new tab rather than saving it directly — that is a browser rule, not a
+          fault in the tool.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Paste the full video URL — a <code class="text-gray-300">youtube.com/watch?v=</code> link, a <code class="text-gray-300">youtu.be</code> short link, or a Vimeo video URL.</li>
+        <li>Press <strong class="text-gray-200">Enter</strong> or click <strong class="text-gray-200">Get Thumbnails</strong>. A bare 11-character YouTube ID also works if you already have one.</li>
+        <li>Check the maximum-resolution preview. If the video is older, it will already have dropped to the next size down — the HD and medium frames below are always available.</li>
+        <li>Click the download button under the size you want. If the browser opens the image in a new tab instead, right-click it and choose <em>Save image as</em>.</li>
+        <li>Rename the file before you file it — the platform's filenames are long and similar.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Rebuilding your own thumbnails</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Pull down the current image before replacing it, so you keep a copy of what worked.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Competitor and niche research</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Collect the thumbnails ranking in your niche to study the patterns in colour, text and framing.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Embedding a video preview</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Use the still as a lightweight link preview instead of loading a full player on your page.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Presentations and newsletters</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Drop a recognisable still into a deck or email so people know which video you mean.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is it legal to download someone else's thumbnail?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            The image is copyrighted by the video's creator, and downloading it does not transfer any rights to you.
+            Personal reference, mood boards and research are normally fine. Republishing it on your own video, site or
+            thumbnail is not, unless you have the creator's permission or a licence. If in doubt, ask — most creators
+            say yes.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does the maximum-resolution thumbnail fall back to a smaller one?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            YouTube only generates the 1280×720 <code class="text-gray-300">maxresdefault</code> image for videos
+            uploaded in 720p or higher. For older or low-resolution uploads that file simply does not exist, so the tool
+            detects the failure and shows the 480×360 high-quality image instead of a broken frame.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What if the download button opens the image in a new tab instead?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            YouTube serves thumbnails without a CORS header, so the page cannot always read the bytes to save them
+            directly. When that happens the tool opens the full-size image in a new tab, where you can right-click and
+            choose <em>Save image as</em>. The result is identical.
+          </p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/image-converter.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">Image Converter &amp; WebP Optimizer</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Convert the downloaded JPEG to WebP and cut its size before you upload it.</p>
+        </a>
+        <a href="/tools/social-chat-generator.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">Social Chat Generator</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Mock up WhatsApp and Instagram conversations as PNGs.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/thumbnail-downloader.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createThumbnailDownloader(root);
+    }
+  })();
+</script>
+
+</body>
+</html>
