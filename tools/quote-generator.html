@@ -135,13 +135,18 @@
       </div>
 
       <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
         <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
            class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
            aria-label="Support ToolStack AI">
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
-
-        <div id="google_translate_element" class="text-xs"></div>
 
         <!-- Both glyphs are always present; toolstack.css shows one based on
              <html class="dark">, so the right icon paints on the first frame. -->

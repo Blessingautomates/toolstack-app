@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Meta Description Generator — Free SEO Description Writer | ToolStack AI</title>
+  <meta name="description" content="Write click-worthy meta descriptions from a keyword and a one-line page summary. Get five variants with live character counts and a Google snippet preview. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/meta-description-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Meta Description Generator — Free SEO Description Writer" />
+  <meta property="og:description" content="Turn a keyword and a page summary into five ready-to-paste meta descriptions, with live counts and a snippet preview." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/meta-description-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Meta Description Generator — Free SEO Description Writer" />
+  <meta name="twitter:description" content="Turn a keyword and a page summary into five ready-to-paste meta descriptions." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Meta Description Writer",
+    "url": "https://toolstackai.xyz/tools/meta-description-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Write and generate click-worthy meta descriptions from a keyword and a page topic, with character counts and a live Google snippet preview.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long should a meta description be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Aim for 120 to 158 characters. Google truncates the snippet by pixel width at roughly 920 pixels on desktop, which lands near 158 characters for average-width text. Under about 120 characters you are leaving persuasion on the table but nothing breaks; over 158 the end of your sentence is cut off mid-thought." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Google always use the meta description I write?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Google uses your description most of the time, but it will rewrite the snippet when the query is better answered by text on the page, or when it judges your description to be low quality or duplicated across pages. Writing a specific, honest description for each page is the best way to keep control of it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the generated descriptions unique, or are they templates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They are templates filled with the exact words you supply, not an AI model writing original prose. That is deliberate: it means every sentence is factually something you told the tool, so nothing is invented about your product. The trade-off is that you should still edit the result, because no template knows your page better than you do." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Meta Description Writer</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Meta Description Writer</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Describe your page in one line, add the keyword you are targeting, and get five ready-to-paste meta descriptions with real
+    character counts and a snippet preview. Nothing is invented about your product — every sentence is built from what you typed.
+  </p>
+
+  <!-- Tool widget. Ids match the engine in assets/tools/meta-description-generator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="mdStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="sm:col-span-2">
+        <label for="mdKeyword" class="block text-xs text-gray-400 mb-1 font-mono">Primary keyword:</label>
+        <input id="mdKeyword" type="text" placeholder="invoice generator"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="mdTopic" class="block text-xs text-gray-400 mb-1 font-mono">What the page offers (one sentence, no full stop):</label>
+        <input id="mdTopic" type="text" placeholder="Create and send a professional invoice in under a minute"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="mdSecondary" class="block text-xs text-gray-400 mb-1 font-mono">Secondary keywords (optional, comma separated):</label>
+        <input id="mdSecondary" type="text" placeholder="freelancer billing, PDF invoice, payment terms"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+
+      <div>
+        <label for="mdCta" class="block text-xs text-gray-400 mb-1 font-mono">Call to action:</label>
+        <select id="mdCta"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="Try it free.">Try it free.</option>
+          <option value="Free, no signup required.">Free, no signup required.</option>
+          <option value="Start in seconds.">Start in seconds.</option>
+          <option value="Read the full guide.">Read the full guide.</option>
+          <option value="See how it works.">See how it works.</option>
+          <option value="Get started today.">Get started today.</option>
+          <option value="">No call to action</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="mdTone" class="block text-xs text-gray-400 mb-1 font-mono">Tone:</label>
+        <select id="mdTone"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="neutral">Neutral — plain statement of what it is</option>
+          <option value="benefit">Benefit-led — lead with the outcome</option>
+          <option value="howto">How-to — match instructional queries</option>
+          <option value="question">Question — mirror what people search</option>
+        </select>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="mdTitle" class="block text-xs text-gray-400 mb-1 font-mono">Page title (optional, shown above the preview):</label>
+        <input id="mdTitle" type="text" placeholder="Free Invoice Generator for Freelancers"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-gray-800">
+      <button id="mdGenerateBtn" type="button"
+        class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+        ✍️ Generate Descriptions
+      </button>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="mdResults" class="hidden mt-5 space-y-5">
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Google result preview</p>
+        <div class="bg-gray-950 border border-gray-800 rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-[10px] font-bold text-gray-400">TS</div>
+            <div class="min-w-0">
+              <p class="text-[11px] text-gray-300 leading-tight">ToolStack AI</p>
+              <p class="text-[10px] text-gray-500 leading-tight">https://toolstackai.xyz</p>
+            </div>
+          </div>
+          <p id="mdSerpTitle" class="text-base text-sky-400 leading-snug break-words">Your page title appears here</p>
+          <p id="mdSerpDesc" class="text-xs text-gray-400 mt-1 leading-relaxed"></p>
+        </div>
+        <p class="text-[10px] text-gray-500 mt-2">Click any variant below to load it into this preview.</p>
+      </div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Variants</p>
+        <ul id="mdCandidates" class="space-y-3"></ul>
+      </div>
+
+      <div data-ts-result-actions="meta-description-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          A meta description is the two lines of grey text under your headline in a Google result. It is not a ranking factor, but it
+          is the copy that decides whether someone clicks your result or the one above it — which makes it the highest-leverage
+          writing on the page for anything already ranking. This tool takes a one-line summary of your page and a target keyword,
+          then composes five variants around them at different lengths and angles.
+        </p>
+        <p>
+          The variants are templates filled with your own words, not prose invented by a language model. That is a deliberate
+          constraint: it means the tool can never state a fact about your product that you did not supply. The trade-off is real —
+          a template does not know your page, so treat the output as a strong first draft to edit rather than a finished tag. And
+          remember Google rewrites descriptions it judges unhelpful for a given query, so none of this guarantees the snippet you see.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Enter the primary keyword you want the page to rank for. It is woven into the variants so the snippet bolds the phrase someone searched.</li>
+        <li>Write one sentence describing what the page actually offers. No full stop, no marketing throat-clearing — just the substance.</li>
+        <li>Add secondary keywords if you have them, choose a call to action and a tone, then click <strong class="text-gray-200">Generate Descriptions</strong>.</li>
+        <li>Each variant shows its character count and a colour: green inside 120–158, amber when short, rose when it will be truncated.</li>
+        <li>Click a variant to load it into the snippet preview, then copy the one that reads best — usually the middle length, not the longest.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Rewriting thin snippets</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Pages where Google is writing its own snippet because yours is missing or duplicated across the site.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Product and service pages</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Lead with the outcome and end with a call to action — the two things a template handles well and a blank page does not.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Bulk page work</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Write 40 category descriptions in an afternoon without every one starting with the same four words.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A/B testing headlines</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Generate four angles on the same page and rotate them monthly against click-through rate in Search Console.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How long should a meta description be?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Aim for 120 to 158 characters. Google truncates the snippet by pixel width at roughly 920 pixels on desktop, which lands
+            near 158 characters for average-width text. Under about 120 characters you are leaving persuasion on the table but nothing
+            breaks; over 158 the end of your sentence gets cut off mid-thought, which reads as careless.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does Google always use the meta description I write?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            No. Google uses your description most of the time, but it rewrites the snippet when the query is better answered by text on
+            the page, or when it judges your description low quality or duplicated across many pages. Writing a specific, honest
+            description for every page is the best way to keep control of it — generic ones are the first to be replaced.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Are the generated descriptions unique, or are they templates?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            They are templates filled with the exact words you supply, not an AI model writing original prose. That is deliberate: it
+            means every sentence is factually something you told the tool, so nothing is invented about your product. The trade-off is
+            that you should still edit the result — a template does not know your page better than you do, and two pages given similar
+            inputs will produce similar output.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/meta-description-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createMetaDescriptionGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

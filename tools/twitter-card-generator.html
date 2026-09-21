@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Twitter Card Generator — Free X Card Meta Tags | ToolStack AI</title>
+  <meta name="description" content="Free Twitter/X card generator: build summary and summary_large_image meta tags, then preview the exact card your link will render in a timeline. No signup required." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/twitter-card-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Twitter Card Generator — Free X Card Meta Tags" />
+  <meta property="og:description" content="Build Twitter/X card tags and preview the timeline card before you post the link. Runs entirely in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/twitter-card-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Twitter Card Generator — Free X Card Meta Tags" />
+  <meta name="twitter:description" content="Build Twitter/X card tags and preview the timeline card before you post the link." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Twitter/X Card Generator",
+    "url": "https://toolstackai.xyz/tools/twitter-card-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Generate Twitter/X card meta tags for summary and large-image previews, with a live mockup of the timeline card your link will produce.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between summary and summary_large_image?",
+        "acceptedAnswer": { "@type": "Answer", "text": "summary renders a small square thumbnail to the left of the title, which suits a logo, a headshot or a podcast cover. summary_large_image renders a wide banner above the title, which suits a product shot, a chart or a blog header. Large image cards get noticeably more taps because the picture occupies far more of the timeline." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I still need Open Graph tags if I have Twitter Card tags?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. X falls back to Open Graph when the twitter: tags are absent, but every other platform that reads Open Graph — Facebook, LinkedIn, WhatsApp, Slack, Discord — ignores twitter: tags entirely. Ship both blocks, and make sure the two descriptions agree so a share never looks inconsistent." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my card show the wrong image or no image at all?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cards are cached per URL, so an old scrape keeps winning until you force a refresh with X's Card Validator. The other common causes are a relative image URL, an image over 5MB, and a file format X does not accept. Use an absolute https URL to a JPG, PNG or WebP under 5MB and re-validate." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Twitter/X Card Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Twitter/X Card Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Build the <code class="text-brand-400 font-mono text-xs">twitter:</code> meta tags that control how your link renders when
+    someone posts it on X — and watch the card update as you type, so you find out it looks wrong here rather than after you hit post.
+  </p>
+
+  <!-- Tool widget. Ids match the engine in assets/tools/twitter-card-generator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="tcStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- ------------------------------------------------------------ form -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2">
+          <label for="tcCardType" class="block text-xs text-gray-400 mb-1 font-mono">twitter:card</label>
+          <select id="tcCardType"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="summary_large_image">summary_large_image — wide banner above the title</option>
+            <option value="summary">summary — small square thumbnail beside the title</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="tcTitle" class="block text-xs text-gray-400 mb-1 font-mono">twitter:title</label>
+          <input id="tcTitle" type="text" placeholder="Free Invoice Generator for Freelancers"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="tcDescription" class="block text-xs text-gray-400 mb-1 font-mono">twitter:description</label>
+          <textarea id="tcDescription" rows="3" placeholder="Create and send professional invoices in under a minute. Free, no signup."
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="tcImage" class="block text-xs text-gray-400 mb-1 font-mono">twitter:image</label>
+          <input id="tcImage" type="url" placeholder="https://example.com/card.png"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">Absolute https URL. 1200×628 for a large card, at least 400×400 for a summary card.</p>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="tcImageAlt" class="block text-xs text-gray-400 mb-1 font-mono">twitter:image:alt</label>
+          <input id="tcImageAlt" type="text" placeholder="A screenshot of the invoice builder"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="tcUrl" class="block text-xs text-gray-400 mb-1 font-mono">Page URL (for the preview)</label>
+          <input id="tcUrl" type="url" placeholder="https://example.com/free-invoice-generator"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <label for="tcSite" class="block text-xs text-gray-400 mb-1 font-mono">twitter:site</label>
+          <input id="tcSite" type="text" placeholder="@toolstackai"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">The site's own handle.</p>
+        </div>
+
+        <div>
+          <label for="tcCreator" class="block text-xs text-gray-400 mb-1 font-mono">twitter:creator</label>
+          <input id="tcCreator" type="text" placeholder="@yourhandle"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">The author's handle, for attribution.</p>
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------------- preview -->
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Live card preview</p>
+
+        <div class="rounded-2xl border border-gray-800 bg-gray-950 p-3">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs font-bold text-gray-400">TS</div>
+            <div class="min-w-0">
+              <p class="text-xs font-bold text-gray-200 truncate">ToolStack AI</p>
+              <p id="tcPreviewHandle" class="text-[10px] text-gray-500 truncate">@toolstackai</p>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-300 mb-2">Check this out 👇</p>
+
+          <!-- Large-image layout: banner on top. Hidden when summary is chosen. -->
+          <div id="tcPreviewLarge" class="rounded-xl border border-gray-800 overflow-hidden">
+            <div id="tcPreviewLargeImageWrap" class="hidden aspect-[1.91/1] bg-gray-900 border-b border-gray-800 overflow-hidden">
+              <img id="tcPreviewLargeImage" alt="" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-3">
+              <p id="tcPreviewLargeTitle" class="text-xs font-bold text-gray-100 leading-snug">Your page title appears here</p>
+              <p id="tcPreviewLargeDesc" class="text-[11px] text-gray-400 mt-1 leading-relaxed">Your description appears here.</p>
+              <p id="tcPreviewLargeUrl" class="text-[10px] text-gray-500 mt-1 truncate">example.com</p>
+            </div>
+          </div>
+
+          <!-- Summary layout: thumbnail beside the text. -->
+          <div id="tcPreviewSmall" class="hidden rounded-xl border border-gray-800 overflow-hidden flex">
+            <div class="flex-1 p-3 min-w-0">
+              <p id="tcPreviewSmallTitle" class="text-xs font-bold text-gray-100 leading-snug">Your page title appears here</p>
+              <p id="tcPreviewSmallDesc" class="text-[11px] text-gray-400 mt-1 leading-relaxed">Your description appears here.</p>
+              <p id="tcPreviewSmallUrl" class="text-[10px] text-gray-500 mt-1 truncate">example.com</p>
+            </div>
+            <div id="tcPreviewSmallImageWrap" class="hidden w-24 flex-shrink-0 bg-gray-900 border-l border-gray-800 overflow-hidden">
+              <img id="tcPreviewSmallImage" alt="" class="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+
+        <p class="text-[10px] text-gray-500 mt-2 leading-relaxed">
+          An approximation of the timeline card. X crops to the aspect ratio in the tag, so a source image that is not already
+          1.91:1 will be trimmed from the centre.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t border-gray-800">
+      <div class="flex gap-2">
+        <button id="tcGenerateBtn" type="button"
+          class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          ⚙️ Generate Card Tags
+        </button>
+        <button id="tcCopyBtn" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          📋 Copy
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="tcResults" class="hidden mt-5 space-y-5">
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your Twitter Card block</p>
+        <pre id="tcOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 text-[11px] text-brand-300 font-mono overflow-x-auto whitespace-pre leading-relaxed"></pre>
+      </div>
+
+      <div data-ts-result-actions="twitter-card-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          X reads a small set of <code class="text-brand-400 font-mono text-xs">twitter:</code> meta tags to decide how a shared link
+          looks. Without them it falls back to your Open Graph tags, and if those are missing too it renders a bare URL with no image —
+          which in a timeline is close to invisible. This tool writes the tags and mocks up the card beside the form so you can see the
+          result before you ship it.
+        </p>
+        <p>
+          Everything is assembled locally in your browser; nothing is uploaded. The limitation worth knowing is caching: X stores a
+          card per URL, so if you fix your tags after the link has already been posted, the old card can keep appearing until you
+          re-validate the URL with X's Card Validator. This tool cannot do that step for you.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Choose <strong class="text-gray-200">summary_large_image</strong> for a wide banner — the right call for product shots, charts and blog headers. Choose <strong class="text-gray-200">summary</strong> for a small square thumbnail, which suits logos and podcast art.</li>
+        <li>Write a title short enough to survive the card. Around 70 characters is where X starts truncating on mobile.</li>
+        <li>Paste an absolute <code class="font-mono text-xs">https</code> image URL. Match the aspect ratio to the card type — 1.91:1 for large image, square for summary.</li>
+        <li>Add your handle as <code class="font-mono text-xs">twitter:site</code> so the card attributes the link to your account.</li>
+        <li>Click <strong class="text-gray-200">Generate Card Tags</strong>, copy the block into your page head, then validate the live URL with X's Card Validator to clear the cache.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Launching a new page</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Get the card right before the first person shares it, because the cached version is what sticks.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Newsletter and blog promotion</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A large-image card roughly doubles the vertical space your link occupies in a timeline, which is the cheapest reach you will get.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Podcast and profile links</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A summary card with square cover art reads as deliberate where a stretched banner reads as broken.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Diagnosing a broken card</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Rebuild the block here, then compare it line by line with the live page to spot a missing tag or a relative image path.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What is the difference between summary and summary_large_image?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            <code class="font-mono text-xs">summary</code> renders a small square thumbnail to the left of the title, which suits a
+            logo, a headshot or podcast cover art. <code class="font-mono text-xs">summary_large_image</code> renders a wide banner
+            above the title, which suits a product shot, a chart or a blog header. Large-image cards consistently get more taps because
+            the picture occupies far more of the timeline.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Do I still need Open Graph tags if I have Twitter Card tags?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Yes. X falls back to Open Graph when the <code class="font-mono text-xs">twitter:</code> tags are absent, but every other
+            platform that reads Open Graph — Facebook, LinkedIn, WhatsApp, Slack, Discord — ignores
+            <code class="font-mono text-xs">twitter:</code> tags entirely. Ship both blocks, and keep the two descriptions consistent
+            so the same link never looks like two different pages depending on where it is shared.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does my card show the wrong image or no image at all?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Cards are cached per URL, so an old scrape keeps winning until you force a refresh with X's Card Validator. The other
+            common causes are a relative image URL, an image over 5MB, and a format X does not accept. Use an absolute
+            <code class="font-mono text-xs">https</code> URL to a JPG, PNG or WebP under 5MB, and re-validate after every change.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/twitter-card-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createTwitterCardGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

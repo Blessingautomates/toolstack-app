@@ -124,8 +124,12 @@ body { top: 0 !important; }
 .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
 /* The gadget is Google's own markup, so this is deliberately loose: the goal is
-   only to stop it looking like a stray white box in the nav bar. */
+   only to stop it looking like a stray white box in the nav bar.
+   The wrapper in partials/header.html owns the border, radius and padding (in
+   Tailwind utilities that the light theme already remaps), so everything inside
+   is stripped back to bare content and inherits the wrapper's colours. */
 #google_translate_element { line-height: 1; }
+#google_translate_element:hover { border-color: #F59E0B; }
 #google_translate_element .goog-te-gadget {
   font-family: inherit;
   font-size: 0;
@@ -133,13 +137,11 @@ body { top: 0 !important; }
 }
 #google_translate_element .goog-te-gadget-simple {
   background: transparent !important;
-  border: 1px solid #1f2937 !important;
-  border-radius: 0.75rem !important;
-  padding: 0.4rem 0.5rem !important;
+  border: 0 !important;
+  padding: 0 !important;
   line-height: 1 !important;
   white-space: nowrap;
 }
-#google_translate_element .goog-te-gadget-simple:hover { border-color: #F59E0B !important; }
 #google_translate_element .goog-te-gadget-icon {
   margin: 0 0.25rem 0 0 !important;
   filter: grayscale(1) brightness(1.6);
@@ -148,7 +150,20 @@ body { top: 0 !important; }
 #google_translate_element .goog-te-menu-value span { color: #9ca3af !important; }
 #google_translate_element .goog-te-menu-value img { display: none; }
 
-html:not(.dark) #google_translate_element .goog-te-gadget-simple { border-color: #e2e8f0 !important; }
+/* Older inline layouts wrap the gadget in a table. Left alone it inherits the
+   page's body typography and blows the header height out; neutralise it. */
+#google_translate_element table {
+  display: inline;
+  border-collapse: collapse;
+  background: transparent !important;
+}
+#google_translate_element td {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+html:not(.dark) #google_translate_element:hover { border-color: #F59E0B; }
 html:not(.dark) #google_translate_element .goog-te-menu-value,
 html:not(.dark) #google_translate_element .goog-te-menu-value span { color: #475569 !important; }
 html:not(.dark) #google_translate_element .goog-te-gadget-icon { filter: grayscale(1) brightness(0.8); }
@@ -156,5 +171,5 @@ html:not(.dark) #google_translate_element .goog-te-gadget-icon { filter: graysca
 /* The nav is already tight on phones: keep the globe, drop the language name. */
 @media (max-width: 767px) {
   #google_translate_element .goog-te-menu-value span { display: none !important; }
-  #google_translate_element .goog-te-gadget-simple { padding: 0.4rem 0.35rem !important; }
+  #google_translate_element { padding: 0.4rem 0.35rem !important; }
 }

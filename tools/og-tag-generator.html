@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Open Graph Generator — Free OG Meta Tag Builder | ToolStack AI</title>
+  <meta name="description" content="Free Open Graph generator: build og:title, og:description, og:image and og:type tags, and preview exactly how your link will render on Facebook, LinkedIn and WhatsApp." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/og-tag-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Open Graph Generator — Free OG Meta Tag Builder" />
+  <meta property="og:description" content="Build Open Graph tags and preview your shared link before you ship it. No signup, runs entirely in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/og-tag-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Open Graph Generator — Free OG Meta Tag Builder" />
+  <meta name="twitter:description" content="Build Open Graph tags and preview your shared link before you ship it." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Graph Generator",
+    "url": "https://toolstackai.xyz/tools/og-tag-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Build Open Graph meta tags for Facebook, LinkedIn and WhatsApp link previews, with a live preview of exactly how your shared URL will render.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between Open Graph tags and regular meta tags?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Regular meta tags describe your page to search engines, which render a text snippet. Open Graph tags describe it to social platforms, which render a card with an image. A page can rank well in Google and still produce a blank, image-less preview on Facebook if the og: tags are missing." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my Open Graph image not showing up?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The three usual causes are a relative image URL, an image smaller than 200x200 pixels, and a cached scrape. og:image must be an absolute https URL, ideally 1200x630 pixels and under 5MB. If the tag was added after the link was first shared, force a re-scrape with Facebook's Sharing Debugger or LinkedIn Post Inspector." }
+      },
+      {
+        "@type": "Question",
+        "name": "How large should an og:image be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "1200x630 pixels is the safe default. It is a 1.91:1 ratio that fills Facebook, LinkedIn and WhatsApp cards without cropping, and it stays sharp when a platform renders the large-image layout. Anything under 600x315 usually falls back to a small thumbnail beside the text." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Open Graph Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Open Graph Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Fill in the form, watch the link preview update as you type, and copy the finished
+    <code class="text-brand-400 font-mono text-xs">og:</code> tag block. This is the markup that decides whether a shared link
+    shows a rich image card or a bare grey URL on Facebook, LinkedIn, WhatsApp and Slack.
+  </p>
+
+  <!-- Tool widget. Ids match the engine in assets/tools/og-tag-generator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="ogStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- ------------------------------------------------------------ form -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2">
+          <label for="ogTitle" class="block text-xs text-gray-400 mb-1 font-mono">og:title</label>
+          <input id="ogTitle" type="text" placeholder="Free Invoice Generator for Freelancers"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="ogDescription" class="block text-xs text-gray-400 mb-1 font-mono">og:description</label>
+          <textarea id="ogDescription" rows="3" placeholder="Create and send professional invoices in under a minute. Free, no signup."
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="ogUrl" class="block text-xs text-gray-400 mb-1 font-mono">og:url</label>
+          <input id="ogUrl" type="url" placeholder="https://example.com/free-invoice-generator"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="ogImage" class="block text-xs text-gray-400 mb-1 font-mono">og:image</label>
+          <input id="ogImage" type="url" placeholder="https://example.com/og-image.png"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">Must be an absolute https URL. 1200×630 is the safe size.</p>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="ogImageAlt" class="block text-xs text-gray-400 mb-1 font-mono">og:image:alt</label>
+          <input id="ogImageAlt" type="text" placeholder="A screenshot of the invoice builder"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <label for="ogType" class="block text-xs text-gray-400 mb-1 font-mono">og:type</label>
+          <select id="ogType"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="website">website</option>
+            <option value="article">article</option>
+            <option value="product">product</option>
+            <option value="profile">profile</option>
+            <option value="video.other">video.other</option>
+            <option value="music.song">music.song</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="ogLocale" class="block text-xs text-gray-400 mb-1 font-mono">og:locale</label>
+          <select id="ogLocale"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="en_US">English (US)</option>
+            <option value="en_GB">English (UK)</option>
+            <option value="fr_FR">French</option>
+            <option value="es_ES">Spanish</option>
+            <option value="pt_BR">Portuguese (BR)</option>
+            <option value="de_DE">German</option>
+            <option value="hi_IN">Hindi</option>
+            <option value="ar_AR">Arabic</option>
+            <option value="sw_KE">Swahili</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="ogSiteName" class="block text-xs text-gray-400 mb-1 font-mono">og:site_name</label>
+          <input id="ogSiteName" type="text" placeholder="ToolStack AI"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+      </div>
+
+      <!-- --------------------------------------------------------- preview -->
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Live link preview</p>
+        <div class="rounded-xl border border-gray-800 bg-gray-950 overflow-hidden">
+          <div id="ogPreviewImageWrap" class="hidden aspect-[1.91/1] bg-gray-900 border-b border-gray-800 overflow-hidden">
+            <img id="ogPreviewImage" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div class="p-3">
+            <p id="ogPreviewUrl" class="text-[10px] text-gray-500 uppercase tracking-wide truncate">example.com</p>
+            <p id="ogPreviewTitle" class="text-sm font-bold text-gray-100 mt-1 leading-snug">Your page title appears here</p>
+            <p id="ogPreviewDesc" class="text-xs text-gray-400 mt-1 leading-relaxed">Your description appears here. Facebook shows roughly two lines before it truncates with an ellipsis.</p>
+          </div>
+        </div>
+        <p class="text-[10px] text-gray-500 mt-2 leading-relaxed">
+          An approximation. Facebook, LinkedIn and WhatsApp each crop and truncate slightly differently — but a card that looks
+          right here looks right everywhere.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t border-gray-800">
+      <div class="flex gap-2">
+        <button id="ogGenerateBtn" type="button"
+          class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          ⚙️ Generate OG Tags
+        </button>
+        <button id="ogCopyBtn" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          📋 Copy
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="ogResults" class="hidden mt-5 space-y-5">
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your Open Graph block</p>
+        <pre id="ogOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 text-[11px] text-brand-300 font-mono overflow-x-auto whitespace-pre leading-relaxed"></pre>
+      </div>
+
+      <div data-ts-result-actions="og-tag-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Open Graph tags are a separate set of meta tags from the ones Google reads. They tell Facebook, LinkedIn, WhatsApp, Slack,
+          Discord and X what to draw when someone pastes your URL — the headline, the one-line summary, the image, and the site name
+          above it. Without them a platform guesses from your page, which usually means no image and a headline pulled from whatever
+          text it finds first.
+        </p>
+        <p>
+          This generator assembles the block and previews it as you type, entirely in your browser. Two honest limitations: the
+          preview is an approximation rather than a pixel-accurate render of any one platform, and the tool cannot clear a platform's
+          cache for you. If you change your tags after a link has already been shared, the old preview will persist until you ask the
+          platform to re-scrape the URL.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Write <code class="font-mono text-xs">og:title</code> as the headline you want on the card. It can differ from your SEO title — social copy can afford to be more direct.</li>
+        <li>Write <code class="font-mono text-xs">og:description</code>. Facebook shows about two lines, so front-load the value in the first 100 characters.</li>
+        <li>Paste an absolute <code class="font-mono text-xs">https</code> image URL. Relative paths silently fail on every platform. 1200×630 is the size that fills the large card layout without cropping.</li>
+        <li>Pick the <code class="font-mono text-xs">og:type</code> that matches the page — <code class="font-mono text-xs">article</code> for blog posts, <code class="font-mono text-xs">product</code> for a product page, <code class="font-mono text-xs">website</code> for everything else.</li>
+        <li>Click <strong class="text-gray-200">Generate OG Tags</strong>, copy the block, and paste it into your page head — then re-scrape the URL if it has been shared before.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Launching a product page</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Make sure the first time your link is shared in a group chat it shows the product shot, not a grey placeholder.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Blog posts that get shared</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Set <code class="font-mono">og:type</code> to <code class="font-mono">article</code> and give each post its own image so shares do not all look identical.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Fixing a broken preview</p>
+          <p class="text-gray-400 leading-relaxed text-xs">When a client says "our link looks broken on LinkedIn", reproduce the correct block here and diff it against the live page source.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">WhatsApp and Slack shares</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Both read Open Graph. A tight title and a square-ish crop make links sent in chat look intentional rather than accidental.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What is the difference between Open Graph tags and regular meta tags?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Regular meta tags describe your page to search engines, which render a text snippet. Open Graph tags describe it to social
+            platforms, which render a card with an image. The two are read by different systems, so a page can rank well in Google and
+            still produce a blank, image-less preview on Facebook if the <code class="font-mono text-xs">og:</code> tags are missing.
+            Fill in both.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why is my Open Graph image not showing up?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            The three usual causes are a relative image URL, an image smaller than 200×200 pixels, and a cached scrape.
+            <code class="font-mono text-xs">og:image</code> must be an absolute <code class="font-mono text-xs">https</code> URL, ideally
+            1200×630 and under 5MB. If the tag was added after the link was first shared, force a re-scrape with Facebook's Sharing
+            Debugger or LinkedIn's Post Inspector — until then the platform keeps serving the preview it cached.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How large should an og:image be?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            1200×630 pixels is the safe default. That is a 1.91:1 ratio which fills the Facebook, LinkedIn and WhatsApp card layouts
+            without cropping, and stays sharp in the large-image layout. Anything under 600×315 usually falls back to a small thumbnail
+            beside the text, which is a noticeably weaker share.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/og-tag-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createOgTagGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

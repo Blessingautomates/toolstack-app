@@ -37,7 +37,18 @@
     'ai-status-board':       { name: 'AI Service Status Board',           path: '/tools/ai-status-board.html' },
     'ai-tools-directory':    { name: 'Free AI Tools Directory',           path: '/tools/ai-tools-directory.html' },
     'spam-word-checker':     { name: 'Cold Email Spam-Word Checker',      path: '/tools/spam-word-checker.html' },
-    'script-hook-checker':   { name: 'Script Hook & Retention Checker',   path: '/tools/script-hook-checker.html' }
+    'script-hook-checker':   { name: 'Script Hook & Retention Checker',   path: '/tools/script-hook-checker.html' },
+
+    // SEO & Website Tools
+    'meta-tag-generator':       { name: 'Meta Tag Generator',              path: '/tools/meta-tag-generator.html' },
+    'og-tag-generator':         { name: 'Open Graph Generator',            path: '/tools/og-tag-generator.html' },
+    'twitter-card-generator':   { name: 'Twitter/X Card Generator',        path: '/tools/twitter-card-generator.html' },
+    'seo-title-generator':      { name: 'SEO Title & Snippet Optimizer',   path: '/tools/seo-title-generator.html' },
+    'meta-description-generator': { name: 'Meta Description Writer',       path: '/tools/meta-description-generator.html' },
+
+    // AI Support
+    'ai-model-comparison':   { name: 'AI Model Comparison Matrix',         path: '/tools/ai-model-comparison.html' },
+    'ai-tool-quiz':          { name: 'Which AI Tool Should I Use? Quiz',   path: '/tools/ai-tool-quiz.html' }
   };
 
   var DEFAULT_TOOL = { name: 'ToolStack AI', path: '/' };

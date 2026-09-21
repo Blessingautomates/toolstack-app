@@ -26,18 +26,18 @@
     })();
   </script>
 
-  <title>JSON Formatter &amp; Validator — Free Online JSON Beautifier | ToolStack AI</title>
-  <meta name="description" content="Format, validate and minify JSON online for free. Paste messy JSON to prettify it with clean 2-space indentation, or minify it for production. Runs entirely in your browser." />
-  <link rel="canonical" href="https://toolstackai.xyz/tools/json-formatter.html" />
+  <title>AI Model Comparison Matrix — ChatGPT vs Claude vs DeepSeek vs Gemini | ToolStack AI</title>
+  <meta name="description" content="Compare ChatGPT, Claude, DeepSeek and Gemini side by side: context windows, free tiers, paid plans, and which model is actually best for writing, coding or long documents." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/ai-model-comparison.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
-  <meta property="og:title" content="JSON Formatter &amp; Validator — Free Online JSON Beautifier" />
-  <meta property="og:description" content="Prettify, validate or minify JSON instantly. No signup, no upload — everything runs in your browser." />
-  <meta property="og:url" content="https://toolstackai.xyz/tools/json-formatter.html" />
+  <meta property="og:title" content="AI Model Comparison Matrix — ChatGPT vs Claude vs DeepSeek vs Gemini" />
+  <meta property="og:description" content="Context windows, free tiers and real strengths for the four models most people are choosing between." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/ai-model-comparison.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="JSON Formatter &amp; Validator — Free Online JSON Beautifier" />
-  <meta name="twitter:description" content="Prettify, validate or minify JSON instantly. No signup, no upload." />
+  <meta name="twitter:title" content="AI Model Comparison Matrix" />
+  <meta name="twitter:description" content="Context windows, free tiers and real strengths for ChatGPT, Claude, DeepSeek and Gemini." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -69,11 +69,11 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "JSON Formatter & Validator",
-    "url": "https://toolstackai.xyz/tools/json-formatter.html",
-    "applicationCategory": "DeveloperApplication",
+    "name": "AI Model Comparison Matrix",
+    "url": "https://toolstackai.xyz/tools/ai-model-comparison.html",
+    "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any (browser-based)",
-    "description": "Format, validate and minify JSON online for free. Runs entirely in your browser.",
+    "description": "Compare ChatGPT, Claude, DeepSeek and Gemini side by side — context windows, free tiers, pricing, strengths and which model to pick for each job.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "publisher": {
       "@type": "Organization",
@@ -83,7 +83,7 @@
   }
   </script>
 
-  <!-- Keep in sync with the visible FAQ section at the bottom of this page. -->
+  <!-- Keep this in sync with the visible FAQ section further down. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -91,27 +91,18 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is my JSON uploaded to a server?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Formatting, validation and minification all run in your browser using JavaScript's built-in JSON parser. Your data never leaves your device, which is why the tool is safe for API keys, customer records and internal payloads."
-        }
+        "name": "Which AI model is best overall?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no overall winner, and any table claiming one is selling something. ChatGPT has the widest ecosystem of tools and integrations, Claude tends to be strongest on long documents and code, Gemini has the largest context window and the tightest Google Workspace integration, and DeepSeek offers the lowest cost per token. The right pick depends on the shape of your work, which is why this page filters by task rather than ranking models 1 to 4." }
       },
       {
         "@type": "Question",
-        "name": "What is the difference between prettifying and minifying JSON?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Prettifying re-indents the JSON with two spaces per level so it is readable by a human. Minifying removes all insignificant whitespace so the payload is as small as possible for production. Both produce exactly the same data — only the formatting differs."
-        }
+        "name": "Is the free tier good enough, or do I need a paid plan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For occasional use the free tiers are genuinely capable and none of them are crippled demos. Paid plans buy three things: higher usage limits before you are throttled, access to the newest and largest models, and features like longer context or file uploads. If you hit a rate limit more than once a week, that is the signal to pay." }
       },
       {
         "@type": "Question",
-        "name": "Why does my JSON fail to validate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The most common causes are trailing commas before a closing brace or bracket, single quotes instead of double quotes, unquoted object keys, and JavaScript comments. JSON is stricter than JavaScript object literals — the error message shown above the editor names the exact character position of the problem."
-        }
+        "name": "How current is the information in this comparison?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Treat every figure here as a starting point rather than a live quote. Context windows, model names and prices change every few months across all four providers, and this page is updated by hand rather than scraped. Always confirm the current numbers on the provider's own pricing page before you commit to a plan or build a budget around one." }
       }
     ]
   }
@@ -183,47 +174,68 @@
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- ts:header:end -->
 
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
   <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
     <a href="/" class="hover:text-brand-400 transition">Home</a>
     <span class="mx-1.5 text-gray-700">/</span>
     <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
     <span class="mx-1.5 text-gray-700">/</span>
-    <span class="text-gray-300">JSON Formatter &amp; Validator</span>
+    <span class="text-gray-300">AI Model Comparison Matrix</span>
   </nav>
 
-  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">JSON Formatter &amp; Validator</h1>
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">AI Model Comparison Matrix</h1>
   <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-    Paste messy or minified JSON to prettify it with clean 2-space indentation, validate it, or compress it back down for production — instantly, and without your data leaving the browser.
+    ChatGPT, Claude, DeepSeek and Gemini side by side — context windows, free tiers, paid plans and what each one is genuinely
+    better at. Filter by the job you actually have, then click a model for the honest trade-offs.
   </p>
 
-  <!-- Tool widget. Ids match the modal version on index.html. -->
+  <!-- Tool widget. Ids match the engine in assets/tools/ai-model-comparison.js. -->
   <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
-    <div id="jsonStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div id="amcStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
 
-    <div class="grid grid-cols-1 gap-4 mb-4">
-      <div>
-        <label for="jsonInput" class="block text-xs text-gray-400 mb-1 font-mono">Input / Output JSON:</label>
-        <textarea id="jsonInput" rows="14" placeholder='Paste your raw JSON here... e.g. {"name":"Blessing","role":"automation"}' class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-      </div>
-    </div>
-
-    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="formatJsonBtn" type="button" class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          ✨ Prettify (2 Spaces)
-        </button>
-        <button id="minifyJsonBtn" type="button" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
-          ⚡ Minify
-        </button>
-      </div>
-      <button id="copyJsonBtn" type="button" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition flex items-center gap-1.5">
-        📋 Copy Result
+    <div class="flex flex-wrap items-center gap-2 mb-4">
+      <div id="amcChips" class="flex flex-wrap gap-2"></div>
+      <button id="amcResetBtn" type="button"
+        class="px-3 py-1.5 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+        Reset
       </button>
     </div>
 
-    <div data-ts-result-actions="json-formatter" data-ts-deferred class="mt-6 space-y-4"></div>
+    <p id="amcCount" class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-3"></p>
+
+    <!-- The matrix. Horizontal scroll on narrow screens beats collapsing a
+         comparison into stacked cards, which is no longer a comparison. -->
+    <div class="overflow-x-auto rounded-xl border border-gray-800">
+      <table class="w-full text-left border-collapse min-w-[720px]">
+        <caption class="sr-only">Comparison of ChatGPT, Claude, DeepSeek and Gemini by context window, pricing and strengths</caption>
+        <thead>
+          <tr class="bg-gray-950">
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Model</th>
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Maker</th>
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Context window</th>
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Free tier</th>
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Typical paid tier</th>
+            <th scope="col" class="px-4 py-3 text-[10px] uppercase tracking-wider text-gray-500 font-bold border-b border-gray-800">Standout strength</th>
+          </tr>
+        </thead>
+        <tbody id="amcTableBody"></tbody>
+      </table>
+    </div>
+
+    <div id="amcEmpty" class="hidden mt-4 p-4 rounded-xl bg-gray-950 border border-gray-800 text-xs text-gray-400">
+      No model matches that filter. Try a different task.
+    </div>
+
+    <!-- Detail panel, filled when a row is selected. -->
+    <div id="amcDetail" class="hidden mt-5 bg-gray-950 border border-gray-800 rounded-2xl p-5"></div>
+
+    <p class="text-[10px] text-gray-500 mt-4 leading-relaxed">
+      ⚠️ Context windows, model names and prices change every few months at all four providers. This table is maintained by hand —
+      confirm anything you are budgeting around on the provider's own pricing page.
+    </p>
+
+    <div data-ts-result-actions="ai-model-comparison" class="mt-6 space-y-4"></div>
   </section>
 
   <!-- ---------------------------------------------------------------- copy -->
@@ -233,28 +245,28 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
       <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
         <p>
-          This is a JSON formatter, validator and minifier in one box. It parses your input with the browser's native
-          <code class="text-brand-400 font-mono text-xs">JSON.parse</code>, so validation is exactly as strict as the parser your
-          application will actually use — not a loose approximation. If the document is valid you can re-indent it with two spaces
-          per level or strip every byte of insignificant whitespace.
+          This is a hand-maintained comparison of the four assistants most people end up choosing between. It deliberately does not
+          rank them 1 to 4, because the honest answer to "which is best" is "best at what" — a model that writes beautifully can be
+          the wrong choice for parsing a 300-page contract, and the cheapest model per token can be the most expensive one if it takes
+          three attempts to get the answer right.
         </p>
         <p>
-          Because the whole tool is client-side, it is safe for payloads you would not paste into an unfamiliar website: API keys,
-          customer records, internal configs. The trade-off is that it is a formatter rather than a schema validator — it confirms
-          your JSON is well-formed, not that it matches the shape your API expects. For very large documents (several megabytes)
-          the browser's parser will be slower than a native desktop editor.
+          Everything is rendered in your browser from a data table in the page's own JavaScript — there is no API call and nothing is
+          tracked. The important limitation is freshness: provider pricing and context windows move fast, and this table is updated by
+          hand rather than scraped, so it can lag. Use it to narrow the field to two options, then check the provider's own pricing
+          page before you commit.
         </p>
       </div>
     </div>
 
     <div>
-      <h2 class="text-xl font-bold text-gray-100 mb-3">How to format JSON</h2>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
       <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
-        <li>Paste your raw JSON into the editor. Minified API responses work as well as hand-written objects.</li>
-        <li>Click <strong class="text-gray-200">Prettify (2 Spaces)</strong> to validate the document and re-indent it. If it parses, the formatted result replaces your input in place.</li>
-        <li>Click <strong class="text-gray-200">Minify</strong> instead when you want the smallest possible payload for a request body or config file.</li>
-        <li>If the JSON is invalid, an error banner names the exact problem. Fix the character it points at and run it again.</li>
-        <li>Click <strong class="text-gray-200">Copy Result</strong> to put the output on your clipboard.</li>
+        <li>Pick the filter that matches your actual job — writing, coding, long documents, budget, or ecosystem and multimodality.</li>
+        <li>Scan the Standout strength column. That single cell usually decides it faster than comparing context windows.</li>
+        <li>Click any row to open the detail panel, which lists what the model is good at and what to watch out for.</li>
+        <li>Shortlist two. Run the same real prompt through both free tiers before you pay for anything — a benchmark never reflects your work.</li>
+        <li>Check the provider's pricing page before committing, because the figures here are a starting point, not a quote.</li>
       </ol>
     </div>
 
@@ -262,20 +274,20 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Reading an API response</p>
-          <p class="text-gray-400 leading-relaxed text-xs">A minified response from <code class="font-mono">curl</code> or a network tab becomes a readable tree in one click.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Choosing a tool for a team</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Narrow four options to two before you spend a week trialling, and base the shortlist on the work rather than on reviews.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Debugging a parse error</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Find the trailing comma or unquoted key that is breaking your app, with the exact position reported.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Budgeting API costs</p>
+          <p class="text-gray-400 leading-relaxed text-xs">See where the low-cost option sits against the mainstream ones before you build a feature that depends on price per token.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Shrinking a config file</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Minify a JSON config or fixture before committing it, then prettify it again when you need to edit by hand.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Picking a model for long documents</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Context window is the hard constraint for contract review, transcript analysis and codebase work — filter for it first.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Checking a webhook payload</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Confirm a payload from a payment or CRM webhook is well-formed before you write parsing code against it.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Deciding whether to pay</p>
+          <p class="text-gray-400 leading-relaxed text-xs">See what each free tier actually includes so you know whether the paid plan buys limits or genuinely new capability.</p>
         </li>
       </ul>
     </div>
@@ -284,42 +296,31 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
       <div class="space-y-3">
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Is my JSON uploaded to a server?</summary>
+          <summary class="text-sm font-bold text-gray-200">Which AI model is best overall?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            No. Formatting, validation and minification all run in your browser using JavaScript's built-in JSON parser. Your data
-            never leaves your device, which is why the tool is safe for API keys, customer records and internal payloads.
+            There is no overall winner, and any table claiming one is selling something. ChatGPT has the widest ecosystem of tools and
+            integrations, Claude tends to be strongest on long documents and code, Gemini has the largest context window and the
+            tightest Google Workspace integration, and DeepSeek offers the lowest cost per token. The right pick depends on the shape
+            of your work — which is why this page filters by task rather than ranking models 1 to 4.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">What is the difference between prettifying and minifying JSON?</summary>
+          <summary class="text-sm font-bold text-gray-200">Is the free tier good enough, or do I need a paid plan?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Prettifying re-indents the JSON with two spaces per level so it is readable by a human. Minifying removes all
-            insignificant whitespace so the payload is as small as possible for production. Both produce exactly the same data —
-            only the formatting differs.
+            For occasional use the free tiers are genuinely capable and none of them are crippled demos. Paid plans buy three things:
+            higher usage limits before you get throttled, access to the newest and largest models, and features like longer context or
+            file uploads. If you hit a rate limit more than once a week, that is your signal to pay — otherwise the free tier is
+            usually the better use of money.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Why does my JSON fail to validate?</summary>
+          <summary class="text-sm font-bold text-gray-200">How current is the information in this comparison?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            The most common causes are trailing commas before a closing brace or bracket, single quotes instead of double quotes,
-            unquoted object keys, and JavaScript comments. JSON is stricter than JavaScript object literals — the error message
-            shown above the editor names the exact character position of the problem.
+            Treat every figure here as a starting point rather than a live quote. Context windows, model names and prices change every
+            few months across all four providers, and this page is updated by hand rather than scraped automatically. Always confirm
+            the current numbers on the provider's own pricing page before you commit to a plan or build a budget around one.
           </p>
         </details>
-      </div>
-    </div>
-
-    <div>
-      <h2 class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        <a href="/tools/spam-word-checker.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">Cold Email Spam-Word Checker</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Score outbound copy for deliverability before you hit send.</p>
-        </a>
-        <a href="/tools/script-hook-checker.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">Script Hook &amp; Retention Checker</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Score the first 3 seconds of a short-form video script.</p>
-        </a>
       </div>
     </div>
   </section>
@@ -363,12 +364,12 @@
 <!-- ts:footer:end -->
 
 <script src="../assets/toolstack.js"></script>
-<script src="../assets/tools/json-formatter.js"></script>
+<script src="../assets/tools/ai-model-comparison.js"></script>
 <script>
   (function () {
     var root = document.getElementById('toolRoot');
     if (root && window.ToolStackTools) {
-      window.ToolStackTools.createJsonFormatter(root);
+      window.ToolStackTools.createAiModelComparison(root);
     }
   })();
 </script>
