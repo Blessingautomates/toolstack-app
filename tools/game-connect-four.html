@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Connect Four — Play vs Computer or a Friend | ToolStack AI</title>
+  <meta name="description" content="Play Connect Four against the computer or a friend on one device. Click a column to drop. Free, no signup, record kept on your device." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/game-connect-four.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Connect Four — Play vs Computer or a Friend | ToolStack AI" />
+  <meta property="og:description" content="Play Connect Four against the computer or a friend on one device. Click a column to drop. Free, no signup, record kept on your device." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/game-connect-four.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Connect Four — Play vs Computer or a Friend | ToolStack AI" />
+  <meta name="twitter:description" content="Play Connect Four against the computer or a friend on one device. Click a column to drop. Free, no signup, record kept on your device." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Connect Four",
+  "url": "https://toolstackai.xyz/tools/game-connect-four.html",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Play Connect Four against the computer or a friend on one device. Click a column to drop. Free, no signup, record kept on your device.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I beat the computer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set up two ways to win at the same time. The computer checks for its own win, then blocks yours, but it only looks one move ahead — so if you can create two separate threats in a single move, it can only stop one of them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the computer like the middle columns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the middle columns are genuinely stronger in Connect Four — a disc in the centre is part of more possible lines than one at the edge. Its preference is a set of weights rather than a rule, so it still plays elsewhere when there is a reason to."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the record include two-player games?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tally is your record against the computer only. In two-player mode you are playing both sides, so those results would not mean anything and they are not counted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the board fills up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a draw, and it is counted as one in the record. On a seven-by-six board that takes forty-two moves and is rare, but it is possible."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Connect Four</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Connect Four</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Seven columns, six rows, four in a row. Click a column to drop a disc. The computer looks one move ahead and no further, so it can be trapped.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/game-connect-four.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="c4Status" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-3 mb-4">
+    <div class="flex items-center gap-2">
+      <label for="c4Mode" class="text-xs text-gray-500 whitespace-nowrap">Opponent</label>
+      <select id="c4Mode"
+        class="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+        <option value="computer">Computer</option>
+        <option value="two">Two players</option>
+      </select>
+    </div>
+      <span class="text-xs text-gray-500">Turn:
+        <strong id="c4Turn" class="text-gray-100 font-bold">Red to play</strong>
+      </span>
+    </div>
+
+    <div class="overflow-x-auto pb-1">
+      <div id="c4Board" class="mx-auto max-w-md"></div>
+    </div>
+
+    <p class="text-[11px] text-gray-500 mt-3 text-center leading-relaxed">
+      Click anywhere in a column to drop into it. The lowest empty slot takes the disc.
+    </p>
+
+    <p id="c4Result" class="text-sm font-bold text-gray-100 text-center mt-4"></p>
+
+    <div class="grid grid-cols-3 gap-3 mt-5 text-center">
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-emerald-400" id="c4Wins">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Won</p>
+      </div>
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-rose-400" id="c4Losses">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Lost</p>
+      </div>
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-gray-300" id="c4Draws">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Drawn</p>
+      </div>
+    </div>
+
+    <p class="text-[10px] text-gray-500 mt-3 leading-relaxed">
+      The record is kept against the computer only, and it is stored in this browser. It is not
+      sent anywhere, and two-player games do not change it.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="c4ResetBtn" type="button"
+        class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        New game
+      </button>
+      <button id="c4ClearRecordBtn" type="button"
+        class="px-5 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+        Clear record
+      </button>
+    </div>
+
+    <div data-ts-result-actions="game-connect-four" class="mt-6"></div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          The ordinary game: seven columns, six rows, and the first player to line up four discs horizontally, vertically or diagonally wins. Clicking anywhere in a column drops a disc into the lowest empty slot, which is how the physical game works — so the whole column is the target rather than a small arrow above it, and the board works on a touchscreen without any precision. If a column is full, clicking it tells you so rather than doing nothing.
+        </p>
+        <p>
+          The computer searches for its own win first, then for yours, and otherwise plays a <strong class="text-gray-200">weighted preference for the middle columns</strong> with a random tiebreak. It does not look two moves ahead, which means it will happily build a position that lets you create two threats at once and then lose to one of them. That is a deliberate ceiling: a real solver plays Connect Four perfectly from the first move, and a game you cannot win is not a game. In computer mode you are red and you drop first.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Choose <strong class="text-gray-200">Computer</strong> or <strong class="text-gray-200">Two players</strong>. Switching starts a fresh board and leaves the record alone.</li>
+        <li>Click anywhere in a column to drop a disc. It falls to the lowest empty slot in that column.</li>
+        <li>In computer mode you are red and move first. In two-player mode red and yellow alternate on the same device.</li>
+        <li>Press <strong class="text-gray-200">New game</strong> to clear the board, or <strong class="text-gray-200">Clear record</strong> to reset the win/loss/draw tally against the computer.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A game that takes longer than tic tac toe</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A full game runs a few minutes, which makes it a better fit for a real break than a game that ends in three moves.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Two people on one device</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Two-player mode needs no setup, and the turn indicator under the board keeps it clear whose go it is.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Playing on a phone</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The whole column is the hit area, so there is nothing small to aim at, and the board scrolls sideways only if it has to.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Trying to beat the computer</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The way to win is to build two threats at once. The computer blocks one of them and cannot see the other.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How do I beat the computer?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Set up two ways to win at the same time. The computer checks for its own win, then blocks yours, but it only looks one move ahead — so if you can create two separate threats in a single move, it can only stop one of them.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does the computer like the middle columns?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Because the middle columns are genuinely stronger in Connect Four — a disc in the centre is part of more possible lines than one at the edge. Its preference is a set of weights rather than a rule, so it still plays elsewhere when there is a reason to.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does the record include two-player games?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The tally is your record against the computer only. In two-player mode you are playing both sides, so those results would not mean anything and they are not counted.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What happens if the board fills up?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It is a draw, and it is counted as one in the record. On a seven-by-six board that takes forty-two moves and is rare, but it is possible.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/game-connect-four.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createConnectFour(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

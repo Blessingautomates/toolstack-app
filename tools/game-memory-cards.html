@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Memory Cards — Free Matching Pairs Game | ToolStack AI</title>
+  <meta name="description" content="Flip cards and match the pairs. Three board sizes, a move counter and a clock that starts on your first flip. Free, no signup, best score saved." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/game-memory-cards.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Memory Cards — Free Matching Pairs Game | ToolStack AI" />
+  <meta property="og:description" content="Flip cards and match the pairs. Three board sizes, a move counter and a clock that starts on your first flip. Free, no signup, best score saved." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/game-memory-cards.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Memory Cards — Free Matching Pairs Game | ToolStack AI" />
+  <meta name="twitter:description" content="Flip cards and match the pairs. Three board sizes, a move counter and a clock that starts on your first flip. Free, no signup, best score saved." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Memory Cards",
+  "url": "https://toolstackai.xyz/tools/game-memory-cards.html",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Flip cards and match the pairs. Three board sizes, a move counter and a clock that starts on your first flip. Free, no signup, best score saved.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When does the clock start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On your first flip, not when the page loads. A clock that ran from load would count the time you spent reading the page or making a cup of tea, and the number it produced would not be about your memory at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did a card not flip when I clicked it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You clicked while a mismatched pair was still showing. Input is locked for about three quarters of a second after a miss, because otherwise a fast double-click can flip a third card and put the board into a state that was never a legal move."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the best score per board size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Six, eight and twelve pairs are three different games, so each keeps its own record. The best shown switches when you change the size selector."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are the symbols shapes rather than emoji?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Emoji render at different sizes and colours on different platforms, and many of them come back as full-colour images that ignore the text colour entirely. That would make a matched pair and an unmatched one look identical in the light theme. These symbols all take the colour they are given."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Memory Cards</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Memory Cards</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Flip two cards and keep them if they match. Three board sizes, a move counter, and a clock that starts on your first flip rather than on load.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/game-memory-cards.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="memStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="flex flex-wrap items-center justify-between gap-x-5 gap-y-3 mb-4">
+    <div class="flex items-center gap-2">
+      <label for="memSize" class="text-xs text-gray-500 whitespace-nowrap">Pairs</label>
+      <select id="memSize"
+        class="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+        <option value="6">6 pairs</option>
+        <option value="8">8 pairs</option>
+        <option value="12">12 pairs</option>
+      </select>
+    </div>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <span class="text-xs text-gray-500">Moves
+        <strong id="memMoves" class="text-gray-100 font-bold">0</strong>
+      </span>
+      <span class="text-xs text-gray-500">Pairs
+        <strong id="memPairs" class="text-gray-100 font-bold">0</strong>
+      </span>
+      <span class="text-xs text-gray-500">Time
+        <strong id="memTime" class="text-gray-100 font-bold">0:00</strong>
+      </span>
+      <span class="text-xs text-gray-500">Best
+        <strong id="memBest" class="text-gray-100 font-bold">—</strong>
+      </span>
+      </div>
+    </div>
+
+    <div id="memBoard" class="mx-auto w-full max-w-md"></div>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="memResetBtn" type="button"
+        class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        New game
+      </button>
+    </div>
+
+    <p class="text-[10px] text-gray-500 mt-3 leading-relaxed">
+      The clock starts on your first flip, not when the page loads, so a board you leave open
+      while you make a cup of tea does not count against you.
+    </p>
+
+    <div data-ts-result-actions="game-memory-cards" class="mt-6"></div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          The matching pairs game, on a board of six, eight or twelve pairs. Every card is face down; turn two over and if they match they stay up. The move counter and the clock both start on your <strong class="text-gray-200">first flip</strong> rather than on page load, which matters more than it sounds — a clock that runs from load punishes you for leaving the tab open, and the number it produces then says nothing about how you played.
+        </p>
+        <p>
+          A pair that does not match stays face up for about three quarters of a second before turning back, and clicks are ignored while it does. Without that lock, a fast double-click flips a third card into the comparison and the board gets into a state that was never a legal move. The best score is kept <strong class="text-gray-200">per board size</strong>, because six pairs and twelve pairs are different games and a single record across both would be meaningless. The symbols are geometric and typographic rather than emoji: emoji render at wildly different sizes and colours across platforms, and many of them come back as full-colour glyphs that ignore the text colour, which would make a matched pair look like an unmatched one.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Pick a board size: <strong class="text-gray-200">6, 8 or 12 pairs</strong>. Changing size starts a new board and switches the best score to that size.</li>
+        <li>Click or tap a card to turn it over. The clock starts on the first one.</li>
+        <li>Turn a second card. A match stays face up; a miss turns back after a moment, and clicks are ignored while it does.</li>
+        <li>Finish the board to see your moves and time. Press <strong class="text-gray-200">New game</strong> for a fresh shuffle at any time.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A short break</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Six pairs takes under a minute and twelve pairs takes a few, so the size selector doubles as a difficulty setting.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Playing with a child</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Six pairs on a four-column board is small enough for young children to hold the whole layout in their head.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Testing your memory properly</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Moves and time together are the honest measure. Few moves means good memory; a low time with many moves means guessing.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Coming back to beat a score</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The best score per size persists in your browser, so there is something to return to.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">When does the clock start?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">On your first flip, not when the page loads. A clock that ran from load would count the time you spent reading the page or making a cup of tea, and the number it produced would not be about your memory at all.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why did a card not flip when I clicked it?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">You clicked while a mismatched pair was still showing. Input is locked for about three quarters of a second after a miss, because otherwise a fast double-click can flip a third card and put the board into a state that was never a legal move.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the best score per board size?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes. Six, eight and twelve pairs are three different games, so each keeps its own record. The best shown switches when you change the size selector.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why are the symbols shapes rather than emoji?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Emoji render at different sizes and colours on different platforms, and many of them come back as full-colour images that ignore the text colour entirely. That would make a matched pair and an unmatched one look identical in the light theme. These symbols all take the colour they are given.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/game-memory-cards.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createMemoryCards(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

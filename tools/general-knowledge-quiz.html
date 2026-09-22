@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>General Knowledge Quiz — A Fixed 15-Question Paper | ToolStack AI</title>
+  <meta name="description" content="Fifteen general knowledge questions, the same paper every time, marked at the end with an explanation for each answer. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/general-knowledge-quiz.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="General Knowledge Quiz — A Fixed 15-Question Paper | ToolStack AI" />
+  <meta property="og:description" content="Fifteen general knowledge questions, the same paper every time, marked at the end with an explanation for each answer. Free, no signup." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/general-knowledge-quiz.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="General Knowledge Quiz — A Fixed 15-Question Paper | ToolStack AI" />
+  <meta name="twitter:description" content="Fifteen general knowledge questions, the same paper every time, marked at the end with an explanation for each answer. Free, no signup." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "General Knowledge Quiz",
+  "url": "https://toolstackai.xyz/tools/general-knowledge-quiz.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Fifteen general knowledge questions, the same paper every time, marked at the end with an explanation for each answer. Free, no signup.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this the same every time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The same fifteen questions in the same order, for everybody. That is the point — it makes the score comparable between people, which a shuffled quiz cannot be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is nothing marked until the end?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because that is what makes it a paper. Marking as you go tells you how you are doing and changes how you answer the rest. Holding it back means the score reflects the fifteen answers you actually gave."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I leave a question blank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Blanks count as wrong, but the tool tells you which questions you skipped before it scores you, so nothing is lost by accident. Recording \"I do not know\" is a legitimate answer to a quiz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between this and the trivia quiz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The trivia quiz is ten shuffled questions from a pool of forty-eight, marked as you go, so every round is different. This is a fixed fifteen, marked at the end, so every attempt is the same. Different formats for different things — variety versus comparability."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">General Knowledge Quiz</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">General Knowledge Quiz</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    The same fifteen questions in the same order for everybody, marked only at the end — so two people can take the same paper and compare properly.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/general-knowledge-quiz.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="gkStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div id="gkIntro">
+      <p class="text-sm text-gray-400 leading-relaxed">
+        This is a paper rather than a round. The same fifteen questions, in the same order, every
+        time. Nothing is marked until the end, and you can go back and change an answer — so the
+        result is comparable between people in a way a shuffled quiz is not.
+      </p>
+      <p class="text-[11px] text-gray-500 leading-relaxed mt-3">
+        Every question has an explanation in the review at the end, including several where the
+        common wrong answer is more interesting than the right one.
+      </p>
+      <button id="gkStartBtn" type="button"
+        class="mt-5 px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Start the paper
+      </button>
+    </div>
+
+    <div id="gkQuiz" class="hidden">
+      <p id="gkProgress" class="text-[11px] text-gray-500 font-mono"></p>
+      <div class="h-1.5 bg-gray-950 rounded-full overflow-hidden mt-3">
+        <div id="gkBar" class="h-full bg-brand-500 transition-all duration-300" style="width:0%"></div>
+      </div>
+
+      <p id="gkQuestion" class="text-base font-bold text-gray-100 mt-6 leading-snug"></p>
+      <div id="gkOptions" class="mt-4 space-y-2"></div>
+
+      <div class="flex flex-wrap items-center gap-2 mt-5">
+        <button id="gkPrevBtn" type="button"
+          class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+          Back
+        </button>
+        <button id="gkNextBtn" type="button"
+          class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <div id="gkResults" class="hidden">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6 text-center">
+        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold">Your paper</p>
+        <p id="gkScore" class="text-4xl font-black text-brand-400 mt-2"></p>
+        <p id="gkBand" class="text-xs text-gray-400 mt-3 leading-relaxed"></p>
+      </div>
+
+      <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold mt-6 mb-2">The answers, with explanations</p>
+      <div id="gkReview" class="bg-gray-950 border border-gray-800 rounded-2xl p-6"></div>
+
+      <div class="flex flex-wrap items-center gap-2 mt-5">
+        <button id="gkRestartBtn" type="button"
+          class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+          Start again
+        </button>
+        <button id="gkCopyBtn" type="button"
+          class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+          Copy my result
+        </button>
+      </div>
+
+      <div data-ts-result-actions="general-knowledge-quiz" class="space-y-4 mt-5"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          A fixed fifteen-question paper. The questions, and their order, are the same for everybody every time. Nothing is marked until you finish, you can move backwards and change an answer, and blank answers are allowed. At the end you get a score and a full review with an explanation for every question — including why the popular wrong answer is wrong.
+        </p>
+        <p>
+          The fixed paper is the whole design, and it is the opposite of the trivia quiz on this site. A shuffled quiz gives you variety; a fixed paper gives you comparability. Two people can take this and genuinely argue about who did better, which is impossible when each attempt draws different questions. The trade is that you can only take it fresh once — after that you know the answers, and the explanations become the reason to come back rather than the score.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Press <strong class="text-gray-200">Start the paper</strong>. Question one appears; nothing is marked yet.</li>
+        <li>Pick an answer and use <strong class="text-gray-200">Next</strong>, or <strong class="text-gray-200">Back</strong> to change your mind on an earlier one.</li>
+        <li>You can move on without answering. A blank is recorded as blank and counted wrong, and the tool will tell you which questions you left before it scores you.</li>
+        <li>Read the review. Each question shows your answer, the correct one, and a short explanation.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Two people, one scoreboard</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The fixed paper exists so that a comparison is fair. Take it, then hand the device over.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A family quiz night</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Fifteen questions is about the right length for a table, and the explanations give people something to argue about afterwards.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Learning something</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Several questions here are ones people get wrong for an interesting reason — the Australian capital, the smallest prime, the boiling point that moves with altitude.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A classroom warm-up</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The paper format with a held-back result works well as a five-minute start to a lesson.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is this the same every time?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes. The same fifteen questions in the same order, for everybody. That is the point — it makes the score comparable between people, which a shuffled quiz cannot be.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why is nothing marked until the end?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Because that is what makes it a paper. Marking as you go tells you how you are doing and changes how you answer the rest. Holding it back means the score reflects the fifteen answers you actually gave.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I leave a question blank?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes. Blanks count as wrong, but the tool tells you which questions you skipped before it scores you, so nothing is lost by accident. Recording "I do not know" is a legitimate answer to a quiz.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What is the difference between this and the trivia quiz?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">The trivia quiz is ten shuffled questions from a pool of forty-eight, marked as you go, so every round is different. This is a fixed fifteen, marked at the end, so every attempt is the same. Different formats for different things — variety versus comparability.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/general-knowledge-quiz.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createGeneralKnowledgeQuiz(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

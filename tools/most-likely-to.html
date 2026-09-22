@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Most Likely To — Party Game with Scoreboard | ToolStack AI</title>
+  <meta name="description" content="Most likely to prompts with a running scoreboard for the evening. Draw a prompt, award it to somebody, and watch the board build. Free, no signup, nothing stored." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/most-likely-to.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Most Likely To — Party Game with Scoreboard | ToolStack AI" />
+  <meta property="og:description" content="Most likely to prompts with a running scoreboard for the evening. Draw a prompt, award it to somebody, and watch the board build. Free, no signup, nothing stored." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/most-likely-to.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Most Likely To — Party Game with Scoreboard | ToolStack AI" />
+  <meta name="twitter:description" content="Most likely to prompts with a running scoreboard for the evening. Draw a prompt, award it to somebody, and watch the board build. Free, no signup, nothing stored." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Most Likely To",
+  "url": "https://toolstackai.xyz/tools/most-likely-to.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Most likely to prompts with a running scoreboard for the evening. Draw a prompt, award it to somebody, and watch the board build. Free, no signup, nothing stored.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the tool pick who the prompt is about?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It only draws the prompt. Deciding who it applies to is the group’s job, and that is the actual game. A tool that named somebody would just be picking on them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the scoreboard a ranking of people?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It counts how often a name was typed this evening. It says nothing about anybody as a person, and it clears when you close the tab or press Clear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the prompts ever mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. They are all habits and behaviour a person can laugh at — being late, being chaotic, being over-prepared. Nothing about appearance, intelligence, money or anyone’s circumstances."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is anything saved between sessions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The board lives in the page and is gone when the tab closes. Nothing is uploaded and nothing is written to storage."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Most Likely To</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Most Likely To</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Thirty prompts and a scoreboard that keeps count all evening. The tool never suggests a name — that part is the group’s job, and it is the whole game.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/most-likely-to.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="mltStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div>
+      <label for="mltCategory" class="block text-xs text-gray-400 mb-1 font-mono">Category:</label>
+      <select id="mltCategory"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+        <option value="all">Anything</option>
+        <option value="habits">Everyday habits</option>
+        <option value="chaos">Chaos</option>
+        <option value="success">Doing well</option>
+        <option value="social">Social</option>
+        <option value="absurd">Absurd</option>
+      </select>
+    </div>
+
+    <div class="mt-4 p-3 rounded-xl bg-gray-950 border border-gray-800">
+      <p class="text-[11px] text-gray-500 leading-relaxed">
+        Point at somebody, then type their name. The scoreboard is a count of how often a name was
+        typed this evening — it is not a ranking of anybody as a person, and the prompts are all
+        things people can laugh at.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="mltDrawBtn" type="button"
+        class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Draw a prompt
+      </button>
+      <button id="mltClearBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+        Clear
+      </button>
+    </div>
+
+    <div id="mltResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <span id="mltBadge" class="px-3 py-1 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20">Chaos</span>
+          <button id="mltCopyBtn" type="button"
+            class="px-3 py-1.5 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+            Copy
+          </button>
+        </div>
+        <p id="mltPrompt" class="text-lg font-bold text-gray-100 leading-snug"></p>
+
+        <div class="flex flex-wrap items-center gap-2 mt-5 pt-5 border-t border-gray-800">
+          <input id="mltNameInput" type="text" maxlength="24" placeholder="Who got it?"
+            class="flex-1 min-w-[10rem] bg-gray-900 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+          <button id="mltAwardBtn" type="button"
+            class="px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+            Award
+          </button>
+        </div>
+      </div>
+
+      <div id="mltMeta" class="text-[11px] text-gray-500"></div>
+
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-4">
+        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold mb-2">The scoreboard</p>
+        <div id="mltBoard" class="space-y-1"></div>
+      </div>
+      <div data-ts-result-actions="most-likely-to" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          A prompt generator with a scoreboard attached. The tool draws a most-likely-to prompt, the group points at somebody, and you type that name in. The board keeps count across the whole evening, so a pattern builds up over the session and there is something to argue about at the end.
+        </p>
+        <p>
+          Two things it deliberately does not do. It never suggests a name — the tool has no idea who is in the room, and a game that volunteers a victim is a game that picks on somebody. And it keeps the board behind the draw, so the running tally is something you look at rather than something permanently on screen, which is the difference between a game and a pile-on. The prompts are all things a person can laugh at: chaotic, forgetful, over-prepared. None of them are about appearance, intelligence or money.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Pick a category, or leave it on <strong class="text-gray-200">Anything</strong> for all thirty prompts.</li>
+        <li>Press <strong class="text-gray-200">Draw a prompt</strong> and read it out. Everyone points at once — that is the actual game.</li>
+        <li>Type the name of whoever got the most fingers and press <strong class="text-gray-200">Award</strong>, or just press Enter.</li>
+        <li>Keep going. The scoreboard at the bottom updates as you play, and it resets with the Clear button or when you close the tab.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A big group</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The pointing is the fun part and it needs no equipment beyond the prompt on a screen.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A long evening</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Because the scoreboard accumulates, this one gets better the longer it runs.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A work social</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The everyday-habits category is safe ground for colleagues — forgetfulness and lateness rather than anything personal.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Family</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Every prompt is something a person can laugh at, and nothing targets anybody’s appearance or circumstances.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does the tool pick who the prompt is about?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. It only draws the prompt. Deciding who it applies to is the group’s job, and that is the actual game. A tool that named somebody would just be picking on them.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the scoreboard a ranking of people?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. It counts how often a name was typed this evening. It says nothing about anybody as a person, and it clears when you close the tab or press Clear.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Are the prompts ever mean?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. They are all habits and behaviour a person can laugh at — being late, being chaotic, being over-prepared. Nothing about appearance, intelligence, money or anyone’s circumstances.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is anything saved between sessions?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The board lives in the page and is gone when the tab closes. Nothing is uploaded and nothing is written to storage.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/most-likely-to.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createMostLikelyTo(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

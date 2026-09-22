@@ -237,7 +237,8 @@
       }
       if (statements.length > 0) {
         notes.push([statements.length + ' question' + (statements.length === 1 ? ' does' : 's do') +
-          ' not end in a question mark. That is allowed — statement-style headings work — but keep it to what the page's own heading says, word for word.', 'info']);
+          ' not end in a question mark. That is allowed — statement-style headings work — but keep ' +
+          'it to what the page\'s own heading says, word for word.', 'info']);
       }
 
       var withMarkup = [];

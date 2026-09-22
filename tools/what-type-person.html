@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>What Type of Person Are You? — 10 Question Quiz | ToolStack AI</title>
+  <meta name="description" content="A ten-question quiz that sorts you into one of six types, and then shows you the full spread so you can see how close the margin actually was." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/what-type-person.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="What Type of Person Are You? — 10 Question Quiz | ToolStack AI" />
+  <meta property="og:description" content="A ten-question quiz that sorts you into one of six types, and then shows you the full spread so you can see how close the margin actually was." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/what-type-person.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="What Type of Person Are You? — 10 Question Quiz | ToolStack AI" />
+  <meta name="twitter:description" content="A ten-question quiz that sorts you into one of six types, and then shows you the full spread so you can see how close the margin actually was." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "What Type of Person Are You?",
+  "url": "https://toolstackai.xyz/tools/what-type-person.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "A ten-question quiz that sorts you into one of six types, and then shows you the full spread so you can see how close the margin actually was.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this a real personality test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a game. There is no psychometric basis for it, the questions were written by hand, and the scoring is a plain tally. It is not a diagnosis and it should not be used to make any decision about anybody, including yourself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does it show all six scores instead of just my type?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the margins are usually small. With ten questions and six types, a lot of people finish with two or three types within a point of each other. Showing only the winner would make a coin-flip margin look like a result, and showing the whole spread is more interesting anyway."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it store my answers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The answers live in the page while you are on it and are gone when you close or reload it. Nothing is sent anywhere and there is no account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I go back and change an answer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Back button steps to the previous question with your earlier answer still selected. Changing it re-scores from that point."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">What Type of Person Are You?</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">What Type of Person Are You?</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Ten questions, six types. The result screen shows every type’s score, not just the winner — because most people land within a point of two or three of them.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/what-type-person.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="wtpStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div id="wtpIntro">
+      <p class="text-sm text-gray-300 leading-relaxed">
+        Ten questions about ordinary situations — a free evening, a friend who is not fine, a group
+        that cannot agree where to eat. Pick the answer that is closest to what you actually do,
+        not what you would like to do.
+      </p>
+      <div class="mt-4 p-3 rounded-xl bg-gray-950 border border-gray-800">
+        <p class="text-[11px] text-gray-500 leading-relaxed">
+          <strong class="text-gray-300">This is a game, not a measurement.</strong> It has no
+          scientific basis and it is not a personality assessment. It is six descriptions written
+          by hand and a tally. Nothing is uploaded and nothing is stored.
+        </p>
+      </div>
+      <button id="wtpStartBtn" type="button"
+        class="mt-5 px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Start the quiz
+      </button>
+    </div>
+
+    <div id="wtpQuiz" class="hidden">
+      <div class="flex items-center justify-between mb-2">
+        <span id="wtpProgress" class="text-xs text-gray-400 font-mono"></span>
+      </div>
+      <div class="h-1.5 rounded-full bg-gray-800 overflow-hidden mb-6">
+        <div id="wtpBar" class="h-full bg-brand-500 transition-all duration-300" style="width: 0%"></div>
+      </div>
+      <p id="wtpQuestion" class="text-base sm:text-lg font-bold text-gray-100 mb-4 leading-snug"></p>
+      <div id="wtpOptions" class="space-y-2"></div>
+      <div class="mt-5">
+        <button id="wtpBackBtn" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Back
+        </button>
+      </div>
+    </div>
+
+    <div id="wtpResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <p class="text-[10px] font-mono uppercase tracking-wide text-gray-500 mb-2">Your type</p>
+        <p id="wtpType" class="text-3xl font-black tracking-tight text-brand-400"></p>
+        <p id="wtpTypeDesc" class="text-sm text-gray-300 leading-relaxed mt-3"></p>
+        <div id="wtpTraits" class="flex flex-wrap gap-2 mt-4"></div>
+      </div>
+
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <p class="text-xs font-bold text-gray-200 mb-1">The whole spread</p>
+        <p class="text-[11px] text-gray-500 leading-relaxed mb-4">
+          Every type and what share of your answers it took. A winner at 30% against a runner-up at
+          25% is not a verdict, and this is here so you can see that for yourself.
+        </p>
+        <div id="wtpSpread" class="space-y-3"></div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="wtpRestartBtn" type="button"
+          class="px-5 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+          Start again
+        </button>
+          <button id="wtpCopyBtn" type="button"
+            class="px-3 py-1.5 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+            Copy
+          </button>
+      </div>
+      <div data-ts-result-actions="what-type-person" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Ten questions, each with four answers, and six types to land in. Every answer adds a point to one type, and the type with the most points at the end is the one shown. There are no right answers and the questions are about ordinary situations rather than hypothetical dilemmas, because a quiz about what you would do in a burning building tells you nothing about what you are like on a Tuesday.
+        </p>
+        <p>
+          The result screen shows the <strong class="text-gray-200">full spread</strong> rather than only the winning type. That is the part most quizzes leave out. Ten questions across six types produces small margins — a winner on three points with two types on two points each is extremely common — and presenting that as a settled answer would be the dishonest version of this tool. You get the winner at the top and the real numbers underneath it.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Press <strong class="text-gray-200">Start the quiz</strong>. The first question appears with a progress bar above it.</li>
+        <li>Pick the answer closest to what you actually do. The quiz advances on its own after each pick.</li>
+        <li>Use <strong class="text-gray-200">Back</strong> at any point to change an earlier answer. Your other answers are kept, so going back does not reset anything.</li>
+        <li>The result appears once all ten are answered. Press <strong class="text-gray-200">Start again</strong> to run it a second time, or <strong class="text-gray-200">Copy</strong> to take the full spread away with you.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Settling an argument</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Two people who disagree about which of them is the organised one can take the same quiz and compare the spreads rather than the labels.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Something to do in a group chat</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Ten questions is short enough to run in a chat and long enough that the answers are not obvious.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Finding out how close it was</p>
+          <p class="text-gray-400 leading-relaxed text-xs">If you have taken a quiz like this before and thought the result felt arbitrary, the spread is the part that explains why.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A writing prompt</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The six types are usable as character sketches if you write fiction and need somebody whose behaviour is consistent.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is this a real personality test?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. It is a game. There is no psychometric basis for it, the questions were written by hand, and the scoring is a plain tally. It is not a diagnosis and it should not be used to make any decision about anybody, including yourself.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does it show all six scores instead of just my type?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Because the margins are usually small. With ten questions and six types, a lot of people finish with two or three types within a point of each other. Showing only the winner would make a coin-flip margin look like a result, and showing the whole spread is more interesting anyway.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does it store my answers?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The answers live in the page while you are on it and are gone when you close or reload it. Nothing is sent anywhere and there is no account.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I go back and change an answer?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes. The Back button steps to the previous question with your earlier answer still selected. Changing it re-scores from that point.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/what-type-person.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createWhatTypePerson(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

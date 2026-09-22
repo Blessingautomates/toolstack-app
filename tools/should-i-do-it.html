@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Should I Do It? — A Random Verdict (and Two Real Questions) | ToolStack AI</title>
+  <meta name="description" content="A verdict on your dilemma, generated at random and labelled as such — plus two questions that genuinely do predict what you will decide. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/should-i-do-it.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Should I Do It? — A Random Verdict (and Two Real Questions) | ToolStack AI" />
+  <meta property="og:description" content="A verdict on your dilemma, generated at random and labelled as such — plus two questions that genuinely do predict what you will decide. Free, no signup." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/should-i-do-it.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Should I Do It? — A Random Verdict (and Two Real Questions) | ToolStack AI" />
+  <meta name="twitter:description" content="A verdict on your dilemma, generated at random and labelled as such — plus two questions that genuinely do predict what you will decide. Free, no signup." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Should I Do It",
+  "url": "https://toolstackai.xyz/tools/should-i-do-it.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "A verdict on your dilemma, generated at random and labelled as such — plus two questions that genuinely do predict what you will decide. Free, no signup.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the confidence percentage real?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and the label says so right next to it. It is generated at random along with the verdict. Showing a number like that without the label would be the dishonest version of this tool, which is why the label is in the interface rather than in small print."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I get the same verdict if I ask twice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Probably not. Each ask is an independent random draw from ten verdicts, so seeing the same one twice is just what happens with ten options."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I actually act on this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Treat it as a prompt rather than advice. The two questions at the bottom of the page are the part that is worth acting on, and they are the part that does not involve a random number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it read what I type?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The decision text is stored in the page so the copied summary can include it. Nothing is interpreted, scored or uploaded."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Should I Do It</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Should I Do It</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    A verdict, a reason, and a confidence figure that is labelled as generated rather than measured. Then two questions that are actually useful.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/should-i-do-it.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="sidiStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div>
+      <label for="sidiQuestion" class="block text-xs text-gray-400 mb-1 font-mono">Your question (optional):</label>
+      <input id="sidiQuestion" type="text" maxlength="120" placeholder="Should I book the trip?"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="sidiAskBtn" type="button"
+        class="px-7 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Give me a verdict
+      </button>
+      <button id="sidiClearBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+        Clear
+      </button>
+      <button id="sidiCopyBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+        Copy the verdict
+      </button>
+    </div>
+
+    <p class="text-[10px] text-gray-500 mt-3 leading-relaxed">
+      The verdict below is random. So is the percentage next to it. The page says so on the label,
+      because a made-up number presented without one is the dishonest version of this tool.
+    </p>
+
+    <div id="sidiResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <p id="sidiVerdict" class="text-2xl font-black text-gray-100 leading-tight"></p>
+        <p id="sidiReason" class="text-sm text-gray-400 mt-3 leading-relaxed"></p>
+
+        <div class="mt-5 pt-5 border-t border-gray-800 flex items-center justify-between gap-4">
+          <span class="text-[11px] text-gray-500">Confidence (generated at random, not measured)</span>
+          <span id="sidiConfidence" class="text-xl font-black text-brand-400"></span>
+        </div>
+
+        <p id="sidiMeta" class="text-[11px] text-gray-500 mt-4 leading-relaxed"></p>
+      </div>
+
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold">The two questions that actually work</p>
+        <div class="mt-4 space-y-4">
+          <div>
+            <p class="text-sm font-bold text-gray-200">1. Would you do it if nobody ever found out?</p>
+            <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+              If the answer is no, you are deciding about an audience rather than about the thing
+              itself. That is worth knowing before you decide anything.
+            </p>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-gray-200">2. What would you tell a friend to do?</p>
+            <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+              People are reliably better at other people’s decisions than their own. If your advice
+              to a friend differs from your plan for yourself, the gap is the interesting part.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div data-ts-result-actions="should-i-do-it" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          A verdict generator for decisions you are stuck on. It gives you a verdict, a wry reason, and a confidence percentage — and it labels the percentage, in the interface rather than in small print, as generated at random rather than measured. Producing a number that looks like a probability and letting somebody believe it is the single most dishonest thing a tool like this could do, so the label is right there next to the number.
+        </p>
+        <p>
+          Underneath the entertainment are two questions that genuinely do predict what people decide, and they are the reason this page is worth more than a coin. Whether you would do it if nobody found out tells you whether the decision is about the thing or about being seen doing it. What you would tell a friend tells you the answer you would give if you were not the one who had to live with it. Neither is a formula, but both are considerably better than a random verdict — and the page is explicit about which part is which.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Type the decision if you want it echoed back in the verdict summary. It is optional and is never interpreted.</li>
+        <li>Press <strong class="text-gray-200">Give me a verdict</strong>, or press Enter in the field.</li>
+        <li>Read the verdict, then read the label next to the percentage. Ask again and you will get a different verdict, because there is nothing behind it.</li>
+        <li>Work through the two questions at the bottom. If your answer to either surprises you, that is the actual output of this page.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A decision you keep circling</p>
+          <p class="text-gray-400 leading-relaxed text-xs">If you have been going back and forth for days, the problem is usually not a lack of information, and a random verdict is a legitimate way to break the loop.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Testing your own reaction</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Ask, notice whether you are disappointed, and act on that instead. The reaction is real information; the verdict is not.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Two options, both fine</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Sometimes there genuinely is no better answer, and treating it as a coin flip is the correct call.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Starting a conversation</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Copy the verdict into a message to a friend if you want to explain why you are asking them about it.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the confidence percentage real?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No, and the label says so right next to it. It is generated at random along with the verdict. Showing a number like that without the label would be the dishonest version of this tool, which is why the label is in the interface rather than in small print.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Will I get the same verdict if I ask twice?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Probably not. Each ask is an independent random draw from ten verdicts, so seeing the same one twice is just what happens with ten options.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Should I actually act on this?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. Treat it as a prompt rather than advice. The two questions at the bottom of the page are the part that is worth acting on, and they are the part that does not involve a random number.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does it read what I type?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The decision text is stored in the page so the copied summary can include it. Nothing is interpreted, scored or uploaded.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/should-i-do-it.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createShouldIDoIt(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

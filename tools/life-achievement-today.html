@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Life Achievement Today — Unlock an Achievement for Your Day | ToolStack AI</title>
+  <meta name="description" content="Get a game-style achievement for something ordinary you did today, with a score. Type what you did and it becomes the unlock condition. Free, no signup." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/life-achievement-today.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Life Achievement Today — Unlock an Achievement for Your Day | ToolStack AI" />
+  <meta property="og:description" content="Get a game-style achievement for something ordinary you did today, with a score. Type what you did and it becomes the unlock condition. Free, no signup." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/life-achievement-today.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Life Achievement Today — Unlock an Achievement for Your Day | ToolStack AI" />
+  <meta name="twitter:description" content="Get a game-style achievement for something ordinary you did today, with a score. Type what you did and it becomes the unlock condition. Free, no signup." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Life Achievement Today",
+  "url": "https://toolstackai.xyz/tools/life-achievement-today.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Get a game-style achievement for something ordinary you did today, with a score. Type what you did and it becomes the unlock condition. Free, no signup.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the points value meaningful?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is a fixed number attached to each achievement and the amounts are deliberately uneven — several trivial achievements are worth more than genuinely difficult ones, which is how real achievement systems behave. The number is a joke about scoring, not a measurement of anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to what I type?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is printed back as the unlock condition and nothing else. It is not read, analysed, stored or sent anywhere, and it is gone when you close the page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the scoring so inconsistent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because that is what makes it funny. Dealt with the drawer: 100 points. Finished a meal you cooked: 70. The gap is the joke, and it is also true of almost every game you have played."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get the same achievement twice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not until the pool is exhausted. Achievements are drawn from a shuffled bag, so all twenty-seven appear once before any of them come round again. Clear resets the bag."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Life Achievement Today</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Life Achievement Today</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Type something ordinary you did today and find out what it was worth in points. The scoring is deliberately unfair, which is the joke.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/life-achievement-today.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="achStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div>
+      <label for="achInput" class="block text-xs text-gray-400 mb-1 font-mono">What did you do today? (optional):</label>
+      <input id="achInput" type="text" autocomplete="off" placeholder="emptied the dishwasher"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+    </div>
+
+    <p class="text-[11px] text-gray-500 mt-2 leading-relaxed">
+      Optional. Type it in and it will be shown as the reason for the award. Leave it blank and the
+      achievement is just for something you did.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="achDrawBtn" type="button"
+        class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Unlock an achievement
+      </button>
+      <button id="achClearBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+        Clear
+      </button>
+    </div>
+
+    <div id="achResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <p class="text-[10px] font-mono uppercase tracking-wide text-gray-500">Achievement unlocked</p>
+          <span id="achBadge" class="shrink-0 px-2.5 py-1 rounded-full text-[10px] font-bold bg-brand-500/10 text-brand-400 border border-brand-500/20"></span>
+        </div>
+        <p id="achTitle" class="text-2xl font-black tracking-tight text-gray-50 leading-tight"></p>
+        <p id="achDesc" class="text-sm text-gray-300 leading-relaxed mt-3"></p>
+        <p id="achScore" class="text-3xl font-black text-amber-400 mt-5"></p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+          <button id="achCopyBtn" type="button"
+            class="px-3 py-1.5 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+            Copy
+          </button>
+      </div>
+
+      <p id="achMeta" class="text-[10px] text-gray-500 leading-relaxed"></p>
+      <div data-ts-result-actions="life-achievement-today" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Awards a game-style achievement for something ordinary. Twenty-seven achievements across five areas of life, drawn from a shuffled bag, each with a name, a description and a points value. If you type what you actually did, it is printed back as the unlock condition — the tool does not read or interpret the text, it just shows it, which is what makes the output feel like it is about your day rather than about a random line from a list.
+        </p>
+        <p>
+          The <strong class="text-gray-200">scoring is deliberately unfair</strong>. "Watered the plant" is worth 20 and "declined a meeting" is worth 100; emptying the dishwasher before the next load is worth 35 and dealing with the drawer is worth 100. That is not a bug. Real achievement systems award points on the basis of how the designer felt about the task, and every one of them has a trivial achievement worth more than a difficult one. The unevenness is what makes it recognisable.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Type what you did, or leave the box empty. Both work — typing it just makes the result about your actual day.</li>
+        <li>Press <strong class="text-gray-200">Unlock an achievement</strong>. A name, a description, a category and a points value appear.</li>
+        <li>Press again for another. Achievements are drawn from a shuffled bag, so all of them come up before any repeat.</li>
+        <li>Press <strong class="text-gray-200">Copy</strong> to take the whole unlock, or <strong class="text-gray-200">Clear</strong> to empty the box and reset the pool.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">End of a long day</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Type the one thing you actually managed and get a points value for it. The number is meaningless and that is the point.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Group chats</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Everybody types what they did and compares scores. The scoring is unfair enough to make this an argument.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Noticing the small things</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A lot of the pool is about things nobody counts as achievements. That is the part people respond to.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Something to send somebody</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Press it until you get one that fits a friend and send them the unlock.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the points value meaningful?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. It is a fixed number attached to each achievement and the amounts are deliberately uneven — several trivial achievements are worth more than genuinely difficult ones, which is how real achievement systems behave. The number is a joke about scoring, not a measurement of anything.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What happens to what I type?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It is printed back as the unlock condition and nothing else. It is not read, analysed, stored or sent anywhere, and it is gone when you close the page.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why is the scoring so inconsistent?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Because that is what makes it funny. Dealt with the drawer: 100 points. Finished a meal you cooked: 70. The gap is the joke, and it is also true of almost every game you have played.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I get the same achievement twice?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Not until the pool is exhausted. Achievements are drawn from a shuffled bag, so all twenty-seven appear once before any of them come round again. Clear resets the bag.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/life-achievement-today.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createLifeAchievement(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

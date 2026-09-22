@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Bad Joke Generator — Deliberately Terrible Jokes | ToolStack AI</title>
+  <meta name="description" content="Anti-jokes and groaners, told badly on purpose — 40 terrible jokes with an awfulness rating. Free, no signup, and clean enough for any audience." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/bad-joke-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Bad Joke Generator — Deliberately Terrible Jokes | ToolStack AI" />
+  <meta property="og:description" content="Anti-jokes and groaners, told badly on purpose — 40 terrible jokes with an awfulness rating. Free, no signup, and clean enough for any audience." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/bad-joke-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bad Joke Generator — Deliberately Terrible Jokes | ToolStack AI" />
+  <meta name="twitter:description" content="Anti-jokes and groaners, told badly on purpose — 40 terrible jokes with an awfulness rating. Free, no signup, and clean enough for any audience." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Bad Joke Generator",
+  "url": "https://toolstackai.xyz/tools/bad-joke-generator.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Anti-jokes and groaners, told badly on purpose — 40 terrible jokes with an awfulness rating. Free, no signup, and clean enough for any audience.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are the jokes actually bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Deliberately, yes. The set is built around anti-jokes and punchlines that refuse to arrive, so a joke failing to land is the intended result rather than a bug."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the awfulness rating mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a hand-written score from one to five blocks, where five means the joke fails hardest. It is a tone judgement rather than a measurement of anything, and it is part of the joke."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are any of these jokes offensive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Deliberately unfunny and offensive are different things, and this tool only does the first. There is no profanity, no adult content and nothing aimed at a group of people."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many bad jokes are there?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Forty, spread across five styles. The list is fixed because the jokes ship inside the page rather than being fetched from an API."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Bad Joke Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Bad Joke Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Forty jokes that fail on purpose — anti-jokes, dead ends and punchlines that never arrive. Each one comes with an awfulness rating, because here the failure is the point.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/bad-joke-generator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="badStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div>
+      <label for="badTopic" class="block text-xs text-gray-400 mb-1 font-mono">Style of bad:</label>
+      <select id="badTopic"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+        <option value="all">Anything</option>
+        <option value="anti">Anti-jokes</option>
+        <option value="literal">Painfully literal</option>
+        <option value="work">Work</option>
+        <option value="sport">Sport</option>
+        <option value="general">General</option>
+      </select>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="badTellBtn" type="button"
+        class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Tell me a joke
+      </button>
+      <button id="badClearBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+        Clear
+      </button>
+    </div>
+
+    <p class="text-[10px] text-gray-500 mt-3">Everything runs in your browser. Nothing is uploaded.</p>
+
+    <div id="badResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="badBadge" class="px-3 py-1 rounded-full text-[11px] font-semibold bg-brand-500/10 text-brand-400 border border-brand-500/20">Anti-joke</span>
+            <span class="text-[11px] text-gray-500 font-mono">Awfulness <span id="badAwful" class="text-brand-400"></span></span>
+          </div>
+          <button id="badCopyBtn" type="button"
+            class="px-3 py-1.5 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+            Copy
+          </button>
+        </div>
+        <p id="badSetup" class="text-lg font-bold text-gray-100 leading-snug"></p>
+        <p id="badPunchline" class="text-lg text-gray-300 mt-3 leading-snug"></p>
+      </div>
+
+      <div id="badMeta" class="text-[11px] text-gray-500"></div>
+
+      <div data-ts-result-actions="bad-joke-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Most joke generators try to be funny. This one is built to fail, and the failure is the whole point. The set leans hard on anti-jokes — the ones that set up a familiar rhythm and then hand you nothing — because that is the shape that reliably produces the pause, the blink, and the reluctant laugh.
+        </p>
+        <p>
+          The limitation is worth stating plainly: comedy is not a solved problem, and a rating printed next to a joke is a joke in itself. The awfulness score on each card is a hand-written tone judgement, not a measurement of anything, and two people will disagree with it constantly. If you are looking for jokes that are actually good, the random joke generator and the corny joke generator on this site are the better bets — this one is for the pleasure of a joke that refuses to land.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Choose a style — anti-jokes, painfully literal, work, sport or general — or leave it on <strong class="text-gray-200">Anything</strong>.</li>
+        <li>Press <strong class="text-gray-200">Tell me a joke</strong> and read the awfulness rating next to the topic badge. Five filled blocks means it fails hardest.</li>
+        <li>Press again. Every joke in the current style appears once before any of them repeats.</li>
+        <li>Use <strong class="text-gray-200">Copy</strong> to send the joke to somebody, which is the traditional way these are shared and the traditional way friendships are tested.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Winning an argument about who tells worse jokes</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The rating gives you something to point at, even though it is admittedly made up.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Filling a group chat</p>
+          <p class="text-gray-400 leading-relaxed text-xs">An anti-joke lands differently in text, where nobody can see the other person waiting for a punchline that is not coming.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Testing comedic theory</p>
+          <p class="text-gray-400 leading-relaxed text-xs">There is a real argument that the anticipation of a joke is funnier than the joke. This set is the experiment.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Something safe for any room</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Nothing here is offensive. It is bad, which is a different thing entirely, and a much safer one to be.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Are the jokes actually bad?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Deliberately, yes. The set is built around anti-jokes and punchlines that refuse to arrive, so a joke failing to land is the intended result rather than a bug.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What does the awfulness rating mean?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It is a hand-written score from one to five blocks, where five means the joke fails hardest. It is a tone judgement rather than a measurement of anything, and it is part of the joke.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Are any of these jokes offensive?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. Deliberately unfunny and offensive are different things, and this tool only does the first. There is no profanity, no adult content and nothing aimed at a group of people.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How many bad jokes are there?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Forty, spread across five styles. The list is fixed because the jokes ship inside the page rather than being fetched from an API.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/bad-joke-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createBadJokeGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

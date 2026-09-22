@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Tic Tac Toe — Play vs Computer or a Friend | ToolStack AI</title>
+  <meta name="description" content="Play tic tac toe against the computer or a friend on the same device. Free, no signup, no download, and a running record kept on your device." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/game-tictactoe.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Tic Tac Toe — Play vs Computer or a Friend | ToolStack AI" />
+  <meta property="og:description" content="Play tic tac toe against the computer or a friend on the same device. Free, no signup, no download, and a running record kept on your device." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/game-tictactoe.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Tic Tac Toe — Play vs Computer or a Friend | ToolStack AI" />
+  <meta name="twitter:description" content="Play tic tac toe against the computer or a friend on the same device. Free, no signup, no download, and a running record kept on your device." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tic Tac Toe",
+  "url": "https://toolstackai.xyz/tools/game-tictactoe.html",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Play tic tac toe against the computer or a friend on the same device. Free, no signup, no download, and a running record kept on your device.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can the computer be beaten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and it is meant to be. It only looks one move ahead, so it will not see a trap that needs two moves to spring — take a corner, then take the opposite corner, and it has no answer. A perfect player would be easy to write but would make every game a draw, which is not worth playing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the record count two-player games?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The record is specifically your results against the computer. In two-player mode you are playing both sides, so a win or a loss there would not mean anything, and the tally is left untouched."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the record shared between devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It is stored in this browser only, and it is not sent anywhere. Clearing your browsing data will clear it, and the **Clear record** button does the same thing deliberately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the computer sometimes take a side square?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It works down a priority list — win, block, centre, corner, side — and picks at random inside whichever tier it reaches. If the centre and all four corners are taken, a side is the only thing left."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Tic Tac Toe</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Tic Tac Toe</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Against the computer or a friend on the same device. The computer is beatable, on purpose — an unbeatable opponent is a solved game, and a solved game is not a game.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/game-tictactoe.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="tttStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-3 mb-4">
+    <div class="flex items-center gap-2">
+      <label for="tttMode" class="text-xs text-gray-500 whitespace-nowrap">Opponent</label>
+      <select id="tttMode"
+        class="bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+        <option value="computer">Computer</option>
+        <option value="two">Two players</option>
+      </select>
+    </div>
+      <span class="text-xs text-gray-500">Turn:
+        <strong id="tttTurn" class="text-gray-100 font-bold">X to play</strong>
+      </span>
+    </div>
+
+    <div id="tttBoard" class="mx-auto w-full max-w-xs"></div>
+
+    <p id="tttResult" class="text-sm font-bold text-gray-100 text-center mt-4"></p>
+
+    <div class="grid grid-cols-3 gap-3 mt-5 text-center">
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-emerald-400" id="tttWins">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Won</p>
+      </div>
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-rose-400" id="tttLosses">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Lost</p>
+      </div>
+      <div class="bg-gray-950 border border-gray-800 rounded-xl py-3">
+        <p class="text-lg font-black text-gray-300" id="tttDraws">0</p>
+        <p class="text-[10px] uppercase tracking-wide text-gray-500 font-bold mt-0.5">Drawn</p>
+      </div>
+    </div>
+
+    <p class="text-[10px] text-gray-500 mt-3 leading-relaxed">
+      The record is kept against the computer only, and it is stored in this browser. It is not
+      sent anywhere, and two-player games do not change it.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-2 mt-5">
+      <button id="tttResetBtn" type="button"
+        class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        New game
+      </button>
+      <button id="tttClearRecordBtn" type="button"
+        class="px-5 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-sm transition">
+        Clear record
+      </button>
+    </div>
+
+    <div data-ts-result-actions="game-tictactoe" class="mt-6"></div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Two modes: one player against the computer, or two players passing one device. In the computer mode you are X and you move first. The record underneath the board tracks wins, losses and draws <strong class="text-gray-200">against the computer only</strong> — a two-player game never touches it, because a tally of games where you played both sides would not mean anything.
+        </p>
+        <p>
+          The computer is deliberately beatable. It plays a fixed priority list — win if it can, block you if it must, then take the centre, then a corner, then a side — with a random choice inside each tier. A perfect opponent would be trivial to write and useless to play: anybody who has played tic tac toe knows the correct reply to every opening, so an unbeatable version would be a coin that always lands on its edge. This one will lose to a player who is paying attention, which is the point. Switching mode starts a new game, and the record stays where it is.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Choose <strong class="text-gray-200">Computer</strong> or <strong class="text-gray-200">Two players</strong> from the opponent selector. Switching starts a fresh board and leaves the record alone.</li>
+        <li>Click any empty square. In computer mode you are X and you always move first; in two-player mode X and O alternate on the same device.</li>
+        <li>The line above the board tells you whose turn it is, and the line under it names the result once the game ends.</li>
+        <li>Press <strong class="text-gray-200">New game</strong> to clear the board. Press <strong class="text-gray-200">Clear record</strong> to reset the running tally — the two are separate, so starting again never wipes your record by accident.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A quick game against the computer</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Games last under a minute, and the computer will lose if you take a corner and then the opposite corner.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Two people, one phone</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Two-player mode needs no setup and no second device. The board tells you whose turn it is.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Teaching the game to a child</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Two-player mode on one screen is the easiest way to show somebody why the centre square matters.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Keeping score over time</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The record against the computer persists in your browser, so a session can turn into a long-running tally.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can the computer be beaten?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes, and it is meant to be. It only looks one move ahead, so it will not see a trap that needs two moves to spring — take a corner, then take the opposite corner, and it has no answer. A perfect player would be easy to write but would make every game a draw, which is not worth playing.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does the record count two-player games?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The record is specifically your results against the computer. In two-player mode you are playing both sides, so a win or a loss there would not mean anything, and the tally is left untouched.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the record shared between devices?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. It is stored in this browser only, and it is not sent anywhere. Clearing your browsing data will clear it, and the **Clear record** button does the same thing deliberately.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does the computer sometimes take a side square?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It works down a priority list — win, block, centre, corner, side — and picks at random inside whichever tier it reaches. If the centre and all four corners are taken, a side is the only thing left.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/game-tictactoe.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createTicTacToe(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

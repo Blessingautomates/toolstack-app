@@ -47,152 +47,281 @@
  * The markup is written dark-first: every surface is a literal `bg-gray-950`,
  * `border-gray-800`, `text-gray-300`. There is not a single `dark:` variant to
  * switch on, so the theme toggle would otherwise flip a class and change
- * nothing. This block remaps those dark utilities onto a light scale whenever
- * <html> is missing `.dark`.
+ * nothing.
  *
- * No !important is needed: `html:not(.dark) .bg-gray-900` (0,2,1) outranks both
- * `.bg-gray-900` (0,1,0) and Tailwind's `.hover\:bg-gray-900:hover` (0,2,0), so
- * this wins regardless of the order the CDN injects its stylesheet.
+ * The light theme is a magenta poster — a deep magenta-red page carrying
+ * bright yellow cards. It is built in two layers, and that split is the whole
+ * mechanism:
  *
- * Colours written as arbitrary values — the chat mockup's bg-[#0b141a] and
- * friends, the brand ambers, the status emeralds/ambers/roses — are deliberately
- * NOT listed and so keep their own colour in both themes.
+ *   1. SHELL  the page, header, footer, filter chips. Deep magenta #BE123C,
+ *             light rose type, bright yellow accents.
+ *   2. CARD   the inside of anything carrying bg-gray-900 or bg-gray-900/60 —
+ *             every tool card, FAQ disclosure, result tile, panel. Bright
+ *             yellow #FEF08A with near-black type and electric-blue accents.
+ *
+ * Layer 2 is written entirely as descendant rules, so it outranks layer 1 on
+ * specificity — `html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60)
+ * .text-gray-400` is (0,3,1) against the shell's (0,2,1) — and the whole
+ * interior of every card flips to dark-on-yellow without one class being added
+ * to the markup.
+ *
+ * No !important is needed anywhere: every rule here outranks both the Tailwind
+ * CDN utility it replaces (0,1,0) and that utility's hover: variant (0,2,0) on
+ * specificity alone, so the order the CDN injects its stylesheet cannot matter.
+ *
+ * Colours written as arbitrary values in the markup — the chat mockup's
+ * bg-[#0b141a] and friends — are deliberately NOT listed and so keep their own
+ * colour in both themes.
+ *
+ * Contrast, against #BE123C for the shell and #FEF08A for the cards:
+ *   white 6.3:1 · rose-100 5.3:1 · rose-200 4.5:1 · brand yellow 4.8:1
+ *   on yellow: near-black 16:1 · slate-600 6.6:1 · blue-700 5.8:1
+ * The amber and blue text weights the markup uses are tuned for a near-black
+ * page (2:1 on white, 1.2:1 on magenta), which is why both layers re-cut them.
  */
-html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
 
-/* Surfaces. The brief for light mode is "pure white cards on off-white": every
-   card, panel and modal is a literal bg-gray-900 in the markup, so all the
-   translucent variants collapse to solid white too rather than letting the
-   slate page tint through them. */
-html:not(.dark) .bg-gray-950        { background-color: #f8fafc; }
-html:not(.dark) .bg-gray-950\/50    { background-color: rgba(241, 245, 249, 0.5); }
-html:not(.dark) .bg-gray-950\/60    { background-color: rgba(248, 250, 252, 0.7); }
-html:not(.dark) .bg-gray-950\/80    { background-color: rgba(255, 255, 255, 0.88); }
-html:not(.dark) .bg-gray-900        { background-color: #ffffff; }
-html:not(.dark) .bg-gray-900\/60    { background-color: #ffffff; }
-html:not(.dark) .bg-gray-900\/80    { background-color: #ffffff; }
-html:not(.dark) .bg-gray-900\/90    { background-color: #ffffff; }
-html:not(.dark) .bg-gray-800        { background-color: #eef2f7; }
-html:not(.dark) .bg-gray-800\/60    { background-color: rgba(226, 232, 240, 0.6); }
+/* ============================================================ 1. the shell */
 
-/* Cards lift off the off-white page with a hairline shadow instead of the dark
-   theme's heavy glow. */
-html:not(.dark) .tool-card {
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.04);
+html:not(.dark) body { background-color: #BE123C; color: #FFF1F2; }
+
+/* Surfaces. bg-gray-950 is the page, the footer and the sticky header bar; the
+   translucent variants are the panels that float over them. */
+html:not(.dark) .bg-gray-950     { background-color: #BE123C; }
+html:not(.dark) .bg-gray-950\/80 { background-color: rgba(159, 18, 57, 0.88); }
+html:not(.dark) .bg-gray-950\/60 { background-color: rgba(255, 251, 235, 0.75); }
+html:not(.dark) .bg-gray-950\/50 { background-color: rgba(255, 251, 235, 0.55); }
+
+/* The header is translucent magenta over a magenta page, so it needs a border
+   to keep its edge. Same for the footer, which takes the deeper magenta. */
+html:not(.dark) footer.bg-gray-950 { background-color: #9F1239; }
+
+/* bg-gray-800 is the "recessed" surface — the keyboard hint, progress-bar
+   tracks, avatar circles, file-input buttons. A translucent ink wash is used
+   rather than a fixed colour because it reads correctly on both layers: it
+   shades the magenta and it shades the yellow. */
+html:not(.dark) .bg-gray-800 { background-color: rgba(15, 23, 42, 0.10); }
+
+/* ...except the "/" hint in the nav, which sits on the dark header bar and
+   would vanish as an ink wash. The element selector outranks the utility. */
+html:not(.dark) header kbd {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #FFF1F2;
 }
-html:not(.dark) .tool-card:hover { box-shadow: 0 12px 28px -14px rgba(15, 23, 42, 0.22); }
 
-/* Borders */
-html:not(.dark) .border-gray-900      { border-color: #eef2f6; }
-html:not(.dark) .border-gray-800      { border-color: #e2e8f0; }
-html:not(.dark) .border-gray-800\/50  { border-color: rgba(226, 232, 240, 0.7); }
-html:not(.dark) .border-gray-800\/60  { border-color: rgba(226, 232, 240, 0.8); }
-html:not(.dark) .border-gray-700      { border-color: #cbd5e1; }
-html:not(.dark) .hover\:border-gray-700\/80:hover { border-color: #cbd5e1; }
+/* Borders on magenta: white hairlines at every weight, doubling as the
+   separator under the header and above the footer. */
+html:not(.dark) .border-gray-900     { border-color: rgba(255, 255, 255, 0.18); }
+html:not(.dark) .border-gray-800     { border-color: rgba(255, 255, 255, 0.24); }
+html:not(.dark) .border-gray-800\/60 { border-color: rgba(255, 255, 255, 0.18); }
+html:not(.dark) .border-gray-800\/50 { border-color: rgba(255, 255, 255, 0.14); }
+html:not(.dark) .border-gray-700     { border-color: rgba(255, 255, 255, 0.40); }
+html:not(.dark) .border-gray-700\/80 { border-color: rgba(255, 255, 255, 0.40); }
+html:not(.dark) .hover\:border-gray-700\/80:hover { border-color: rgba(255, 255, 255, 0.55); }
 
-/* Text — note text-gray-950 is NOT remapped: it is the dark-on-amber label
-   used by the brand buttons in both themes. */
-html:not(.dark) .text-gray-50   { color: #0f172a; }
-html:not(.dark) .text-gray-100  { color: #0f172a; }
-html:not(.dark) .text-gray-200  { color: #1e293b; }
-html:not(.dark) .text-gray-300  { color: #334155; }
-html:not(.dark) .text-gray-400  { color: #475569; }
-html:not(.dark) .text-gray-500  { color: #64748b; }
-html:not(.dark) .text-gray-600  { color: #7c8ba1; }
+/* Text on magenta. The scale is compressed into 4.5–6.3:1, so every weight
+   stays legible and the hierarchy survives as a difference in brightness
+   rather than in opacity — an opacity ladder would push the small print off
+   the bottom of the range entirely. */
+html:not(.dark) .text-gray-50  { color: #FFFFFF; }
+html:not(.dark) .text-gray-100 { color: #FFFFFF; }
+html:not(.dark) .text-gray-200 { color: #FFF1F2; }
+html:not(.dark) .text-gray-300 { color: #FFE4E6; }
+html:not(.dark) .text-gray-400 { color: #FFE4E6; }
+html:not(.dark) .text-gray-500 { color: #FECDD3; }
+html:not(.dark) .text-gray-600 { color: #FECDD3; }
 /* text-gray-700 is only ever the breadcrumb's "/" separator — a hairline glyph
-   that has to stay quiet, so it lightens rather than darkens. */
-html:not(.dark) .text-gray-700  { color: #cbd5e1; }
+   that has to stay quiet, so it sits below the readable range on purpose. */
+html:not(.dark) .text-gray-700 { color: #FDA4AF; }
 
-/* Hovers and form chrome */
-html:not(.dark) .hover\:bg-gray-900:hover    { background-color: #fffdf7; }
-html:not(.dark) .hover\:bg-gray-900\/90:hover { background-color: #fffdf7; }
-html:not(.dark) .hover\:bg-gray-700:hover    { background-color: #e2e8f0; }
-html:not(.dark) .hover\:text-gray-200:hover  { color: #0f172a; }
-html:not(.dark) .hover\:bg-gray-800:hover    { background-color: #e2e8f0; }
-html:not(.dark) .placeholder-gray-600::placeholder { color: #94a3b8; }
-html:not(.dark) .file\:bg-gray-800::file-selector-button { background-color: #e2e8f0; }
-html:not(.dark) .file\:text-gray-200::file-selector-button { color: #1e293b; }
-html:not(.dark) .hover\:file\:bg-gray-700:hover::file-selector-button { background-color: #cbd5e1; }
+/* Hovers and form chrome. A translucent white wash lifts whatever it lands on
+   without needing to know which layer it is on. */
+html:not(.dark) .hover\:bg-gray-900\/90:hover { background-color: #FDE047; }
+html:not(.dark) .hover\:bg-gray-900:hover     { background-color: rgba(255, 255, 255, 0.20); }
+html:not(.dark) .hover\:bg-gray-700:hover     { background-color: rgba(15, 23, 42, 0.18); }
+html:not(.dark) .hover\:bg-gray-800:hover     { background-color: rgba(15, 23, 42, 0.18); }
+html:not(.dark) .hover\:text-gray-200:hover   { color: #FFFFFF; }
+html:not(.dark) .placeholder-gray-600::placeholder { color: #FECDD3; }
+html:not(.dark) .file\:bg-gray-800::file-selector-button { background-color: rgba(15, 23, 42, 0.12); }
+html:not(.dark) .file\:text-gray-200::file-selector-button { color: #0F172A; }
+html:not(.dark) .hover\:file\:bg-gray-700:hover::file-selector-button { background-color: rgba(15, 23, 42, 0.22); }
 
-/* The dark theme leans on heavy shadows to separate surfaces; on a light
-   background the same shadows read as grime. Soften them. */
-html:not(.dark) .shadow-2xl { box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.15); }
-html:not(.dark) .shadow-inner { box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08); }
+/* The dark theme leans on heavy shadows to separate surfaces; on magenta the
+   same shadows read as grime. Cards lift on a deep maroon one instead. */
+html:not(.dark) .shadow-2xl    { box-shadow: 0 10px 30px -12px rgba(76, 5, 25, 0.45); }
+html:not(.dark) .shadow-inner  { box-shadow: inset 0 1px 3px rgba(76, 5, 25, 0.22); }
 html:not(.dark) .shadow-brand-500\/5,
 html:not(.dark) .shadow-brand-500\/10,
-html:not(.dark) .shadow-brand-500\/20 { box-shadow: 0 10px 24px -14px rgba(217, 119, 6, 0.45); }
+html:not(.dark) .shadow-brand-500\/20 { box-shadow: 0 10px 24px -14px rgba(76, 5, 25, 0.5); }
 
-/* ------------------------------------------------- light theme accent palette */
+/* Focus rings. Amber on magenta is muddy; a white ring is unambiguous, and the
+   card layer swaps it for blue where the surface is yellow. */
+html:not(.dark) .ring-brand-500 { --tw-ring-color: #FFFFFF; }
 
 /*
+ * Amber and blue, re-cut for a magenta page.
+ *
  * The markup carries the brand in 400-weight utilities — amber for anything
- * interactive, emerald for "Active", the rose/amber/sky trio for status. Those
- * weights are tuned for a near-black page; on white they land near 2:1 contrast
- * and read as decoration instead of text. This block re-tints each family for
- * the light theme only. The palette:
- *
- *   amber  #F59E0B / #D97706   the brand mark and filled primary buttons
- *   blue   #2563EB             interactive text, icons and links
- *   rose   #E11D48             the support CTA, and error states
- *   orange #EA580C             secondary buttons
- *   emerald / sky / violet / teal / pink — success, info, and tag accents
- *
- * Only the *text* weights move into the 600–700 range: the 500 fills keep their
- * hue so a filled button still reads as one, and the pale /5–/20 tint fills
- * become the near-white washes that sit behind text on a white card.
- *
- * Order matters in two places below — the .ts-cta-support and secondary-button
- * rules tie on specificity with the generic brand rules and so must come after
- * them to win.
+ * interactive. On magenta, amber lands at 1.4:1 and is invisible, so the
+ * shell promotes it to the brand yellow (#FDE047, 4.8:1) for the wordmark and
+ * list markers, and to plain white for links, which need the most contrast.
  */
+html:not(.dark) .text-brand-500 { color: #FDE047; }
+html:not(.dark) .text-brand-400 { color: #FDE047; }
+html:not(.dark) .text-brand-300 { color: #FFFFFF; }
+html:not(.dark) .hover\:text-brand-400:hover { color: #FFFFFF; }
+html:not(.dark) .hover\:text-brand-300:hover { color: #FFFFFF; }
 
-/* Amber: the brand mark in the wordmark, and list markers. */
-html:not(.dark) .text-brand-500 { color: #D97706; }
-
-/* Blue: "Open Tool →", breadcrumb hovers, tool-card icon tiles, footer links. */
-html:not(.dark) .text-brand-400 { color: #2563EB; }
-html:not(.dark) .text-brand-300 { color: #1D4ED8; }
-html:not(.dark) .hover\:text-brand-400:hover { color: #1D4ED8; }
-html:not(.dark) .hover\:text-brand-300:hover { color: #1E40AF; }
-
-/* Tint fills: the pale wash behind an icon tile or a text button. */
-html:not(.dark) .bg-brand-500\/10 { background-color: #EFF6FF; }
+/* Tint fills — the pale wash behind an icon tile or a text button. */
+html:not(.dark) .bg-brand-500\/10 { background-color: rgba(255, 255, 255, 0.16); }
 html:not(.dark) .bg-brand-500\/20,
-html:not(.dark) .hover\:bg-brand-500\/20:hover { background-color: #DBEAFE; }
+html:not(.dark) .hover\:bg-brand-500\/20:hover { background-color: rgba(255, 255, 255, 0.28); }
 
-/* Primary action fill. left as a solid amber; its label is text-gray-950,
-   which is deliberately never remapped — near-black on amber is 8:1. */
+/* Primary action fill: electric blue. The markup labels these buttons
+   text-gray-950 — near-black, which is 3.3:1 on #2563EB — so the label is
+   flipped to white at the bottom of this section instead of in 28 places in
+   the markup. */
 html:not(.dark) .bg-brand-500,
-html:not(.dark) .hover\:bg-brand-500:hover { background-color: #F59E0B; }
-html:not(.dark) .hover\:bg-brand-600:hover { background-color: #D97706; }
+html:not(.dark) .hover\:bg-brand-500:hover { background-color: #2563EB; }
+html:not(.dark) .hover\:bg-brand-600:hover { background-color: #1D4ED8; }
 
-/* Borders. Pale for resting cards, saturated amber once the pointer is on them
-   — this is what makes the hover state of a tool card colourful. */
-html:not(.dark) .border-brand-500\/20 { border-color: #DBEAFE; }
-html:not(.dark) .border-brand-500\/25 { border-color: #FDE68A; }
+/* Borders. A white hairline at rest; brand yellow once the pointer is on a
+   link or a filled button. */
+html:not(.dark) .border-brand-500\/20 { border-color: rgba(255, 255, 255, 0.26); }
+html:not(.dark) .border-brand-500\/25 { border-color: rgba(255, 255, 255, 0.30); }
 html:not(.dark) .border-brand-500\/30,
-html:not(.dark) .border-brand-500\/40 { border-color: #BFDBFE; }
+html:not(.dark) .border-brand-500\/40 { border-color: rgba(255, 255, 255, 0.44); }
 html:not(.dark) .border-brand-500,
 html:not(.dark) .border-brand-500\/50,
 html:not(.dark) .hover\:border-brand-500:hover,
 html:not(.dark) .hover\:border-brand-500\/40:hover,
-html:not(.dark) .hover\:border-brand-500\/50:hover { border-color: #F59E0B; }
+html:not(.dark) .hover\:border-brand-500\/50:hover { border-color: #FDE047; }
 
-/* Support CTA — magenta-red, warming to orange on hover. This is the one
-   element that gets the secondary accent; everything else stays amber. */
+/* Support CTA — a clean white chip, so it reads as the one solid control in a
+   nav bar that is otherwise magenta. Warms to orange on hover. */
 html:not(.dark) .ts-cta-support {
-  background-color: #FFF1F2;
-  border-color: #FECDD3;
-  color: #E11D48;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #BE123C;
 }
 html:not(.dark) .ts-cta-support:hover {
-  background-color: #FFE4E6;
-  border-color: #FDA4AF;
-  color: #EA580C;
+  background-color: #FFEDD5;
+  border-color: #EA580C;
+  color: #C2410C;
 }
 
-/* Secondary buttons (the "Clear" beside every "Run"). Warm orange instead of
-   the dark theme's slate fill, which on white reads as a disabled control. */
+/* Category filter chips are literal bg-gray-900, which the card layer would
+   otherwise paint yellow. On the magenta page they are chrome rather than
+   content, so they get a translucent white chip and the active one takes the
+   brand yellow. */
+html:not(.dark) .filter-btn {
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFE4E6;
+}
+html:not(.dark) .filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #FFFFFF;
+}
+html:not(.dark) .filter-btn.active {
+  background-color: #FDE047;
+  border-color: #FDE047;
+  color: #0F172A;
+}
+
+/* The nav's two form controls are declared bg-gray-900/80 and bg-gray-900, which
+   the card layer would paint as yellow surfaces. They are chrome on the dark
+   header bar, so both are pinned to white here. The id selectors outrank every
+   class rule in this file, including the layer-2 ones, which is why no
+   descendant rule can leak into them. */
+html:not(.dark) #searchInput,
+html:not(.dark) #google_translate_element {
+  background-color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #0F172A;
+  --tw-ring-color: #2563EB;
+}
+html:not(.dark) #searchInput::placeholder { color: #64748B; }
+
+/* ============================================================= 2. the cards */
+
+/*
+ * A card is any element carrying bg-gray-900 or bg-gray-900/60. Inside one the
+ * palette inverts to near-black type on bright yellow.
+ *
+ * Every rule in this section is a descendant rule, which is what makes the
+ * flip automatic and what keeps it off the shell: the ancestor list is the
+ * contract, and an element is either inside one of those surfaces or it is
+ * not.
+ */
+
+html:not(.dark) .bg-gray-900      { background-color: #FEF08A; }
+html:not(.dark) .bg-gray-900\/60  { background-color: #FEF08A; }
+html:not(.dark) .bg-gray-900\/80  { background-color: #FFFFFF; }
+
+/* A card's own border, which no descendant rule can reach — the element that
+   carries the fill is the element that carries the border. The deeper yellow
+   reads as a deliberate edge where the shell's white hairline would read as a
+   halo. Ties with the .border-gray-800 rule above and so must come after it;
+   the two nav controls are pinned by id, and .filter-btn by its own rule. */
+html:not(.dark) .bg-gray-900,
+html:not(.dark) .bg-gray-900\/60 { border-color: #FDE047; }
+
+/* A panel nested inside a card — the second tool section on a page, an input
+   drawn as a field — would otherwise be yellow on yellow. It becomes a warm
+   cream instead, one step lighter than the card it sits on. */
+html:not(.dark) .bg-gray-900 .bg-gray-900,
+html:not(.dark) .bg-gray-900 .bg-gray-900\/60 { background-color: #FFFBEB; }
+
+/* Form fields inside a card: white, with the card's own blue focus ring. */
+html:not(.dark) .bg-gray-900 .bg-gray-950    { background-color: #FFFFFF; }
+html:not(.dark) .bg-gray-900 .bg-gray-950\/60,
+html:not(.dark) .bg-gray-900 .bg-gray-950\/50 { background-color: #FFFBEB; }
+
+/* Borders inside a card are yellow rather than the shell's white hairline,
+   which would read as a highlight against the yellow fill. */
+html:not(.dark) .bg-gray-900 .border-gray-900,
+html:not(.dark) .bg-gray-900 .border-gray-800,
+html:not(.dark) .bg-gray-900 .border-gray-800\/60,
+html:not(.dark) .bg-gray-900 .border-gray-800\/50 { border-color: #FDE047; }
+html:not(.dark) .bg-gray-900 .border-gray-700,
+html:not(.dark) .bg-gray-900 .border-gray-700\/80 { border-color: #FACC15; }
+
+/* Type inside a card. Same ladder as the shell, re-cut dark. */
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-50  { color: #0F172A; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-100 { color: #0F172A; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-200 { color: #1E293B; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-300 { color: #334155; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-400 { color: #475569; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-500 { color: #64748B; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-600 { color: #7C8BA1; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-700 { color: #94A3B8; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:text-gray-200:hover { color: #0F172A; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-500 { color: #1D4ED8; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-400 { color: #1D4ED8; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-300 { color: #1E40AF; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:text-brand-400:hover { color: #1E40AF; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:text-brand-300:hover { color: #1E40AF; }
+
+/* The electric blue the shell cannot use (1.2:1 on magenta) is 5.8:1 on
+   yellow, so a card is exactly where it belongs. Tints follow it. */
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .bg-brand-500\/10 { background-color: #DBEAFE; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .bg-brand-500\/20,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:bg-brand-500\/20:hover { background-color: #BFDBFE; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/20 { border-color: #BFDBFE; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/25 { border-color: #BFDBFE; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/30,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/40 { border-color: #93C5FD; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/50 { border-color: #2563EB; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .ring-brand-500 { --tw-ring-color: #2563EB; }
+
+/* Secondary buttons — the "Clear" beside every "Run". Warm orange, which is
+   the second accent the light theme is built on; the dark theme's slate fill
+   reads as a disabled control on a yellow card.
+
+   This ties on specificity with the type ladder above, so it has to come after
+   it, as does the toast below. */
 html:not(.dark) .bg-gray-800.hover\:bg-gray-700 {
   background-color: #FFF7ED;
   color: #EA580C;
@@ -202,8 +331,9 @@ html:not(.dark) .bg-gray-800.hover\:bg-gray-700:hover {
   color: #C2410C;
 }
 
-/* Semantic status colours. Tools paint these as inline utility strings, so the
-   remap has to cover every weight and tint they actually emit. */
+/* Semantic status colours. Tools paint these as inline utility strings, and
+   they only ever appear inside a card, so the dark weights are correct as-is;
+   they are listed at all only to prove the set is closed. */
 html:not(.dark) .text-emerald-400,
 html:not(.dark) .text-emerald-400\/90,
 html:not(.dark) .text-emerald-500 { color: #047857; }
@@ -234,6 +364,8 @@ html:not(.dark) .text-yellow-200 { color: #A16207; }
 html:not(.dark) .bg-amber-500\/10 { background-color: #FFFBEB; }
 html:not(.dark) .bg-amber-500     { background-color: #F59E0B; }
 html:not(.dark) .bg-yellow-500\/20 { background-color: #FEF9C3; }
+html:not(.dark) .bg-yellow-500\/40 { background-color: #FDE68A; }
+html:not(.dark) .bg-amber-500\/50   { background-color: #FDE68A; }
 html:not(.dark) .border-amber-500\/20,
 html:not(.dark) .border-amber-500\/30 { border-color: #FDE68A; }
 html:not(.dark) .border-yellow-500\/50 { border-color: #FDE047; }
@@ -256,28 +388,49 @@ html:not(.dark) .text-pink-500 { color: #DB2777; }
 html:not(.dark) .bg-pink-500\/10 { background-color: #FDF2F8; }
 html:not(.dark) .border-pink-500\/20 { border-color: #FBCFE8; }
 
-/* Category filter chips: unselected ones are literal bg-gray-900, which is
-   white-on-white against the page. A hairline gives them an edge. */
-html:not(.dark) .filter-btn { border: 1px solid #e2e8f0; }
-
-/* Every tool card hovers to the same amber border via a utility, but the grid
-   reads as one flat row of identical cards. Give each category its own hue so
-   the hover state is colourful and the sections are tellable apart at a glance.
-   These outrank the utility (0,3,1 vs 0,2,0). */
+/* Every tool card hovers to the same yellow border via a utility, which is
+   invisible on a yellow card. Give each category its own deep hue so the hover
+   state reads and the sections are tellable apart at a glance. These outrank
+   both the utility and the rule below. */
+html:not(.dark) .tool-card:hover { border-color: #1D4ED8; }
 html:not(.dark) .tool-card[data-category="client"]:hover  { border-color: #2563EB; }
 html:not(.dark) .tool-card[data-category="sales"]:hover   { border-color: #E11D48; }
 html:not(.dark) .tool-card[data-category="ai"]:hover      { border-color: #7C3AED; }
 html:not(.dark) .tool-card[data-category="seo"]:hover     { border-color: #EA580C; }
 html:not(.dark) .tool-card[data-category="creator"]:hover { border-color: #DB2777; }
+html:not(.dark) .tool-card[data-category="fun"]:hover     { border-color: #0D9488; }
+
+/* Cards lift a little harder than the shell's shadow. */
+html:not(.dark) .tool-card {
+  box-shadow: 0 1px 0 rgba(76, 5, 25, 0.18);
+}
+html:not(.dark) .tool-card:hover { box-shadow: 0 14px 30px -16px rgba(76, 5, 25, 0.6); }
 
 /* The support card's amber-to-transparent wash. Tailwind CDN builds gradients
    from custom properties; redefining them is the only way to re-tint one from
    outside. Inert if the property names ever change. */
 html:not(.dark) .from-brand-500\/10 {
-  --tw-gradient-from: #FFFBEB;
-  --tw-gradient-to: rgba(255, 251, 235, 0);
+  --tw-gradient-from: #DBEAFE;
+  --tw-gradient-to: rgba(219, 234, 254, 0);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+
+/* The toast is appended to <body>, so it is outside every card and would get
+   the shell's white type on the card layer's yellow fill. It is painted as a
+   card in its own right: yellow surface, near-black label.
+
+   Ties with the .bg-gray-900 utility rule above, so it must come after it. */
+html:not(.dark) .ts-toast {
+  background-color: #FEF08A;
+  border-color: #2563EB;
+  color: #0F172A;
+}
+
+/* Every filled button is bg-brand-500 + text-gray-950. The label is flipped to
+   white here rather than in the markup. Last in the section: it ties with the
+   type ladder above and has to win. */
+html:not(.dark) .bg-brand-500.text-gray-950,
+html:not(.dark) .bg-brand-500 .text-gray-950 { color: #FFFFFF; }
 
 /* Theme toggle: both glyphs are always in the DOM and CSS picks one, so the
    correct icon is painted on the very first frame. */
@@ -307,9 +460,9 @@ body { top: 0 !important; }
 .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
 /* The gadget is Google's own markup, so this is deliberately loose: the goal is
-   only to stop it looking like a stray white box in the nav bar.
+   only to stop it looking like a stray box in the nav bar.
    The wrapper in partials/header.html owns the border, radius and padding (in
-   Tailwind utilities that the light theme already remaps), so everything inside
+   Tailwind utilities, pinned to white by the shell above), so everything inside
    is stripped back to bare content and inherits the wrapper's colours. */
 #google_translate_element { line-height: 1; }
 #google_translate_element:hover { border-color: #F59E0B; }
@@ -388,17 +541,26 @@ body { top: 0 !important; }
   background: transparent !important;
 }
 
-html:not(.dark) #google_translate_element:hover { border-color: #F59E0B; }
+/* Light mode. The wrapper is a white chip on the magenta header — see the
+   #google_translate_element rule in the shell — so everything inside it is
+   re-cut dark, with the blue accent the rest of the light theme uses. */
+html:not(.dark) #google_translate_element:hover { border-color: #2563EB; }
 html:not(.dark) #google_translate_element .goog-te-menu-value,
 html:not(.dark) #google_translate_element .goog-te-menu-value span { color: #475569 !important; }
 html:not(.dark) #google_translate_element .goog-te-gadget-icon { filter: grayscale(1) brightness(0.8); }
 
-/* The select, in light mode: white field, slate hairline, same amber focus. */
+/* The select, in light mode: a slate field one step off the white wrapper, so
+   it reads as a control rather than disappearing into it. */
 html:not(.dark) #google_translate_element .goog-te-combo {
-  border-color: #e2e8f0;
-  background-color: #ffffff;
+  border-color: #CBD5E1;
+  background-color: #F1F5F9;
   color: #334155;
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+html:not(.dark) #google_translate_element .goog-te-combo:hover { border-color: #2563EB; }
+html:not(.dark) #google_translate_element .goog-te-combo:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
 }
 html:not(.dark) .goog-te-menu-frame { border-color: #e2e8f0 !important; }
 

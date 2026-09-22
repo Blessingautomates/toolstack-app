@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Flip a Coin Online — With a Running Tally and Streak | ToolStack AI</title>
+  <meta name="description" content="Flip a fair coin online, with running heads and tails counts, the current streak, and the last twenty results. Free, no signup, no ads in the way." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/flip-a-coin.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Flip a Coin Online — With a Running Tally and Streak | ToolStack AI" />
+  <meta property="og:description" content="Flip a fair coin online, with running heads and tails counts, the current streak, and the last twenty results. Free, no signup, no ads in the way." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/flip-a-coin.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Flip a Coin Online — With a Running Tally and Streak | ToolStack AI" />
+  <meta name="twitter:description" content="Flip a fair coin online, with running heads and tails counts, the current streak, and the last twenty results. Free, no signup, no ads in the way." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Flip a Coin",
+  "url": "https://toolstackai.xyz/tools/flip-a-coin.html",
+  "applicationCategory": "EntertainmentApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Flip a fair coin online, with running heads and tails counts, the current streak, and the last twenty results. Free, no signup, no ads in the way.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the coin fair?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It is a fifty-fifty draw with no weighting and no memory of previous flips. It is not cryptographic randomness, and it does not claim to be, but for a game it is a fair coin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did I get five heads in a row?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because that happens. Over twenty flips, a run of four or five in a row is unremarkable — people consistently underestimate how streaky real randomness is. The last twenty chips are shown so you can see the pattern rather than imagine it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the tally persist if I reload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything is held in the page, and reloading or closing the tab clears it. There is a Reset button if you want to clear it without reloading."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Flip ten times do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It rolls ten independent flips at once and adds them all to the tally. It is the quickest way to see a distribution rather than a single result, and the summary line afterwards explains why ten is still a very small sample."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Flip a Coin</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Flip a Coin</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    A fair coin, plus the tally that makes it worth flipping more than once. The streak is the interesting number — runs of five look wrong and are not.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/flip-a-coin.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="coinStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div class="flex flex-wrap items-center gap-2">
+      <button id="coinFlipBtn" type="button"
+        class="px-7 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-sm transition">
+        Flip the coin
+      </button>
+      <button id="coinBulkBtn" type="button"
+        class="px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+        Flip ten times
+      </button>
+      <button id="coinResetBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+        Reset the tally
+      </button>
+      <button id="coinCopyBtn" type="button"
+        class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 hover:border-brand-500 text-gray-200 font-semibold text-sm transition">
+        Copy the result
+      </button>
+    </div>
+
+    <div id="coinResults" class="hidden mt-5 space-y-5">
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-8 text-center">
+        <p id="coinFace" class="text-5xl font-black tracking-tight"></p>
+        <p id="coinStreak" class="text-[11px] text-gray-500 mt-3"></p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-gray-950 border border-gray-800 rounded-2xl p-4 text-center">
+          <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold">Heads</p>
+          <p id="coinHeadsCount" class="text-3xl font-black text-brand-400 mt-1">0</p>
+        </div>
+        <div class="bg-gray-950 border border-gray-800 rounded-2xl p-4 text-center">
+          <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold">Tails</p>
+          <p id="coinTailsCount" class="text-3xl font-black text-gray-300 mt-1">0</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-950 border border-gray-800 rounded-2xl p-4">
+        <p class="text-[11px] uppercase tracking-wider text-gray-500 font-bold mb-2">The last twenty</p>
+        <div id="coinHistory"></div>
+        <p id="coinMeta" class="text-[11px] text-gray-500 mt-3 leading-relaxed"></p>
+      </div>
+
+      <div data-ts-result-actions="flip-a-coin" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          A fair coin with a scoreboard. One press gives you heads or tails; the tally underneath keeps the running counts, the current streak, and the last twenty results as a row of chips. That tally is the reason to use this rather than a coin on a table: people are reliably bad at judging whether a sequence is random, and seeing five heads in a row in your own results is a far better demonstration of what randomness actually looks like than any explanation.
+        </p>
+        <p>
+          Two honest limits. The flip is JavaScript’s Math.random(), which is a fair coin for a game and is not a source of cryptographic randomness — nobody is securing anything with a coin toss, but the page does not claim more than it has. And on a small number of flips the percentages swing wildly: ten flips landing 70% heads is not evidence of a biased coin, it is what ten flips look like. The tool says so rather than letting the number imply otherwise.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Press <strong class="text-gray-200">Flip the coin</strong> for a single result. The button locks for a moment while the animation runs, so a double-click cannot produce two flips.</li>
+        <li>Watch the tally underneath. Heads and tails counts, the current streak, and the last twenty results all update together.</li>
+        <li>Press <strong class="text-gray-200">Flip ten times</strong> if you want to see a distribution rather than a single result. Ten flips at once is where the tool gets interesting.</li>
+        <li>Press <strong class="text-gray-200">Copy the result</strong> to paste the last flip and the session tally into a message.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Settling an argument</p>
+          <p class="text-gray-400 leading-relaxed text-xs">One flip, one answer, and the tally means you can go again without losing track of what has already happened.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Demonstrating randomness</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Flip ten at once and count the heads. Runs that look suspiciously long turn up far more often than people expect.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Deciding something arbitrary</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Who goes first, who pays, which way to walk. Low stakes and immediate.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Teaching probability</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The running percentage converging towards 50% over a few hundred flips is a decent demonstration, and the streaky path it takes to get there is the more interesting lesson.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is the coin fair?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Yes. It is a fifty-fifty draw with no weighting and no memory of previous flips. It is not cryptographic randomness, and it does not claim to be, but for a game it is a fair coin.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why did I get five heads in a row?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Because that happens. Over twenty flips, a run of four or five in a row is unremarkable — people consistently underestimate how streaky real randomness is. The last twenty chips are shown so you can see the pattern rather than imagine it.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does the tally persist if I reload?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. Everything is held in the page, and reloading or closing the tab clears it. There is a Reset button if you want to clear it without reloading.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What does Flip ten times do?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It rolls ten independent flips at once and adds them all to the tally. It is the quickest way to see a distribution rather than a single result, and the summary line afterwards explains why ten is still a very small sample.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/fun-shared.js"></script>
+<script src="../assets/tools/flip-a-coin.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createFlipACoin(root);
+    }
+  })();
+</script>
+
+</body>
+</html>
