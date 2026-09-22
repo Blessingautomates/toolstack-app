@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--
+  ToolStack AI — URL Slug Generator (standalone page).
+
+  The widget markup below must keep ids identical to the modal version on
+  index.html: the engine in assets/tools/slug-generator.js queries by id and
+  bails out early if the main ones are missing.
+
+  Keep the FAQ JSON-LD in the head in sync with the visible FAQ at the bottom.
+  Leave the ts:header / ts:footer markers alone; `node scripts/toolstack.mjs
+  sync-chrome` fills them from partials/.
+-->
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>URL Slug Generator — Free Online Tool | ToolStack AI</title>
+  <meta name="description" content="Turn any headline or page title into a clean, SEO-friendly URL slug — lowercase, hyphenated and accent-stripped." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/slug-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="URL Slug Generator — Free Online Tool | ToolStack AI" />
+  <meta property="og:description" content="Turn any headline or page title into a clean, SEO-friendly URL slug — lowercase, hyphenated and accent-stripped." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/slug-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="URL Slug Generator — Free Online Tool | ToolStack AI" />
+  <meta name="twitter:description" content="Turn any headline or page title into a clean, SEO-friendly URL slug — lowercase, hyphenated and accent-stripped." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "URL Slug Generator",
+    "url": "https://toolstackai.xyz/tools/slug-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Turn any headline or page title into a clean, SEO-friendly URL slug — lowercase, hyphenated and accent-stripped.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do hyphens or underscores matter for SEO?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hyphens are the safer choice. Google treats a hyphen as a word separator, so free-invoice-generator reads as three words, while some crawlers and older systems join an underscore, making free_invoice_generator one long unbroken word. The ranking difference is negligible either way; the difference in how the link reads to a person is not." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should a URL slug be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Short enough to read at a glance — three to five words is a reasonable target, and there is no ranking benefit in going longer. Length is a display problem rather than a ranking one: long URLs are truncated in some search results, in chat previews and in analytics reports, and it is always the end of the slug that gets cut. Set the length limit here if you have a hard ceiling to respect." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I change the slug on a page that already ranks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Usually not. The words in a URL are a very small ranking signal, so a rewrite rarely earns back what it costs: the old address loses whatever link and click history it had accumulated, and every existing link to it breaks until a redirect is in place. Change it when the current slug is actually wrong, and publish a 301 redirect from the old address the same day. Never leave both URLs serving the same page." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">URL Slug Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">URL Slug Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">Turn any headline into a clean, lowercase, hyphenated URL slug — accents transliterated, punctuation dropped, filler words optional, and a length limit that cuts at a word boundary instead of mid-word.</p>
+
+  <!-- Tool widget. Ids here must match the modal version on index.html. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="slugStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 gap-4 mb-4">
+      <div>
+        <label for="slugInput" class="block text-xs text-gray-400 mb-1 font-mono">Title, headline or URL to slugify:</label>
+        <textarea id="slugInput" rows="3" placeholder="10 Best Free Invoice Generators for Freelancers (2026 Update)"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label for="slugSeparator" class="block text-xs text-gray-400 mb-1 font-mono">Separator:</label>
+          <select id="slugSeparator"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="hyphen" selected>Hyphen ( - )</option>
+            <option value="underscore">Underscore ( _ )</option>
+            <option value="none">None</option>
+          </select>
+        </div>
+        <div>
+          <label for="slugMaxLength" class="block text-xs text-gray-400 mb-1 font-mono">Max length:</label>
+          <input id="slugMaxLength" type="number" min="0" max="200" value="60"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">0 = no limit</p>
+        </div>
+        <div class="flex flex-col justify-end gap-2 pb-1">
+          <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+            <input id="slugLowercase" type="checkbox" checked
+              class="w-4 h-4 rounded border-gray-700 bg-gray-950 text-brand-500 focus:ring-brand-500" />
+            Lowercase
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+            <input id="slugStripStop" type="checkbox"
+              class="w-4 h-4 rounded border-gray-700 bg-gray-950 text-brand-500 focus:ring-brand-500" />
+            Drop stop words
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label for="slugResult" class="block text-xs text-gray-400 mb-1 font-mono">Slug:</label>
+        <p id="slugResult"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-brand-400 break-all min-h-[2.5rem]">your-slug-appears-here</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="slugCopy" type="button"
+          class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          📋 Copy slug
+        </button>
+        <button id="slugExample" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          Try an example
+        </button>
+        <button id="slugClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="slugResults" class="hidden mt-5 space-y-5">
+      <div id="slugStats" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      <div id="slugWarnings" class="space-y-2"></div>
+
+      <div data-ts-result-actions="slug-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>Paste a headline, a page title or a messy URL and this tool turns it into a slug — the lowercase, hyphenated fragment that identifies the page in its address. It transliterates accents to ASCII, drops punctuation, collapses repeated separators, and can remove the filler words that make an address longer without making it any clearer.</p>
+        <p>The honest reason to care is readability, not ranking. Google has said for years that keywords in a URL are a very small signal, so a tidy slug will not lift a page on its own. What it does change is how the link looks in the address bar, in the breadcrumb of a search result, and when someone pastes it into a chat. Everything runs in your browser, so pasting an unpublished headline or a client's draft title is safe.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Paste your headline into the box. The slug builds as you type — there is no generate button, because there is nothing to wait for.</li>
+        <li>Choose a separator. Hyphens are the convention and what Google's own URL guidance uses. Underscores are treated as word-joiners by some older systems, and no separator at all only makes sense for very short slugs.</li>
+        <li>Set a maximum length if your CMS or platform imposes one. The cut backs up to the nearest separator, so you get a shorter slug rather than half a word.</li>
+        <li>Read the notes under the result before you copy. They name any characters that had to be dropped and any words lost to stop-word removal, so nothing about the result is a surprise.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Publishing a new page</p>
+          <p class="text-gray-400 leading-relaxed text-xs">You have a finished headline and an empty slug field. This turns one into the other without a retype, which is where the typos and the accidental double hyphen come from.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Planning a migration</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Run a batch of page titles through to get candidate slugs, then compare them against the URLs you already have before you rewrite anything or write a single redirect.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Titles with accents</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Café, jalapeño and Ångström become cafe, jalapeno and angstrom instead of turning into percent-encoded sequences nobody can read or type.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Filenames and anchors</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A good filename and a good heading anchor follow the same rules as a good URL: lowercase words, joined by hyphens, with no spaces or punctuation to escape.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Do hyphens or underscores matter for SEO?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Hyphens are the safer choice. Google treats a hyphen as a word separator, so free-invoice-generator reads as three words, while some crawlers and older systems join an underscore, making free_invoice_generator one long unbroken word. The ranking difference is negligible either way; the difference in how the link reads to a person is not.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How long should a URL slug be?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Short enough to read at a glance — three to five words is a reasonable target, and there is no ranking benefit in going longer. Length is a display problem rather than a ranking one: long URLs are truncated in some search results, in chat previews and in analytics reports, and it is always the end of the slug that gets cut. Set the length limit here if you have a hard ceiling to respect.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Should I change the slug on a page that already ranks?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Usually not. The words in a URL are a very small ranking signal, so a rewrite rarely earns back what it costs: the old address loses whatever link and click history it had accumulated, and every existing link to it breaks until a redirect is in place. Change it when the current slug is actually wrong, and publish a 301 redirect from the old address the same day. Never leave both URLs serving the same page.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/slug-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createSlugGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

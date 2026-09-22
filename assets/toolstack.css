@@ -60,17 +60,27 @@
  */
 html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
 
-/* Surfaces */
+/* Surfaces. The brief for light mode is "pure white cards on off-white": every
+   card, panel and modal is a literal bg-gray-900 in the markup, so all the
+   translucent variants collapse to solid white too rather than letting the
+   slate page tint through them. */
 html:not(.dark) .bg-gray-950        { background-color: #f8fafc; }
 html:not(.dark) .bg-gray-950\/50    { background-color: rgba(241, 245, 249, 0.5); }
-html:not(.dark) .bg-gray-950\/60    { background-color: rgba(241, 245, 249, 0.6); }
-html:not(.dark) .bg-gray-950\/80    { background-color: rgba(248, 250, 252, 0.85); }
+html:not(.dark) .bg-gray-950\/60    { background-color: rgba(248, 250, 252, 0.7); }
+html:not(.dark) .bg-gray-950\/80    { background-color: rgba(255, 255, 255, 0.88); }
 html:not(.dark) .bg-gray-900        { background-color: #ffffff; }
-html:not(.dark) .bg-gray-900\/60    { background-color: rgba(255, 255, 255, 0.75); }
+html:not(.dark) .bg-gray-900\/60    { background-color: #ffffff; }
 html:not(.dark) .bg-gray-900\/80    { background-color: #ffffff; }
-html:not(.dark) .bg-gray-900\/90    { background-color: rgba(255, 255, 255, 0.95); }
-html:not(.dark) .bg-gray-800        { background-color: #e2e8f0; }
+html:not(.dark) .bg-gray-900\/90    { background-color: #ffffff; }
+html:not(.dark) .bg-gray-800        { background-color: #eef2f7; }
 html:not(.dark) .bg-gray-800\/60    { background-color: rgba(226, 232, 240, 0.6); }
+
+/* Cards lift off the off-white page with a hairline shadow instead of the dark
+   theme's heavy glow. */
+html:not(.dark) .tool-card {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+html:not(.dark) .tool-card:hover { box-shadow: 0 12px 28px -14px rgba(15, 23, 42, 0.22); }
 
 /* Borders */
 html:not(.dark) .border-gray-900      { border-color: #eef2f6; }
@@ -89,12 +99,16 @@ html:not(.dark) .text-gray-300  { color: #334155; }
 html:not(.dark) .text-gray-400  { color: #475569; }
 html:not(.dark) .text-gray-500  { color: #64748b; }
 html:not(.dark) .text-gray-600  { color: #7c8ba1; }
+/* text-gray-700 is only ever the breadcrumb's "/" separator — a hairline glyph
+   that has to stay quiet, so it lightens rather than darkens. */
+html:not(.dark) .text-gray-700  { color: #cbd5e1; }
 
 /* Hovers and form chrome */
-html:not(.dark) .hover\:bg-gray-900:hover    { background-color: #f1f5f9; }
-html:not(.dark) .hover\:bg-gray-900\/90:hover { background-color: #f1f5f9; }
-html:not(.dark) .hover\:bg-gray-700:hover    { background-color: #cbd5e1; }
+html:not(.dark) .hover\:bg-gray-900:hover    { background-color: #fffdf7; }
+html:not(.dark) .hover\:bg-gray-900\/90:hover { background-color: #fffdf7; }
+html:not(.dark) .hover\:bg-gray-700:hover    { background-color: #e2e8f0; }
 html:not(.dark) .hover\:text-gray-200:hover  { color: #0f172a; }
+html:not(.dark) .hover\:bg-gray-800:hover    { background-color: #e2e8f0; }
 html:not(.dark) .placeholder-gray-600::placeholder { color: #94a3b8; }
 html:not(.dark) .file\:bg-gray-800::file-selector-button { background-color: #e2e8f0; }
 html:not(.dark) .file\:text-gray-200::file-selector-button { color: #1e293b; }
@@ -104,6 +118,166 @@ html:not(.dark) .hover\:file\:bg-gray-700:hover::file-selector-button { backgrou
    background the same shadows read as grime. Soften them. */
 html:not(.dark) .shadow-2xl { box-shadow: 0 10px 30px -12px rgba(15, 23, 42, 0.15); }
 html:not(.dark) .shadow-inner { box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08); }
+html:not(.dark) .shadow-brand-500\/5,
+html:not(.dark) .shadow-brand-500\/10,
+html:not(.dark) .shadow-brand-500\/20 { box-shadow: 0 10px 24px -14px rgba(217, 119, 6, 0.45); }
+
+/* ------------------------------------------------- light theme accent palette */
+
+/*
+ * The markup carries the brand in 400-weight utilities — amber for anything
+ * interactive, emerald for "Active", the rose/amber/sky trio for status. Those
+ * weights are tuned for a near-black page; on white they land near 2:1 contrast
+ * and read as decoration instead of text. This block re-tints each family for
+ * the light theme only. The palette:
+ *
+ *   amber  #F59E0B / #D97706   the brand mark and filled primary buttons
+ *   blue   #2563EB             interactive text, icons and links
+ *   rose   #E11D48             the support CTA, and error states
+ *   orange #EA580C             secondary buttons
+ *   emerald / sky / violet / teal / pink — success, info, and tag accents
+ *
+ * Only the *text* weights move into the 600–700 range: the 500 fills keep their
+ * hue so a filled button still reads as one, and the pale /5–/20 tint fills
+ * become the near-white washes that sit behind text on a white card.
+ *
+ * Order matters in two places below — the .ts-cta-support and secondary-button
+ * rules tie on specificity with the generic brand rules and so must come after
+ * them to win.
+ */
+
+/* Amber: the brand mark in the wordmark, and list markers. */
+html:not(.dark) .text-brand-500 { color: #D97706; }
+
+/* Blue: "Open Tool →", breadcrumb hovers, tool-card icon tiles, footer links. */
+html:not(.dark) .text-brand-400 { color: #2563EB; }
+html:not(.dark) .text-brand-300 { color: #1D4ED8; }
+html:not(.dark) .hover\:text-brand-400:hover { color: #1D4ED8; }
+html:not(.dark) .hover\:text-brand-300:hover { color: #1E40AF; }
+
+/* Tint fills: the pale wash behind an icon tile or a text button. */
+html:not(.dark) .bg-brand-500\/10 { background-color: #EFF6FF; }
+html:not(.dark) .bg-brand-500\/20,
+html:not(.dark) .hover\:bg-brand-500\/20:hover { background-color: #DBEAFE; }
+
+/* Primary action fill. left as a solid amber; its label is text-gray-950,
+   which is deliberately never remapped — near-black on amber is 8:1. */
+html:not(.dark) .bg-brand-500,
+html:not(.dark) .hover\:bg-brand-500:hover { background-color: #F59E0B; }
+html:not(.dark) .hover\:bg-brand-600:hover { background-color: #D97706; }
+
+/* Borders. Pale for resting cards, saturated amber once the pointer is on them
+   — this is what makes the hover state of a tool card colourful. */
+html:not(.dark) .border-brand-500\/20 { border-color: #DBEAFE; }
+html:not(.dark) .border-brand-500\/25 { border-color: #FDE68A; }
+html:not(.dark) .border-brand-500\/30,
+html:not(.dark) .border-brand-500\/40 { border-color: #BFDBFE; }
+html:not(.dark) .border-brand-500,
+html:not(.dark) .border-brand-500\/50,
+html:not(.dark) .hover\:border-brand-500:hover,
+html:not(.dark) .hover\:border-brand-500\/40:hover,
+html:not(.dark) .hover\:border-brand-500\/50:hover { border-color: #F59E0B; }
+
+/* Support CTA — magenta-red, warming to orange on hover. This is the one
+   element that gets the secondary accent; everything else stays amber. */
+html:not(.dark) .ts-cta-support {
+  background-color: #FFF1F2;
+  border-color: #FECDD3;
+  color: #E11D48;
+}
+html:not(.dark) .ts-cta-support:hover {
+  background-color: #FFE4E6;
+  border-color: #FDA4AF;
+  color: #EA580C;
+}
+
+/* Secondary buttons (the "Clear" beside every "Run"). Warm orange instead of
+   the dark theme's slate fill, which on white reads as a disabled control. */
+html:not(.dark) .bg-gray-800.hover\:bg-gray-700 {
+  background-color: #FFF7ED;
+  color: #EA580C;
+}
+html:not(.dark) .bg-gray-800.hover\:bg-gray-700:hover {
+  background-color: #FFEDD5;
+  color: #C2410C;
+}
+
+/* Semantic status colours. Tools paint these as inline utility strings, so the
+   remap has to cover every weight and tint they actually emit. */
+html:not(.dark) .text-emerald-400,
+html:not(.dark) .text-emerald-400\/90,
+html:not(.dark) .text-emerald-500 { color: #047857; }
+html:not(.dark) .bg-emerald-500\/5  { background-color: #F0FDF4; }
+html:not(.dark) .bg-emerald-500\/10 { background-color: #ECFDF5; }
+html:not(.dark) .bg-emerald-500     { background-color: #059669; }
+html:not(.dark) .bg-emerald-600     { background-color: #047857; }
+html:not(.dark) .border-emerald-500\/20 { border-color: #A7F3D0; }
+
+html:not(.dark) .text-rose-400 { color: #BE123C; }
+html:not(.dark) .bg-rose-500\/5  { background-color: #FFF5F6; }
+html:not(.dark) .bg-rose-500\/10 { background-color: #FFF1F2; }
+html:not(.dark) .bg-rose-500     { background-color: #E11D48; }
+html:not(.dark) .border-rose-500\/20 { border-color: #FECDD3; }
+
+html:not(.dark) .text-red-300,
+html:not(.dark) .text-red-400 { color: #B91C1C; }
+html:not(.dark) .text-red-500 { color: #DC2626; }
+html:not(.dark) .text-red-600 { color: #B91C1C; }
+html:not(.dark) .bg-red-500\/10 { background-color: #FEF2F2; }
+html:not(.dark) .bg-red-500     { background-color: #DC2626; }
+html:not(.dark) .border-red-500\/20,
+html:not(.dark) .border-red-500\/30 { border-color: #FECACA; }
+
+html:not(.dark) .text-amber-300,
+html:not(.dark) .text-amber-400 { color: #B45309; }
+html:not(.dark) .text-yellow-200 { color: #A16207; }
+html:not(.dark) .bg-amber-500\/10 { background-color: #FFFBEB; }
+html:not(.dark) .bg-amber-500     { background-color: #F59E0B; }
+html:not(.dark) .bg-yellow-500\/20 { background-color: #FEF9C3; }
+html:not(.dark) .border-amber-500\/20,
+html:not(.dark) .border-amber-500\/30 { border-color: #FDE68A; }
+html:not(.dark) .border-yellow-500\/50 { border-color: #FDE047; }
+
+html:not(.dark) .text-sky-400 { color: #0369A1; }
+html:not(.dark) .bg-sky-500\/10 { background-color: #F0F9FF; }
+html:not(.dark) .bg-sky-500     { background-color: #0284C7; }
+html:not(.dark) .border-sky-500\/20 { border-color: #BAE6FD; }
+
+html:not(.dark) .text-violet-400 { color: #6D28D9; }
+html:not(.dark) .bg-violet-500\/10 { background-color: #F5F3FF; }
+html:not(.dark) .border-violet-500\/20 { border-color: #DDD6FE; }
+
+html:not(.dark) .text-teal-400 { color: #0F766E; }
+html:not(.dark) .bg-teal-500\/10 { background-color: #F0FDFA; }
+html:not(.dark) .border-teal-500\/20 { border-color: #99F6E4; }
+
+html:not(.dark) .text-pink-400 { color: #BE185D; }
+html:not(.dark) .text-pink-500 { color: #DB2777; }
+html:not(.dark) .bg-pink-500\/10 { background-color: #FDF2F8; }
+html:not(.dark) .border-pink-500\/20 { border-color: #FBCFE8; }
+
+/* Category filter chips: unselected ones are literal bg-gray-900, which is
+   white-on-white against the page. A hairline gives them an edge. */
+html:not(.dark) .filter-btn { border: 1px solid #e2e8f0; }
+
+/* Every tool card hovers to the same amber border via a utility, but the grid
+   reads as one flat row of identical cards. Give each category its own hue so
+   the hover state is colourful and the sections are tellable apart at a glance.
+   These outrank the utility (0,3,1 vs 0,2,0). */
+html:not(.dark) .tool-card[data-category="client"]:hover  { border-color: #2563EB; }
+html:not(.dark) .tool-card[data-category="sales"]:hover   { border-color: #E11D48; }
+html:not(.dark) .tool-card[data-category="ai"]:hover      { border-color: #7C3AED; }
+html:not(.dark) .tool-card[data-category="seo"]:hover     { border-color: #EA580C; }
+html:not(.dark) .tool-card[data-category="creator"]:hover { border-color: #DB2777; }
+
+/* The support card's amber-to-transparent wash. Tailwind CDN builds gradients
+   from custom properties; redefining them is the only way to re-tint one from
+   outside. Inert if the property names ever change. */
+html:not(.dark) .from-brand-500\/10 {
+  --tw-gradient-from: #FFFBEB;
+  --tw-gradient-to: rgba(255, 251, 235, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 
 /* Theme toggle: both glyphs are always in the DOM and CSS picks one, so the
    correct icon is painted on the very first frame. */
@@ -115,11 +289,20 @@ html:not(.dark) .ts-theme-light { display: inline; }
 
 /*
  * Google injects a promo banner iframe and offsets <body> to make room for it.
- * Neither belongs on a site whose only chrome is the header.
+ * Neither belongs on a site whose only chrome is the header. The gadget also
+ * ships a hover balloon (#goog-gt-tt) and, for some locales, a skip-translation
+ * nag — both are hidden here.
+ *
+ * .skiptranslate is scoped rather than hidden outright: Google stamps that class
+ * onto the frames it injects *and* onto the container we hand it, so a bare
+ * `.skiptranslate { display: none }` deletes the widget along with the banner.
+ * Excluding the mount point keeps the widget and still kills every injected
+ * frame, which all carry the class without being our element.
  */
 .goog-te-banner-frame,
-#goog-gt-tt,
-.goog-te-balloon-frame { display: none !important; }
+.goog-te-balloon-frame,
+#goog-gt-tt { display: none !important; }
+.skiptranslate:not(#google_translate_element) { display: none !important; }
 body { top: 0 !important; }
 .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
@@ -150,6 +333,48 @@ body { top: 0 !important; }
 #google_translate_element .goog-te-menu-value span { color: #9ca3af !important; }
 #google_translate_element .goog-te-menu-value img { display: none; }
 
+/* The dropdown itself. InlineLayout.SIMPLE renders an anchor, but the NONE and
+   HORIZONTAL layouts (and Google's own fallback) render a <select>, and an
+   unstyled one is a grey OS control that ignores the rest of the nav. Styling
+   it as a native select — no appearance override beyond the arrow — keeps it
+   matching the search box in both themes. */
+#google_translate_element .goog-te-combo {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0.3rem 1.5rem 0.3rem 0.5rem;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.2;
+  border-radius: 0.375rem;
+  border: 1px solid #374151;
+  background-color: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+  /* Chevron as a data URI so it needs no extra request; the stroke is the
+     muted grey the surrounding nav uses. */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.35rem center;
+  background-size: 0.7rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+#google_translate_element .goog-te-combo:hover { border-color: #F59E0B; }
+#google_translate_element .goog-te-combo:focus {
+  outline: none;
+  border-color: #F59E0B;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35);
+}
+
+/* The popup menu for the SIMPLE layout lives in a cross-origin iframe, so its
+   contents cannot be reached from here — only the frame's own border can. */
+.goog-te-menu-frame {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.35) !important;
+  overflow: hidden;
+}
+
 /* Older inline layouts wrap the gadget in a table. Left alone it inherits the
    page's body typography and blows the header height out; neutralise it. */
 #google_translate_element table {
@@ -168,8 +393,18 @@ html:not(.dark) #google_translate_element .goog-te-menu-value,
 html:not(.dark) #google_translate_element .goog-te-menu-value span { color: #475569 !important; }
 html:not(.dark) #google_translate_element .goog-te-gadget-icon { filter: grayscale(1) brightness(0.8); }
 
+/* The select, in light mode: white field, slate hairline, same amber focus. */
+html:not(.dark) #google_translate_element .goog-te-combo {
+  border-color: #e2e8f0;
+  background-color: #ffffff;
+  color: #334155;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+html:not(.dark) .goog-te-menu-frame { border-color: #e2e8f0 !important; }
+
 /* The nav is already tight on phones: keep the globe, drop the language name. */
 @media (max-width: 767px) {
   #google_translate_element .goog-te-menu-value span { display: none !important; }
   #google_translate_element { padding: 0.4rem 0.35rem !important; }
+  #google_translate_element .goog-te-combo { padding-right: 1.35rem; }
 }

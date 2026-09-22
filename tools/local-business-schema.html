@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Local Business Schema Generator — Free LocalBusiness JSON-LD | ToolStack AI</title>
+  <meta name="description" content="Build LocalBusiness JSON-LD with your name, address, phone, coordinates and opening hours. Get the markup that makes a local business unambiguous. Free, in your browser." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/local-business-schema.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Local Business Schema Generator" />
+  <meta property="og:description" content="Build LocalBusiness JSON-LD with your address, phone, coordinates and opening hours. Free, in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/local-business-schema.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Business Schema Generator" />
+  <meta name="twitter:description" content="Build LocalBusiness JSON-LD with your address, phone and opening hours." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Local Business Schema Generator",
+    "url": "https://toolstackai.xyz/tools/local-business-schema.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Build LocalBusiness JSON-LD with name, address, telephone, coordinates and opening hours, and catch the inconsistencies that undermine local markup.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Will LocalBusiness schema get me into the map pack?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, and no markup will. The map pack is driven by your Google Business Profile — the listing, its categories, its reviews and its proximity to the searcher. Structured data on your own site does not create that listing, claim it or influence it. What this markup does is make the business unambiguous to a crawler reading the page, and keep the name, address and phone on your site identical to the ones on the profile. Consistent details across both are worth having; the markup on its own is not a route into local results." }
+      },
+      {
+        "@type": "Question",
+        "name": "How should opening hours be written?",
+        "acceptedAnswer": { "@type": "Answer", "text": "As schema.org opening hours strings, one per rule: Mo-Fr 09:00-17:00, Sa 10:00-14:00, and so on. Days are two-letter codes, ranges use a hyphen, times are 24-hour, and a day with no entry is a day you are closed. They must also match the hours shown on the page and the hours on your business profile — three different versions of your opening times is worse than not stating them at all." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need latitude and longitude?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They are recommended rather than required, and they are worth setting for a physical location. Get them by right-clicking the exact spot in Google Maps and copying the pair it shows — decimal degrees, latitude first, and negative for south and west. Coordinates that point at the middle of a city rather than your door are worse than leaving the fields empty." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Local Business Schema Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Local Business Schema Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Build the LocalBusiness JSON-LD for a single location: address, telephone, coordinates and opening
+    hours. Coordinates that fall outside the map, hours in the wrong format and half-filled addresses
+    are caught before you paste it in.
+  </p>
+
+  <!-- Tool widget. Ids match the engine in assets/tools/local-business-schema.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="lbStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div>
+        <label for="lbType" class="block text-xs text-gray-400 mb-1 font-mono">Business type:</label>
+        <select id="lbType"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="LocalBusiness" selected>LocalBusiness — the general case</option>
+          <option value="Restaurant">Restaurant</option>
+          <option value="Store">Store</option>
+          <option value="ProfessionalService">ProfessionalService</option>
+          <option value="HealthAndBeautyBusiness">HealthAndBeautyBusiness</option>
+        </select>
+      </div>
+      <div>
+        <label for="lbName" class="block text-xs text-gray-400 mb-1 font-mono">Business name:</label>
+        <input id="lbName" type="text" placeholder="Okafor &amp; Sons Bakery"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="lbPhone" class="block text-xs text-gray-400 mb-1 font-mono">Telephone:</label>
+        <input id="lbPhone" type="text" placeholder="+1 555 0100"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+      <div>
+        <label for="lbUrl" class="block text-xs text-gray-400 mb-1 font-mono">Website:</label>
+        <input id="lbUrl" type="text" placeholder="https://example.com/"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="lbImage" class="block text-xs text-gray-400 mb-1 font-mono">Image or logo URL:</label>
+        <input id="lbImage" type="text" placeholder="https://example.com/shopfront.jpg"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="lbPriceRange" class="block text-xs text-gray-400 mb-1 font-mono">Price range:</label>
+        <input id="lbPriceRange" type="text" placeholder="$$"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="mt-5 pt-4 border-t border-gray-800">
+      <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-3">Address — as it appears on your business profile</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="lbStreet" class="block text-xs text-gray-400 mb-1 font-mono">Street address:</label>
+          <input id="lbStreet" type="text" placeholder="14 Broad Street"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+        <div>
+          <label for="lbCity" class="block text-xs text-gray-400 mb-1 font-mono">City:</label>
+          <input id="lbCity" type="text" placeholder="Bristol"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+        <div>
+          <label for="lbRegion" class="block text-xs text-gray-400 mb-1 font-mono">Region or state:</label>
+          <input id="lbRegion" type="text" placeholder="England"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+        <div>
+          <label for="lbPostal" class="block text-xs text-gray-400 mb-1 font-mono">Postal code:</label>
+          <input id="lbPostal" type="text" placeholder="BS1 1AA"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+        <div>
+          <label for="lbCountry" class="block text-xs text-gray-400 mb-1 font-mono">Country code:</label>
+          <input id="lbCountry" type="text" placeholder="GB"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="lbLatitude" class="block text-xs text-gray-400 mb-1 font-mono">Latitude:</label>
+        <input id="lbLatitude" type="text" placeholder="51.4545"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="lbLongitude" class="block text-xs text-gray-400 mb-1 font-mono">Longitude:</label>
+        <input id="lbLongitude" type="text" placeholder="-2.5879"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <label for="lbHours" class="block text-xs text-gray-400 mb-1 font-mono">Opening hours — one rule per line:</label>
+      <textarea id="lbHours" rows="4" spellcheck="false"
+        placeholder="Mo-Fr 08:00-17:00&#10;Sa 09:00-13:00&#10;Su 10:00-12:00"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500 font-mono text-xs leading-relaxed"></textarea>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="lbCopy" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          📋 Copy JSON-LD
+        </button>
+        <button id="lbExample" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Load example
+        </button>
+        <button id="lbClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="lbResults" class="hidden mt-5 space-y-5">
+      <div id="lbStats" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+
+      <div id="lbWarnings" class="space-y-2"></div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your LocalBusiness JSON-LD</p>
+        <pre id="lbOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"></pre>
+      </div>
+
+      <div data-ts-result-actions="local-business-schema" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Local business markup describes one physical location: a name, an address broken into its
+          parts, a telephone number, coordinates, opening hours and a price range. This tool builds that
+          block and nests <code>PostalAddress</code>, <code>GeoCoordinates</code> and the opening hours
+          the way the specification expects — which is the part hand-written versions usually get
+          wrong, because a postal address is not one string.
+        </p>
+        <p>
+          It also checks the details that are format-correct but factually impossible: coordinates
+          outside the range a map can hold, opening hours written in a format nothing reads, a city
+          without a street, a longitude without a latitude. What it cannot check is whether any of it is
+          true. The tool has no idea where your shop is, and an address that is internally consistent
+          but wrong is exactly the failure that costs you local visibility rather than gaining it.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Choose the most specific type you can honestly justify. A bakery that is a <code>Restaurant</code> is a worse description than one that is a <code>LocalBusiness</code>, but a real bakery that could be a <code>Bakery</code> should say so.</li>
+        <li>Copy the business name, address and telephone from your Google Business Profile character for character. The whole point of the markup is that it agrees with the listing.</li>
+        <li>Get the coordinates by right-clicking the exact spot in Google Maps and copying the pair it shows — latitude first, negative for south and west.</li>
+        <li>Write the opening hours one rule per line, as <code>Mo-Fr 09:00-17:00</code>. Two-letter day codes, a hyphen for ranges, 24-hour times, and no line for a day you are closed.</li>
+        <li>Click <strong class="text-gray-200">Copy JSON-LD</strong> and paste it into a <code>&lt;script type="application/ld+json"&gt;</code> tag on the location or contact page — not on every page of the site.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A single-location business</p>
+          <p class="text-gray-400 leading-relaxed text-xs">One shop, one address, one set of hours. The simplest case, and the one where the markup and the profile can be kept identical without effort.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A restaurant or café</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Hours and price range are the two properties people actually look for, and both are easy to state once and forget.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Several locations</p>
+          <p class="text-gray-400 leading-relaxed text-xs">One page per location, one block per page. One block listing four addresses describes nothing, because a LocalBusiness is a place, not a chain.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Tracking down a NAP mismatch</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Build the block from the profile, then compare it against what the site says. The differences are usually in the postcode or the phone format.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A business with no premises</p>
+          <p class="text-gray-400 leading-relaxed text-xs">If you go to customers rather than the other way round, use the address you genuinely trade from — and read the note about what the address fields imply before publishing.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Will LocalBusiness schema get me into the map pack?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            No, and no markup will. The map pack is driven by your Google Business Profile — the
+            listing, its categories, its reviews and its proximity to the searcher. Structured data on
+            your own site does not create that listing, claim it or influence it. What this markup does
+            is make the business unambiguous to a crawler reading the page, and keep the name, address
+            and phone on your site identical to the ones on the profile. Consistent details across both
+            are worth having; the markup on its own is not a route into local results.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How should opening hours be written?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            As schema.org opening hours strings, one per rule: <code>Mo-Fr 09:00-17:00</code>,
+            <code>Sa 10:00-14:00</code>, and so on. Days are two-letter codes, ranges use a hyphen,
+            times are 24-hour, and a day with no entry is a day you are closed. They must also match the
+            hours shown on the page and the hours on your business profile — three different versions of
+            your opening times is worse than not stating them at all.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Do I need latitude and longitude?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            They are recommended rather than required, and they are worth setting for a physical
+            location. Get them by right-clicking the exact spot in Google Maps and copying the pair it
+            shows — decimal degrees, latitude first, and negative for south and west. Coordinates that
+            point at the middle of a city rather than your door are worse than leaving the fields empty.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/local-business-schema.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createLocalBusinessSchema(root);
+    }
+  })();
+</script>
+
+</body>
+</html>
+
+

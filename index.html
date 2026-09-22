@@ -100,7 +100,7 @@
              class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
 
         <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
            aria-label="Support ToolStack AI">
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
@@ -119,12 +119,19 @@
 
   <!-- Google Translate. Loaded async: this is a third-party script on every page,
        and a synchronous tag would stall rendering wherever Google is unreachable.
-       The callback only fires on success, so a failure is silent and harmless. -->
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
@@ -469,6 +476,206 @@
         </div>
       </a>
 
+      <!-- Tool Card: SERP Preview Tool -->
+      <a href="/tools/serp-preview.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="serp preview tool google search result snippet simulator title description truncation mobile desktop seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔍
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">SERP Preview Tool</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">See exactly how your title, URL and description render in Google — including where each one truncates.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: URL Slug Generator -->
+      <a href="/tools/slug-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="url slug generator permalink url cleaner lowercase hyphenate accents stop words seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔗
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">URL Slug Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Turn a headline into a clean URL slug: lowercase, hyphenated, accents stripped, optional stop words removed.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Keyword Density Checker -->
+      <a href="/tools/keyword-density-checker.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="keyword density checker keyword stuffing analysis ngram frequency seo content optimization seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📊
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Keyword Density Checker</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Find the phrases your text repeats most, with counts, density percentages and an over-stuffing warning.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Keyword Counter -->
+      <a href="/tools/keyword-counter.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="keyword counter word frequency count occurrences density reading time seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔢
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Keyword Counter</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Count a keyword in your draft with density, word count, reading time and every occurrence located.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Robots.txt Generator -->
+      <a href="/tools/robotstxt-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="robots txt generator crawler rules disallow allow sitemap crawl delay user agent seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🤖
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Robots.txt Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Build a valid robots.txt with per-bot rules, crawl-delay and your sitemap location. Copy or download it.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Sitemap.xml Generator -->
+      <a href="/tools/sitemap-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="sitemap xml generator url list lastmod changefreq priority search console indexing seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🗺️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Sitemap.xml Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Turn a list of URLs into a valid XML sitemap with lastmod, changefreq and priority on every entry.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Schema Markup Generator -->
+      <a href="/tools/schema-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="schema markup generator json-ld structured data rich results schema.org organization product event recipe howto seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🧩
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Schema Markup Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Generate JSON-LD structured data for Organization, Product, Event, Recipe and more — with required-field checks.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: FAQ Schema Generator -->
+      <a href="/tools/faq-schema-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="faq schema generator faqpage json-ld rich result questions answers expandable seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              ❓
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">FAQ Schema Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Turn your questions and answers into FAQPage JSON-LD that can win expandable results in Google.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Article Schema Generator -->
+      <a href="/tools/article-schema-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="article schema generator blogposting newsarticle json-ld author publisher datepublished datemodified seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📰
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Article Schema Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Build Article, BlogPosting or NewsArticle JSON-LD with author, publisher, image and publication dates.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Local Business Schema Generator -->
+      <a href="/tools/local-business-schema.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="seo" data-name="local business schema generator localbusiness json-ld address geo coordinates opening hours aggregate rating local seo google maps seo website tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🏪
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Local Business Schema Generator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Create LocalBusiness JSON-LD with address, geo coordinates, opening hours and aggregate rating.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
       <!-- Tool Card: AI Model Comparison Matrix -->
       <a href="/tools/ai-model-comparison.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="ai model comparison matrix chatgpt claude deepseek gemini context window pricing specs gpt anthropic google ai support">
         <div>
@@ -573,7 +780,7 @@
           <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
           <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
           <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
             <span aria-hidden="true">❤️</span>support toolstackai
           </a>
         </nav>

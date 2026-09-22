@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Article Schema Generator — Free Article JSON-LD Builder | ToolStack AI</title>
+  <meta name="description" content="Build Article, BlogPosting or NewsArticle JSON-LD with the headline, author, publisher and dates a crawler expects. Paste it straight into the page. Free, in your browser." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/article-schema-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Article Schema Generator" />
+  <meta property="og:description" content="Build Article JSON-LD with the headline, author, publisher and dates a crawler expects. Free, in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/article-schema-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Article Schema Generator" />
+  <meta name="twitter:description" content="Build Article, BlogPosting or NewsArticle JSON-LD in your browser." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Article Schema Generator",
+    "url": "https://toolstackai.xyz/tools/article-schema-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Build Article, BlogPosting or NewsArticle JSON-LD with headline, author, publisher and dates, and catch the mistakes that stop the markup being used.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need Article schema to rank?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Article markup is not a ranking factor, and a page with flawless structured data will not outrank a better page without it. What it does is state the things a machine cannot reliably guess from prose: who wrote the piece, who published it, when it went live and when it last changed. That is what makes a page eligible for the article treatments in search and in Discover, and it is the version of the facts you want a crawler to have when it summarises the page somewhere else." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should dateModified change every time I edit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only when the content genuinely changed. A dateModified that moves because a template was redeployed, a sidebar was reordered or a typo in your footer was fixed is worse than no dateModified at all, because crawlers compare it against the page and learn to ignore both dates. Update it when a reader would say the article is different — a corrected fact, a new section, a rewritten conclusion — and leave it alone otherwise." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one Article block cover several posts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Article markup describes one page, and the headline has to be the visible heading of that page. A single block on an index or archive page claiming to be many articles is the mismatch that gets structured data treated as spam rather than ignored. If you have five posts, each needs its own markup on its own URL — which is what the CMS templates are for." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Article Schema Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Article Schema Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Fill in the headline, author, publisher and dates once and get the Article JSON-LD to paste into
+    the page. Headline length, missing dates and impossible publish/modify pairs are flagged before
+    you ship them.
+  </p>
+
+  <!-- Tool widget. Ids match the engine in assets/tools/article-schema-generator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="arStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="arType" class="block text-xs text-gray-400 mb-1 font-mono">Article type:</label>
+        <select id="arType"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="BlogPosting" selected>BlogPosting — a blog post</option>
+          <option value="Article">Article — a general article</option>
+          <option value="NewsArticle">NewsArticle — reported news</option>
+          <option value="TechArticle">TechArticle — technical documentation</option>
+        </select>
+      </div>
+      <div>
+        <label for="arHeadline" class="block text-xs text-gray-400 mb-1 font-mono">Headline (the visible H1):</label>
+        <input id="arHeadline" type="text" placeholder="How to write a meta description that gets clicks"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <label for="arDescription" class="block text-xs text-gray-400 mb-1 font-mono">Description (optional):</label>
+      <textarea id="arDescription" rows="2" placeholder="One sentence describing what the article covers."
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500"></textarea>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="arUrl" class="block text-xs text-gray-400 mb-1 font-mono">Article URL:</label>
+        <input id="arUrl" type="text" placeholder="https://example.com/blog/meta-descriptions"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="arImage" class="block text-xs text-gray-400 mb-1 font-mono">Main image URL:</label>
+        <input id="arImage" type="text" placeholder="https://example.com/img/meta-descriptions.jpg"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="arAuthorName" class="block text-xs text-gray-400 mb-1 font-mono">Author name:</label>
+        <input id="arAuthorName" type="text" placeholder="Ada Okafor"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="arAuthorUrl" class="block text-xs text-gray-400 mb-1 font-mono">Author page URL (optional):</label>
+        <input id="arAuthorUrl" type="text" placeholder="https://example.com/authors/ada-okafor"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="arPublisherName" class="block text-xs text-gray-400 mb-1 font-mono">Publisher name:</label>
+        <input id="arPublisherName" type="text" placeholder="Example Media"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="arPublisherLogo" class="block text-xs text-gray-400 mb-1 font-mono">Publisher logo URL:</label>
+        <input id="arPublisherLogo" type="text" placeholder="https://example.com/img/logo.png"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="arDatePublished" class="block text-xs text-gray-400 mb-1 font-mono">Date published:</label>
+        <input id="arDatePublished" type="date"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="arDateModified" class="block text-xs text-gray-400 mb-1 font-mono">Date modified:</label>
+        <input id="arDateModified" type="date"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+      <div>
+        <label for="arSection" class="block text-xs text-gray-400 mb-1 font-mono">Section (optional):</label>
+        <input id="arSection" type="text" placeholder="SEO"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+      <div>
+        <label for="arKeywords" class="block text-xs text-gray-400 mb-1 font-mono">Keywords, comma separated (optional):</label>
+        <input id="arKeywords" type="text" placeholder="meta descriptions, click-through rate, SERP"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="arCopy" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          📋 Copy JSON-LD
+        </button>
+        <button id="arExample" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Load example
+        </button>
+        <button id="arClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="arResults" class="hidden mt-5 space-y-5">
+      <div id="arStats" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+
+      <div id="arWarnings" class="space-y-2"></div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your Article JSON-LD</p>
+        <pre id="arOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"></pre>
+      </div>
+
+      <div data-ts-result-actions="article-schema-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          Article markup is a JSON-LD block that describes one article to a machine: the headline, the
+          person who wrote it, the organisation that published it, the main image, the dates it was
+          published and last meaningfully changed, and the URL it lives at. This tool assembles that
+          block, nesting <code>author</code> and <code>publisher</code> as their own objects and
+          dropping anything you leave empty rather than emitting a placeholder.
+        </p>
+        <p>
+          It also flags the mistakes that quietly cost you the markup. A headline over 110 characters
+          gets truncated in the article treatment, a <code>dateModified</code> earlier than the
+          <code>datePublished</code> is contradictory, and a relative image path cannot be resolved at
+          all. The honest limitation is that the tool cannot see your page — every value you type has
+          to match what a visitor sees, and the headline in particular has to be the same as the
+          visible <code>h1</code>, because that is the comparison Google makes.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Pick the type. <code>BlogPosting</code> for blog posts, <code>NewsArticle</code> for reported news, <code>TechArticle</code> for documentation, and <code>Article</code> when none of those fits. The type changes what the page is eligible for, not which properties you fill in.</li>
+        <li>Copy the headline from your <code>h1</code> exactly, and keep it under 110 characters. If you shorten it here, the markup now disagrees with the page.</li>
+        <li>Enter the dates the page shows, not today's date. Set <code>dateModified</code> only when the content genuinely changed — a date that moves on every deploy teaches crawlers to distrust both dates.</li>
+        <li>Fill in the author and publisher as they appear on the page, with the URLs where each can be found.</li>
+        <li>Click <strong class="text-gray-200">Copy JSON-LD</strong>, paste it inside a <code>&lt;script type="application/ld+json"&gt;</code> tag, and check the page with Google's Rich Results Test.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A blog with no structured data at all</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Most themes ship without it. Adding one block per post is the cheapest way to tell a crawler who wrote the piece and when it changed.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Eligibility for the article treatments</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Large image, headline and timestamp treatments in search and Discover come from this markup. Without it the page is just a page.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A CMS that writes the wrong dates</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Build the block by hand to see what the dates should be, then fix the template rather than patching the output.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Checking a plugin's output</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Compare clean markup against whatever the SEO plugin is emitting, which is often a headline that does not match the page.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Stating authorship explicitly</p>
+          <p class="text-gray-400 leading-relaxed text-xs">An author with a URL they can be found at is a stronger signal than a byline in a <code>div</code> that nothing connects to anything.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Do I need Article schema to rank?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            No. Article markup is not a ranking factor, and a page with flawless structured data will
+            not outrank a better page without it. What it does is state the things a machine cannot
+            reliably guess from prose: who wrote the piece, who published it, when it went live and
+            when it last changed. That is what makes a page eligible for the article treatments in
+            search and in Discover, and it is the version of the facts you want a crawler to have when
+            it summarises the page somewhere else.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Should dateModified change every time I edit?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            Only when the content genuinely changed. A <code>dateModified</code> that moves because a
+            template was redeployed, a sidebar was reordered or a typo in your footer was fixed is
+            worse than no <code>dateModified</code> at all, because crawlers compare it against the
+            page and learn to ignore both dates. Update it when a reader would say the article is
+            different — a corrected fact, a new section, a rewritten conclusion — and leave it alone
+            otherwise.
+          </p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can one Article block cover several posts?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">
+            No. Article markup describes one page, and the headline has to be the visible heading of
+            that page. A single block on an index or archive page claiming to be many articles is the
+            mismatch that gets structured data treated as spam rather than ignored. If you have five
+            posts, each needs its own markup on its own URL — which is what the CMS templates are for.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/article-schema-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createArticleSchemaGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>
+
+

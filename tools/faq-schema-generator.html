@@ -26,18 +26,18 @@
     })();
   </script>
 
-  <title>Which AI Tool Should I Use? — Free Recommendation Quiz | ToolStack AI</title>
-  <meta name="description" content="Answer five questions about your task, document size and privacy needs, and get a specific AI tool recommendation — ChatGPT, Claude, DeepSeek or Gemini — with the reasoning." />
-  <link rel="canonical" href="https://toolstackai.xyz/tools/ai-tool-quiz.html" />
+  <title>FAQ Schema Generator — Free FAQPage JSON-LD Builder | ToolStack AI</title>
+  <meta name="description" content="Turn your question and answer pairs into valid FAQPage JSON-LD. Paste them in, get schema.org markup you can drop straight into the page. Free, in your browser." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/faq-schema-generator.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
-  <meta property="og:title" content="Which AI Tool Should I Use? — Free Recommendation Quiz" />
-  <meta property="og:description" content="Five questions, one recommendation, and the reasoning behind it. Free, runs in your browser." />
-  <meta property="og:url" content="https://toolstackai.xyz/tools/ai-tool-quiz.html" />
+  <meta property="og:title" content="FAQ Schema Generator" />
+  <meta property="og:description" content="Build FAQPage JSON-LD from your question and answer pairs. Free, in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/faq-schema-generator.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Which AI Tool Should I Use? — Recommendation Quiz" />
-  <meta name="twitter:description" content="Five questions, one recommendation, and the reasoning behind it." />
+  <meta name="twitter:title" content="FAQ Schema Generator" />
+  <meta name="twitter:description" content="Turn question and answer pairs into valid FAQPage JSON-LD." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -69,11 +69,11 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Which AI Tool Should I Use? Quiz",
-    "url": "https://toolstackai.xyz/tools/ai-tool-quiz.html",
+    "name": "FAQ Schema Generator",
+    "url": "https://toolstackai.xyz/tools/faq-schema-generator.html",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any (browser-based)",
-    "description": "Answer five quick questions about your task, budget and privacy needs, and get a specific AI tool recommendation with the reasoning behind it.",
+    "description": "Turn question and answer pairs into valid FAQPage JSON-LD, with the escaping, ordering and required properties handled for you.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "publisher": {
       "@type": "Organization",
@@ -91,18 +91,18 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How does this quiz decide which AI tool to recommend?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Each answer carries points toward the four models, weighted by how much that factor actually matters. Asking for a million-token context window scores heavily for Gemini; saying the data must stay on your own servers rules everything out except DeepSeek's open weights. The recommendation is the highest scorer, and the page always shows the runner-up too, because the top two are usually close." }
+        "name": "Will FAQ markup make my questions show in Google results?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Usually not, and it is worth knowing why before you spend an afternoon on it. In August 2023 Google limited FAQ rich results to a small set of authoritative government and health sites. For every other site the markup is still valid, still parsed, and still describes the page accurately — it simply no longer produces the expandable list under the result. Add it because it makes the questions and answers explicit to anything that reads structured data, not because you expect the rich result." }
       },
       {
         "@type": "Question",
-        "name": "Can I trust the recommendation?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Treat it as a shortlist, not a verdict. It knows only what you told it in five questions — nothing about your existing workflow, your team, or how a tool actually feels to use. The genuinely reliable test is to run the same real prompt through two free tiers for a day. That will tell you more than any quiz, including this one." }
+        "name": "Does the answer text have to appear on the page?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every question and answer in the markup has to be visible to a visitor reading the page — the same words, not a summary. Hidden text, or answers injected by JavaScript after the page loads, do not count. This is the rule that matters most, because markup describing content a visitor cannot see is treated as spam rather than simply ignored." }
       },
       {
         "@type": "Question",
-        "name": "Do I need to pay for any of these tools?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. All four have free tiers that are genuinely usable rather than crippled demos, and for occasional work they are usually enough. Paid plans buy higher usage limits, access to the newest models and longer context. If you consistently hit rate limits, pay; otherwise the free tier is the better use of money." }
+        "name": "Can I mark up an FAQ that sits inside an accordion?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, provided the text is in the HTML. A details and summary element contains its answer in the DOM whether or not the reader has expanded it, so it is fine. A JavaScript widget that fetches the answer only when a reader clicks is not, because a crawler that never clicks sees an empty panel." }
       }
     ]
   }
@@ -188,41 +188,76 @@
     <span class="mx-1.5 text-gray-700">/</span>
     <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
     <span class="mx-1.5 text-gray-700">/</span>
-    <span class="text-gray-300">Which AI Tool Should I Use?</span>
+    <span class="text-gray-300">FAQ Schema Generator</span>
   </nav>
 
-  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Which AI Tool Should I Use?</h1>
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">FAQ Schema Generator</h1>
   <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-    Five questions about the work you actually have, and one recommendation — ChatGPT, Claude, DeepSeek or Gemini — with the
-    reasoning spelled out and a runner-up, because the top two are usually close.
+    Add your question and answer pairs and get the FAQPage JSON-LD to paste into the page. Quotes,
+    apostrophes and line breaks are escaped properly, and each answer is checked against the rules
+    Google actually enforces.
   </p>
 
-  <!-- Tool widget. Ids match the engine in assets/tools/ai-tool-quiz.js. -->
+  <!-- Tool widget. Ids match the engine in assets/tools/faq-schema-generator.js. -->
   <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
-    <div id="aqStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div id="fqStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
 
-    <!-- Progress. Filled by the engine so it can never disagree with the
-         number of questions in the data. -->
-    <div class="flex items-center justify-between gap-3 mb-4">
-      <p id="aqProgressLabel" class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Question 1 of 5</p>
-      <div class="flex-1 max-w-[10rem] h-1.5 rounded-full bg-gray-950 border border-gray-800 overflow-hidden">
-        <div id="aqProgressBar" class="h-full bg-brand-500 transition-all duration-300" style="width: 20%"></div>
-      </div>
+    <div>
+      <label for="fqQuestion" class="block text-xs text-gray-400 mb-1 font-mono">Question:</label>
+      <input id="fqQuestion" type="text" placeholder="Do you ship internationally?"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
     </div>
 
-    <div id="aqQuestions" class="space-y-5"></div>
+    <div class="mt-4">
+      <label for="fqAnswer" class="block text-xs text-gray-400 mb-1 font-mono">Answer:</label>
+      <textarea id="fqAnswer" rows="4" placeholder="Yes — we ship to every country except those under export restrictions. Orders leave the warehouse within one working day."
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+    </div>
 
-    <div id="aqResult" class="hidden"></div>
-
-    <div class="flex flex-wrap items-center justify-between gap-3 mt-6 pt-4 border-t border-gray-800">
-      <button id="aqRestartBtn" type="button"
-        class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
-        ↺ Start Over
+    <div class="flex flex-wrap items-center gap-3 mt-4">
+      <button id="fqAdd" type="button"
+        class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+        ➕ Add question
       </button>
+      <span class="text-[10px] text-gray-500">Add each pair in turn, then copy the markup at the bottom.</span>
+    </div>
+
+    <div class="mt-5 pt-4 border-t border-gray-800">
+      <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Questions in this set</p>
+      <ul id="fqList" class="space-y-2"></ul>
+      <p id="fqEmpty" class="text-xs text-gray-500">Nothing added yet. Fill in a question and an answer above, then press Add question.</p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="fqCopy" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          📋 Copy JSON-LD
+        </button>
+        <button id="fqExample" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Load example
+        </button>
+        <button id="fqClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
       <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
     </div>
 
-    <div data-ts-result-actions="ai-tool-quiz" data-ts-deferred class="mt-6 space-y-4"></div>
+    <div id="fqResults" class="hidden mt-5 space-y-5">
+      <div id="fqStats" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+
+      <div id="fqWarnings" class="space-y-2"></div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your FAQPage JSON-LD</p>
+        <pre id="fqOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"></pre>
+      </div>
+
+      <div data-ts-result-actions="faq-schema-generator" class="space-y-4"></div>
+    </div>
   </section>
 
   <!-- ---------------------------------------------------------------- copy -->
@@ -232,16 +267,20 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
       <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
         <p>
-          Most "which AI should I use" articles rank tools by benchmark scores, which is a poor proxy for your work: a model that
-          tops a reasoning leaderboard can still be the wrong choice if your inputs are 400-page PDFs or if your data cannot leave
-          your own servers. This quiz asks about the constraints that actually eliminate options — document size, existing software,
-          privacy requirements and budget — and scores ChatGPT, Claude, DeepSeek and Gemini against your answers.
+          FAQ schema is a small block of JSON-LD that spells out a page's questions and answers in a
+          form a machine can read: a <code>FAQPage</code> with a <code>mainEntity</code> list of
+          <code>Question</code> objects, each carrying a <code>name</code> and an
+          <code>acceptedAnswer</code>. This tool takes the pairs you add and writes that block,
+          correctly nested and escaped, ready to paste into the page.
         </p>
         <p>
-          It deliberately shows a runner-up rather than a single winner, because in practice the top two are usually within a few
-          points and the tie-break is personal taste. It also knows only the five things you told it: nothing about your team, your
-          existing subscriptions or how a tool feels to use day to day. Treat the result as a shortlist to trial, not a verdict —
-          running one real prompt through two free tiers will teach you more than any quiz, including this one.
+          The part worth automating is the escaping. Real answers contain apostrophes, quotation
+          marks, curly punctuation and line breaks, and one unescaped quote makes the whole block
+          invalid JSON. That failure is silent — the page still renders perfectly, and nothing tells
+          you the markup was dropped. The honest caveat is about what the markup is for: since August
+          2023 Google shows FAQ rich results only for a small set of authoritative government and
+          health sites, so for most sites this is about describing the page accurately to anything
+          that reads structured data, not about winning an expandable result.
         </p>
       </div>
     </div>
@@ -249,11 +288,10 @@
     <div>
       <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
       <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
-        <li>Answer all five questions. Each one is single-choice, and you can change any answer before the result appears.</li>
-        <li>Be honest about input size. "Entire codebase or book" is the answer that most often changes the recommendation, because context window is a hard technical limit rather than a preference.</li>
-        <li>Answer the privacy question carefully. If your data legally cannot leave your infrastructure, that single answer rules out three of the four models.</li>
-        <li>Read the reasoning under the result, not just the name. It tells you which of your answers drove the pick, so you can judge whether the logic matches your situation.</li>
-        <li>Try the runner-up too. Run the same real task through both free tiers before paying for anything.</li>
+        <li>Type or paste a question and its answer, then press <strong class="text-gray-200">Add question</strong>. Repeat for each pair — the order you add them in is the order they appear in the markup.</li>
+        <li>Use the answer exactly as it appears on the page. Shortening it here would make the markup describe something a visitor cannot see, which is the one mistake that turns structured data into a guidelines violation.</li>
+        <li>Remove any pair that is not genuinely visible on the page. A question you intend to add later should not be in the markup now.</li>
+        <li>Click <strong class="text-gray-200">Copy JSON-LD</strong> and paste it inside a <code>&lt;script type="application/ld+json"&gt;</code> tag in the page's <code>&lt;head&gt;</code> or body. Then check it with Google's Rich Results Test.</li>
       </ol>
     </div>
 
@@ -261,20 +299,24 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Picking your first AI subscription</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Avoid paying for the wrong one for a year because a review site ranked it first.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">A product page answering the obvious questions</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Shipping, returns, sizing, warranty. They are already written at the bottom of the page — the markup just states them in a form a machine can read.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Standardising a small team</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Get everyone on the same tool, chosen against the work the team actually does rather than personal preference.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">A service page handling objections</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The four questions that stop people enquiring are worth answering explicitly, and worth marking up so the answers travel with the page.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Working with sensitive data</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Find out which option still works when the requirement is that nothing leaves your own servers.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">A pricing page</p>
+          <p class="text-gray-400 leading-relaxed text-xs">"What is included", "can I cancel", "do you charge per seat" — the questions that otherwise become support email.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Choosing a model for an API product</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Cost per token and context window decide more API architecture than raw benchmark scores do.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Adding markup to an FAQ you already wrote</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Paste each existing pair in as it stands. No rewriting, so the markup and the visible page stay identical.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Replacing a plugin's output</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Build the block by hand to see what clean FAQPage markup looks like, then compare it against whatever your theme is generating.</p>
         </li>
       </ul>
     </div>
@@ -283,28 +325,32 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
       <div class="space-y-3">
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">How does this quiz decide which AI tool to recommend?</summary>
+          <summary class="text-sm font-bold text-gray-200">Will FAQ markup make my questions show in Google results?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Each answer carries points toward the four models, weighted by how much that factor actually matters. Asking for a
-            million-token context window scores heavily for Gemini; saying the data must stay on your own servers rules everything out
-            except DeepSeek's open weights. The recommendation is the highest scorer, and the page always shows the runner-up too,
-            because the top two are usually close.
+            Usually not, and it is worth knowing why before you spend an afternoon on it. In August
+            2023 Google limited FAQ rich results to a small set of authoritative government and health
+            sites. For every other site the markup is still valid, still parsed, and still describes
+            the page accurately — it simply no longer produces the expandable list under the result.
+            Add it because it makes the questions and answers explicit to anything that reads
+            structured data, not because you expect the rich result.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Can I trust the recommendation?</summary>
+          <summary class="text-sm font-bold text-gray-200">Does the answer text have to appear on the page?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Treat it as a shortlist, not a verdict. It knows only what you told it in five questions — nothing about your existing
-            workflow, your team, or how a tool actually feels to use. The genuinely reliable test is to run the same real prompt
-            through two free tiers for a day. That will tell you more than any quiz, including this one.
+            Yes. Every question and answer in the markup has to be visible to a visitor reading the
+            page — the same words, not a summary. Hidden text, or answers injected by JavaScript after
+            the page loads, do not count. This is the rule that matters most, because markup describing
+            content a visitor cannot see is treated as spam rather than simply ignored.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Do I need to pay for any of these tools?</summary>
+          <summary class="text-sm font-bold text-gray-200">Can I mark up an FAQ that sits inside an accordion?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            No. All four have free tiers that are genuinely usable rather than crippled demos, and for occasional work they are
-            usually enough. Paid plans buy higher usage limits, access to the newest models and longer context. If you consistently
-            hit rate limits, pay; otherwise the free tier is the better use of money.
+            Yes, provided the text is in the HTML. A <code>details</code> and <code>summary</code>
+            element contains its answer in the DOM whether or not the reader has expanded it, so it is
+            fine. A JavaScript widget that fetches the answer only when a reader clicks is not, because
+            a crawler that never clicks sees an empty panel.
           </p>
         </details>
       </div>
@@ -350,15 +396,17 @@
 <!-- ts:footer:end -->
 
 <script src="../assets/toolstack.js"></script>
-<script src="../assets/tools/ai-tool-quiz.js"></script>
+<script src="../assets/tools/faq-schema-generator.js"></script>
 <script>
   (function () {
     var root = document.getElementById('toolRoot');
     if (root && window.ToolStackTools) {
-      window.ToolStackTools.createAiToolQuiz(root);
+      window.ToolStackTools.createFaqSchemaGenerator(root);
     }
   })();
 </script>
 
 </body>
 </html>
+
+

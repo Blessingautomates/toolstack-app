@@ -26,18 +26,18 @@
     })();
   </script>
 
-  <title>SEO Title Generator &amp; Snippet Optimizer — Free | ToolStack AI</title>
-  <meta name="description" content="Score and rewrite your page title for Google. Measure real pixel width, preview the search snippet, and get concrete fixes when your headline is too long or front-loads the wrong words." />
-  <link rel="canonical" href="https://toolstackai.xyz/tools/seo-title-generator.html" />
+  <title>Sitemap.xml Generator — Free Online Tool | ToolStack AI</title>
+  <meta name="description" content="Turn a list of URLs into a valid XML sitemap. Add lastmod, changefreq and priority, catch malformed URLs and unescaped ampersands before you upload. Free, in your browser." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/sitemap-generator.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
-  <meta property="og:title" content="SEO Title Generator &amp; Snippet Optimizer" />
-  <meta property="og:description" content="Measure title pixel width, preview the Google snippet, and get concrete rewrite suggestions. Free, in your browser." />
-  <meta property="og:url" content="https://toolstackai.xyz/tools/seo-title-generator.html" />
+  <meta property="og:title" content="Sitemap.xml Generator" />
+  <meta property="og:description" content="Build a valid XML sitemap from a list of URLs, with lastmod, changefreq and priority. Free, in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/sitemap-generator.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="SEO Title Generator &amp; Snippet Optimizer" />
-  <meta name="twitter:description" content="Measure title pixel width, preview the Google snippet, and get concrete rewrite suggestions." />
+  <meta name="twitter:title" content="Sitemap.xml Generator" />
+  <meta name="twitter:description" content="Build a valid XML sitemap from a list of URLs, with lastmod, changefreq and priority." />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -69,11 +69,11 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "SEO Title & Snippet Optimizer",
-    "url": "https://toolstackai.xyz/tools/seo-title-generator.html",
+    "name": "Sitemap.xml Generator",
+    "url": "https://toolstackai.xyz/tools/sitemap-generator.html",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any (browser-based)",
-    "description": "Score and rewrite your page title for Google. Live pixel-width measurement, SERP preview and concrete suggestions to stop your headline truncating.",
+    "description": "Turn a list of URLs into a valid XML sitemap, with lastmod, changefreq and priority, and catch malformed URLs and unescaped ampersands before you upload.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "publisher": {
       "@type": "Organization",
@@ -91,18 +91,18 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How long should a title tag be?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Google truncates by pixel width, not character count — roughly 600 pixels on desktop. For average-width Latin text that lands near 60 characters, but a title full of capital W and M letters can truncate at 50 while one of narrow letters survives to 70. This tool measures the actual rendered width so you are not guessing from a character count." }
+        "name": "Do I need a sitemap to rank?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not strictly. Google discovers pages by following links, and plenty of sites rank well without one. A sitemap earns its place on large sites, on pages that are poorly linked internally, and on a new domain where nothing points at you yet. It tells a crawler what exists — it is not a ranking factor, and submitting one will not lift a page that nothing links to." }
       },
       {
         "@type": "Question",
-        "name": "Does the title tag affect ranking?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, more than any other on-page element. Google uses the title as a strong relevance signal and bolds the query terms it finds there, so a title containing the phrase someone searched for both ranks better and looks more clickable. It is not a place to keyword-stuff though: repeated or unrelated terms read as spam and depress click-through." }
+        "name": "How many URLs can one sitemap hold?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Up to 50,000 URLs, and the uncompressed file must stay under 50 MB. Past that limit you need a sitemap index: a small file listing several sitemap files. This is a protocol rule rather than a preference — search engines reject a file that exceeds it, which is why the tool warns before you get there." }
       },
       {
         "@type": "Question",
-        "name": "Should the brand name go at the start or the end of the title?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Put it at the end unless the brand is the reason someone is searching. Front-loading the descriptive phrase means the part that survives truncation is the part that matches the query. Brand-first only makes sense for navigational pages where people search the company name itself." }
+        "name": "Do changefreq and priority affect ranking?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Almost never. Google has said plainly that it ignores both, deciding when to recrawl from its own scheduling and from lastmod. They remain valid protocol elements that other crawlers may read, so setting them is harmless — but leaving them out is cleaner than publishing values you cannot back up." }
       }
     ]
   }
@@ -188,98 +188,102 @@
     <span class="mx-1.5 text-gray-700">/</span>
     <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
     <span class="mx-1.5 text-gray-700">/</span>
-    <span class="text-gray-300">SEO Title &amp; Snippet Optimizer</span>
+    <span class="text-gray-300">Sitemap.xml Generator</span>
   </nav>
 
-  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">SEO Title &amp; Snippet Optimizer</h1>
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Sitemap.xml Generator</h1>
   <p class="text-sm text-gray-400 mt-3 leading-relaxed">
-    Paste the title you are considering and see what Google will actually show. This measures the real rendered pixel width of your
-    headline, previews the result snippet, and tells you precisely what to change — not just that it is "too long".
+    Paste your URLs, set the optional lastmod, changefreq and priority, and get a sitemap you can
+    upload as-is. Malformed lines and unescaped ampersands are caught before they reach the file.
   </p>
 
-  <!-- Tool widget. Ids match the engine in assets/tools/seo-title-generator.js. -->
+  <!-- Tool widget. Ids match the engine in assets/tools/sitemap-generator.js. -->
   <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
-    <div id="stStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+    <div id="smStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="sm:col-span-2">
-        <label for="stTitle" class="block text-xs text-gray-400 mb-1 font-mono">Your title tag:</label>
-        <input id="stTitle" type="text" placeholder="Free Invoice Generator for Freelancers | ToolStack AI"
+    <div>
+      <label for="smInput" class="block text-xs text-gray-400 mb-1 font-mono">Your URLs — one per line:</label>
+      <textarea id="smInput" rows="12" spellcheck="false"
+        placeholder="https://example.com/&#10;https://example.com/about&#10;https://example.com/blog/post-one"
+        class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500 font-mono text-xs leading-relaxed"></textarea>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+      <div>
+        <label for="smLastmod" class="block text-xs text-gray-400 mb-1 font-mono">Last modified (optional):</label>
+        <input id="smLastmod" type="date"
           class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
       </div>
-
       <div>
-        <label for="stKeyword" class="block text-xs text-gray-400 mb-1 font-mono">Primary keyword (optional):</label>
-        <input id="stKeyword" type="text" placeholder="invoice generator"
-          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
+        <label for="smChangefreq" class="block text-xs text-gray-400 mb-1 font-mono">Change frequency:</label>
+        <select id="smChangefreq"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="">Omit</option>
+          <option value="always">always</option>
+          <option value="hourly">hourly</option>
+          <option value="daily">daily</option>
+          <option value="weekly">weekly</option>
+          <option value="monthly">monthly</option>
+          <option value="yearly">yearly</option>
+          <option value="never">never</option>
+        </select>
       </div>
-
       <div>
-        <label for="stBrand" class="block text-xs text-gray-400 mb-1 font-mono">Brand name (optional):</label>
-        <input id="stBrand" type="text" placeholder="ToolStack AI"
-          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-brand-500" />
-      </div>
-    </div>
-
-    <!-- Live meters. These update on every keystroke, before the report. -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-3">
-        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Characters</p>
-        <p id="stCharCount" class="text-lg font-black text-gray-100 mt-1">0</p>
-      </div>
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-3">
-        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Pixel width</p>
-        <p id="stPixelCount" class="text-lg font-black text-gray-100 mt-1">0<span class="text-[10px] font-normal text-gray-500"> / 600</span></p>
-      </div>
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-3">
-        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Words</p>
-        <p id="stWordCount" class="text-lg font-black text-gray-100 mt-1">0</p>
-      </div>
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-3">
-        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Score</p>
-        <p id="stScore" class="text-lg font-black text-gray-100 mt-1">—</p>
-      </div>
-    </div>
-
-    <!-- Google result snippet preview. -->
-    <div class="mt-5">
-      <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Google result preview</p>
-      <div class="bg-gray-950 border border-gray-800 rounded-xl p-4">
-        <div class="flex items-center gap-2 mb-1">
-          <div class="w-6 h-6 rounded-full bg-gray-800 flex items-center justify-center text-[10px] font-bold text-gray-400">TS</div>
-          <div class="min-w-0">
-            <p id="stSerpSite" class="text-[11px] text-gray-300 leading-tight">ToolStack AI</p>
-            <p id="stSerpUrl" class="text-[10px] text-gray-500 leading-tight">https://toolstackai.xyz</p>
-          </div>
-        </div>
-        <p id="stSerpTitle" class="text-base text-sky-400 leading-snug break-words">Your title appears here</p>
-        <p class="text-xs text-gray-400 mt-1 leading-relaxed">
-          The description below your headline is a separate tag — write it with the Meta Description Writer.
-        </p>
+        <label for="smPriority" class="block text-xs text-gray-400 mb-1 font-mono">Priority:</label>
+        <select id="smPriority"
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-brand-500">
+          <option value="">Omit</option>
+          <option value="1.0">1.0</option>
+          <option value="0.9">0.9</option>
+          <option value="0.8">0.8</option>
+          <option value="0.7">0.7</option>
+          <option value="0.6">0.6</option>
+          <option value="0.5">0.5</option>
+          <option value="0.3">0.3</option>
+          <option value="0.1">0.1</option>
+          <option value="0.0">0.0</option>
+        </select>
       </div>
     </div>
 
     <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-gray-800">
-      <div class="flex gap-2">
-        <button id="stAnalyzeBtn" type="button"
+      <div class="flex flex-wrap gap-2">
+        <button id="smGenerate" type="button"
           class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
-          🔍 Analyze Title
+          🗺️ Generate Sitemap
         </button>
-        <button id="stCopyBtn" type="button"
+        <button id="smCopy" type="button"
           class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
-          📋 Copy Title
+          📋 Copy XML
+        </button>
+        <button id="smExample" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Load example
+        </button>
+        <button id="smClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
         </button>
       </div>
       <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
     </div>
 
-    <div id="stResults" class="hidden mt-5 space-y-5">
-      <div>
-        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Suggestions</p>
-        <ul id="stSuggestions" class="space-y-2"></ul>
+    <div id="smResults" class="hidden mt-5 space-y-5">
+      <div id="smStats" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+
+      <div id="smWarnings" class="space-y-2"></div>
+
+      <div id="smErrorsWrap" class="hidden">
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Lines that were skipped</p>
+        <ul id="smErrors" class="space-y-2 text-xs"></ul>
       </div>
 
-      <div data-ts-result-actions="seo-title-generator" class="space-y-4"></div>
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Your sitemap.xml</p>
+        <pre id="smOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap break-words"></pre>
+      </div>
+
+      <div data-ts-result-actions="sitemap-generator" class="space-y-4"></div>
     </div>
   </section>
 
@@ -290,16 +294,19 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
       <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
         <p>
-          A title tag is the single strongest on-page ranking signal you control, and it is also the headline someone decides whether
-          to click. Google truncates it by rendered pixel width rather than character count, which is why the usual "keep it under 60
-          characters" advice fails on titles full of wide letters. This tool measures the actual width of your string in the font
-          Google uses for desktop results, then reports it against the roughly 600-pixel budget.
+          A sitemap is a plain XML file that lists the URLs on your site so a crawler can find them
+          without having to guess its way through your navigation. This tool takes a list of URLs and
+          produces a valid one: the right XML declaration and namespace, one <code>url</code> entry
+          per address, and the optional <code>lastmod</code>, <code>changefreq</code> and
+          <code>priority</code> elements written the way the protocol expects them.
         </p>
         <p>
-          It also checks the things that quietly cost clicks: whether your keyword appears near the front, whether the title is long
-          enough to say anything, whether it repeats the same word, and whether a brand name is eating the space where the descriptive
-          phrase should be. The score is a heuristic, not a ranking prediction — Google's algorithm weighs hundreds of factors this
-          tool cannot see, and none of them are a substitute for writing a headline a human wants to click.
+          It also does the unglamorous part that actually breaks sitemaps: rejecting lines that are not
+          absolute URLs instead of silently writing them, escaping ampersands in query strings so the
+          file stays well-formed XML, and removing duplicates. The honest limitation is that it has no
+          idea what your site contains — it does not crawl anything, so you supply the URLs, and it
+          cannot tell you whether any of them actually returns a 200. A sitemap full of 404s or
+          redirects is worse than no sitemap.
         </p>
       </div>
     </div>
@@ -307,11 +314,10 @@
     <div>
       <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
       <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
-        <li>Paste the title you are considering into the field. The meters update as you type, so you can feel the pixel budget rather than count characters.</li>
-        <li>Add your primary keyword. The tool checks whether it appears in the title and how close to the front it sits — a keyword at position ten is worth far less than one at position two.</li>
-        <li>Add your brand name so the tool can flag it if it is consuming the space the descriptive phrase needs.</li>
-        <li>Click <strong class="text-gray-200">Analyze Title</strong> for the full report: issues found, and concrete rewrites rather than vague advice.</li>
-        <li>Click <strong class="text-gray-200">Copy Title</strong> when you are happy, then paste it into your CMS or template.</li>
+        <li>Paste your URLs into the box, one per line. Fragments are stripped and duplicates are dropped for you.</li>
+        <li>Set a last modified date if the pages genuinely changed on one date. If they did not, leave it empty — a wrong <code>lastmod</code> teaches the crawler to distrust the whole file.</li>
+        <li>Choose a change frequency and priority only if you have a reason to. Google ignores both, so "Omit" is usually the better answer.</li>
+        <li>Click <strong class="text-gray-200">Generate Sitemap</strong>, fix any lines that were skipped, then copy the XML and save it as <code>sitemap.xml</code> at your site root.</li>
       </ol>
     </div>
 
@@ -319,20 +325,24 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
       <ul class="grid sm:grid-cols-2 gap-3 text-sm">
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Rewriting an underperforming page</p>
-          <p class="text-gray-400 leading-relaxed text-xs">A page ranking in position 5–15 usually needs a click-through fix before it needs a content fix. The title is that fix.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">A new site with no internal links yet</p>
+          <p class="text-gray-400 leading-relaxed text-xs">On a fresh domain nothing points at your pages, so a sitemap is often the fastest way to get them discovered at all.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Planning a content cluster</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Check that ten planned titles do not all truncate at the same point, and that each front-loads a different keyword.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Orphan pages</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Landing pages and campaign URLs that nothing links to will not be crawled on their own — listing them is the only reliable way in.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Migrating a site</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Audit inherited titles that were written for a different template width and are now being cut off mid-phrase.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">Large catalogues and archives</p>
+          <p class="text-gray-400 leading-relaxed text-xs">When you have thousands of product or post URLs, a generated sitemap beats hoping the crawler reaches page 40 of your pagination.</p>
         </li>
         <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <p class="font-bold text-gray-200 text-xs mb-1">Client reporting</p>
-          <p class="text-gray-400 leading-relaxed text-xs">Show a client the before-and-after snippet rather than explaining pixel budgets in a spreadsheet.</p>
+          <p class="font-bold text-gray-200 text-xs mb-1">After a migration</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Building the list from your new URL structure is a quick way to spot addresses you forgot to redirect.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Client handover</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Generate the file, then hand over a sitemap you can explain line by line rather than one exported from a plugin nobody understands.</p>
         </li>
       </ul>
     </div>
@@ -341,29 +351,31 @@
       <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
       <div class="space-y-3">
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">How long should a title tag be?</summary>
+          <summary class="text-sm font-bold text-gray-200">Do I need a sitemap to rank?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Google truncates by pixel width, not character count — roughly 600 pixels on desktop. For average-width Latin text that
-            lands near 60 characters, but a title full of capital W and M letters can truncate at 50 while one made of narrow letters
-            survives to 70. That is why this tool measures the actual rendered width instead of counting characters and calling it a day.
+            Not strictly. Google discovers pages by following links, and plenty of sites rank well
+            without one. A sitemap earns its place on large sites, on pages that are poorly linked
+            internally, and on a new domain where nothing points at you yet. It tells a crawler what
+            exists — it is not a ranking factor, and submitting one will not lift a page that nothing
+            links to.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Does the title tag affect ranking?</summary>
+          <summary class="text-sm font-bold text-gray-200">How many URLs can one sitemap hold?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Yes — more than any other on-page element. Google treats the title as a strong relevance signal and bolds the query terms
-            it finds there, so a title containing the phrase someone searched for both ranks better and looks more clickable. It is not
-            a place to keyword-stuff, though: repeated or unrelated terms read as spam to users and depress click-through, which is the
-            metric that actually compounds.
+            Up to 50,000 URLs, and the uncompressed file must stay under 50 MB. Past that limit you
+            need a sitemap index: a small file listing several sitemap files. This is a protocol rule
+            rather than a preference — search engines reject a file that exceeds it, which is why the
+            tool warns before you get there.
           </p>
         </details>
         <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
-          <summary class="text-sm font-bold text-gray-200">Should the brand name go at the start or the end of the title?</summary>
+          <summary class="text-sm font-bold text-gray-200">Do changefreq and priority affect ranking?</summary>
           <p class="text-sm text-gray-400 leading-relaxed mt-3">
-            Put it at the end unless the brand is the reason someone is searching. Front-loading the descriptive phrase means the part
-            that survives truncation is the part that matches the query. Brand-first only makes sense on navigational pages where
-            people search the company name itself — putting it first on a content page spends your most valuable pixels on the words
-            fewest searchers typed.
+            Almost never. Google has said plainly that it ignores both, deciding when to recrawl from
+            its own scheduling and from <code>lastmod</code>. They remain valid protocol elements that
+            other crawlers may read, so setting them is harmless — but leaving them out is cleaner than
+            publishing values you cannot back up.
           </p>
         </details>
       </div>
@@ -409,15 +421,17 @@
 <!-- ts:footer:end -->
 
 <script src="../assets/toolstack.js"></script>
-<script src="../assets/tools/seo-title-generator.js"></script>
+<script src="../assets/tools/sitemap-generator.js"></script>
 <script>
   (function () {
     var root = document.getElementById('toolRoot');
     if (root && window.ToolStackTools) {
-      window.ToolStackTools.createSeoTitleGenerator(root);
+      window.ToolStackTools.createSitemapGenerator(root);
     }
   })();
 </script>
 
 </body>
 </html>
+
+

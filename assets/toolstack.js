@@ -45,6 +45,16 @@
     'twitter-card-generator':   { name: 'Twitter/X Card Generator',        path: '/tools/twitter-card-generator.html' },
     'seo-title-generator':      { name: 'SEO Title & Snippet Optimizer',   path: '/tools/seo-title-generator.html' },
     'meta-description-generator': { name: 'Meta Description Writer',       path: '/tools/meta-description-generator.html' },
+    'serp-preview':             { name: 'SERP Preview Tool',               path: '/tools/serp-preview.html' },
+    'slug-generator':           { name: 'URL Slug Generator',              path: '/tools/slug-generator.html' },
+    'keyword-density-checker':  { name: 'Keyword Density Checker',         path: '/tools/keyword-density-checker.html' },
+    'keyword-counter':          { name: 'Keyword Counter',                 path: '/tools/keyword-counter.html' },
+    'robotstxt-generator':      { name: 'Robots.txt Generator',            path: '/tools/robotstxt-generator.html' },
+    'sitemap-generator':        { name: 'Sitemap.xml Generator',           path: '/tools/sitemap-generator.html' },
+    'schema-generator':         { name: 'Schema Markup Generator',         path: '/tools/schema-generator.html' },
+    'faq-schema-generator':     { name: 'FAQ Schema Generator',            path: '/tools/faq-schema-generator.html' },
+    'article-schema-generator': { name: 'Article Schema Generator',        path: '/tools/article-schema-generator.html' },
+    'local-business-schema':    { name: 'Local Business Schema Generator',  path: '/tools/local-business-schema.html' },
 
     // AI Support
     'ai-model-comparison':   { name: 'AI Model Comparison Matrix',         path: '/tools/ai-model-comparison.html' },

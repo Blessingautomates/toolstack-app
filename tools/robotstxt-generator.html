@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--
+  ToolStack AI — Robots.txt Generator (standalone page).
+
+  The widget markup below must keep ids identical to the modal version on
+  index.html: the engine in assets/tools/robotstxt-generator.js queries by id
+  and bails out early if the main ones are missing.
+
+  Keep the FAQ JSON-LD in the head in sync with the visible FAQ at the bottom.
+  Leave the ts:header / ts:footer markers alone; `node scripts/toolstack.mjs
+  sync-chrome` fills them from partials/.
+-->
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Robots.txt Generator — Free Online Tool | ToolStack AI</title>
+  <meta name="description" content="Build a valid robots.txt with per-bot rules, a sitemap location and crawl-delay — ready to paste at your site root." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/robotstxt-generator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Robots.txt Generator — Free Online Tool | ToolStack AI" />
+  <meta property="og:description" content="Build a valid robots.txt with per-bot rules, a sitemap location and crawl-delay — ready to paste at your site root." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/robotstxt-generator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Robots.txt Generator — Free Online Tool | ToolStack AI" />
+  <meta name="twitter:description" content="Build a valid robots.txt with per-bot rules, a sitemap location and crawl-delay — ready to paste at your site root." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Robots.txt Generator",
+    "url": "https://toolstackai.xyz/tools/robotstxt-generator.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Build a valid robots.txt with per-bot rules, a sitemap location and crawl-delay — ready to paste at your site root.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does a Disallow rule remove a page from Google?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Robots.txt controls crawling, not indexing. If other sites link to a disallowed URL, Google can still list it, because it learned the address somewhere else — it just cannot fetch the page, so the result shows a bare URL with no title or snippet. To keep a page out of the index, leave it crawlable and put a noindex tag on it. Blocking it in robots.txt stops Google from ever seeing that tag." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does the file go?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In your site root, at yourdomain.com/robots.txt, and nowhere else. A robots.txt in a subfolder is ignored, and each subdomain is a separate site with its own file — shop.example.com needs one even if example.com already has it. The file is public, so anything you list in it is a list of paths you would rather people did not look at." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does User-agent: * cover?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is the group every crawler follows if it has no group of its own. As soon as you add a group naming a specific crawler, that crawler ignores the wildcard group entirely and follows only its own rules. This is the mistake that takes sites out of search: a group for one bot with a Disallow that the wildcard group was supposed to override. Test the file with Google's robots.txt tester before you upload it." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Robots.txt Generator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Robots.txt Generator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">Build a robots.txt from presets or by hand, see exactly what each rule does, and get warned about the mistakes that quietly block a whole site from being crawled.</p>
+
+  <!-- Tool widget. Ids here must match the modal version on index.html. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="rbStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 gap-4 mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="rbPreset" class="block text-xs text-gray-400 mb-1 font-mono">Start from a preset:</label>
+          <select id="rbPreset"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="allow" selected>Allow everything</option>
+            <option value="block">Block everything</option>
+            <option value="admin">Block admin, cart and search</option>
+            <option value="wordpress">WordPress defaults</option>
+            <option value="custom">Custom (leave my fields alone)</option>
+          </select>
+        </div>
+        <div>
+          <label for="rbUserAgent" class="block text-xs text-gray-400 mb-1 font-mono">User-agent:</label>
+          <input id="rbUserAgent" type="text" value="*"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">One per line, or * for every crawler.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="rbDisallow" class="block text-xs text-gray-400 mb-1 font-mono">Disallow — one path per line:</label>
+          <textarea id="rbDisallow" rows="6" placeholder="/admin/&#10;/checkout/&#10;/*?s="
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+        </div>
+        <div>
+          <label for="rbAllow" class="block text-xs text-gray-400 mb-1 font-mono">Allow — one path per line:</label>
+          <textarea id="rbAllow" rows="6" placeholder="/admin/public/"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="rbCrawlDelay" class="block text-xs text-gray-400 mb-1 font-mono">Crawl-delay (seconds):</label>
+          <input id="rbCrawlDelay" type="number" min="0" max="3600" value="0"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+          <p class="text-[10px] text-gray-500 mt-1">0 omits the line</p>
+        </div>
+        <div>
+          <label for="rbSitemap" class="block text-xs text-gray-400 mb-1 font-mono">Sitemap URL (optional):</label>
+          <input id="rbSitemap" type="text" placeholder="https://example.com/sitemap.xml"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="rbCopy" type="button"
+          class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          📋 Copy robots.txt
+        </button>
+        <button id="rbDownload" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          ⬇️ Download file
+        </button>
+        <button id="rbExample" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          Try an example
+        </button>
+        <button id="rbClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="rbResults" class="hidden mt-5 space-y-5">
+      <div id="rbStats" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      <div id="rbWarnings" class="space-y-2"></div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">robots.txt</p>
+        <pre id="rbOutput" class="bg-gray-950 border border-gray-800 rounded-xl p-4 font-mono text-xs text-gray-200 overflow-x-auto whitespace-pre-wrap"></pre>
+      </div>
+
+      <div data-ts-result-actions="robotstxt-generator" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>This builds a robots.txt: the plain-text file at your site root that tells crawlers which paths they may request. Pick a preset or write the rules yourself, and the file is assembled line by line as you type, ready to copy or download.</p>
+        <p>The limitation that matters most is what robots.txt cannot do. It controls crawling, not indexing. A page you disallow can still appear in search results when other sites link to it, because Google is allowed to index a URL it discovered elsewhere — it simply cannot fetch the page to write a snippet. To keep a page out of the index you need a noindex tag on the page itself, and that page has to stay crawlable for Google to see the tag. Blocking it here prevents exactly that.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Start from a preset if one fits, then edit the fields — choosing Custom leaves them exactly as you left them.</li>
+        <li>List one path per line in Disallow and Allow. The order in the file does not matter: crawlers apply the most specific rule that matches, and an Allow that is longer than the matching Disallow wins.</li>
+        <li>Add your sitemap URL if you have one. It is a hint rather than a rule, and it goes at the end of the file.</li>
+        <li>Read the notes before you upload, then save the file as robots.txt in your site root and open <span class="font-mono text-gray-300">yourdomain.com/robots.txt</span> to confirm it is being served.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Blocking a staging site</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A copy of the site on a test domain can outrank the real one if crawlers find it. Disallow everything there, and keep the block in place until the domain is retired.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">An online store</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Cart, checkout, order confirmation and internal search results are pages no shopper should ever land on from Google. Blocking them keeps crawlers on the pages that can actually be found.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">A WordPress site</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The WordPress preset covers the usual set: the admin area, the login page, xmlrpc.php and the readme that advertises your version number.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Faceted and filtered URLs</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Colour, size and sort parameters can generate thousands of near-identical URLs. A wildcard rule on the query string stops crawlers spending the budget on all of them.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does a Disallow rule remove a page from Google?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. Robots.txt controls crawling, not indexing. If other sites link to a disallowed URL, Google can still list it, because it learned the address somewhere else — it just cannot fetch the page, so the result shows a bare URL with no title or snippet. To keep a page out of the index, leave it crawlable and put a noindex tag on it. Blocking it in robots.txt stops Google from ever seeing that tag.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Where does the file go?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">In your site root, at yourdomain.com/robots.txt, and nowhere else. A robots.txt in a subfolder is ignored, and each subdomain is a separate site with its own file — shop.example.com needs one even if example.com already has it. The file is public, so anything you list in it is a list of paths you would rather people did not look at.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What does User-agent: * cover?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">It is the group every crawler follows if it has no group of its own. As soon as you add a group naming a specific crawler, that crawler ignores the wildcard group entirely and follows only its own rules. This is the mistake that takes sites out of search: a group for one bot with a Disallow that the wildcard group was supposed to override. Test the file with Google's robots.txt tester before you upload it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/robotstxt-generator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createRobotstxtGenerator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

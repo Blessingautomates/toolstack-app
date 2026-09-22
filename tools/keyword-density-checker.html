@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!--
+  ToolStack AI — Keyword Density Checker (standalone page).
+
+  The widget markup below must keep ids identical to the modal version on
+  index.html: the engine in assets/tools/keyword-density-checker.js queries by
+  id and bails out early if the main ones are missing.
+
+  Keep the FAQ JSON-LD in the head in sync with the visible FAQ at the bottom.
+  Leave the ts:header / ts:footer markers alone; `node scripts/toolstack.mjs
+  sync-chrome` fills them from partials/.
+-->
+<html lang="en" class="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Keyword Density Checker — Free Online Tool | ToolStack AI</title>
+  <meta name="description" content="Find the keywords your text already ranks for: top 1-, 2- and 3-word phrases with density and an over-stuffing flag." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/keyword-density-checker.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Keyword Density Checker — Free Online Tool | ToolStack AI" />
+  <meta property="og:description" content="Find the keywords your text already ranks for: top 1-, 2- and 3-word phrases with density and an over-stuffing flag." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/keyword-density-checker.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Keyword Density Checker — Free Online Tool | ToolStack AI" />
+  <meta name="twitter:description" content="Find the keywords your text already ranks for: top 1-, 2- and 3-word phrases with density and an over-stuffing flag." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Keyword Density Checker",
+    "url": "https://toolstackai.xyz/tools/keyword-density-checker.html",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (browser-based)",
+    "description": "Find the keywords your text already ranks for: top 1-, 2- and 3-word phrases with density and an over-stuffing flag.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ToolStack AI",
+      "url": "https://toolstackai.xyz/"
+    }
+  }
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a good keyword density?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no good number. Google has said repeatedly that keyword density is not a ranking factor, and no threshold triggers a filter or a penalty. The 1% and 2% figures that circulate come from correlation studies of pages that already ranked, which is not the same as a cause. Treat density as a way to notice repetition, never as a target to write towards." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is density calculated here?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The number of times the phrase appears, divided by the total word count, as a percentage. A three-word phrase counts once per occurrence rather than three times, so a phrase appearing four times in a 1,000-word article is 0.4%. That is the convention most tools use, which is why the figures are comparable between them — and why they all share the same weakness, that a percentage says nothing about whether the repetition reads naturally." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I rewrite text that repeats a word too often?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only when the repetition reads badly to a person. Repeating a term is how a reader knows what a page is about, and search engines have matched synonyms for years, so swapping in a thesaurus word buys nothing and often reads worse. Cut repetition when it makes the prose clumsy; leave it alone when it does not. The table is there to show you the pattern, not to tell you it is wrong." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to light theme" aria-pressed="true">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/#toolsGrid" class="hover:text-brand-400 transition">Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Keyword Density Checker</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Keyword Density Checker</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">See which words and phrases your copy actually repeats, how often, and what share of the text they take up — counted in your browser, with no target percentage to chase.</p>
+
+  <!-- Tool widget. Ids here must match the modal version on index.html. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div id="kdStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-medium border"></div>
+
+    <div class="grid grid-cols-1 gap-4 mb-4">
+      <div>
+        <label for="kdInput" class="block text-xs text-gray-400 mb-1 font-mono">Your text:</label>
+        <textarea id="kdInput" rows="10" placeholder="Paste the page copy, article or description you want to check."
+          class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 font-mono text-xs text-gray-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="sm:col-span-2">
+          <label for="kdKeyword" class="block text-xs text-gray-400 mb-1 font-mono">Target keyword or phrase (optional):</label>
+          <input id="kdKeyword" type="text" placeholder="free invoice generator"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+        </div>
+        <div>
+          <label for="kdPhraseLen" class="block text-xs text-gray-400 mb-1 font-mono">Phrase length:</label>
+          <select id="kdPhraseLen"
+            class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500">
+            <option value="1" selected>Single words</option>
+            <option value="2">Two-word phrases</option>
+            <option value="3">Three-word phrases</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+        <input id="kdIgnoreStop" type="checkbox" checked
+          class="w-4 h-4 rounded border-gray-700 bg-gray-950 text-brand-500 focus:ring-brand-500" />
+        Ignore common words (the, and, of, to…)
+      </label>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-gray-800">
+      <div class="flex flex-wrap gap-2">
+        <button id="kdCopy" type="button"
+          class="px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">
+          📋 Copy table
+        </button>
+        <button id="kdExample" type="button"
+          class="px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">
+          Try an example
+        </button>
+        <button id="kdClear" type="button"
+          class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold text-xs transition">
+          Clear
+        </button>
+      </div>
+      <span class="text-[10px] text-gray-500">Everything runs in your browser. Nothing is uploaded.</span>
+    </div>
+
+    <div id="kdResults" class="hidden mt-5 space-y-5">
+      <div id="kdStats" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      <div id="kdWarnings" class="space-y-2"></div>
+
+      <div>
+        <p class="text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">Most frequent phrases</p>
+        <div id="kdTable" class="space-y-1.5"></div>
+      </div>
+
+      <div data-ts-result-actions="keyword-density-checker" class="space-y-4"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>Paste your copy and this tool counts every word and phrase in it, then reports what share of the text each one takes up. Density is the count of a phrase divided by the total word count — a phrase appearing four times in a thousand words is 0.4%. You can also name a target phrase and see its count on its own.</p>
+        <p>The important caveat is that density is a diagnostic, not a target. Google has said for years that keyword density is not a ranking factor, and the percentages people quote — 1%, 2%, 3% — come from studies of pages that already ranked rather than from anything a search engine measures. What this tool is genuinely good for is catching repetition you did not notice: the same adjective four times in one section, or a phrase you used in every paragraph without meaning to.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Paste the text you want to check. The table fills in as you type.</li>
+        <li>Type a target keyword if you have one. Its exact-phrase count and density appear in the tiles, whether or not it makes the top of the table.</li>
+        <li>Switch the phrase length between one, two and three words. Two- and three-word phrases are usually the useful view: single words are dominated by whatever noun the topic forces you to repeat.</li>
+        <li>Read the table for things you did not intend — a word repeated in every paragraph, a phrase used four times in one section — rather than for a percentage to hit.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Editing a first draft</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The most common finding is not stuffing but accidental repetition: the same transition word opening four paragraphs, or a product name eleven times on one screen.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Checking competitor copy</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Paste a page that outranks you and see which phrases it repeats. You are looking for the vocabulary of the topic, not a density figure to copy.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Auditing AI-assisted drafts</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Generated text tends to circle the same few words. The table shows that pattern in seconds, before a reader notices it halfway down the page.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Confirming a rewrite helped</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Run the before and after versions and compare the table. If the words you were trying to reduce are still at the top, the rewrite moved sentences around without changing the vocabulary.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What is a good keyword density?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">There is no good number. Google has said repeatedly that keyword density is not a ranking factor, and no threshold triggers a filter or a penalty. The 1% and 2% figures that circulate come from correlation studies of pages that already ranked, which is not the same as a cause. Treat density as a way to notice repetition, never as a target to write towards.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How is density calculated here?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">The number of times the phrase appears, divided by the total word count, as a percentage. A three-word phrase counts once per occurrence rather than three times, so a phrase appearing four times in a 1,000-word article is 0.4%. That is the convention most tools use, which is why the figures are comparable between them — and why they all share the same weakness, that a percentage says nothing about whether the repetition reads naturally.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Should I rewrite text that repeats a word too often?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Only when the repetition reads badly to a person. Repeating a term is how a reader knows what a page is about, and search engines have matched synonyms for years, so swapping in a thesaurus word buys nothing and often reads worse. Cut repetition when it makes the prose clumsy; leave it alone when it does not. The table is there to show you the pattern, not to tell you it is wrong.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/keyword-density-checker.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createKeywordDensityChecker(root);
+    }
+  })();
+</script>
+
+</body>
+</html>
