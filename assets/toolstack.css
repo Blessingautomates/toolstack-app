@@ -449,6 +449,7 @@ html:not(.dark) .tool-card[data-category="ai"]:hover      { border-color: #7C3AE
 html:not(.dark) .tool-card[data-category="seo"]:hover     { border-color: #EA580C; }
 html:not(.dark) .tool-card[data-category="creator"]:hover { border-color: #DB2777; }
 html:not(.dark) .tool-card[data-category="fun"]:hover     { border-color: #0D9488; }
+html:not(.dark) .tool-card[data-category="pdf"]:hover     { border-color: #B91C1C; }
 
 /* Cards lift a little harder than the shell's shadow. */
 html:not(.dark) .tool-card {

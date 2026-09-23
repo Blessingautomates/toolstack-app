@@ -130,7 +130,26 @@
     'game-tictactoe':            { name: 'Tic Tac Toe',                        path: '/tools/game-tictactoe.html' },
     'game-connect-four':         { name: 'Connect Four',                       path: '/tools/game-connect-four.html' },
     'game-memory-cards':         { name: 'Memory Card Game',                   path: '/tools/game-memory-cards.html' },
-    'game-minesweeper':          { name: 'Minesweeper',                        path: '/tools/game-minesweeper.html' }
+    'game-minesweeper':          { name: 'Minesweeper',                        path: '/tools/game-minesweeper.html' },
+
+    // PDF Tools — fifteen browser-based PDF utilities. Each entry is also the
+    // key its page passes to [data-ts-result-actions], so the share strip picks
+    // up the right name and URL without the page repeating either.
+    'pdf-compressor':            { name: 'PDF Compressor',                     path: '/tools/pdf-compressor.html' },
+    'pdf-to-jpg':                { name: 'PDF to JPG',                         path: '/tools/pdf-to-jpg.html' },
+    'pdf-to-png':                { name: 'PDF to PNG',                         path: '/tools/pdf-to-png.html' },
+    'jpg-to-pdf':                { name: 'JPG to PDF',                         path: '/tools/jpg-to-pdf.html' },
+    'png-to-pdf':                { name: 'PNG to PDF',                         path: '/tools/png-to-pdf.html' },
+    'image-to-pdf':              { name: 'Image to PDF',                       path: '/tools/image-to-pdf.html' },
+    'pdf-page-extractor':        { name: 'PDF Page Extractor',                 path: '/tools/pdf-page-extractor.html' },
+    'pdf-page-rotator':          { name: 'PDF Page Rotator',                   path: '/tools/pdf-page-rotator.html' },
+    'pdf-page-reorderer':        { name: 'PDF Page Reorderer',                 path: '/tools/pdf-page-reorderer.html' },
+    'pdf-password-protector':    { name: 'PDF Password Protector',             path: '/tools/pdf-password-protector.html' },
+    'pdf-unlocker':              { name: 'PDF Unlocker',                       path: '/tools/pdf-unlocker.html' },
+    'pdf-metadata-remover':      { name: 'PDF Metadata Remover',               path: '/tools/pdf-metadata-remover.html' },
+    'pdf-watermark':             { name: 'PDF Watermark Tool',                 path: '/tools/pdf-watermark.html' },
+    'pdf-to-text':               { name: 'PDF to Text',                        path: '/tools/pdf-to-text.html' },
+    'text-to-pdf':               { name: 'Text to PDF',                        path: '/tools/text-to-pdf.html' }
   };
 
   var DEFAULT_TOOL = { name: 'ToolStack AI', path: '/' };

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+<!-- ts:head:end -->
+
+  <title>PDF Watermark Tool — Stamp Text on Every Page | ToolStack AI</title>
+  <meta name="description" content="Add a text watermark to a PDF — DRAFT, CONFIDENTIAL, a client name — across every page or only the ones you choose. The original content is untouched." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/pdf-watermark.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="PDF Watermark Tool — Stamp Text on Every Page | ToolStack AI" />
+  <meta property="og:description" content="Add a text watermark to a PDF — DRAFT, CONFIDENTIAL, a client name — across every page or only the ones you choose. The original content is untouched." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/pdf-watermark.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PDF Watermark Tool — Stamp Text on Every Page | ToolStack AI" />
+  <meta name="twitter:description" content="Add a text watermark to a PDF — DRAFT, CONFIDENTIAL, a client name — across every page or only the ones you choose. The original content is untouched." />
+
+  <!-- The PDF engines come from jsDelivr. Preconnecting shaves a round trip off
+       the first tool that needs one, and costs nothing on the pages that never
+       do — the browser drops an idle preconnect on its own. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Watermark Tool",
+  "url": "https://toolstackai.xyz/tools/pdf-watermark.html",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Add a text watermark to a PDF — DRAFT, CONFIDENTIAL, a client name — across every page or only the ones you choose. The original content is untouched.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does watermarking flatten or degrade the PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The stamp is drawn on top of each page as an ordinary text object. The original content stream is not touched, nothing is re-encoded, and the underlying text stays selectable and searchable. If you need to preview the difference, the file size barely moves."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I remove a watermark afterwards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not with this tool. Because the stamp is drawn into the page content rather than stored as a separate layer, removing it cleanly would mean reconstructing the page. Keep the original before you watermark it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my long watermark text come out tiny?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The text is scaled to a proportion of the page, so the longer the string, the smaller each character has to be to fit across it. One or two words work best — \"CONFIDENTIAL\" or \"DRAFT\" rather than a full sentence."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/?category=pdf" class="hover:text-brand-400 transition">PDF Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">PDF Watermark Tool</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">PDF Watermark Tool</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Mark a document as a draft, a copy or confidential, without flattening the pages underneath.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/pdf-watermark.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+      <div id="pdfDropZone" role="button" tabindex="0"
+           class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-2xl px-6 py-9 text-center cursor-pointer transition focus:outline-none focus:border-brand-500">
+        <p id="pdfDropLabel" class="text-sm font-semibold text-gray-200">Click to choose a PDF, or drag &amp; drop it</p>
+        <p class="text-xs text-gray-500 mt-1.5">PDF only · stamped in your browser, never uploaded</p>
+        <input id="pdfFileInput" type="file" class="hidden" accept="application/pdf,.pdf" />
+        <p id="pdfFileMeta" class="text-xs text-brand-400 mt-3 font-semibold"></p>
+      </div>
+
+      <!-- aria-live so a screen reader announces "Rendering page 3 of 12" as it
+           changes, rather than leaving the whole run silent. -->
+      <p id="pdfStatus" class="hidden text-xs mt-3 leading-relaxed" role="status" aria-live="polite"></p>
+
+      <div id="pdfOptions" class="hidden mt-5 space-y-4">
+        <div>
+          <label for="pdfWatermarkText" class="block text-xs font-bold text-gray-300 mb-1.5">Watermark text</label>
+          <input id="pdfWatermarkText" type="text" maxlength="80" placeholder="e.g. CONFIDENTIAL" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition" />
+          <p class="text-[11px] text-gray-500 mt-1.5 leading-relaxed">Short is better — the text scales to the page, so a long sentence becomes very small.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pdfWatermarkLayout" class="block text-xs font-bold text-gray-300 mb-1.5">Style</label>
+            <select id="pdfWatermarkLayout" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="diagonal" selected>Diagonal — one across the middle</option>
+              <option value="cross">Tiled — repeated across the page</option>
+              <option value="footer">Footer — centred at the bottom</option>
+              <option value="header">Header — centred at the top</option>
+            </select>
+          </div>
+          <div>
+            <label for="pdfWatermarkSize" class="block text-xs font-bold text-gray-300 mb-1.5">Size</label>
+            <select id="pdfWatermarkSize" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pdfWatermarkColor" class="block text-xs font-bold text-gray-300 mb-1.5">Colour</label>
+            <select id="pdfWatermarkColor" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="grey" selected>Grey — the most readable under text</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="black">Black</option>
+            </select>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="pdfWatermarkOpacity" class="text-xs font-bold text-gray-300">Opacity</label>
+              <span id="pdfWatermarkOpacityVal" class="text-xs font-bold text-brand-400">18</span>
+            </div>
+            <input id="pdfWatermarkOpacity" type="range" min="5" max="60" step="5" value="18"
+                   class="w-full accent-brand-500" />
+          </div>
+        </div>
+
+        <div>
+          <label for="pdfPageSpec" class="block text-xs font-bold text-gray-300 mb-1.5">Pages</label>
+          <input id="pdfPageSpec" type="text" placeholder="blank = every page, or e.g. 1-3, 7" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition" />
+          <p class="text-[11px] text-gray-500 mt-1.5 leading-relaxed">Leave blank to stamp the whole document.</p>
+        </div>
+
+        <div class="border border-brand-500/40 bg-brand-500/5 text-brand-200 rounded-xl px-3.5 py-3 text-[11px] leading-relaxed">
+          Size is a proportion of the page rather than a fixed point size, so one setting looks right on an A4 report and on an A0 plan alike. The stamp is drawn over the page as real text — the content underneath is untouched, the file grows by roughly the length of the string, and the watermark is selectable and searchable like any other text in the document.
+        </div>
+      </div>
+
+      <button id="pdfRunBtn" type="button" disabled
+              class="w-full mt-5 px-4 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-40 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
+        Apply watermark
+      </button>
+
+      <div id="pdfResult" class="hidden mt-5 bg-gray-950 border border-emerald-900/60 rounded-2xl p-4">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-2">Done</p>
+        <p id="pdfResultText" class="text-sm text-gray-300 leading-relaxed"></p>
+        <div data-ts-result-actions="pdf-watermark" data-ts-deferred="1" class="mt-4"></div>
+      </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          This tool draws text across the pages of a PDF — a diagonal <strong class="text-gray-200">CONFIDENTIAL</strong>, a footer with a client name, a tiled pattern marking every page of a preview copy.
+        </p>
+        <p>
+          The watermark is added as a <strong class="text-gray-200">real text object drawn on top of each page</strong>, not by flattening the page into an image. That distinction is what makes the result good: the original text, fonts, images and links all survive underneath, the file grows by roughly the length of the string rather than being re-encoded, and the watermark itself is selectable and searchable like any other text in the document.
+        </p>
+        <p>
+          Size is expressed as a proportion of the page's short edge rather than a fixed point size, so a single setting works across a document that mixes A4 pages with fold-outs. A 24-point stamp that looks right on A4 is invisible on a large drawing and overflows a small receipt.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Drop in your PDF and wait for the page count to appear.</li>
+        <li>Type the <strong class="text-gray-200">watermark text</strong> — short phrases work best, since the text is scaled to fit the page.</li>
+        <li>Choose a <strong class="text-gray-200">style</strong>, <strong class="text-gray-200">size</strong>, <strong class="text-gray-200">colour</strong> and <strong class="text-gray-200">opacity</strong>. Grey at around 18% is the combination that stays readable as a watermark without competing with the text above it.</li>
+        <li>Optionally limit the <strong class="text-gray-200">pages</strong> field, then press <strong class="text-gray-200">Apply watermark</strong>. The stamped copy downloads immediately.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Draft and review copies</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Mark a document DRAFT so a version cannot be mistaken for the final one once it has been emailed around.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Confidential material</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Stamp CONFIDENTIAL across a document that has to be shared but should not be forwarded casually.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Client and project marking</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Put the recipient's name in the footer of a proposal so the copy is traceable to who received it.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Preview copies</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Tile a watermark across every page of a sample so it cannot be passed off as the paid version.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does watermarking flatten or degrade the PDF?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The stamp is drawn on top of each page as an ordinary text object. The original content stream is not touched, nothing is re-encoded, and the underlying text stays selectable and searchable. If you need to preview the difference, the file size barely moves.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I remove a watermark afterwards?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Not with this tool. Because the stamp is drawn into the page content rather than stored as a separate layer, removing it cleanly would mean reconstructing the page. Keep the original before you watermark it.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why does my long watermark text come out tiny?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">The text is scaled to a proportion of the page, so the longer the string, the smaller each character has to be to fit across it. One or two words work best — "CONFIDENTIAL" or "DRAFT" rather than a full sentence.</p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related PDF tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/pdf-password-protector.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Password Protector</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">A harder barrier than a watermark when the file is confidential.</p>
+        </a>
+        <a href="/tools/pdf-metadata-remover.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Metadata Remover</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Clear the author details a watermark cannot hide.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/pdf-shared.js"></script>
+<script src="../assets/tools/pdf-watermark.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createPdfWatermark(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

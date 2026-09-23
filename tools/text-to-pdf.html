@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+<!-- ts:head:end -->
+
+  <title>Text to PDF — Convert Plain Text into a PDF | ToolStack AI</title>
+  <meta name="description" content="Turn plain text into a clean, paginated PDF. Choose the font, size, page size and margins, and add page numbers. Free and entirely in your browser." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/text-to-pdf.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="Text to PDF — Convert Plain Text into a PDF | ToolStack AI" />
+  <meta property="og:description" content="Turn plain text into a clean, paginated PDF. Choose the font, size, page size and margins, and add page numbers. Free and entirely in your browser." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/text-to-pdf.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Text to PDF — Convert Plain Text into a PDF | ToolStack AI" />
+  <meta name="twitter:description" content="Turn plain text into a clean, paginated PDF. Choose the font, size, page size and margins, and add page numbers. Free and entirely in your browser." />
+
+  <!-- The PDF engines come from jsDelivr. Preconnecting shaves a round trip off
+       the first tool that needs one, and costs nothing on the pages that never
+       do — the browser drops an idle preconnect on its own. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text to PDF",
+  "url": "https://toolstackai.xyz/tools/text-to-pdf.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Turn plain text into a clean, paginated PDF. Choose the font, size, page size and margins, and add page numbers. Free and entirely in your browser.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why were some of my characters left out?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The built-in PDF fonts use a Latin encoding that cannot represent emoji, Cyrillic, Greek, Arabic or CJK text. The tool counts every character it could not encode and tells you how many were dropped and which ones, rather than deleting them silently. If you need those characters, you would need a tool that embeds a Unicode font."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I control bold, italic or headings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not currently — this is a plain-text typesetter, so every paragraph is set in the same face. It is the right tool for turning a block of text into a clean document, not for producing formatted prose."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my text sent anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The PDF is built in your browser and downloads directly to your device. Nothing you type is uploaded or stored, which is why the tool also works with no connection once the page has loaded."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/?category=pdf" class="hover:text-brand-400 transition">PDF Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">Text to PDF</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">Text to PDF</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Typeset plain text into a tidy, paginated PDF — no word processor required.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/text-to-pdf.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+      <div>
+        <label for="pdfTextInput" class="block text-xs font-bold text-gray-300 mb-1.5">Your text</label>
+        <textarea id="pdfTextInput" rows="12"
+                  class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition font-mono leading-relaxed"
+                  placeholder="Paste or type your text here. Blank lines start a new paragraph; long lines wrap automatically."></textarea>
+      </div>
+
+      <p id="pdfStatus" class="hidden text-xs mt-3 leading-relaxed" role="status" aria-live="polite"></p>
+
+      <div class="mt-5 space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pdfFontFamily" class="block text-xs font-bold text-gray-300 mb-1.5">Font</label>
+            <select id="pdfFontFamily" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="helvetica" selected>Helvetica — clean sans-serif</option>
+              <option value="times">Times — classic serif</option>
+              <option value="courier">Courier — monospaced</option>
+            </select>
+          </div>
+          <div>
+            <label for="pdfFontSize" class="block text-xs font-bold text-gray-300 mb-1.5">Font size</label>
+            <select id="pdfFontSize" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="9">9 pt — compact</option>
+              <option value="11" selected>11 pt — standard</option>
+              <option value="12">12 pt</option>
+              <option value="14">14 pt — large print</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pdfPageSize" class="block text-xs font-bold text-gray-300 mb-1.5">Page size</label>
+            <select id="pdfPageSize" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="a4" selected>A4 — 210 × 297 mm</option>
+              <option value="letter">US Letter — 8.5 × 11 in</option>
+              <option value="legal">US Legal — 8.5 × 14 in</option>
+            </select>
+          </div>
+          <div>
+            <label for="pdfMargin" class="block text-xs font-bold text-gray-300 mb-1.5">Margin</label>
+            <select id="pdfMargin" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="36">Narrow — 0.5 in</option>
+              <option value="56" selected>Standard — 0.78 in</option>
+              <option value="85">Wide — 1.18 in</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="pdfPageNumbers" class="flex items-start gap-2.5 cursor-pointer">
+          <input id="pdfPageNumbers" type="checkbox" class="mt-0.5 w-4 h-4 accent-brand-500 flex-shrink-0" />
+          <span class="text-xs text-gray-300 leading-relaxed">Add page numbers<span class="block text-[11px] text-gray-500 mt-0.5">A centred "Page 1 of 4" footer in small grey type.</span></span>
+        </label>
+
+        <div class="border border-brand-500/40 bg-brand-500/5 text-brand-200 rounded-xl px-3.5 py-3 text-[11px] leading-relaxed">
+          The built-in fonts cover Latin text plus the usual typographic marks — curly quotes, en and em dashes, the ellipsis. Characters outside that set, including emoji, Cyrillic, Greek and CJK, cannot be encoded and are <strong class="font-bold">left out</strong>. If any are dropped, a warning appears above telling you exactly how many and which ones.
+        </div>
+      </div>
+
+      <button id="pdfRunBtn" type="button" disabled
+              class="w-full mt-5 px-4 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-40 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
+        Create PDF
+      </button>
+
+      <p id="pdfCharWarning" class="hidden mt-4 border border-amber-500/40 bg-amber-500/5 text-amber-200 rounded-xl px-3.5 py-3 text-[11px] leading-relaxed"></p>
+
+      <div id="pdfResult" class="hidden mt-5 bg-gray-950 border border-emerald-900/60 rounded-2xl p-4">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-2">Done</p>
+        <p id="pdfResultText" class="text-sm text-gray-300 leading-relaxed"></p>
+        <div data-ts-result-actions="text-to-pdf" data-ts-deferred="1" class="mt-4"></div>
+      </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          This tool typesets plain text into a PDF: paragraphs, wrapping, pagination, the page size and margins you choose, and an optional page-number footer.
+        </p>
+        <p>
+          It uses the <strong class="text-gray-200">standard PDF fonts</strong> — Helvetica, Times and Courier — which are built into every PDF reader and add nothing to the file size. The trade-off is encoding: those fonts cover Latin text and the usual typographic marks a word processor inserts, and nothing else. Emoji, Cyrillic, Greek and CJK characters cannot be encoded in them. Rather than failing or silently deleting them, the page <strong class="text-gray-200">counts what it had to leave out and tells you</strong>, with examples. An embedded Unicode font would fix this properly and would also mean shipping a large font file on every page load; that is the trade-off this revision makes, stated plainly rather than hidden.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Paste or type your text into the box. Blank lines start new paragraphs, and long lines are wrapped automatically — including very long words such as URLs, which are broken across lines rather than running off the edge of the page.</li>
+        <li>Choose a <strong class="text-gray-200">font</strong>, <strong class="text-gray-200">size</strong>, <strong class="text-gray-200">page size</strong> and <strong class="text-gray-200">margin</strong>.</li>
+        <li>Tick <strong class="text-gray-200">Add page numbers</strong> for a centred footer.</li>
+        <li>Press <strong class="text-gray-200">Create PDF</strong>. The document downloads immediately, and any characters that could not be encoded are reported above.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Notes and drafts</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Turn a plain-text draft into something readable and printable without opening a word processor.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Documentation</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Render a README, changelog or config file into a PDF you can attach or archive.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Anything that must be a PDF</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Portals, applications and print shops that accept only PDF, when all you have is text.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Archiving correspondence</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Save an email thread or a chat log as a fixed, paginated document.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Why were some of my characters left out?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">The built-in PDF fonts use a Latin encoding that cannot represent emoji, Cyrillic, Greek, Arabic or CJK text. The tool counts every character it could not encode and tells you how many were dropped and which ones, rather than deleting them silently. If you need those characters, you would need a tool that embeds a Unicode font.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I control bold, italic or headings?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Not currently — this is a plain-text typesetter, so every paragraph is set in the same face. It is the right tool for turning a block of text into a clean document, not for producing formatted prose.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is my text sent anywhere?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The PDF is built in your browser and downloads directly to your device. Nothing you type is uploaded or stored, which is why the tool also works with no connection once the page has loaded.</p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related PDF tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/pdf-to-text.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF to Text</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">The other direction — pull the text back out of a PDF.</p>
+        </a>
+        <a href="/tools/pdf-watermark.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Watermark Tool</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Mark the finished document as a draft or confidential.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/pdf-shared.js"></script>
+<script src="../assets/tools/text-to-pdf.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createTextToPdf(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

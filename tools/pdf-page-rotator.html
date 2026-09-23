@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+<!-- ts:head:end -->
+
+  <title>PDF Page Rotator — Turn Pages 90°, 180° or 270° | ToolStack AI</title>
+  <meta name="description" content="Rotate one page, a range, or the whole PDF by 90°, 180° or 270°. Lossless — the original content is untouched. Free, in your browser, no upload." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/pdf-page-rotator.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="PDF Page Rotator — Turn Pages 90°, 180° or 270° | ToolStack AI" />
+  <meta property="og:description" content="Rotate one page, a range, or the whole PDF by 90°, 180° or 270°. Lossless — the original content is untouched. Free, in your browser, no upload." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/pdf-page-rotator.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PDF Page Rotator — Turn Pages 90°, 180° or 270° | ToolStack AI" />
+  <meta name="twitter:description" content="Rotate one page, a range, or the whole PDF by 90°, 180° or 270°. Lossless — the original content is untouched. Free, in your browser, no upload." />
+
+  <!-- The PDF engines come from jsDelivr. Preconnecting shaves a round trip off
+       the first tool that needs one, and costs nothing on the pages that never
+       do — the browser drops an idle preconnect on its own. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Page Rotator",
+  "url": "https://toolstackai.xyz/tools/pdf-page-rotator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Rotate one page, a range, or the whole PDF by 90°, 180° or 270°. Lossless — the original content is untouched. Free, in your browser, no upload.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does rotating reduce quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Nothing is redrawn or re-encoded — the page keeps its original content and gains a rotation instruction. The output is the same quality as the input, and rotating it back returns the original exactly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I go back if I rotate the wrong way?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rotate again by the remaining amount. Because the tool adds to the page's current angle rather than setting it, three more 90° rotations return a page to where it started. The original file on your disk is never modified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I rotate pages in different directions in one go?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not in a single run — every page in one run turns by the same angle. Do it in two passes instead: rotate the first set, then take the output and rotate the second set the other way."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/?category=pdf" class="hover:text-brand-400 transition">PDF Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">PDF Page Rotator</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">PDF Page Rotator</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Fix a sideways scan or an upside-down page without opening an editor or paying for one.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/pdf-page-rotator.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+      <div id="pdfDropZone" role="button" tabindex="0"
+           class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-2xl px-6 py-9 text-center cursor-pointer transition focus:outline-none focus:border-brand-500">
+        <p id="pdfDropLabel" class="text-sm font-semibold text-gray-200">Click to choose a PDF, or drag &amp; drop it</p>
+        <p class="text-xs text-gray-500 mt-1.5">PDF only · processed in your browser, never uploaded</p>
+        <input id="pdfFileInput" type="file" class="hidden" accept="application/pdf,.pdf" />
+        <p id="pdfFileMeta" class="text-xs text-brand-400 mt-3 font-semibold"></p>
+      </div>
+
+      <!-- aria-live so a screen reader announces "Rendering page 3 of 12" as it
+           changes, rather than leaving the whole run silent. -->
+      <p id="pdfStatus" class="hidden text-xs mt-3 leading-relaxed" role="status" aria-live="polite"></p>
+
+      <div id="pdfOptions" class="hidden mt-5 space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pdfRotateAngle" class="block text-xs font-bold text-gray-300 mb-1.5">Rotate by</label>
+            <select id="pdfRotateAngle" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="90" selected>90° clockwise</option>
+              <option value="180">180° — upside down</option>
+              <option value="270">270° clockwise (90° anticlockwise)</option>
+            </select>
+          </div>
+          <div>
+            <label for="pdfRotateScope" class="block text-xs font-bold text-gray-300 mb-1.5">Which pages</label>
+            <select id="pdfRotateScope" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition">
+              <option value="all" selected>Every page</option>
+              <option value="selected">Only the pages I list</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="pdfPageSpecRow" class="hidden">
+        <div>
+          <label for="pdfPageSpec" class="block text-xs font-bold text-gray-300 mb-1.5">Pages to rotate</label>
+          <input id="pdfPageSpec" type="text" placeholder="e.g. 1-3, 7" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition" />
+          <p class="text-[11px] text-gray-500 mt-1.5 leading-relaxed">Comma-separated, with dashes for ranges. A trailing dash means "to the end".</p>
+        </div>
+        </div>
+
+        <div class="border border-brand-500/40 bg-brand-500/5 text-brand-200 rounded-xl px-3.5 py-3 text-[11px] leading-relaxed">
+          Rotation is applied each time you press the button, not set to a fixed angle — pressing it twice turns the page twice. That matches what the button says, and it means you can fix a sideways page and an upside-down one with two separate runs.
+        </div>
+      </div>
+
+      <button id="pdfRunBtn" type="button" disabled
+              class="w-full mt-5 px-4 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-40 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
+        Rotate pages
+      </button>
+
+      <div id="pdfResult" class="hidden mt-5 bg-gray-950 border border-emerald-900/60 rounded-2xl p-4">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-2">Done</p>
+        <p id="pdfResultText" class="text-sm text-gray-300 leading-relaxed"></p>
+        <div data-ts-result-actions="pdf-page-rotator" data-ts-deferred="1" class="mt-4"></div>
+      </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          This tool turns pages in a PDF. It writes the rotation into each page's own orientation entry rather than redrawing anything, so <strong class="text-gray-200">the original content is untouched</strong>: text stays selectable, images are not re-encoded, the file size barely moves, and rotating back is completely lossless.
+        </p>
+        <p>
+          The usual reason to need it is a scanner that fed a page in the wrong way round, or a phone photo imported as a PDF with the orientation baked in. It also handles the document that is entirely the wrong way up because it was produced that way.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Drop in your PDF.</li>
+        <li>Choose the <strong class="text-gray-200">angle</strong> — 90°, 180° or 270° clockwise.</li>
+        <li>Leave <strong class="text-gray-200">which pages</strong> set to "every page", or switch it to "only the pages I list" and type the page numbers you want turned.</li>
+        <li>Press <strong class="text-gray-200">Rotate pages</strong>. The turned document downloads immediately.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Sideways scans</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Fix pages that the scanner fed in landscape when they should have been portrait.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">One bad page</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Turn a single upside-down page in an otherwise correct document, leaving the rest alone.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Wrong orientation throughout</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Rotate a whole document that was produced the wrong way up, in one run.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Reading on a tablet</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Rotate a wide chart or table to landscape so it fills the screen instead of shrinking to fit.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Does rotating reduce quality?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. Nothing is redrawn or re-encoded — the page keeps its original content and gains a rotation instruction. The output is the same quality as the input, and rotating it back returns the original exactly.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">How do I go back if I rotate the wrong way?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Rotate again by the remaining amount. Because the tool adds to the page's current angle rather than setting it, three more 90° rotations return a page to where it started. The original file on your disk is never modified.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can I rotate pages in different directions in one go?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">Not in a single run — every page in one run turns by the same angle. Do it in two passes instead: rotate the first set, then take the output and rotate the second set the other way.</p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related PDF tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/pdf-page-reorderer.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Page Reorderer</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Change the sequence pages appear in.</p>
+        </a>
+        <a href="/tools/pdf-page-extractor.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Page Extractor</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Keep only some of the pages.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/pdf-shared.js"></script>
+<script src="../assets/tools/pdf-page-rotator.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createPdfPageRotator(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

@@ -340,8 +340,25 @@
       <div class="tool-card relative bg-gray-900/60 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[180px]" data-category="ad" data-name="advertisement sponsored partner">
         <span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Advertisement</span>
         <p class="text-xs text-gray-400 mt-2 leading-relaxed">Sponsored placement</p>
+        <!-- `overflow-hidden` + `max-w-full` keep whatever the zone injects
+             (usually a fixed-width iframe) from widening the grid column on a
+             phone. The wrapper is a flex row so the unit stays centred when it
+             is narrower than the cell. -->
         <div id="hilltopads-in-grid" data-ad-network="hilltopads" data-ad-position="after-6th-card"
-             class="w-full flex items-center justify-center mt-3 min-h-[90px]"></div>
+             class="w-full max-w-full overflow-hidden flex items-center justify-center mt-3 min-h-[90px]">
+          <script>
+            (function(ytww){
+            var d = document,
+                s = d.createElement('script'),
+                l = d.currentScript || d.scripts[d.scripts.length - 1];
+            s.settings = ytww || {};
+            s.src = "\/\/fond-appointment.com\/b\/XtV.sGd\/Gklw0uYMWxcy\/YeUmy9RuPZuUHlIkHPeT\/cn0-N\/TVI\/xkOCDmEUtuNKzZQd1VMMjUE\/4-NcQC";
+            s.async = true;
+            s.referrerPolicy = 'no-referrer-when-downgrade';
+            l.parentNode.insertBefore(s, l);
+            })({})
+          </script>
+        </div>
       </div>
 
       <!-- Tool Card: Couple Compatibility Calculator -->

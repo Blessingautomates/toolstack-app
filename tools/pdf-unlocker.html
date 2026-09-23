@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-99MBFTP4YT');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
+
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <!-- Theme, applied before first paint so the page never flashes the wrong
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+<!-- ts:head:end -->
+
+  <title>PDF Unlocker — Remove a Known PDF Password | ToolStack AI</title>
+  <meta name="description" content="Remove a password you already know from your own PDF, or clear restrictions that block printing and copying. Nothing is uploaded and no password is guessed." />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/pdf-unlocker.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolStack AI" />
+  <meta property="og:title" content="PDF Unlocker — Remove a Known PDF Password | ToolStack AI" />
+  <meta property="og:description" content="Remove a password you already know from your own PDF, or clear restrictions that block printing and copying. Nothing is uploaded and no password is guessed." />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/pdf-unlocker.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PDF Unlocker — Remove a Known PDF Password | ToolStack AI" />
+  <meta name="twitter:description" content="Remove a password you already know from your own PDF, or clear restrictions that block printing and copying. Nothing is uploaded and no password is guessed." />
+
+  <!-- The PDF engines come from jsDelivr. Preconnecting shaves a round trip off
+       the first tool that needs one, and costs nothing on the pages that never
+       do — the browser drops an idle preconnect on its own. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              200: '#FDE68A',
+              300: '#FCD34D',
+              400: '#FBBF24',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+              800: '#92400E',
+              900: '#78350F',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../assets/toolstack.css" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PDF Unlocker",
+  "url": "https://toolstackai.xyz/tools/pdf-unlocker.html",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (browser-based)",
+  "description": "Remove a password you already know from your own PDF, or clear restrictions that block printing and copying. Nothing is uploaded and no password is guessed.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ToolStack AI",
+    "url": "https://toolstackai.xyz/"
+  }
+}
+  </script>
+
+  <!-- Keep this in sync with the visible FAQ section further down. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can this open a PDF whose password I have forgotten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The tool requires the password up front and has no guessing mode of any kind. Modern PDF encryption is designed so that recovering a forgotten password is not feasible, and nothing here attempts it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it legal to remove a password from a PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a document you own or have legitimate access to, removing a restriction on your own copy is routine — this is what qpdf and Preview do. It is not a tool for accessing material you were not given access to, and the requirement to supply the password is what keeps it that way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the file opens without a password but will not let me print?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is an owner-password restriction — the file is encrypted but readers open it silently. The password field still needs something in it before the tool will run; the value is not checked in this case, so type anything and press Unlock."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
+
+<!-- ts:header:start -->
+  <header class="sticky top-0 z-40 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="ToolStack AI home">
+        <svg class="w-9 h-9 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+          <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-bold text-xl hidden sm:inline text-gray-50 tracking-tight">ToolStack <span class="text-brand-500">AI</span></span>
+      </a>
+
+      <div class="flex-1 max-w-md relative">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search tools..."
+          class="w-full pl-4 pr-10 py-1.5 rounded-xl border border-gray-800 bg-gray-900/80 text-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        />
+        <kbd class="absolute right-3 top-2 text-xs text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded hidden sm:block">/</kbd>
+      </div>
+
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <!-- Google Translate sits between the search box and the support CTA:
+             reading order matches the nav, and the wrapper carries the theme so
+             Google's injected gadget inherits it instead of painting a white box.
+             `overflow-hidden` clips the table Google injects in some locales. -->
+        <div id="google_translate_element"
+             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
+
+        <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+           class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
+           aria-label="Support ToolStack AI">
+          <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
+        </a>
+
+        <!-- Both glyphs are always present; toolstack.css shows one based on
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
+        <button id="themeToggle" type="button"
+                class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
+                aria-label="Switch to dark theme" aria-pressed="false">
+          <span class="ts-theme-dark" aria-hidden="true">🌙</span>
+          <span class="ts-theme-light" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Google Translate. Loaded async: this is a third-party script on every page,
+       and a synchronous tag would stall rendering wherever Google is unreachable.
+       The callback only fires on success, so a failure is silent and harmless.
+
+       autoDisplay:false is what keeps Google's own promo banner out of the page —
+       it stops the widget from auto-translating and injecting the top bar when the
+       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
+       compact dropdown instead of the full-width bar; toolstack.css hides the
+       frames that are injected regardless. -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" async
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- ts:header:end -->
+
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-brand-400 transition">Home</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <a href="/?category=pdf" class="hover:text-brand-400 transition">PDF Tools</a>
+    <span class="mx-1.5 text-gray-700">/</span>
+    <span class="text-gray-300">PDF Unlocker</span>
+  </nav>
+
+  <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">PDF Unlocker</h1>
+  <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+    Make an unlocked copy of a PDF you can already open — for your own file, with a password you already have.
+  </p>
+
+  <!-- Tool widget. Ids here are the contract with assets/tools/pdf-unlocker.js. -->
+  <section id="toolRoot" class="mt-7 bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl">
+      <div id="pdfDropZone" role="button" tabindex="0"
+           class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-2xl px-6 py-9 text-center cursor-pointer transition focus:outline-none focus:border-brand-500">
+        <p id="pdfDropLabel" class="text-sm font-semibold text-gray-200">Click to choose a PDF, or drag &amp; drop it</p>
+        <p class="text-xs text-gray-500 mt-1.5">PDF only · decrypted in your browser, never uploaded</p>
+        <input id="pdfFileInput" type="file" class="hidden" accept="application/pdf,.pdf" />
+        <p id="pdfFileMeta" class="text-xs text-brand-400 mt-3 font-semibold"></p>
+      </div>
+
+      <!-- aria-live so a screen reader announces "Rendering page 3 of 12" as it
+           changes, rather than leaving the whole run silent. -->
+      <p id="pdfStatus" class="hidden text-xs mt-3 leading-relaxed" role="status" aria-live="polite"></p>
+
+      <div id="pdfOptions" class="hidden mt-5 space-y-4">
+        <div>
+          <label for="pdfOpenPassword" class="block text-xs font-bold text-gray-300 mb-1.5">Password the file currently opens with</label>
+          <input id="pdfOpenPassword" type="password" autocomplete="off" placeholder="Required" class="w-full bg-gray-950 border border-gray-700 focus:border-brand-500 rounded-xl px-3 py-2.5 text-sm text-gray-100 outline-none transition" />
+          <p class="text-[11px] text-gray-500 mt-1.5 leading-relaxed">The password you already use to open this document. If the file opens without asking, use the PDF Password Protector to rewrite it without permissions instead — or try it here with any password that opens it.</p>
+        </div>
+
+        <label for="pdfRevealPassword" class="flex items-start gap-2.5 cursor-pointer">
+          <input id="pdfRevealPassword" type="checkbox" class="mt-0.5 w-4 h-4 accent-brand-500 flex-shrink-0" />
+          <span class="text-xs text-gray-300 leading-relaxed">Show the password as I type</span>
+        </label>
+
+        <div class="border border-brand-500/40 bg-brand-500/5 text-brand-200 rounded-xl px-3.5 py-3 text-[11px] leading-relaxed">
+          <strong class="font-bold">This is not a password cracker.</strong> There is no dictionary, no guessing and no "try common passwords" mode. It removes a restriction from a document you can already open. A forgotten password cannot be recovered here — that is a property of the encryption, not a limitation this tool has chosen.
+        </div>
+      </div>
+
+      <button id="pdfRunBtn" type="button" disabled
+              class="w-full mt-5 px-4 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 disabled:opacity-40 disabled:cursor-not-allowed text-gray-950 font-bold text-sm transition">
+        Unlock PDF
+      </button>
+
+      <div id="pdfResult" class="hidden mt-5 bg-gray-950 border border-emerald-900/60 rounded-2xl p-4">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-2">Done</p>
+        <p id="pdfResultText" class="text-sm text-gray-300 leading-relaxed"></p>
+        <div data-ts-result-actions="pdf-unlocker" data-ts-deferred="1" class="mt-4"></div>
+      </div>
+  </section>
+
+  <!-- ---------------------------------------------------------------- copy -->
+
+  <section class="mt-12 space-y-10">
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">What this tool does</h2>
+      <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+        <p>
+          This tool writes a new copy of a PDF with the password and its permission restrictions removed. It covers two real cases: a document with an <strong class="text-gray-200">owner password that only sets permissions</strong> — no printing, no copying — which any reader will open without asking but which refuses to print; and a <strong class="text-gray-200">user password you already know</strong>, on your own bank statement, invoice or scan, where you want a copy that stops prompting.
+        </p>
+        <p>
+          The scope is deliberately narrow and the interface enforces it. A password is required before anything happens, and there is no guessing, no dictionary and no brute force. This removes a restriction from a document you can already open; it does not help anyone get into one they cannot.
+        </p>
+        <p>
+          Everything runs in your browser. The password and the document never leave your device.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">How to use it</h2>
+      <ol class="space-y-3 text-sm text-gray-400 leading-relaxed list-decimal list-inside marker:text-brand-500 marker:font-bold">
+        <li>Drop in the PDF that asks for a password.</li>
+        <li>Type the password the file currently opens with. Use the checkbox to check it for typos if you need to.</li>
+        <li>Press <strong class="text-gray-200">Unlock PDF</strong>. If the password is wrong, the tool says so plainly and tells you there is no recovery — it does not keep trying.</li>
+        <li>The unlocked copy downloads immediately. It is written without compressed object streams on purpose, so the result opens in older readers too.</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Common use cases</h2>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Statements and invoices</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Banks, utilities and payroll systems send PDFs locked to your date of birth or account number. Make a copy that stops prompting.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Blocked printing</p>
+          <p class="text-gray-400 leading-relaxed text-xs">A document that opens fine but refuses to print or copy is usually restricted by an owner password. This clears it.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Your own archive</p>
+          <p class="text-gray-400 leading-relaxed text-xs">Remove passwords from old files you locked years ago so they stay readable without you.</p>
+        </li>
+        <li class="bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <p class="font-bold text-gray-200 text-xs mb-1">Feeding other tools</p>
+          <p class="text-gray-400 leading-relaxed text-xs">The compressor, converter and text extractor cannot open an encrypted PDF. Unlock it first, then use them.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Frequently asked questions</h2>
+      <div class="space-y-3">
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Can this open a PDF whose password I have forgotten?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">No. The tool requires the password up front and has no guessing mode of any kind. Modern PDF encryption is designed so that recovering a forgotten password is not feasible, and nothing here attempts it.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">Is it legal to remove a password from a PDF?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">For a document you own or have legitimate access to, removing a restriction on your own copy is routine — this is what qpdf and Preview do. It is not a tool for accessing material you were not given access to, and the requirement to supply the password is what keeps it that way.</p>
+        </details>
+        <details class="ts-faq bg-gray-900/60 border border-gray-800 rounded-xl p-4">
+          <summary class="text-sm font-bold text-gray-200">What if the file opens without a password but will not let me print?</summary>
+          <p class="text-sm text-gray-400 leading-relaxed mt-3">That is an owner-password restriction — the file is encrypted but readers open it silently. The password field still needs something in it before the tool will run; the value is not checked in this case, so type anything and press Unlock.</p>
+        </details>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-100 mb-3">Related PDF tools</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <a href="/tools/pdf-password-protector.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Password Protector</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Go the other way and add a password to a file.</p>
+        </a>
+        <a href="/tools/pdf-metadata-remover.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+          <p class="font-bold text-gray-200 text-sm">PDF Metadata Remover</p>
+          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Clear the author and timestamps still hiding inside it.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ts:footer:start -->
+  <footer class="border-t border-gray-800 bg-gray-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 flex-shrink-0" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 5L34 12L20 19L6 12L20 5Z" fill="#F59E0B"/>
+            <path d="M6 18L20 25L34 18" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 24L20 31L34 24" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm text-gray-100">ToolStack <span class="text-brand-500">AI</span></p>
+            <p class="text-xs text-gray-500">Free browser-based tools for developers, founders &amp; creators.</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
+          <a href="/" class="hover:text-brand-400 transition">All Tools</a>
+          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
+             class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
+            <span aria-hidden="true">❤️</span>support toolstackai
+          </a>
+        </nav>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-gray-900 text-center">
+        <p class="text-xs text-gray-500">© 2026 ToolStack AI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+<!-- ts:footer:end -->
+
+<script src="../assets/toolstack.js"></script>
+<script src="../assets/tools/pdf-shared.js"></script>
+<script src="../assets/tools/pdf-unlocker.js"></script>
+<script>
+  (function () {
+    var root = document.getElementById('toolRoot');
+    if (root && window.ToolStackTools) {
+      window.ToolStackTools.createPdfUnlocker(root);
+    }
+  })();
+</script>
+
+</body>
+</html>

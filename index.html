@@ -165,6 +165,7 @@
 
     <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-800 scrollbar-none" id="categoryFilters">
       <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-gray-950 shadow-lg" data-category="all">All Tools</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="pdf">PDF Tools</button>
       <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="fun">Fun &amp; Games</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="client">Client Utilities</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="sales">Sales & CRM</button>
@@ -312,10 +313,327 @@
       <div class="tool-card relative bg-gray-900/60 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[180px]" data-category="ad" data-name="advertisement sponsored partner">
         <span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Advertisement</span>
         <p class="text-xs text-gray-400 mt-2 leading-relaxed">Sponsored placement</p>
+        <!-- `overflow-hidden` + `max-w-full` keep whatever the zone injects
+             (usually a fixed-width iframe) from widening the grid column on a
+             phone. The wrapper is a flex row so the unit stays centred when it
+             is narrower than the cell. -->
         <div id="hilltopads-in-grid" data-ad-network="hilltopads" data-ad-position="after-6th-card"
-             class="w-full flex items-center justify-center mt-3 min-h-[90px]"></div>
+             class="w-full max-w-full overflow-hidden flex items-center justify-center mt-3 min-h-[90px]">
+          <script>
+            (function(ytww){
+            var d = document,
+                s = d.createElement('script'),
+                l = d.currentScript || d.scripts[d.scripts.length - 1];
+            s.settings = ytww || {};
+            s.src = "\/\/fond-appointment.com\/b\/XtV.sGd\/Gklw0uYMWxcy\/YeUmy9RuPZuUHlIkHPeT\/cn0-N\/TVI\/xkOCDmEUtuNKzZQd1VMMjUE\/4-NcQC";
+            s.async = true;
+            s.referrerPolicy = 'no-referrer-when-downgrade';
+            l.parentNode.insertBefore(s, l);
+            })({})
+          </script>
+        </div>
         <script>(function(s){s.dataset.zone='11831878',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
       </div>
+
+      <!-- Tool Card: PDF Compressor -->
+      <a href="/tools/pdf-compressor.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf compressor compress shrink reduce file size email attachment optimise optimize jpeg resolution scans pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🗜️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Compressor</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Shrink a heavy PDF by re-rendering each page at a resolution you choose.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF to JPG -->
+      <a href="/tools/pdf-to-jpg.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf to jpg jpeg convert page image export screenshot slide resolution pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🖼️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF to JPG</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Turn every page into its own JPEG, at the resolution you pick.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF to PNG -->
+      <a href="/tools/pdf-to-png.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf to png lossless convert page image screenshots charts diagrams sharp pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🌄
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF to PNG</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Convert pages to lossless PNGs — sharp text, no compression artefacts.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: JPG to PDF -->
+      <a href="/tools/jpg-to-pdf.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="jpg to pdf jpeg photo scan combine merge images a4 letter receipts expenses pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📷
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">JPG to PDF</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Combine photos and scans into one PDF, in the order you choose.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PNG to PDF -->
+      <a href="/tools/png-to-pdf.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="png to pdf combine merge screenshots images lossless a4 letter report pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🏞️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PNG to PDF</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Combine PNGs and screenshots into one PDF without losing quality.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Image to PDF -->
+      <a href="/tools/image-to-pdf.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="image to pdf jpg png combine merge pictures photos scans a4 letter borderless pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🧾
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Image to PDF</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Mix JPGs and PNGs into a single PDF — A4, Letter or borderless.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Page Extractor -->
+      <a href="/tools/pdf-page-extractor.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf page extractor split extract pages range keep subset share chapter smaller pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              ✂️
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Page Extractor</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Pull only the pages you need into a new, much smaller PDF.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Page Rotator -->
+      <a href="/tools/pdf-page-rotator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf page rotator rotate turn sideways upside down landscape portrait 90 180 270 orientation fix scan pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔄
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Page Rotator</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Fix sideways or upside-down pages by 90°, 180° or 270°.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Page Reorderer -->
+      <a href="/tools/pdf-page-reorderer.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf page reorderer rearrange reorder sort reverse move swap duplicate organize pages sequence pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔀
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Page Reorderer</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Rearrange pages by editing a list that starts out already correct.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Password Protector -->
+      <a href="/tools/pdf-password-protector.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf password protector encrypt protect secure lock aes permissions printing copying editing confidential pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔒
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Password Protector</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Encrypt a PDF with a password and set printing and copying permissions.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Unlocker -->
+      <a href="/tools/pdf-unlocker.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf unlocker remove password unlock decrypt permissions printing copying restricted statement invoice own file pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🔓
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Unlocker</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Remove a password you already know from your own PDF.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Metadata Remover -->
+      <a href="/tools/pdf-metadata-remover.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf metadata remover strip clean author title creator producer keywords timestamps privacy anonymous scrub pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🧹
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Metadata Remover</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">See and clear the author, title, creator and timestamps inside a file.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF Watermark Tool -->
+      <a href="/tools/pdf-watermark.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf watermark tool stamp draft confidential copy client name diagonal footer header mark pages pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              💧
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF Watermark Tool</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Stamp DRAFT, CONFIDENTIAL or a client name across the pages.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: PDF to Text -->
+      <a href="/tools/pdf-to-text.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="pdf to text extract copy text layer plain txt editable search translate convert pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📝
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">PDF to Text</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Copy the text layer out of a PDF, per page, into editable text.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
+
+      <!-- Tool Card: Text to PDF -->
+      <a href="/tools/text-to-pdf.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="pdf" data-name="text to pdf convert typeset plain text document notes readme a4 letter margins page numbers print pdf tools">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              📄
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Free</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Text to PDF</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Typeset plain text into a clean, paginated PDF with page numbers.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Browser-based</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Tool →
+          </span>
+        </div>
+      </a>
 
       <!-- Tool Card: Base64 Encoder & Decoder -->
       <a href="/tools/base64-encoder.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="base64 encoder decoder string auth api client utilities">
@@ -885,15 +1203,6 @@
 
     searchInput.addEventListener('input', filterTools);
 
-    // Prefill from ?q= — the shared header search on /tools/* pages deep-links
-    // here, since the homepage is the only page with a grid to filter.
-    (function () {
-      const q = new URLSearchParams(window.location.search).get('q');
-      if (!q) return;
-      searchInput.value = q;
-      filterTools();
-    })();
-
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => {
@@ -905,6 +1214,28 @@
         filterTools();
       });
     });
+
+    // Prefill from the query string. Runs last on purpose: ?category= activates
+    // a chip by clicking it, and that dispatches to the listeners the loop above
+    // has only just attached.
+    //
+    //   ?q=         — the shared header search on /tools/* pages deep-links here,
+    //                 since the homepage is the only page with a grid to filter.
+    //   ?category=  — lets a tool page's breadcrumb link straight to its own tab.
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+
+      const category = params.get('category');
+      if (category) {
+        const chip = document.querySelector('.filter-btn[data-category="' + category + '"]');
+        if (chip) chip.click();
+      }
+
+      const q = params.get('q');
+      if (!q) return;
+      searchInput.value = q;
+      filterTools();
+    })();
   </script>
 
   <!-- Adsterra Native Ad Banner -->

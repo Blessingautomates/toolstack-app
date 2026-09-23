@@ -254,8 +254,18 @@ function check() {
       if (f.endsWith('.js')) js.push(join(toolsJsDir, f));
     }
   }
-  for (const f of ['scripts/toolstack.mjs', 'scripts/gen-fun-tools.mjs']) {
+  for (const f of ['scripts/toolstack.mjs', 'scripts/gen-fun-tools.mjs', 'scripts/gen-pdf-tools.mjs']) {
     js.push(join(ROOT, f));
+  }
+
+  // The page specs are data files, but they are JavaScript data files — a stray
+  // backtick in one of them is a syntax error that would otherwise only surface
+  // the next time someone runs the generator.
+  const specsDir = join(ROOT, 'scripts', 'pdf-specs');
+  if (existsSync(specsDir)) {
+    for (const f of readdirSync(specsDir).sort()) {
+      if (f.endsWith('.mjs')) js.push(join(specsDir, f));
+    }
   }
 
   for (const file of js) {
