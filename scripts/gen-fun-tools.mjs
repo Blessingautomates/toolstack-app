@@ -111,7 +111,7 @@ function page(t) {
   const whatParas = t.what.map((p) => `        <p>\n          ${rich(p)}\n        </p>`).join('\n');
 
   return `<!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
@@ -126,17 +126,39 @@ function page(t) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
 
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
   <!-- Theme, applied before first paint so the page never flashes the wrong
-       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
   <script>
     (function () {
       try {
-        if (localStorage.getItem('theme') === 'light') {
-          document.documentElement.classList.remove('dark');
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
         }
       } catch (e) {}
     })();
   </script>
+<!-- ts:head:end -->
 
   <title>${esc(t.title)}</title>
   <meta name="description" content="${esc(t.desc)}" />

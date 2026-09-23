@@ -393,6 +393,10 @@
    * avoid a flash of the wrong theme. This module owns everything after that:
    * the click handler, persistence, and the accessibility state.
    *
+   * Light — the magenta poster — is the default. The snippet only ever *adds*
+   * the `dark` class, so a visitor with nothing stored, or with storage blocked
+   * entirely, gets the light palette rather than whatever the OS prefers.
+   *
    * The glyph swap is pure CSS (.ts-theme-dark / .ts-theme-light), so it tracks
    * <html class="dark"> with no chance of showing the wrong icon on load.
    */

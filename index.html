@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-99MBFTP4YT"></script>
@@ -14,17 +14,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="monetag" content="7f7f91a68ceeb8c570d03c62a10dd555" />
 
+  <!-- ts:head:start -->
+  <!-- HilltopAds site verification. The matching file at the repo root
+       (67aa66b566ade2fd4cc31615498bb9668d3e7a39.txt) proves the same ownership
+       to their crawler; both are required. -->
+  <meta name="67aa66b566ade2fd4cc31615498bb9668d3e7a39" content="67aa66b566ade2fd4cc31615498bb9668d3e7a39" />
+  <!-- Referrer policy, declared explicitly rather than left to the browser
+       default: HilltopAds asks for it, and the value is the conservative one —
+       the full referrer for same-origin and same-scheme requests, nothing at
+       all when the destination is plain HTTP. -->
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
   <!-- Theme, applied before first paint so the page never flashes the wrong
-       palette. Mirrors the default in assets/toolstack.js: dark unless chosen. -->
+       palette. Light — the magenta poster — is the default for a first-time
+       visitor; only someone who has explicitly picked dark gets dark. -->
+  <style>
+    /* Paint the canvas in the theme's own colour before any stylesheet has
+       loaded. Without this the browser shows its default white canvas (or, on
+       a dark OS, a black one) for the first frames, which is the flash this
+       whole block exists to prevent. color-scheme does the same for the
+       scrollbar and for the controls the browser paints itself. */
+    html:not(.dark) { background-color: #BE123C; color-scheme: light; }
+    html.dark       { background-color: #030712; color-scheme: dark; }
+  </style>
   <script>
     (function () {
       try {
-        if (localStorage.getItem('theme') === 'light') {
-          document.documentElement.classList.remove('dark');
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
         }
       } catch (e) {}
     })();
   </script>
+<!-- ts:head:end -->
   <title>ToolStack AI - Developer & SaaS Utilities</title>
   <meta name="description" content="Free browser-based tools for developers, founders, and creators — JSON formatter, spam-word checker, script hook checker, image converter and more. No signup, no upload." />
   <link rel="canonical" href="https://toolstackai.xyz/" />
@@ -103,10 +125,13 @@
         </a>
 
         <!-- Both glyphs are always present; toolstack.css shows one based on
-             <html class="dark">, so the right icon paints on the first frame. -->
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
         <button id="themeToggle" type="button"
                 class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
-                aria-label="Switch to light theme" aria-pressed="true">
+                aria-label="Switch to dark theme" aria-pressed="false">
           <span class="ts-theme-dark" aria-hidden="true">🌙</span>
           <span class="ts-theme-light" aria-hidden="true">☀️</span>
         </button>
@@ -140,17 +165,41 @@
 
     <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-800 scrollbar-none" id="categoryFilters">
       <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-gray-950 shadow-lg" data-category="all">All Tools</button>
+      <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="fun">Fun &amp; Games</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="client">Client Utilities</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="sales">Sales & CRM</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="ai">AI Support</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="seo">SEO &amp; Website Tools</button>
 <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="creator">Creator & Video</button>
-<button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-gray-900 text-gray-400 hover:text-gray-200" data-category="fun">Fun &amp; Games</button>
     </div>
 
     <!-- Every card below is a plain link to its standalone page in /tools/, so
          the grid is a crawlable index rather than a set of modal triggers. -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="toolsGrid">
+
+      <!-- Hub Card: Fun & Games, leading the grid. The 50 fun tools live on
+           their own page rather than as 50 more cards here, so the grid stays a
+           readable index; this is the crawlable entry point to that hub, and it
+           sits first because it is the one card that opens onto a whole section
+           rather than a single tool. -->
+      <a href="/tools/fun-games.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="fun" data-name="fun games jokes riddles quizzes party games brain games trivia personality generators memes pets snake tic tac toe connect four memory minesweeper coin flip dice yes or no">
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
+              🎲
+            </div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">49 Tools</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Fun &amp; Games</h3>
+          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Joke generators, quizzes, party games, brain teasers, tiny arcade games and random-decision tools.</p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-500">Hub</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
+            Open Hub →
+          </span>
+        </div>
+      </a>
 
       <!-- Tool Card: AI Service Status Board -->
       <a href="/tools/ai-status-board.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="ai" data-name="ai service status board uptime operational degraded outage tracker chatgpt claude midjourney elevenlabs suno cursor monitoring ai support">
@@ -252,6 +301,22 @@
         </div>
       </a>
 
+      <!-- Ad slot: display unit, immediately after the 6th card in the grid.
+           HilltopAds serves into #hilltopads-in-grid once the zone is live —
+           paste the zone's <script> (or its iframe) inside that element. The
+           cell keeps its label and its min-height so the grid does not reflow
+           while the unit loads or when a blocker stops it, and it carries
+           data-category / data-name so the filter chips and the header search
+           treat it like any other card. The Monetag push unit below draws its
+           own floating card onto <body>; this cell is where it is declared. -->
+      <div class="tool-card relative bg-gray-900/60 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[180px]" data-category="ad" data-name="advertisement sponsored partner">
+        <span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Advertisement</span>
+        <p class="text-xs text-gray-400 mt-2 leading-relaxed">Sponsored placement</p>
+        <div id="hilltopads-in-grid" data-ad-network="hilltopads" data-ad-position="after-6th-card"
+             class="w-full flex items-center justify-center mt-3 min-h-[90px]"></div>
+        <script>(function(s){s.dataset.zone='11831878',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+      </div>
+
       <!-- Tool Card: Base64 Encoder & Decoder -->
       <a href="/tools/base64-encoder.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="client" data-name="base64 encoder decoder string auth api client utilities">
         <div>
@@ -271,20 +336,6 @@
           </span>
         </div>
       </a>
-
-      <!-- Ad slot: Monetag In-Page Push.
-           Moved out of <head> and into the grid, so the unit is declared where
-           it is meant to appear — the third row, beside the tool cards — rather
-           than loading ahead of the page it renders into. Monetag's push format
-           draws its own floating card onto <body>, so it will not paint inside
-           this cell; the cell is the unit's declared position, and the anchor a
-           banner unit would use if one is added later. data-category is set so
-           the grid filter treats it like any other card. -->
-      <div class="tool-card relative bg-gray-900/60 border border-gray-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[180px]" data-category="ad" data-name="advertisement sponsored partner">
-        <span class="text-[10px] uppercase tracking-wider text-gray-500 font-bold">Advertisement</span>
-        <p class="text-xs text-gray-400 mt-2 leading-relaxed">Sponsored placement</p>
-        <script>(function(s){s.dataset.zone='11831878',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-      </div>
 
       <!-- Tool Card: Social Chat Generator -->
       <a href="/tools/social-chat-generator.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 transition duration-300 rounded-2xl p-5 flex flex-col justify-between cursor-pointer" data-category="creator" data-name="social chat generator whatsapp instagram fake dm screenshot mockup">
@@ -765,28 +816,6 @@
           </span>
         </div>
       </div>
-
-      <!-- Hub Card: Fun & Games. The 50 fun tools live on their own page rather
-           than as 50 more cards here, so the grid stays a readable index; this
-           is the crawlable entry point to that hub. -->
-      <a href="/tools/fun-games.html" class="tool-card group relative bg-gray-900/60 hover:bg-gray-900/90 border border-gray-800 hover:border-brand-500/50 rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/5 flex flex-col justify-between cursor-pointer" data-category="fun" data-name="fun games jokes riddles quizzes party games brain games trivia personality generators memes pets snake tic tac toe connect four memory minesweeper coin flip dice yes or no">
-        <div>
-          <div class="flex items-start justify-between gap-4 mb-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 text-2xl group-hover:scale-110 transition-transform">
-              🎲
-            </div>
-            <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">49 Tools</span>
-          </div>
-          <h3 class="text-lg font-bold text-gray-100 group-hover:text-brand-400 transition-colors">Fun &amp; Games</h3>
-          <p class="text-sm text-gray-400 mt-2 line-clamp-2 leading-relaxed">Joke generators, quizzes, party games, brain teasers, tiny arcade games and random-decision tools.</p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-gray-800/60 flex items-center justify-between">
-          <span class="text-xs font-medium text-gray-500">Hub</span>
-          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-400 group-hover:text-brand-300 transition-colors">
-            Open Hub →
-          </span>
-        </div>
-      </a>
 
     </div>
   </main>

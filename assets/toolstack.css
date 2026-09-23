@@ -75,9 +75,13 @@
  *
  * Contrast, against #BE123C for the shell and #FEF08A for the cards:
  *   white 6.3:1 · rose-100 5.3:1 · rose-200 4.5:1 · brand yellow 4.8:1
- *   on yellow: near-black 16:1 · slate-600 6.6:1 · blue-700 5.8:1
+ *   on yellow: #000000 19.6:1 · #111827 16.4:1 · #1F2937 12.6:1 · blue-700 5.8:1
  * The amber and blue text weights the markup uses are tuned for a near-black
  * page (2:1 on white, 1.2:1 on magenta), which is why both layers re-cut them.
+ * The card layer goes further than a re-cut: every text weight inside a card —
+ * title, body, tag, badge, button label — lands in the near-black range, since
+ * a poster palette only works when the small print on it is as legible as the
+ * headline.
  */
 
 /* ============================================================ 1. the shell */
@@ -209,24 +213,39 @@ html:not(.dark) .ts-cta-support:hover {
   color: #C2410C;
 }
 
-/* Category filter chips are literal bg-gray-900, which the card layer would
-   otherwise paint yellow. On the magenta page they are chrome rather than
-   content, so they get a translucent white chip and the active one takes the
-   brand yellow. */
-html:not(.dark) .filter-btn {
-  background-color: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  color: #FFE4E6;
+/* Category filter chips are literal bg-gray-900 (and the active one literal
+   bg-brand-500 text-gray-950), which the card layer would otherwise paint
+   yellow, and which the filled-button rule at the end of this section would
+   otherwise label white. On the magenta page they are chrome rather than
+   content: a white chip carrying near-black type, and the active one the brand
+   yellow — both at reading contrast rather than at decoration contrast.
+
+   The extra compound selectors are load-bearing, not belt-and-braces. The
+   utilities in the markup are `.bg-gray-900` (0,2,1) and `.bg-brand-500
+   .text-gray-950` (0,3,1); a bare `.filter-btn` rule ties the first and loses
+   to the second on source order, which is how the chips ended up yellow-on-
+   yellow and the active chip white-on-yellow. Matching the utility in the
+   selector lands each rule at (0,3,1) and (0,4,1) and settles both. */
+html:not(.dark) .filter-btn,
+html:not(.dark) .filter-btn.bg-gray-900,
+html:not(.dark) .filter-btn.text-gray-400 {
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: #111827;
 }
-html:not(.dark) .filter-btn:hover {
-  background-color: rgba(255, 255, 255, 0.28);
-  border-color: rgba(255, 255, 255, 0.45);
-  color: #FFFFFF;
+html:not(.dark) .filter-btn:hover,
+html:not(.dark) .filter-btn.bg-gray-900:hover,
+html:not(.dark) .filter-btn.text-gray-400:hover {
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #000000;
 }
-html:not(.dark) .filter-btn.active {
+html:not(.dark) .filter-btn.active,
+html:not(.dark) .filter-btn.active.bg-brand-500,
+html:not(.dark) .filter-btn.active.text-gray-950 {
   background-color: #FDE047;
   border-color: #FDE047;
-  color: #0F172A;
+  color: #000000;
 }
 
 /* The nav's two form controls are declared bg-gray-900/80 and bg-gray-900, which
@@ -287,16 +306,21 @@ html:not(.dark) .bg-gray-900 .border-gray-800\/50 { border-color: #FDE047; }
 html:not(.dark) .bg-gray-900 .border-gray-700,
 html:not(.dark) .bg-gray-900 .border-gray-700\/80 { border-color: #FACC15; }
 
-/* Type inside a card. Same ladder as the shell, re-cut dark. */
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-50  { color: #0F172A; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-100 { color: #0F172A; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-200 { color: #1E293B; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-300 { color: #334155; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-400 { color: #475569; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-500 { color: #64748B; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-600 { color: #7C8BA1; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-700 { color: #94A3B8; }
-html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:text-gray-200:hover { color: #0F172A; }
+/* Type inside a card. Every weight is near-black: on a bright yellow fill the
+   dark theme's slate ladder reads as a grey wash rather than as type, so the
+   ramp is compressed into #000000 → #374151 and the hierarchy is carried by
+   size and weight instead of by lightness. Contrast against #FEF08A:
+   #000000 19.6:1 · #111827 16.4:1 · #1F2937 12.6:1 · #374151 8.4:1 — all far
+   past the 4.5:1 floor, which is the point of a poster palette. */
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-50  { color: #000000; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-100 { color: #000000; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-200 { color: #111827; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-300 { color: #111827; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-400 { color: #111827; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-500 { color: #1F2937; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-600 { color: #374151; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-gray-700 { color: #374151; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .hover\:text-gray-200:hover { color: #000000; }
 html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-500 { color: #1D4ED8; }
 html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-400 { color: #1D4ED8; }
 html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-brand-300 { color: #1E40AF; }
@@ -316,19 +340,21 @@ html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500,
 html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .border-brand-500\/50 { border-color: #2563EB; }
 html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .ring-brand-500 { --tw-ring-color: #2563EB; }
 
-/* Secondary buttons — the "Clear" beside every "Run". Warm orange, which is
-   the second accent the light theme is built on; the dark theme's slate fill
-   reads as a disabled control on a yellow card.
+/* Secondary buttons — the "Clear" beside every "Run". Warm cream, which is the
+   second accent the light theme is built on, carrying the same near-black label
+   as the card it sits on: the orange text this used to have was 3.4:1 on its
+   own fill, which is the one place a button label was harder to read than the
+   paragraph next to it.
 
    This ties on specificity with the type ladder above, so it has to come after
    it, as does the toast below. */
 html:not(.dark) .bg-gray-800.hover\:bg-gray-700 {
   background-color: #FFF7ED;
-  color: #EA580C;
+  color: #111827;
 }
 html:not(.dark) .bg-gray-800.hover\:bg-gray-700:hover {
   background-color: #FFEDD5;
-  color: #C2410C;
+  color: #000000;
 }
 
 /* Semantic status colours. Tools paint these as inline utility strings, and
@@ -387,6 +413,30 @@ html:not(.dark) .text-pink-400 { color: #BE185D; }
 html:not(.dark) .text-pink-500 { color: #DB2777; }
 html:not(.dark) .bg-pink-500\/10 { background-color: #FDF2F8; }
 html:not(.dark) .border-pink-500\/20 { border-color: #FBCFE8; }
+
+/* Status pills and error lines, re-cut for the card. A badge is written
+   `bg-emerald-500/10 text-emerald-400`, so its label is read against a pale
+   wash of its own hue, not against the yellow behind it. The mid-shades above
+   are tuned for the dark page and sit near 4.5:1 on that wash; these deep ones
+   clear 8:1 and read at a glance as the near-black the rest of the card uses,
+   while the hue that separates "active" from "error" survives in both the word
+   and the fill. */
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-emerald-400,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-emerald-400\/90,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-emerald-500 { color: #064E3B; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-red-300,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-red-400,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-red-500,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-red-600 { color: #7F1D1D; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-rose-400 { color: #881337; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-amber-300,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-amber-400,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-yellow-200 { color: #78350F; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-sky-400 { color: #0C4A6E; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-violet-400 { color: #4C1D95; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-teal-400 { color: #134E4A; }
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-pink-400,
+html:not(.dark) :is(.bg-gray-900, .bg-gray-900\/60) .text-pink-500 { color: #831843; }
 
 /* Every tool card hovers to the same yellow border via a utility, which is
    invisible on a yellow card. Give each category its own deep hue so the hover

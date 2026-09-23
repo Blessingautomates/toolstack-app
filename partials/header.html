@@ -35,10 +35,13 @@
         </a>
 
         <!-- Both glyphs are always present; toolstack.css shows one based on
-             <html class="dark">, so the right icon paints on the first frame. -->
+             <html class="dark">, so the right icon paints on the first frame.
+             The static state below is the light default, which is what a
+             visitor without a stored preference sees before toolstack.js runs
+             and takes over the label. -->
         <button id="themeToggle" type="button"
                 class="p-2 rounded-xl border border-gray-800 hover:bg-gray-900 text-base leading-none"
-                aria-label="Switch to light theme" aria-pressed="true">
+                aria-label="Switch to dark theme" aria-pressed="false">
           <span class="ts-theme-dark" aria-hidden="true">🌙</span>
           <span class="ts-theme-light" aria-hidden="true">☀️</span>
         </button>
