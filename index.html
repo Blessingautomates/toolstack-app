@@ -49,7 +49,9 @@
 <!-- ts:head:end -->
   <title>ToolStack AI - Developer & SaaS Utilities</title>
   <meta name="description" content="Free browser-based tools for developers, founders, and creators — JSON formatter, spam-word checker, script hook checker, image converter and more. No signup, no upload." />
-  <link rel="canonical" href="https://toolstackai.xyz/" />
+      <!-- SEO & Sitemap Configuration -->
+    <link rel="canonical" href="https://toolstackai.xyz/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://toolstackai.xyz/sitemap.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
   <meta property="og:title" content="ToolStack AI - Developer &amp; SaaS Utilities" />
@@ -1237,7 +1239,18 @@
       filterTools();
     })();
   </script>
-
+      <!-- Service Worker Registration to Fix Sitemap Fetch -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(reg) {
+            console.log('Service worker registered successfully.');
+          }).catch(function(err) {
+            console.log('Service worker registration failed:', err);
+          });
+        });
+      }
+    </script>
   <!-- Adsterra Native Ad Banner -->
   <script async="async" data-cfasync="false" src="https://pl31389964.profitableratecpmnetwork.com/a75640cb3122b093cb9dfadf47671621/invoke.js"></script>
   <div id="container-a75640cb3122b093cb9dfadf47671621"></div>
