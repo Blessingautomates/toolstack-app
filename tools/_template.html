@@ -188,8 +188,6 @@
           <span aria-hidden="true">❤️</span><span class="hidden sm:inline">support toolstackai</span>
         </a>
 
-        <div id="google_translate_element" class="text-xs"></div>
-
         <!-- Both glyphs are always present; toolstack.css shows one based on
              <html class="dark">, so the right icon paints on the first frame.
              The static state is the light default; toolstack.js takes the
@@ -203,20 +201,6 @@
       </div>
     </div>
   </header>
-
-  <!-- Google Translate. Loaded async: this is a third-party script on every page,
-       and a synchronous tag would stall rendering wherever Google is unreachable.
-       The callback only fires on success, so a failure is silent and harmless. -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" async
-    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- ts:header:end -->
 
 <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

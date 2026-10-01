@@ -64,7 +64,9 @@
   <meta property="og:title" content="ToolStack AI — Free Online Tools for Creators, Developers &amp; Businesses" />
   <meta property="og:description" content="Free online tools for creators, developers, marketers and businesses. SEO, PDF, AI, image, content and productivity utilities." />
   <meta property="og:url" content="https://toolstackai.xyz/" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ToolStack AI - Developer &amp; SaaS Utilities" />
+  <meta name="twitter:description" content="Free browser-based tools for developers, founders, and creators. No signup, no upload." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -120,13 +122,6 @@
       </div>
 
       <div class="flex items-center gap-2 flex-shrink-0">
-        <!-- Google Translate sits between the search box and the support CTA:
-             reading order matches the nav, and the wrapper carries the theme so
-             Google's injected gadget inherits it instead of painting a white box.
-             `overflow-hidden` clips the table Google injects in some locales. -->
-        <div id="google_translate_element"
-             class="flex-shrink-0 overflow-hidden bg-gray-900 text-xs text-gray-200 border border-gray-800 rounded px-2 py-1 transition-colors"></div>
-
         <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
            class="ts-cta-support flex items-center gap-1.5 px-3 py-2 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold text-xs transition whitespace-nowrap"
            aria-label="Support ToolStack AI">
@@ -147,30 +142,25 @@
       </div>
     </div>
   </header>
-
-  <!-- Google Translate. Loaded async: this is a third-party script on every page,
-       and a synchronous tag would stall rendering wherever Google is unreachable.
-       The callback only fires on success, so a failure is silent and harmless.
-
-       autoDisplay:false is what keeps Google's own promo banner out of the page —
-       it stops the widget from auto-translating and injecting the top bar when the
-       browser's language differs from pageLanguage. InlineLayout.SIMPLE renders a
-       compact dropdown instead of the full-width bar; toolstack.css hides the
-       frames that are injected regardless. -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" async
-    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- ts:header:end -->
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- The only <h1> on the page, and the only page-level heading on the site
+         that says what the collection is rather than what one tool does — every
+         tool page owns its own <h1>. It sits above the grid so the order runs
+         h1 → h2 "Browse all tools" → one h3 per card. -->
+    <header>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-gray-50">ToolStack AI — Free Online Tools for Developers, Creators &amp; Marketers</h1>
+      <p class="text-sm text-gray-400 mt-3 leading-relaxed max-w-3xl">
+        A free collection of browser-based tools for developers, marketers and creators: format and
+        validate JSON, compress or convert PDFs, generate meta tags and schema markup, check
+        cold-email copy against spam filters — or lose an afternoon to the joke generators and
+        quizzes. Everything runs on your device. No signup, no uploads.
+      </p>
+    </header>
+
+    <h2 id="browse-heading" class="text-lg font-bold text-gray-100">Browse all tools</h2>
 
     <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-800 scrollbar-none" id="categoryFilters">
       <button class="filter-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-500 text-gray-950 shadow-lg" data-category="all">All Tools</button>
@@ -1145,6 +1135,42 @@
       </div>
 
     </div>
+
+    <!-- Visible closing copy. Until now the homepage opened straight onto the
+         grid and the only prose describing the site was its meta description,
+         which no visitor and no crawler reliably reads. This states what the
+         collection is, that the tools run client-side, who they are for and
+         what the categories are — in the page, in plain links. -->
+    <section class="border-t border-gray-800 pt-8" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="text-lg font-bold text-gray-100">About ToolStack AI</h2>
+
+      <p class="text-sm text-gray-400 mt-3 leading-relaxed max-w-3xl">
+        ToolStack AI is a free collection of online tools that run entirely in your browser. There is
+        nothing to install and no account to create, and your files are never uploaded to a server —
+        a tool loads, does its work on your own device, and hands the result straight back to you to
+        copy or download.
+      </p>
+
+      <p class="text-sm text-gray-400 mt-3 leading-relaxed max-w-3xl">
+        The tools are grouped into PDF utilities, SEO and website tools, client and sales helpers,
+        AI support, creator and video tools, and a large Fun &amp; Games section of joke generators,
+        quizzes and party games. They are built for the people who hit these problems in the middle
+        of a working day — developers tidying up
+        <a href="/tools/json-formatter.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">JSON</a>,
+        founders checking an email against the
+        <a href="/tools/spam-word-checker.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">spam-word checker</a>,
+        marketers sizing up a
+        <a href="/tools/pdf-compressor.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">PDF</a>
+        before it goes out, and anyone who needs
+        <a href="/tools/meta-tag-generator.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">meta tags</a>
+        or
+        <a href="/tools/schema-generator.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">schema markup</a>
+        written correctly the first time. When you want the lighter end of the collection, the
+        <a href="/tools/fun-games.html" class="text-brand-400 hover:text-brand-300 underline decoration-brand-400/40 hover:decoration-brand-400 transition">Fun &amp; Games hub</a>
+        collects every joke, quiz and game in one place.
+      </p>
+    </section>
+
   </main>
 
 <!-- ts:footer:start -->

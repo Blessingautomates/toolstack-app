@@ -248,13 +248,12 @@ html:not(.dark) .filter-btn.active.text-gray-950 {
   color: #000000;
 }
 
-/* The nav's two form controls are declared bg-gray-900/80 and bg-gray-900, which
-   the card layer would paint as yellow surfaces. They are chrome on the dark
-   header bar, so both are pinned to white here. The id selectors outrank every
-   class rule in this file, including the layer-2 ones, which is why no
-   descendant rule can leak into them. */
-html:not(.dark) #searchInput,
-html:not(.dark) #google_translate_element {
+/* The nav's search control is declared bg-gray-900/80, which the card layer
+   would paint as a yellow surface. It is chrome on the dark header bar, so it
+   is pinned to white here. The id selector outranks every class rule in this
+   file, including the layer-2 ones, which is why no descendant rule can leak
+   into it. */
+html:not(.dark) #searchInput {
   background-color: #FFFFFF;
   border-color: rgba(255, 255, 255, 0.7);
   color: #0F172A;
@@ -488,136 +487,3 @@ html:not(.dark) .bg-brand-500 .text-gray-950 { color: #FFFFFF; }
 .ts-theme-light { display: none; }
 html:not(.dark) .ts-theme-dark  { display: none; }
 html:not(.dark) .ts-theme-light { display: inline; }
-
-/* -------------------------------------------------------- Google Translate */
-
-/*
- * Google injects a promo banner iframe and offsets <body> to make room for it.
- * Neither belongs on a site whose only chrome is the header. The gadget also
- * ships a hover balloon (#goog-gt-tt) and, for some locales, a skip-translation
- * nag — both are hidden here.
- *
- * .skiptranslate is scoped rather than hidden outright: Google stamps that class
- * onto the frames it injects *and* onto the container we hand it, so a bare
- * `.skiptranslate { display: none }` deletes the widget along with the banner.
- * Excluding the mount point keeps the widget and still kills every injected
- * frame, which all carry the class without being our element.
- */
-.goog-te-banner-frame,
-.goog-te-balloon-frame,
-#goog-gt-tt { display: none !important; }
-.skiptranslate:not(#google_translate_element) { display: none !important; }
-body { top: 0 !important; }
-.goog-text-highlight { background: none !important; box-shadow: none !important; }
-
-/* The gadget is Google's own markup, so this is deliberately loose: the goal is
-   only to stop it looking like a stray box in the nav bar.
-   The wrapper in partials/header.html owns the border, radius and padding (in
-   Tailwind utilities, pinned to white by the shell above), so everything inside
-   is stripped back to bare content and inherits the wrapper's colours. */
-#google_translate_element { line-height: 1; }
-#google_translate_element:hover { border-color: #F59E0B; }
-#google_translate_element .goog-te-gadget {
-  font-family: inherit;
-  font-size: 0;
-  color: transparent;
-}
-#google_translate_element .goog-te-gadget-simple {
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
-  white-space: nowrap;
-}
-#google_translate_element .goog-te-gadget-icon {
-  margin: 0 0.25rem 0 0 !important;
-  filter: grayscale(1) brightness(1.6);
-}
-#google_translate_element .goog-te-menu-value { font-size: 11px !important; color: #9ca3af; }
-#google_translate_element .goog-te-menu-value span { color: #9ca3af !important; }
-#google_translate_element .goog-te-menu-value img { display: none; }
-
-/* The dropdown itself. InlineLayout.SIMPLE renders an anchor, but the NONE and
-   HORIZONTAL layouts (and Google's own fallback) render a <select>, and an
-   unstyled one is a grey OS control that ignores the rest of the nav. Styling
-   it as a native select — no appearance override beyond the arrow — keeps it
-   matching the search box in both themes. */
-#google_translate_element .goog-te-combo {
-  appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  padding: 0.3rem 1.5rem 0.3rem 0.5rem;
-  font-family: inherit;
-  font-size: 11px;
-  line-height: 1.2;
-  border-radius: 0.375rem;
-  border: 1px solid #374151;
-  background-color: #111827;
-  color: #e5e7eb;
-  cursor: pointer;
-  /* Chevron as a data URI so it needs no extra request; the stroke is the
-     muted grey the surrounding nav uses. */
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.35rem center;
-  background-size: 0.7rem;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
-}
-#google_translate_element .goog-te-combo:hover { border-color: #F59E0B; }
-#google_translate_element .goog-te-combo:focus {
-  outline: none;
-  border-color: #F59E0B;
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.35);
-}
-
-/* The popup menu for the SIMPLE layout lives in a cross-origin iframe, so its
-   contents cannot be reached from here — only the frame's own border can. */
-.goog-te-menu-frame {
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 0.75rem !important;
-  box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.35) !important;
-  overflow: hidden;
-}
-
-/* Older inline layouts wrap the gadget in a table. Left alone it inherits the
-   page's body typography and blows the header height out; neutralise it. */
-#google_translate_element table {
-  display: inline;
-  border-collapse: collapse;
-  background: transparent !important;
-}
-#google_translate_element td {
-  padding: 0 !important;
-  border: 0 !important;
-  background: transparent !important;
-}
-
-/* Light mode. The wrapper is a white chip on the magenta header — see the
-   #google_translate_element rule in the shell — so everything inside it is
-   re-cut dark, with the blue accent the rest of the light theme uses. */
-html:not(.dark) #google_translate_element:hover { border-color: #2563EB; }
-html:not(.dark) #google_translate_element .goog-te-menu-value,
-html:not(.dark) #google_translate_element .goog-te-menu-value span { color: #475569 !important; }
-html:not(.dark) #google_translate_element .goog-te-gadget-icon { filter: grayscale(1) brightness(0.8); }
-
-/* The select, in light mode: a slate field one step off the white wrapper, so
-   it reads as a control rather than disappearing into it. */
-html:not(.dark) #google_translate_element .goog-te-combo {
-  border-color: #CBD5E1;
-  background-color: #F1F5F9;
-  color: #334155;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-}
-html:not(.dark) #google_translate_element .goog-te-combo:hover { border-color: #2563EB; }
-html:not(.dark) #google_translate_element .goog-te-combo:focus {
-  border-color: #2563EB;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
-}
-html:not(.dark) .goog-te-menu-frame { border-color: #e2e8f0 !important; }
-
-/* The nav is already tight on phones: keep the globe, drop the language name. */
-@media (max-width: 767px) {
-  #google_translate_element .goog-te-menu-value span { display: none !important; }
-  #google_translate_element { padding: 0.4rem 0.35rem !important; }
-  #google_translate_element .goog-te-combo { padding-right: 1.35rem; }
-}
