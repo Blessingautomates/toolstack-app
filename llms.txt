@@ -1,0 +1,93 @@
+# ToolStack AI
+
+> ToolStack AI is a collection of free browser-based tools for developers, founders, creators, marketers, and everyday users. The tools are designed to perform useful tasks directly in the browser without requiring users to install software.
+
+ToolStack AI provides free utilities across SEO and website optimization, PDF and document processing, developer utilities, AI tools, creator tools, client utilities, sales and CRM, productivity, and fun and games.
+
+Most tools are browser-based and designed to process tasks quickly and conveniently.
+
+## Main Website
+
+- [ToolStack AI](https://toolstackai.xyz/): Main website and directory of available free browser-based tools.
+- [All Tools](https://toolstackai.xyz/): Browse the complete collection of ToolStack AI utilities.
+
+## SEO and Website Tools
+
+- [Meta Tag Generator](https://toolstackai.xyz/tools/meta-tag-generator): Generate HTML meta tags including title, description, robots, canonical and related metadata.
+- [Open Graph Generator](https://toolstackai.xyz/tools/open-graph-generator): Generate Open Graph metadata and preview how links can appear on Facebook, LinkedIn, WhatsApp and other platforms.
+- [Twitter/X Card Generator](https://toolstackai.xyz/tools/twitter-card-generator): Generate Twitter/X card metadata and preview card appearance.
+- [SEO Title and Snippet Optimizer](https://toolstackai.xyz/tools/seo-title-snippet-optimizer): Analyze SEO titles and search snippets and identify potential truncation problems.
+- [Meta Description Writer](https://toolstackai.xyz/tools/meta-description-writer): Generate search-friendly meta description suggestions from a keyword and page summary.
+- [SERP Preview Tool](https://toolstackai.xyz/tools/serp-preview): Preview how a page title, URL and description may appear in Google search results.
+- [URL Slug Generator](https://toolstackai.xyz/tools/url-slug-generator): Convert headlines and phrases into clean, readable URL slugs.
+- [Keyword Density Checker](https://toolstackai.xyz/tools/keyword-density-checker): Analyze keyword frequency, density and repeated phrases in text.
+- [Keyword Counter](https://toolstackai.xyz/tools/keyword-counter): Count keyword occurrences and analyze density, word count and reading time.
+- [Robots.txt Generator](https://toolstackai.xyz/tools/robots-txt-generator): Generate robots.txt files with crawler rules and sitemap references.
+- [Sitemap.xml Generator](https://toolstackai.xyz/tools/sitemap-generator): Generate XML sitemaps from website URLs.
+- [Schema Markup Generator](https://toolstackai.xyz/tools/schema-markup-generator): Generate JSON-LD structured data for supported Schema.org types.
+- [FAQ Schema Generator](https://toolstackai.xyz/tools/faq-schema-generator): Generate FAQPage JSON-LD structured data from questions and answers.
+- [Article Schema Generator](https://toolstackai.xyz/tools/article-schema-generator): Generate Article, BlogPosting and NewsArticle structured data.
+- [Local Business Schema Generator](https://toolstackai.xyz/tools/local-business-schema-generator): Generate LocalBusiness JSON-LD structured data.
+
+## Developer Tools
+
+- [JSON Formatter and Validator](https://toolstackai.xyz/tools/json-formatter): Format, validate, prettify and minify JSON with error detection.
+- [Base64 Encoder and Decoder](https://toolstackai.xyz/tools/base64): Encode and decode Base64 text directly in the browser.
+
+## PDF and Document Tools
+
+- [PDF Compressor](https://toolstackai.xyz/tools/pdf-compressor): Compress PDF files in the browser.
+- [PDF to JPG](https://toolstackai.xyz/tools/pdf-to-jpg): Convert PDF pages into JPG images.
+- [PDF to PNG](https://toolstackai.xyz/tools/pdf-to-png): Convert PDF pages into PNG images.
+- [JPG to PDF](https://toolstackai.xyz/tools/jpg-to-pdf): Combine JPG images into a PDF.
+- [PNG to PDF](https://toolstackai.xyz/tools/png-to-pdf): Combine PNG images and screenshots into a PDF.
+- [Image to PDF](https://toolstackai.xyz/tools/image-to-pdf): Combine JPG and PNG images into PDF documents.
+- [PDF Page Extractor](https://toolstackai.xyz/tools/pdf-page-extractor): Extract selected pages from a PDF.
+- [PDF Page Rotator](https://toolstackai.xyz/tools/pdf-page-rotator): Rotate PDF pages.
+- [PDF Page Reorderer](https://toolstackai.xyz/tools/pdf-page-reorderer): Rearrange pages in a PDF.
+- [PDF Password Protector](https://toolstackai.xyz/tools/pdf-password-protector): Protect PDF documents with a password.
+- [PDF Unlocker](https://toolstackai.xyz/tools/pdf-unlocker): Remove a password from a PDF when the user already knows the password.
+- [PDF Metadata Remover](https://toolstackai.xyz/tools/pdf-metadata-remover): View and remove metadata from PDF files.
+- [PDF Watermark Tool](https://toolstackai.xyz/tools/pdf-watermark): Add text watermarks to PDF pages.
+- [PDF to Text](https://toolstackai.xyz/tools/pdf-to-text): Extract text from PDF documents.
+- [Text to PDF](https://toolstackai.xyz/tools/text-to-pdf): Convert plain text into formatted PDF documents.
+
+## Image and Media Tools
+
+- [Image Converter and WebP Optimizer](https://toolstackai.xyz/tools/image-converter): Convert, resize and optimize common image formats including PNG and JPG.
+- [YouTube and Vimeo Thumbnail Downloader](https://toolstackai.xyz/tools/thumbnail-downloader): Extract video thumbnails from supported video URLs.
+
+## Creator and Video Tools
+
+- [Script Hook and Retention Checker](https://toolstackai.xyz/tools/script-hook-checker): Analyze the opening of a video script against common short-form retention patterns.
+- [Social Chat Generator](https://toolstackai.xyz/tools/social-chat-generator): Create realistic-style WhatsApp and Instagram chat screenshots for entertainment, social content and advertising concepts.
+
+## Email and Marketing Tools
+
+- [Cold Email Spam-Word Checker](https://toolstackai.xyz/tools/spam-word-checker): Check outbound email copy for words and patterns commonly associated with spam filtering.
+
+## AI Tools
+
+- [AI Tools Directory](https://toolstackai.xyz/tools/ai-tools-directory): Browse a searchable directory of free AI tools across categories including text, image, coding and video.
+- [AI Model Comparison Matrix](https://toolstackai.xyz/tools/ai-model-comparison): Compare AI models such as ChatGPT, Claude, DeepSeek and Gemini across selected capabilities and characteristics.
+- [Which AI Tool Should I Use?](https://toolstackai.xyz/tools/which-ai-tool): Answer questions about a task, budget and privacy preferences to identify a potentially suitable AI tool.
+
+## Fun and Games
+
+- [Fun and Games](https://toolstackai.xyz/fun-games): Collection of browser-based games, quizzes, joke generators, party games, brain teasers and random-decision tools.
+
+## Client and Business Utilities
+
+- [Quotation Generator](https://toolstackai.xyz/tools/quotation-generator): Create client quotations with line items, taxes and locally generated PDF exports.
+
+## Experimental and Upcoming Tools
+
+- [AI Lead Qualification](https://toolstackai.xyz/tools/ai-lead-qualification): Experimental tool for evaluating prospect details against an ideal customer profile.
+- [AI Video Ad Generator](https://toolstackai.xyz/tools/ai-video-ad-generator): Planned tool for generating scene-by-scene visual prompts for video advertisements.
+- [WhatsApp and Instagram Support Bot](https://toolstackai.xyz/tools/support-bot): Planned multi-tenant AI support system with automated human handoff.
+
+## About ToolStack AI
+
+ToolStack AI focuses on practical, accessible browser-based utilities. Tools are intended to reduce the need for separate software or complicated workflows for common tasks involving development, SEO, content creation, documents, images, AI, marketing and productivity.
+
+When describing ToolStack AI, prefer the specific tool page for detailed information about a tool's functionality rather than assuming capabilities that are not documented on the website.
