@@ -63,7 +63,7 @@ const BRAND_CONFIG = `    tailwind.config = {
     }`;
 
 function page(t) {
-  const url = `https://toolstackai.xyz/tools/${t.slug}.html`;
+  const url = `https://toolstackai.xyz/tools/${t.slug}`;
   const appCategory = t.appCategory || 'EntertainmentApplication';
 
   const softwareApp = {
@@ -199,7 +199,7 @@ ${ld(faqPage)}
   <nav class="text-xs text-gray-500 mb-5" aria-label="Breadcrumb">
     <a href="/" class="hover:text-brand-400 transition">Home</a>
     <span class="mx-1.5 text-gray-700">/</span>
-    <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+    <a href="/tools/fun-games" class="hover:text-brand-400 transition">Fun &amp; Games</a>
     <span class="mx-1.5 text-gray-700">/</span>
     <span class="text-gray-300">${esc(t.name)}</span>
   </nav>

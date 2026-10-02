@@ -50,13 +50,13 @@
 
   <title>AI Service Status Board — Uptime Dashboard Demo | ToolStack AI</title>
   <meta name="description" content="A demo dashboard showing how a live uptime board for ChatGPT, Claude, Midjourney and other AI services is laid out. Simulated data — no provider status API is queried." />
-  <link rel="canonical" href="https://toolstackai.xyz/tools/ai-status-board.html" />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/ai-status-board" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
   <meta property="og:title" content="AI Service Status Board — Uptime Dashboard Demo" />
   <meta property="og:description" content="A layout demo of a multi-provider AI uptime board. All figures are simulated." />
-  <meta property="og:url" content="https://toolstackai.xyz/tools/ai-status-board.html" />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/ai-status-board" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="AI Service Status Board — Uptime Dashboard Demo" />
   <meta name="twitter:description" content="A layout demo of an AI uptime dashboard. Simulated data, no live API." />
@@ -92,7 +92,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "AI Service Status Board",
-    "url": "https://toolstackai.xyz/tools/ai-status-board.html",
+    "url": "https://toolstackai.xyz/tools/ai-status-board",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any (browser-based)",
     "description": "A layout demonstration of a multi-provider AI uptime dashboard. All status, uptime and latency figures are simulated in the page and no provider API is queried.",
@@ -128,6 +128,33 @@
       }
     ]
   }
+  </script>
+  <!-- Breadcrumb trail, mirroring the visible <nav> above the <h1>. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolstackai.xyz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://toolstackai.xyz/#toolsGrid"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI Service Status Board",
+      "item": "https://toolstackai.xyz/tools/ai-status-board"
+    }
+  ]
+}
   </script>
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen transition-colors duration-200">
@@ -320,21 +347,28 @@
       </div>
     </div>
 
-    <div>
-      <h2 class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        <a href="/tools/ai-tools-directory.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">Free AI Tools Directory</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">28 free AI tools for writing, coding, image, video and audio.</p>
-        </a>
-        <a href="/tools/json-formatter.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">JSON Formatter &amp; Validator</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Inspect the status API response once you wire up a real feed.</p>
-        </a>
-      </div>
-    </div>
   </section>
 
+
+<!-- ts:related:start -->
+  <section class="mt-12" aria-labelledby="relatedToolsHeading">
+    <h2 id="relatedToolsHeading" class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <a href="/tools/ai-tools-directory" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">Free AI Tools Directory</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">A searchable directory of 28 AI tools with usable free tiers.</p>
+      </a>
+      <a href="/tools/ai-model-comparison" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">AI Model Comparison Matrix</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">Compare ChatGPT, Claude, DeepSeek and Gemini side by side.</p>
+      </a>
+      <a href="/tools/ai-tool-quiz" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">Which AI Tool Should I Use?</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">Answer five questions and get a specific AI tool recommendation.</p>
+      </a>
+    </div>
+  </section>
+<!-- ts:related:end -->
 </main>
 
 <!-- ts:footer:start -->
@@ -356,10 +390,10 @@
 
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
           <a href="/" class="hover:text-brand-400 transition">All Tools</a>
-          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
-          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
-          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
-          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="/tools/json-formatter" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games" class="hover:text-brand-400 transition">Fun &amp; Games</a>
           <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
              class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
             <span aria-hidden="true">❤️</span>support toolstackai

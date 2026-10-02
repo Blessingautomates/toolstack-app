@@ -108,7 +108,7 @@ const HEAD_BLOCK = `  <!-- HilltopAds site verification. The matching file at th
   </script>`;
 
 function page(t) {
-  const url = `https://toolstackai.xyz/tools/${t.slug}.html`;
+  const url = `https://toolstackai.xyz/tools/${t.slug}`;
   const appCategory = t.appCategory || 'UtilitiesApplication';
 
   const softwareApp = {
@@ -159,7 +159,7 @@ function page(t) {
    * the cluster without editing four other pages by hand. */
   const related = (t.related || [])
     .map(
-      (r) => `        <a href="/tools/${r.slug}.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+      (r) => `        <a href="/tools/${r.slug}" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
           <p class="font-bold text-gray-200 text-sm">${esc(r.name)}</p>
           <p class="text-xs text-gray-400 mt-1 leading-relaxed">${esc(r.d)}</p>
         </a>`

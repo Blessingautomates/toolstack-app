@@ -27,6 +27,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TOOLS as TOOL_INDEX, RELATED } from './related-tools.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PARTIALS = join(ROOT, 'partials');
@@ -39,6 +40,8 @@ const HEADER_START = '<!-- ts:header:start -->';
 const HEADER_END = '<!-- ts:header:end -->';
 const FOOTER_START = '<!-- ts:footer:start -->';
 const FOOTER_END = '<!-- ts:footer:end -->';
+const RELATED_START = '<!-- ts:related:start -->';
+const RELATED_END = '<!-- ts:related:end -->';
 
 /**
  * The palette a first-time visitor gets. The markup is written dark-first
@@ -195,6 +198,98 @@ function ensureVerificationFile() {
   console.log(`  ~ ${VERIFY_FILE}`);
 }
 
+/** Every tools/*.html page — the standalone tool pages only, not index.html. */
+function toolPages() {
+  return pages().filter((p) => p.startsWith('tools/'));
+}
+
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/**
+ * The related-tools markup for one page, or null when the map has no entry.
+ * Shape lives here; the names and blurbs come from scripts/related-tools.mjs.
+ */
+function relatedSection(slug) {
+  const list = RELATED[slug];
+  if (!list || !list.length) return null;
+
+  const cards = list.map((t) => {
+    const [name, blurb] = TOOL_INDEX[t];
+    return [
+      `      <a href="/tools/${t}" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">`,
+      `        <p class="font-bold text-gray-200 text-sm">${esc(name)}</p>`,
+      `        <p class="text-xs text-gray-400 mt-1 leading-relaxed">${esc(blurb)}</p>`,
+      `      </a>`,
+    ].join('\n');
+  }).join('\n');
+
+  return [
+    RELATED_START,
+    `  <section class="mt-12" aria-labelledby="relatedToolsHeading">`,
+    `    <h2 id="relatedToolsHeading" class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>`,
+    `    <div class="grid sm:grid-cols-2 gap-3">`,
+    cards,
+    `    </div>`,
+    `  </section>`,
+    RELATED_END,
+  ].join('\n');
+}
+
+/**
+ * Stamp the related-tools block on every tool page, from the map in
+ * scripts/related-tools.mjs.
+ *
+ * Two shapes are handled. Pages that already carry the markers get the block
+ * replaced in place. Pages that predate the markers get their hand-written
+ * related section adopted — it sat inside the prose <section> as a plain <div>,
+ * so the adoption matches on its heading rather than on a marker. A page the
+ * map has no entry for is left alone.
+ */
+function syncRelated() {
+  let added = 0, replaced = 0, skipped = 0;
+
+  for (const rel of toolPages()) {
+    const slug = rel.replace(/^tools\//, '').replace(/\.html$/, '');
+    const block = relatedSection(slug);
+    const path = join(ROOT, rel);
+    const before = readFileSync(path, 'utf8');
+    let html = before;
+
+    // The pre-marker block: <div><h2>Related …</h2><div class="grid">…</div></div>,
+    // indented four spaces inside the prose section. The lazy body stops at the
+    // first four-space </div>, which is the block's own close — the card markup
+    // inside is indented deeper.
+    const legacy = /\n    <div>\n      <h2[^>]*>Related [^<]*<\/h2>[\s\S]*?\n    <\/div>\n/;
+    const hadLegacy = legacy.test(html);
+    if (hadLegacy) html = html.replace(legacy, '\n');
+
+    if (!block) {
+      if (html !== before) {
+        writeFileSync(path, html);
+        console.log(`  - ${rel} (legacy block removed; no map entry)`);
+      } else {
+        skipped++;
+      }
+      continue;
+    }
+
+    const marked = new RegExp(`${escapeRe(RELATED_START)}[\\s\\S]*?${escapeRe(RELATED_END)}`);
+    if (marked.test(html)) {
+      html = html.replace(marked, () => block);
+    } else if (html.includes('\n</main>')) {
+      html = html.replace('\n</main>', `\n\n${block}\n</main>`);
+    } else {
+      throw new Error(`${rel}: no </main> to anchor the related block against`);
+    }
+
+    if (html === before) { skipped++; continue; }
+    writeFileSync(path, html);
+    if (hadLegacy) replaced++; else added++;
+  }
+
+  console.log(`  related tools: ${added} added, ${replaced} replaced, ${skipped} already in sync`);
+}
+
 /**
  * Structural checks over every page, plus `node --check` on the JavaScript the
  * site ships. There is no test runner here and no build step to hang one off,
@@ -245,6 +340,84 @@ function check() {
     }
   }
 
+  // --- SEO invariants -------------------------------------------------------
+  // The conditions that quietly cost indexation, so they are checked rather
+  // than trusted: a canonical pointing at a redirecting URL, two pages sharing
+  // a title, a tool nobody links to, a sitemap that has drifted from the disk.
+
+  const canonicals = new Map();
+  const titles = new Map();
+  const descriptions = new Map();
+
+  for (const rel of pages()) {
+    const html = readFileSync(join(ROOT, rel), 'utf8');
+    const fail = (msg) => failures.push(`${rel}: ${msg}`);
+
+    // Comments explain the markup around them and quote tag names as prose
+    // ("the only <h1> on the page"), so the tag-level checks read the page
+    // with comments stripped. A comment cannot affect what a crawler sees.
+    const scan = html.replace(/<!--[\s\S]*?-->/g, '');
+
+    // The host serves extension-less URLs and 307s the .html form, so a .html
+    // link costs a redirect hop and a .html canonical points at a redirect.
+    const htmlUrl = scan.match(/\/tools\/[a-z0-9-]+\.html/g);
+    if (htmlUrl) fail(`.html tool URL (${htmlUrl[0]}) — use the extension-less form`);
+
+    // A canonical has to name the page's own final URL, not a variant of it.
+    const expected = rel === 'index.html' ? `${SITE}/` : `${SITE}/${rel.replace(/\.html$/, '')}`;
+    const canonical = (html.match(/<link rel="canonical" href="([^"]+)"/) || [])[1];
+    if (!canonical) fail('missing <link rel="canonical">');
+    else if (canonical !== expected) fail(`canonical is ${canonical}, expected ${expected}`);
+    else if (canonicals.has(canonical)) fail(`canonical already claimed by ${canonicals.get(canonical)}`);
+    else canonicals.set(canonical, rel);
+
+    // One h1 per page, and it has to say which tool this is.
+    const h1Count = (scan.match(/<h1[\s>]/g) || []).length;
+    if (h1Count !== 1) fail(`${h1Count} <h1> elements, expected exactly 1`);
+
+    const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [])[1];
+    if (!title) fail('missing <title>');
+    else if (titles.has(title)) fail(`title identical to ${titles.get(title)}`);
+    else titles.set(title, rel);
+
+    const desc = (html.match(/<meta name="description" content="([^"]*)"/) || [])[1];
+    if (!desc) fail('missing meta description');
+    else if (descriptions.has(desc)) fail(`meta description identical to ${descriptions.get(desc)}`);
+    else descriptions.set(desc, rel);
+
+    if (/<meta name="robots"[^>]*\bnoindex\b/i.test(scan)) fail('carries a noindex robots directive');
+  }
+
+  // The related-tools map has to describe the pages that actually exist, or a
+  // page silently ships with dead or missing links.
+  const pageSlugs = new Set(toolPages().map((p) => p.replace(/^tools\//, '').replace(/\.html$/, '')));
+  for (const slug of pageSlugs) {
+    if (slug === 'fun-games') continue; // the hub, not a leaf tool
+    if (!TOOL_INDEX[slug]) failures.push(`tools/${slug}.html: no TOOLS entry in related-tools.mjs`);
+    if (!RELATED[slug]) failures.push(`tools/${slug}.html: no RELATED entry — the page would ship with no related links`);
+  }
+  for (const [slug, list] of Object.entries(RELATED)) {
+    if (!pageSlugs.has(slug)) failures.push(`related-tools.mjs: RELATED["${slug}"] has no page on disk`);
+    for (const t of list) {
+      if (t === slug) failures.push(`related-tools.mjs: "${slug}" lists itself as related`);
+      if (!TOOL_INDEX[t]) failures.push(`related-tools.mjs: "${slug}" links to "${t}", which has no TOOLS entry`);
+      if (!pageSlugs.has(t)) failures.push(`related-tools.mjs: "${slug}" links to "${t}", which has no page`);
+    }
+  }
+
+  // The sitemap must list exactly the pages that exist, in their final URL form.
+  const locs = [...readFileSync(join(ROOT, 'sitemap.xml'), 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const expectedLocs = new Set(pages().map((rel) => (rel === 'index.html' ? `${SITE}/` : `${SITE}/${rel.replace(/\.html$/, '')}`)));
+  const seenLocs = new Set();
+  for (const loc of locs) {
+    if (seenLocs.has(loc)) failures.push(`sitemap.xml: ${loc} is listed twice`);
+    else if (!expectedLocs.has(loc)) failures.push(`sitemap.xml: ${loc} has no page on disk`);
+    seenLocs.add(loc);
+  }
+  for (const loc of expectedLocs) {
+    if (!seenLocs.has(loc)) failures.push(`sitemap.xml: missing ${loc}`);
+  }
+
   // Syntax only — `--check` parses without executing, so a tool module that
   // expects a live DOM is fine here.
   const js = [join(ROOT, 'assets', 'toolstack.js')];
@@ -254,7 +427,7 @@ function check() {
       if (f.endsWith('.js')) js.push(join(toolsJsDir, f));
     }
   }
-  for (const f of ['scripts/toolstack.mjs', 'scripts/gen-fun-tools.mjs', 'scripts/gen-pdf-tools.mjs']) {
+  for (const f of ['scripts/toolstack.mjs', 'scripts/related-tools.mjs', 'scripts/gen-fun-tools.mjs', 'scripts/gen-pdf-tools.mjs']) {
     js.push(join(ROOT, f));
   }
 
@@ -288,7 +461,7 @@ function check() {
 function addToSitemap(slug) {
   const path = join(ROOT, 'sitemap.xml');
   let xml = readFileSync(path, 'utf8');
-  const loc = `${SITE}/tools/${slug}.html`;
+  const loc = `${SITE}/tools/${slug}`;
 
   if (xml.includes(`<loc>${loc}</loc>`)) {
     console.log(`  = sitemap.xml (${slug} already listed)`);
@@ -340,7 +513,9 @@ function newTool(args) {
 
   writeFileSync(outPath, html);
   console.log(`  + tools/${slug}.html`);
-  console.log(`  ! still to do: assets/tools/${slug}.js, a ToolStack.TOOLS entry, and real copy`);
+  console.log(`  ! still to do: assets/tools/${slug}.js, a ToolStack.TOOLS entry,`);
+  console.log(`    a TOOLS + RELATED entry in scripts/related-tools.mjs, and real copy.`);
+  console.log(`    \`check\` fails until those exist.`);
 }
 
 const [cmd, ...rest] = process.argv.slice(2);
@@ -349,6 +524,16 @@ switch (cmd) {
   case 'sync-chrome':
     console.log('syncing shared chrome...');
     syncChrome();
+    break;
+  case 'sync-related':
+    console.log('syncing related tools...');
+    syncRelated();
+    break;
+  case 'sync-all':
+    console.log('syncing shared chrome...');
+    syncChrome();
+    console.log('syncing related tools...');
+    syncRelated();
     break;
   case 'check':
     console.log('checking...');
@@ -360,6 +545,6 @@ switch (cmd) {
     syncChrome();
     break;
   default:
-    console.log('usage: node scripts/toolstack.mjs <sync-chrome|check|new-tool>');
+    console.log('usage: node scripts/toolstack.mjs <sync-chrome|sync-related|sync-all|check|new-tool>');
     process.exit(cmd ? 1 : 0);
 }

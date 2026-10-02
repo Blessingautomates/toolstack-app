@@ -376,7 +376,7 @@
             '<a href="' + escapeHtml(win.url) + '" target="_blank" rel="noopener noreferrer" ' +
               'class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 text-gray-950 font-bold text-xs transition">' +
               'Try ' + escapeHtml(win.name) + ' free ↗</a>' +
-            '<a href="/tools/ai-model-comparison.html" ' +
+            '<a href="/tools/ai-model-comparison" ' +
               'class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border border-gray-700 hover:border-brand-500 text-gray-300 hover:text-brand-400 font-semibold text-xs transition">' +
               'See the full comparison →</a>' +
           '</div>' +

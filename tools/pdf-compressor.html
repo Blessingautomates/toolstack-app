@@ -50,13 +50,13 @@
 
   <title>PDF Compressor — Shrink a PDF in Your Browser | ToolStack AI</title>
   <meta name="description" content="Compress a PDF by re-rendering each page at the resolution you choose. Nothing is uploaded — the file is read and rebuilt entirely inside your browser." />
-  <link rel="canonical" href="https://toolstackai.xyz/tools/pdf-compressor.html" />
+  <link rel="canonical" href="https://toolstackai.xyz/tools/pdf-compressor" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ToolStack AI" />
   <meta property="og:title" content="PDF Compressor — Shrink a PDF in Your Browser | ToolStack AI" />
   <meta property="og:description" content="Compress a PDF by re-rendering each page at the resolution you choose. Nothing is uploaded — the file is read and rebuilt entirely inside your browser." />
-  <meta property="og:url" content="https://toolstackai.xyz/tools/pdf-compressor.html" />
+  <meta property="og:url" content="https://toolstackai.xyz/tools/pdf-compressor" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="PDF Compressor — Shrink a PDF in Your Browser | ToolStack AI" />
   <meta name="twitter:description" content="Compress a PDF by re-rendering each page at the resolution you choose. Nothing is uploaded — the file is read and rebuilt entirely inside your browser." />
@@ -97,7 +97,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "PDF Compressor",
-  "url": "https://toolstackai.xyz/tools/pdf-compressor.html",
+  "url": "https://toolstackai.xyz/tools/pdf-compressor",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any (browser-based)",
   "description": "Compress a PDF by re-rendering each page at the resolution you choose. Nothing is uploaded — the file is read and rebuilt entirely inside your browser.",
@@ -143,6 +143,33 @@
         "@type": "Answer",
         "text": "It depends entirely on what was in it. A 40 MB scan-heavy PDF typically drops to 2–6 MB at medium quality. A text-only PDF that was already written efficiently may not shrink at all, and the tool will say so rather than claim a win. If the result is not smaller, try a lower quality or resolution."
       }
+    }
+  ]
+}
+  </script>
+  <!-- Breadcrumb trail, mirroring the visible <nav> above the <h1>. -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://toolstackai.xyz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF Tools",
+      "item": "https://toolstackai.xyz/?category=pdf"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "PDF Compressor",
+      "item": "https://toolstackai.xyz/tools/pdf-compressor"
     }
   ]
 }
@@ -329,21 +356,28 @@
       </div>
     </div>
 
-    <div>
-      <h2 class="text-xl font-bold text-gray-100 mb-3">Related PDF tools</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        <a href="/tools/pdf-to-jpg.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">PDF to JPG</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">One JPEG per page, at the resolution you pick.</p>
-        </a>
-        <a href="/tools/pdf-metadata-remover.html" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
-          <p class="font-bold text-gray-200 text-sm">PDF Metadata Remover</p>
-          <p class="text-xs text-gray-400 mt-1 leading-relaxed">Clear the author, title and timestamps hidden inside a file.</p>
-        </a>
-      </div>
-    </div>
   </section>
 
+
+<!-- ts:related:start -->
+  <section class="mt-12" aria-labelledby="relatedToolsHeading">
+    <h2 id="relatedToolsHeading" class="text-xl font-bold text-gray-100 mb-3">Related tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <a href="/tools/pdf-to-jpg" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">PDF to JPG Converter</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">Turn each page into a JPEG at the resolution you pick.</p>
+      </a>
+      <a href="/tools/pdf-to-png" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">PDF to PNG Converter</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">Turn each page into a lossless PNG.</p>
+      </a>
+      <a href="/tools/image-to-pdf" class="bg-gray-900/60 border border-gray-800 hover:border-brand-500/50 rounded-xl p-4 transition">
+        <p class="font-bold text-gray-200 text-sm">Image to PDF</p>
+        <p class="text-xs text-gray-400 mt-1 leading-relaxed">Combine JPG and PNG images into one PDF, in any order.</p>
+      </a>
+    </div>
+  </section>
+<!-- ts:related:end -->
 </main>
 
 <!-- ts:footer:start -->
@@ -365,10 +399,10 @@
 
         <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-gray-400" aria-label="Footer">
           <a href="/" class="hover:text-brand-400 transition">All Tools</a>
-          <a href="/tools/json-formatter.html" class="hover:text-brand-400 transition">JSON Formatter</a>
-          <a href="/tools/spam-word-checker.html" class="hover:text-brand-400 transition">Spam-Word Checker</a>
-          <a href="/tools/script-hook-checker.html" class="hover:text-brand-400 transition">Hook Checker</a>
-          <a href="/tools/fun-games.html" class="hover:text-brand-400 transition">Fun &amp; Games</a>
+          <a href="/tools/json-formatter" class="hover:text-brand-400 transition">JSON Formatter</a>
+          <a href="/tools/spam-word-checker" class="hover:text-brand-400 transition">Spam-Word Checker</a>
+          <a href="/tools/script-hook-checker" class="hover:text-brand-400 transition">Hook Checker</a>
+          <a href="/tools/fun-games" class="hover:text-brand-400 transition">Fun &amp; Games</a>
           <a href="https://selar.com/showlove/toolstackai" target="_blank" rel="noopener noreferrer"
              class="ts-cta-support inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-500/40 bg-brand-500/10 hover:bg-brand-500/20 text-brand-400 hover:text-brand-300 font-bold transition whitespace-nowrap">
             <span aria-hidden="true">❤️</span>support toolstackai
